@@ -1,4 +1,5 @@
 import csv
+import hashlib
 import logging
 import zipfile
 
@@ -33,7 +34,7 @@ def test_carga_cria_todas_as_tabelas_de_staging(con, zips, trabalho):
             "SELECT table_name FROM information_schema.tables WHERE table_schema = 'staging'"
         ).fetchall()
     }
-    assert tabelas == {t.nome for t in esquema.TABELAS}
+    assert tabelas == {t.nome for t in esquema.TABELAS} | {"origens"}
     assert all(resumo.linhas[t.nome] > 0 for t in esquema.TABELAS)
 
 
@@ -206,3 +207,27 @@ def test_detalhe_munzona_fecha_com_os_votos_sub_judice(con, zips, trabalho):
                  <> qt_comparecimento  -- 2022: 1 voto por eleitor em todo cargo
            """
     ).fetchone() == (0,)
+
+
+def test_origens_da_particao_ficam_registradas_no_banco(con, zips, trabalho):
+    """O manifesto dos snapshots precisa do sha256 das origens de todas as partições,
+    inclusive das que não foram baixadas nesta execução (D4)."""
+    arquivos = zips()
+    carregar_particao(con, 2022, 1, arquivos, trabalho)
+    carregar_particao(con, 2022, 1, arquivos, trabalho)  # reprocessar não duplica
+
+    origens = con.execute(
+        "SELECT fonte, url, sha256, tamanho FROM staging.origens WHERE ano = 2022 AND turno = 1"
+    ).fetchall()
+    assert {o[0] for o in origens} == set(arquivos)
+    d = arquivos["votacao_secao_mg"]
+    (linha,) = [o for o in origens if o[0] == "votacao_secao_mg"]
+    assert linha[1] == d.fonte.url
+    assert linha[2] == hashlib.sha256(d.caminho.read_bytes()).hexdigest()
+    assert linha[3] == d.caminho.stat().st_size
+
+
+def test_fonte_opcional_ausente_nao_entra_nas_origens(con, zips, trabalho):
+    carregar_particao(con, 2022, 1, zips(sem=["locais_votacao"]), trabalho)
+    fontes = {r[0] for r in con.execute("SELECT fonte FROM staging.origens").fetchall()}
+    assert "locais_votacao" not in fontes

@@ -70,3 +70,24 @@ def trabalho(tmp_path) -> Path:
     p = tmp_path / "trabalho"
     p.mkdir()
     return p
+
+
+@pytest.fixture(scope="session")
+def banco_completo(tmp_path_factory) -> Path:
+    """Banco válido com 2018/1, 2022/1 e 2022/2 (staging + marts), somente leitura.
+
+    Testes que alteram o banco devem trabalhar numa cópia.
+    """
+    from eleicoes.marts import construir_marts
+    from eleicoes.staging import carregar_particao
+
+    base = tmp_path_factory.mktemp("banco_completo")
+    caminho = base / "eleicoes.duckdb"
+    con = duckdb.connect(str(caminho))
+    z2022 = montar_zips(2022, base / "raw" / "2022")
+    carregar_particao(con, 2018, 1, montar_zips(2018, base / "raw" / "2018"), base / "t")
+    carregar_particao(con, 2022, 1, z2022, base / "t")
+    carregar_particao(con, 2022, 2, z2022, base / "t")
+    construir_marts(con)
+    con.close()
+    return caminho

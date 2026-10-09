@@ -8,3 +8,4 @@ CONFIG_DIR = PIPELINE_DIR / "config"
 DATA_DIR = Path(os.environ.get("ELEICOES_DATA_DIR", PIPELINE_DIR / "data"))
 RAW_DIR = DATA_DIR / "raw"
 DB_PATH = DATA_DIR / "eleicoes.duckdb"
+WEB_DATA_DIR = PIPELINE_DIR.parent / "web" / "data"

@@ -32,6 +32,7 @@ class RemotoFalso:
 
     def substituir_por(self, origem: Path) -> None:
         self.envios += 1
+        self.caminho.parent.mkdir(parents=True, exist_ok=True)  # 1ª carga cria o banco
         shutil.copy(origem, self.caminho)
 
 

@@ -1,2 +1,4 @@
 def main() -> None:
-    print("Hello from eleicoes!")
+    from eleicoes.cli import app
+
+    app()

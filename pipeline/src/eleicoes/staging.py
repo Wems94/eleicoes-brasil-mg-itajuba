@@ -19,13 +19,16 @@ import yaml
 
 from eleicoes import esquema
 from eleicoes.config import CONFIG_DIR
-from eleicoes.download import ResultadoDownload
+from eleicoes.download import ResultadoDownload, sha256_arquivo
 from eleicoes.tse_csv import Tabela, select_sql
 
 log = logging.getLogger(__name__)
 
 SCHEMA = "staging"
 PRESIDENTE = 1
+# Arquivos do TSE usados em cada partição (para o manifesto dos snapshots, 5.2).
+ORIGENS_DDL = f"""CREATE TABLE IF NOT EXISTS {SCHEMA}.origens (
+    ano INTEGER, turno INTEGER, fonte VARCHAR, url VARCHAR, sha256 VARCHAR, tamanho BIGINT)"""
 
 
 class SchemaDivergente(RuntimeError):
@@ -63,6 +66,7 @@ class ResumoCarga:
 
 def criar_tabelas(con: duckdb.DuckDBPyConnection) -> None:
     con.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
+    con.execute(ORIGENS_DDL)
     for t in esquema.TABELAS:
         con.execute(t.ddl(SCHEMA))
         existentes = [
@@ -180,9 +184,9 @@ def carregar_particao(
 
         con.execute("BEGIN TRANSACTION")
         try:
-            for t in esquema.TABELAS:
+            for nome in [t.nome for t in esquema.TABELAS] + ["origens"]:
                 con.execute(
-                    f"DELETE FROM {SCHEMA}.{t.nome} WHERE ano = ? AND turno = ?", [ano, turno]
+                    f"DELETE FROM {SCHEMA}.{nome} WHERE ano = ? AND turno = ?", [ano, turno]
                 )
             linhas = {t.nome: 0 for t in esquema.TABELAS}
 
@@ -223,6 +227,20 @@ def carregar_particao(
                 else:
                     log.warning("Fonte opcional '%s' ausente em %d turno %d", fonte, ano, turno)
                     ausentes.append(fonte)
+
+            for nome, d in downloads.items():
+                if arquivos.get(nome) and d.caminho is not None:
+                    con.execute(
+                        f"INSERT INTO {SCHEMA}.origens VALUES (?, ?, ?, ?, ?, ?)",
+                        [
+                            ano,
+                            turno,
+                            nome,
+                            d.fonte.url,
+                            d.sha256 or sha256_arquivo(d.caminho),
+                            d.caminho.stat().st_size,
+                        ],
+                    )
 
             con.execute("COMMIT")
         except Exception:
