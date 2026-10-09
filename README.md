@@ -29,7 +29,7 @@ Todas as decisões e os requisitos estão em `openspec/changes/bootstrap-platafo
 - [x] Site em `web/` (tarefas 6.x): Next.js estático com Brasil, UF, Itajubá e metodologia
 - [x] Workflows em `.github/workflows/` (tarefas 7.x): `ci.yml`, `etl.yml`, `deploy.yml` e `validacao-real.yml`
 - [ ] Decodificador de BU validado com um BU real (tarefa 2.3)
-- [ ] Verificação integrada (tarefa 8.1)
+- [x] Verificação integrada (tarefa 8.1): site no ar em https://eleicoes-brasil-mg-itajuba.vercel.app com 2018, 2022 e 2026 (1º turno)
 
 ## Comandos
 

@@ -45,4 +45,4 @@
 
 ## 8. Verificação integrada
 
-- [ ] 8.1 Executar pipeline com fixtures → snapshots → `pnpm build`; `openspec validate --strict` passa
+- [x] 8.1 Executar pipeline com fixtures → snapshots → `pnpm build`; `openspec validate --strict` passa
