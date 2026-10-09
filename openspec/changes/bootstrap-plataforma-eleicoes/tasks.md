@@ -31,11 +31,11 @@
 
 ## 6. Site
 
-- [ ] 6.1 Next.js (export estático) + Tailwind + componentes base; `pnpm build` passa com dados de fixture
-- [ ] 6.2 Home Brasil (resultado nacional + tile map de UFs) com seletor de ano/turno
-- [ ] 6.3 Página por UF (cargos, comparecimento, deputados com situação)
-- [ ] 6.4 Deep dive Itajubá (cargos, zonas, locais com mapa, busca de seção, comparação histórica)
-- [ ] 6.5 Página de metodologia, fonte e data de geração; tabela equivalente a cada gráfico
+- [x] 6.1 Next.js (export estático) + Tailwind + componentes base; `pnpm build` passa com dados de fixture
+- [x] 6.2 Home Brasil (resultado nacional + tile map de UFs) com seletor de ano/turno
+- [x] 6.3 Página por UF (cargos, comparecimento, deputados com situação)
+- [x] 6.4 Deep dive Itajubá (cargos, zonas, locais com mapa, busca de seção, comparação histórica)
+- [x] 6.5 Página de metodologia, fonte e data de geração; tabela equivalente a cada gráfico
 
 ## 7. CI/CD
 

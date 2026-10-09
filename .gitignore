@@ -22,6 +22,10 @@ __pycache__/
 node_modules/
 web/.next/
 web/out/
+web/next-env.d.ts
+web/*.tsbuildinfo
+# snapshots gerados a partir dos fixtures (pnpm fixture), só para build/teste
+web/.snapshots-fixture/
 
 # SO / editor
 .DS_Store

@@ -91,7 +91,9 @@ def _brasil(con: duckdb.DuckDBPyConnection, ano: int, turno: int) -> dict:
         """SELECT sum(aptos) AS aptos, sum(comparecimento) AS comparecimento,
                   sum(abstencoes) AS abstencoes, sum(brancos) AS brancos, sum(nulos) AS nulos,
                   100.0 * sum(comparecimento) / nullif(sum(aptos), 0) AS pct_comparecimento,
-                  100.0 * sum(abstencoes) / nullif(sum(aptos), 0) AS pct_abstencao
+                  100.0 * sum(abstencoes) / nullif(sum(aptos), 0) AS pct_abstencao,
+                  100.0 * sum(brancos) / nullif(sum(comparecimento), 0) AS pct_brancos,
+                  100.0 * sum(nulos) / nullif(sum(comparecimento), 0) AS pct_nulos
            FROM marts.comparecimento_uf WHERE ano = ? AND turno = ? AND cd_cargo = 1""",
         [ano, turno],
     )

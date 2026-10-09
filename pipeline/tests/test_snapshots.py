@@ -96,7 +96,14 @@ def test_brasil(publicado, con):
     assert {u["uf"] for u in b["ufs"]} == {"MG", "SP", "ZZ"}
     mg = next(u for u in b["ufs"] if u["uf"] == "MG")
     assert set(mg["vencedor"]) == {"numero", "nome", "partido", "pct"}
-    assert 0 < b["comparecimento"]["pct_comparecimento"] < 100
+    comp = b["comparecimento"]
+    assert 0 < comp["pct_comparecimento"] < 100
+    assert comp["pct_brancos"] == pytest.approx(
+        100 * comp["brancos"] / comp["comparecimento"], abs=0.01
+    )
+    assert comp["pct_nulos"] == pytest.approx(
+        100 * comp["nulos"] / comp["comparecimento"], abs=0.01
+    )
 
 
 def test_uf_tem_cargos_e_deputados_com_situacao(publicado):
