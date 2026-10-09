@@ -21,7 +21,7 @@ from eleicoes.config import DATA_DIR, RAW_DIR
 from eleicoes.download import baixar_todas
 from eleicoes.fontes import Catalogo
 from eleicoes.marts import construir_marts
-from eleicoes.staging import carregar_particao
+from eleicoes.staging import SemDados, carregar_particao
 
 ESPACO_MINIMO_GB = 15
 
@@ -65,9 +65,15 @@ def main() -> int:
 
     args.db.parent.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect(str(args.db))
+    carregados = []
     for turno in args.turnos:
         t = time.monotonic()
-        r = carregar_particao(con, args.ano, turno, downloads, DATA_DIR / "trabalho")
+        try:
+            r = carregar_particao(con, args.ano, turno, downloads, DATA_DIR / "trabalho")
+        except SemDados as e:
+            print(f"\nTurno {turno} pulado: {e}")
+            continue
+        carregados.append(turno)
         print(
             f"\nStaging {args.ano}/{turno} em {time.monotonic() - t:.0f}s — "
             f"Itajubá={r.cd_municipio}, fallback Presidente={r.fallback_presidente}, "
@@ -75,6 +81,10 @@ def main() -> int:
         )
         for tabela, n in r.linhas.items():
             print(f"  {tabela:<18} {n:>12,} linhas")
+
+    if not carregados:
+        print("Nenhum turno com dados; nada a validar.")
+        return 1
 
     t = time.monotonic()
     construir_marts(con)

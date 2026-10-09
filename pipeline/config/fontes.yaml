@@ -57,5 +57,6 @@ fontes:
   locais_votacao:
     descricao: Locais de votação com latitude/longitude (mapa de Itajubá)
     url: eleitorado_locais_votacao/eleitorado_local_votacao_{ano}.zip
-    membros: ["eleitorado_local_votacao_{ano}.csv"]
+    # 2018/2022: arquivo único; 2026: dividido por UF (+ _BRASIL). Só MG interessa.
+    membros: ["eleitorado_local_votacao_{ano}.csv", "eleitorado_local_votacao_{ano}_MG.csv"]
     obrigatoria: false

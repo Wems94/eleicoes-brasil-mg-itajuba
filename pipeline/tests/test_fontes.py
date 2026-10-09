@@ -98,3 +98,29 @@ def test_base_url_pode_ser_sobrescrita():
     assert cat.fonte("consulta_cand", 2022).url == (
         "http://127.0.0.1:9999/consulta_cand/consulta_cand_2022.zip"
     )
+
+
+@pytest.mark.parametrize(
+    ("ano", "nomes", "esperado"),
+    [
+        # 2018/2022: arquivo único
+        (
+            2022,
+            ["eleitorado_local_votacao_2022.csv", "leiame.pdf"],
+            ["eleitorado_local_votacao_2022.csv"],
+        ),
+        # 2026: dividido por UF, com consolidado _BRASIL; só MG interessa ao recorte
+        (
+            2026,
+            [
+                "eleitorado_local_votacao_2026_BRASIL.csv",
+                "eleitorado_local_votacao_2026_MG.csv",
+                "eleitorado_local_votacao_2026_ZZ.csv",
+                "leiame.pdf",
+            ],
+            ["eleitorado_local_votacao_2026_MG.csv"],
+        ),
+    ],
+)
+def test_membros_de_locais_nos_dois_layouts(catalogo, ano, nomes, esperado):
+    assert catalogo.fonte("locais_votacao", ano).selecionar_membros(nomes) == esperado

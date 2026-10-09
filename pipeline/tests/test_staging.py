@@ -1,9 +1,11 @@
 import csv
+import logging
+import zipfile
 
 import pytest
 
 from eleicoes import esquema, staging
-from eleicoes.staging import SchemaDivergente, carregar_particao
+from eleicoes.staging import SchemaDivergente, SemDados, carregar_particao
 from tests.conftest import TSE
 
 
@@ -122,3 +124,49 @@ def test_schema_divergente_e_detectado(con, zips, trabalho):
 
     with pytest.raises(SchemaDivergente, match="votacao_munzona"):
         carregar_particao(con, 2022, 1, zips(), trabalho)
+
+
+def _zip_com_membros(caminho, membros: dict[str, bytes]) -> None:
+    with zipfile.ZipFile(caminho, "w") as z:
+        for nome, corpo in membros.items():
+            z.writestr(nome, corpo)
+
+
+def test_fonte_opcional_com_layout_inesperado_vira_aviso(con, zips, trabalho, caplog):
+    arquivos = zips()
+    _zip_com_membros(arquivos["locais_votacao"].caminho, {"layout_novo.csv": b"x\n"})
+
+    with caplog.at_level(logging.WARNING):
+        resumo = carregar_particao(con, 2022, 1, arquivos, trabalho)
+
+    assert resumo.fontes_ausentes == ["locais_votacao"]
+    assert "eleitorado_local_votacao_2022.zip" in caplog.text
+
+
+def test_fonte_obrigatoria_com_layout_inesperado_falha(con, zips, trabalho):
+    arquivos = zips()
+    _zip_com_membros(arquivos["votacao_secao_mg"].caminho, {"layout_novo.csv": b"x\n"})
+
+    with pytest.raises(FileNotFoundError, match="votacao_secao_2022_MG.zip"):
+        carregar_particao(con, 2022, 1, arquivos, trabalho)
+
+
+def test_turno_sem_dados_falha_com_mensagem_clara_e_preserva_o_banco(con, zips, trabalho):
+    arquivos = zips()
+    carregar_particao(con, 2022, 1, arquivos, trabalho)
+    antes = _contagens(con)
+
+    def sem_turno_2(nome: str) -> bytes:  # remove as linhas com NR_TURNO (6ª coluna) = 2
+        linhas = (TSE / "2022" / nome).read_bytes().splitlines()
+        return b"\n".join(lin for lin in linhas if lin.split(b";")[5] != b"2") + b"\n"
+
+    substituir = {
+        f"{dataset}_2022_{m}.csv": sem_turno_2(f"{dataset}_2022_{m}.csv")
+        for dataset in ("votacao_candidato_munzona", "detalhe_votacao_munzona")
+        for m in ("MG", "SP", "BR")
+    }
+
+    with pytest.raises(SemDados, match="2022 turno 2"):
+        carregar_particao(con, 2022, 2, zips(substituir=substituir), trabalho)
+
+    assert _contagens(con) == antes

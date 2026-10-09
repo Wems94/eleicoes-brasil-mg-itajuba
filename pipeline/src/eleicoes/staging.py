@@ -36,6 +36,10 @@ class MunicipioNaoEncontrado(RuntimeError):
     pass
 
 
+class SemDados(RuntimeError):
+    pass
+
+
 @dataclass(frozen=True)
 class Recorte:
     uf: str
@@ -158,9 +162,18 @@ def carregar_particao(
     trabalho.mkdir(parents=True, exist_ok=True)
 
     with tempfile.TemporaryDirectory(dir=trabalho) as tmp:
-        arquivos = {
-            nome: extrair(d, Path(tmp) / nome) if d.caminho else [] for nome, d in downloads.items()
-        }
+        arquivos: dict[str, list[Path]] = {}
+        for nome, d in downloads.items():
+            if d.caminho is None:
+                arquivos[nome] = []
+                continue
+            try:
+                arquivos[nome] = extrair(d, Path(tmp) / nome)
+            except FileNotFoundError as e:
+                if d.fonte.obrigatoria:
+                    raise
+                log.warning("Fonte opcional '%s' ignorada (layout inesperado): %s", nome, e)
+                arquivos[nome] = []
         det_secao = arquivos.get("detalhe_votacao_secao", [])
         det_secao_br = [a for a in det_secao if a.name.endswith("_BR.csv")]
         det_secao_uf = [a for a in det_secao if a not in det_secao_br]
@@ -178,6 +191,11 @@ def carregar_particao(
 
             carregar(esquema.VOTACAO_MUNZONA, arquivos.get("votacao_candidato_munzona", []))
             carregar(esquema.DETALHE_MUNZONA, arquivos.get("detalhe_votacao_munzona", []))
+            if linhas[esquema.VOTACAO_MUNZONA.nome] == 0:
+                raise SemDados(
+                    f"Nenhuma linha de votação para {ano} turno {turno} nos arquivos do TSE "
+                    "(o turno já aconteceu e foi publicado?)"
+                )
 
             cd = resolver_municipio(con, ano, turno, recorte)
             do_municipio = ("sg_uf = ? AND cd_municipio = ?", (recorte.uf, cd))
