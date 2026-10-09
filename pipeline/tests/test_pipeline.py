@@ -1,6 +1,7 @@
 """Testes ponta a ponta da CLI `eleicoes run` com os fixtures servidos por HTTP local."""
 
 import json
+import re
 from pathlib import Path
 
 import duckdb
@@ -15,6 +16,12 @@ from tests.servidor_http import servidor_http
 from tests.test_motherduck import RemotoFalso
 
 UFS = "MG,SP"  # os fixtures só têm MG e SP
+# No GitHub Actions o Rich colore a saída e os códigos ANSI quebram o texto ("--ano").
+ANSI = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def _saida(r) -> str:
+    return ANSI.sub("", r.output)
 
 
 @pytest.fixture
@@ -78,19 +85,19 @@ def _arvore(d: Path) -> dict[str, bytes]:
 def test_help():
     r = CliRunner().invoke(app, ["run", "--help"])
     assert r.exit_code == 0
-    assert "--ano" in r.output and "--turno" in r.output
+    assert "--ano" in _saida(r) and "--turno" in _saida(r)
 
 
 def test_ponta_a_ponta_sem_token(ambiente):
     r = _rodar(ambiente, 2022, 1)
 
-    assert r.exit_code == 0, r.output
+    assert r.exit_code == 0, _saida(r)
     assert _particoes(ambiente) == {(2022, 1)}
     m = _manifesto(ambiente)
     assert m["eleicoes"] == [{"ano": 2022, "turnos": [1]}]
     assert (ambiente.tmp / "web" / "data" / "2022" / "1" / "itajuba.json").exists()
-    assert "carga remota pulada" in r.output
-    assert "APROVADO" in r.output
+    assert "carga remota pulada" in _saida(r)
+    assert "APROVADO" in _saida(r)
 
 
 def test_turnos_e_anos_se_acumulam_no_banco_e_no_manifesto(ambiente):
@@ -115,14 +122,14 @@ def test_reexecucao_nao_baixa_de_novo(ambiente):
 def test_ano_nao_suportado(ambiente):
     r = CliRunner().invoke(app, _args(ambiente, 2020, 1))
     assert r.exit_code != 0
-    assert "2018, 2022, 2026" in r.output
+    assert "2018, 2022, 2026" in _saida(r)
 
 
 def test_fonte_obrigatoria_ausente_nao_publica_nada(ambiente):
     del ambiente.arquivos["votacao_candidato_munzona/votacao_candidato_munzona_2022.zip"]
     r = _rodar(ambiente, 2022, 1)
     assert r.exit_code == 1
-    assert "votacao_candidato_munzona_2022.zip" in r.output
+    assert "votacao_candidato_munzona_2022.zip" in _saida(r)
     assert not (ambiente.tmp / "web" / "data").exists()
 
 
@@ -150,7 +157,7 @@ def test_gate_reprovado_nao_publica_nem_envia(ambiente, monkeypatch):
     r = _rodar(ambiente, 2022, 1, "--forcar")
 
     assert r.exit_code == 1
-    assert "soma_secao_itajuba" in r.output
+    assert "soma_secao_itajuba" in _saida(r)
     assert remoto.envios == envios_antes  # MotherDuck intacto
     assert _arvore(ambiente.tmp / "web" / "data") == antes  # snapshots anteriores mantidos
 
@@ -167,7 +174,7 @@ def test_com_token_baixa_antes_e_envia_depois(ambiente, monkeypatch):
 
     r = _rodar(ambiente, 2022, 1)
 
-    assert r.exit_code == 0, r.output
+    assert r.exit_code == 0, _saida(r)
     assert remoto.envios == 2
     assert _particoes(ambiente) == {(2018, 1), (2022, 1)}
     con = duckdb.connect(str(remoto.caminho), read_only=True)
@@ -193,8 +200,8 @@ def test_vazamento_nos_snapshots_bloqueia_a_publicacao(ambiente, monkeypatch):
     r = _rodar(ambiente, 2022, 1)
 
     assert r.exit_code == 1
-    assert "LGPD" in r.output
-    assert "candidato@exemplo.com.br" not in r.output  # mascarado
+    assert "LGPD" in _saida(r)
+    assert "candidato@exemplo.com.br" not in _saida(r)  # mascarado
     assert _arvore(ambiente.tmp / "web" / "data") == antes
 
 
@@ -213,10 +220,10 @@ def test_turno_sem_dados(ambiente):
     )
     r = _rodar(ambiente, 2022, 2)
     assert r.exit_code == 1
-    assert "Nenhuma linha de votação para 2022 turno 2" in r.output
+    assert "Nenhuma linha de votação para 2022 turno 2" in _saida(r)
 
 
 def test_turno_invalido(ambiente):
     r = CliRunner().invoke(app, _args(ambiente, 2022, 3))
     assert r.exit_code == 1
-    assert "Turno 3 inválido" in r.output
+    assert "Turno 3 inválido" in _saida(r)
