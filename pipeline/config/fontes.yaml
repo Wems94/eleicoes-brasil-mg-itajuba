@@ -1,0 +1,61 @@
+# Catálogo de fontes do Portal de Dados Abertos do TSE.
+#
+# `url` e `membros` aceitam o marcador {ano}. `membros`/`excluir` são padrões glob
+# aplicados aos nomes dos CSVs dentro do ZIP.
+#
+# Observações verificadas nos arquivos reais (out/2026):
+# - Os membros por UF (_MG, _SP, ...) trazem só a eleição estadual; o Presidente
+#   vem no membro _BR, que tem SG_UF real (incluindo ZZ = exterior).
+# - O membro _BRASIL é a união de todos os outros (> 4 GB no munzona): nunca é lido,
+#   para não duplicar votos.
+# - votacao_secao_<ano>_MG não traz Presidente em 2018 nem 2022; por isso o arquivo
+#   _BR é obrigatório (fallback de Presidente, D5).
+
+base_url: https://cdn.tse.jus.br/estatistica/sead/odsele/
+anos: [2018, 2022, 2026]
+
+fontes:
+  votacao_candidato_munzona:
+    descricao: Votação por candidato, município e zona (visão por UF)
+    url: votacao_candidato_munzona/votacao_candidato_munzona_{ano}.zip
+    membros: ["votacao_candidato_munzona_{ano}_*.csv"]
+    excluir: ["*_BRASIL.csv"]
+    obrigatoria: true
+
+  detalhe_votacao_munzona:
+    descricao: Comparecimento, brancos e nulos por município e zona
+    url: detalhe_votacao_munzona/detalhe_votacao_munzona_{ano}.zip
+    membros: ["detalhe_votacao_munzona_{ano}_*.csv"]
+    excluir: ["*_BRASIL.csv"]
+    obrigatoria: true
+
+  votacao_secao_mg:
+    descricao: Votação por seção em MG (recorte de Itajubá)
+    url: votacao_secao/votacao_secao_{ano}_MG.zip
+    membros: ["votacao_secao_{ano}_MG.csv"]
+    obrigatoria: true
+
+  votacao_secao_br:
+    descricao: Votação por seção para Presidente (fallback de Itajubá)
+    url: votacao_secao/votacao_secao_{ano}_BR.zip
+    membros: ["votacao_secao_{ano}_BR.csv"]
+    obrigatoria: true
+
+  detalhe_votacao_secao:
+    descricao: Comparecimento por seção (membros MG e BR)
+    url: detalhe_votacao_secao/detalhe_votacao_secao_{ano}.zip
+    membros: ["detalhe_votacao_secao_{ano}_MG.csv", "detalhe_votacao_secao_{ano}_BR.csv"]
+    obrigatoria: true
+
+  consulta_cand:
+    descricao: Atributos de candidatos (contém CPF/e-mail; lido só por allowlist)
+    url: consulta_cand/consulta_cand_{ano}.zip
+    membros: ["consulta_cand_{ano}_*.csv"]
+    excluir: ["*_BRASIL.csv"]
+    obrigatoria: false
+
+  locais_votacao:
+    descricao: Locais de votação com latitude/longitude (mapa de Itajubá)
+    url: eleitorado_locais_votacao/eleitorado_local_votacao_{ano}.zip
+    membros: ["eleitorado_local_votacao_{ano}.csv"]
+    obrigatoria: false

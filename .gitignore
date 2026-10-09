@@ -1,6 +1,8 @@
 # Dados (brutos podem conter CPF/e-mail de candidatos — LGPD)
 pipeline/data/
 data/
+# ...exceto os snapshots publicados do site (D7), que entram por PR
+!web/data/
 *.duckdb
 *.duckdb.wal
 

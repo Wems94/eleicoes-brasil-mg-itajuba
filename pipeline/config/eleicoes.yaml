@@ -1,0 +1,23 @@
+# Parâmetros de domínio do pipeline.
+
+# Município com granularidade de seção (D5). O código TSE é resolvido pelo nome
+# nos próprios dados (comparação sem acento e sem diferenciar maiúsculas).
+recorte_municipal:
+  uf: MG
+  municipio: ITAJUBÁ
+
+# Cargos das eleições gerais (código TSE -> nome canônico).
+cargos:
+  1: Presidente
+  3: Governador
+  5: Senador
+  6: Deputado Federal
+  7: Deputado Estadual
+  8: Deputado Distrital
+
+# Vagas do Senado por ano (renovação de 2/3 ou 1/3). Cada eleitor dá um voto por vaga,
+# então a soma dos votos do cargo = comparecimento × vagas.
+vagas_senado:
+  2018: 2
+  2022: 1
+  2026: 2

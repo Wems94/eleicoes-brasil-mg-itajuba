@@ -31,8 +31,36 @@ O `read_csv` do DuckDB lê latin-1 em streaming, com `all_varchar` e filtros apl
 ### D3. Colunas resolvidas por lista de candidatos (column aliasing)
 Cada tabela de staging declara suas colunas de destino, cada uma com uma lista de nomes de origem possíveis. A primeira coluna existente é usada; se nenhuma existir, o valor fica `NULL` tipado. Isso absorve as mudanças entre anos e funciona também como **allowlist**: o que não está declarado nunca é lido, e é isso que implementa a proteção de dados pessoais por construção.
 
-### D4. Partições `ano=/turno=` em Parquet e recarga por substituição
-O staging é gravado como `data/staging/<tabela>/ano=YYYY/turno=N/part.parquet`. Recarregar um `(ano, turno)` substitui só aquela partição, e é isso que permite carregar o 2º turno de 2026 depois.
+### D4. Staging em tabelas DuckDB, partição lógica `(ano, turno)` e persistência no MotherDuck
+O staging fica no schema `staging` do arquivo `data/eleicoes.duckdb`, ao lado do schema `marts`. Toda tabela de staging tem as colunas `ano` e `turno`. Recarregar um `(ano, turno)` é, numa única transação, `DELETE ... WHERE ano = ? AND turno = ?` seguido do `INSERT` da nova carga. Só aquela partição muda. Os marts são reconstruídos a partir do staging completo a cada execução.
+
+**Persistência entre execuções.** O runner do CI é efêmero, mas o 2º turno de 2026 precisa ser carregado sem reprocessar 2018, 2022 e o 1º turno. Por isso o banco `eleicoes` no MotherDuck é a **fonte da verdade do staging**, e cada execução com token segue três passos:
+
+1. **Baixar** antes de transformar. Se o banco remoto existir, a cópia local é descartada e substituída por ele (sintaxe confirmada na documentação do MotherDuck, `COPY FROM DATABASE`):
+   ```sql
+   ATTACH 'md:';                                  -- token via variável MOTHERDUCK_TOKEN
+   ATTACH 'data/eleicoes.duckdb' AS local_db;     -- arquivo novo, vazio
+   COPY FROM DATABASE eleicoes TO local_db;
+   ```
+   Na primeira carga o banco remoto ainda não existe e a execução começa com o arquivo vazio.
+2. **Transformar e validar** localmente: substituição da partição, reconstrução dos marts e gate de qualidade (D6) sobre o banco inteiro.
+3. **Enviar** só depois que o gate passar, substituindo o banco remoto de uma vez (D7):
+   ```sql
+   CREATE OR REPLACE DATABASE eleicoes FROM 'data/eleicoes.duckdb';
+   ```
+
+Sem token, o arquivo local é a única cópia: execuções locais acumulam partições nele normalmente e nada é baixado nem enviado.
+
+**Por que sempre baixar quando há token.** Um arquivo local desatualizado (por exemplo, numa máquina de desenvolvimento antes da carga do 2º turno no CI) apagaria partições do banco oficial no `CREATE OR REPLACE`. Baixar sempre garante que o envio parte do estado remoto mais recente.
+
+**Concorrência.** Duas execuções simultâneas fariam a última sobrescrever a outra. O workflow de ETL usa um grupo `concurrency` único, sem cancelar a execução em andamento, para serializar as cargas.
+
+**Alternativas descartadas.**
+- *Parquet em `data/staging/<tabela>/ano=/turno=/`*: no CI, os arquivos sumiriam com o runner. Persisti-los exigiria um bucket ou artefatos do Actions, que expiram.
+- *Escrever o staging direto no MotherDuck*: cada `INSERT` cruzaria a rede durante a transformação, e o gate de qualidade não rodaria antes de alterar o banco oficial.
+- *Cache do GitHub Actions*: é despejado após 7 dias sem uso e não é fonte confiável de dados.
+
+**Custo.** O banco tem só o recorte necessário (UF por município/zona e seções de Itajubá), então a cópia física nos dois sentidos fica em dezenas a poucas centenas de MB por execução.
 
 ### D5. Recorte geográfico em duas resoluções
 - **Brasil por UF:** `votacao_candidato_munzona` e `detalhe_votacao_munzona`, para todos os municípios.
@@ -43,7 +71,7 @@ O staging é gravado como `data/staging/<tabela>/ano=YYYY/turno=N/part.parquet`.
 As regras rodam em SQL sobre o DuckDB recém-construído. Qualquer erro interrompe a execução, com código de saída diferente de zero, antes de carregar no MotherDuck ou de gerar snapshots.
 
 ### D7. Publicação em dois destinos
-1. **MotherDuck:** `CREATE OR REPLACE DATABASE` a partir do arquivo DuckDB local validado. É o banco oficial, consultável por SQL.
+1. **MotherDuck:** `CREATE OR REPLACE DATABASE eleicoes FROM 'data/eleicoes.duckdb'` a partir do arquivo local validado. É o banco oficial, consultável por SQL, e também guarda o staging entre execuções (D4).
 2. **Snapshots JSON** em `web/data/`: gravados primeiro num diretório temporário e trocados de uma vez por renomeação. No CI, entram por Pull Request; o merge dispara o deploy na Vercel.
 
 Alternativa descartada: o site consultar o MotherDuck em runtime, porque cria acoplamento a disponibilidade, custo e latência.
