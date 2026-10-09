@@ -20,8 +20,8 @@
 
 ## 4. Qualidade e LGPD
 
-- [ ] 4.1 Regras de qualidade (soma = comparecimento × vagas, unicidade, domínios, referencial, completude) com relatório e saída ≠ 0; testes que forçam cada falha
-- [ ] 4.2 Verificador LGPD (colunas proibidas e padrões CPF/e-mail) sobre banco e snapshots; teste com vazamento injetado
+- [x] 4.1 Regras de qualidade (soma = comparecimento × vagas, unicidade, domínios, referencial, completude) com relatório e saída ≠ 0; testes que forçam cada falha
+- [x] 4.2 Verificador LGPD (colunas proibidas e padrões CPF/e-mail) sobre banco e snapshots; teste com vazamento injetado
 
 ## 5. Publicação
 

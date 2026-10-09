@@ -21,3 +21,7 @@ vagas_senado:
   2018: 2
   2022: 1
   2026: 2
+
+# UFs que precisam ter dados no 1º turno (regra de completude). ZZ (exterior) não entra.
+ufs:
+  [AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO]

@@ -20,7 +20,9 @@ import duckdb
 from eleicoes.config import DATA_DIR, RAW_DIR
 from eleicoes.download import baixar_todas
 from eleicoes.fontes import Catalogo
+from eleicoes.lgpd import verificar_banco
 from eleicoes.marts import construir_marts
+from eleicoes.qualidade import executar
 from eleicoes.staging import SemDados, carregar_particao
 
 ESPACO_MINIMO_GB = 15
@@ -32,12 +34,6 @@ def _tabela(con: duckdb.DuckDBPyConnection, titulo: str, sql: str) -> None:
     print(" | ".join(rel.columns))
     for linha in rel.fetchall():
         print(" | ".join(f"{v:.2f}" if isinstance(v, float) else str(v) for v in linha))
-
-
-def _checagem(con: duckdb.DuckDBPyConnection, nome: str, sql: str) -> bool:
-    (n,) = con.sql(sql).fetchone()
-    print(f"  [{'OK ' if n == 0 else 'ERRO'}] {nome}: {n} divergência(s)")
-    return n == 0
 
 
 def main() -> int:
@@ -118,49 +114,19 @@ def main() -> int:
                   (SELECT count(*) FROM marts.itajuba_local WHERE nr_latitude IS NULL) sem_coord""",
     )
 
-    print("\n## Checagens de consistência (prévia do gate de qualidade)")
-    ok = all(
-        [
-            _checagem(
-                con,
-                "presidente nacional soma 100% dos válidos",
-                """SELECT count(*) FROM (SELECT ano, turno, sum(pct_validos) s
-                   FROM marts.resultado_brasil GROUP BY ALL) WHERE abs(s - 100) > 1e-6""",
-            ),
-            _checagem(
-                con,
-                "munzona: válidos + brancos + nulos + anulados + sub judice"
-                " = comparecimento × votos/eleitor",
-                """SELECT count(*) FROM staging.detalhe_munzona d
-                   JOIN marts.cargos USING (ano, cd_cargo)
-                   WHERE qt_votos_validos + qt_votos_brancos + qt_votos_nulos
-                         + coalesce(qt_votos_anulados, 0)
-                         + coalesce(qt_votos_anulados_subjudice, 0)
-                         <> qt_comparecimento * votos_por_eleitor""",
-            ),
-            _checagem(
-                con,
-                "Itajubá: soma por seção = munzona, por candidato",
-                """WITH s AS (SELECT ano, turno, cd_cargo, nr_votavel, sum(votos) v
-                             FROM marts.itajuba_resultado WHERE tipo_votavel = 'candidato'
-                             GROUP BY ALL),
-                        m AS (SELECT ano, turno, cd_cargo, nr_candidato nr_votavel,
-                                     sum(qt_votos_nominais) v
-                              FROM staging.votacao_munzona
-                              WHERE cd_municipio = (SELECT any_value(cd_municipio)
-                                                    FROM staging.votacao_secao)
-                              GROUP BY ALL)
-                   SELECT count(*) FROM s FULL JOIN m USING (ano, turno, cd_cargo, nr_votavel)
-                   WHERE s.v IS DISTINCT FROM m.v AND coalesce(m.v, 0) > 0""",
-            ),
-            _checagem(
-                con,
-                "nenhuma coluna de CPF/e-mail/nascimento/título no banco",
-                """SELECT count(*) FROM information_schema.columns
-                   WHERE regexp_matches(lower(column_name), 'cpf|email|nascimento|titulo')""",
-            ),
-        ]
-    )
+    print("\n## Gate de qualidade (4.1)")
+    ok = True
+    for turno in carregados:
+        relatorio = executar(con, args.ano, turno)
+        print(relatorio.texto())
+        ok = ok and relatorio.ok
+
+    print("\n## Verificador LGPD (4.2)")
+    vazamentos = verificar_banco(con)
+    for v in vazamentos:
+        print(f"  [ERRO] {v}")
+    print("  [OK] nenhum dado pessoal encontrado" if not vazamentos else "")
+    ok = ok and not vazamentos
 
     print(
         f"\nTempo: download {t_download:.0f}s, marts {t_marts:.0f}s, "
