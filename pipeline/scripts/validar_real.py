@@ -129,11 +129,13 @@ def main() -> int:
             ),
             _checagem(
                 con,
-                "munzona: válidos + brancos + nulos + anulados = comparecimento × votos/eleitor",
+                "munzona: válidos + brancos + nulos + anulados + sub judice"
+                " = comparecimento × votos/eleitor",
                 """SELECT count(*) FROM staging.detalhe_munzona d
                    JOIN marts.cargos USING (ano, cd_cargo)
                    WHERE qt_votos_validos + qt_votos_brancos + qt_votos_nulos
                          + coalesce(qt_votos_anulados, 0)
+                         + coalesce(qt_votos_anulados_subjudice, 0)
                          <> qt_comparecimento * votos_por_eleitor""",
             ),
             _checagem(

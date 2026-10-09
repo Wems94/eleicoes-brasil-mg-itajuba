@@ -124,6 +124,8 @@ FROM (
 
 # Votos por seção de Itajubá, classificados e com partido. 95/96/97 são branco,
 # nulo e anulado; sem sq_candidato, o número do votável é o do partido (legenda).
+# Candidato ausente da totalização (munzona), como uma candidatura não apta, é
+# voto nulo: é assim que o TSE o conta no detalhe por município (caso real de 2026).
 ITAJUBA_VOTOS = """
 CREATE OR REPLACE TEMP VIEW _itajuba_votos AS
 WITH cand AS (
@@ -139,13 +141,15 @@ SELECT s.ano, s.turno, s.cd_cargo, s.nr_zona, s.nr_secao, s.nr_local_votacao,
        CASE WHEN s.nr_votavel = 95 THEN 'branco'
             WHEN s.nr_votavel = 96 THEN 'nulo'
             WHEN s.nr_votavel = 97 THEN 'anulado'
+            WHEN s.sq_candidato IS NOT NULL AND c.sq_candidato IS NULL THEN 'nulo'
             WHEN s.sq_candidato IS NOT NULL THEN 'candidato'
             ELSE 'legenda' END AS tipo_votavel,
        s.nr_votavel, s.nm_votavel, c.nm_urna_candidato,
        coalesce(c.sg_partido, p.sg_partido) AS sg_partido,
        s.qt_votos
 FROM staging.votacao_secao s
-LEFT JOIN cand c USING (ano, turno, sq_candidato)
+LEFT JOIN cand c
+       ON c.ano = s.ano AND c.turno = s.turno AND c.sq_candidato = s.sq_candidato
 LEFT JOIN partidos p
        ON p.ano = s.ano AND p.nr_partido = s.nr_votavel
       AND s.sq_candidato IS NULL AND s.nr_votavel NOT IN (95, 96, 97)"""

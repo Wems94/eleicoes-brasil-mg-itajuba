@@ -170,3 +170,39 @@ def test_turno_sem_dados_falha_com_mensagem_clara_e_preserva_o_banco(con, zips, 
         carregar_particao(con, 2022, 2, zips(substituir=substituir), trabalho)
 
     assert _contagens(con) == antes
+
+
+def test_detalhe_munzona_fecha_com_os_votos_sub_judice(con, zips, trabalho):
+    """válidos + brancos + nulos + anulados + sub judice = comparecimento × votos por eleitor.
+
+    Em 2026 há milhares de linhas com votos em candidatos sub judice
+    (QT_TOTAL_VOTOS_ANUL_SUBJUD); sem essa coluna a soma não fecha.
+    """
+    det = (TSE / "2022" / "detalhe_votacao_munzona_2022_MG.csv").read_bytes().splitlines()
+    cab = det[0].split(b";")
+    i_subjud, i_validos, i_votos = (
+        cab.index(b'"QT_TOTAL_VOTOS_ANUL_SUBJUD"'),
+        cab.index(b'"QT_TOTAL_VOTOS_VALIDOS"'),
+        cab.index(b'"QT_VOTOS"'),
+    )
+    linhas = [det[0]]
+    for lin in det[1:]:  # move 7 votos válidos para sub judice em cada linha
+        c = lin.split(b";")
+        c[i_validos] = str(int(c[i_validos]) - 7).encode()
+        c[i_subjud] = b"7"
+        assert c[i_votos]
+        linhas.append(b";".join(c))
+    arquivos = zips(substituir={"detalhe_votacao_munzona_2022_MG.csv": b"\n".join(linhas) + b"\n"})
+    carregar_particao(con, 2022, 1, arquivos, trabalho)
+
+    assert con.execute(
+        "SELECT DISTINCT qt_votos_anulados_subjudice FROM staging.detalhe_munzona"
+        " WHERE sg_uf = 'MG' AND cd_cargo <> 1"  # Presidente de MG vem do membro _BR
+    ).fetchall() == [(7,)]
+    assert con.execute(
+        """SELECT count(*) FROM staging.detalhe_munzona
+           WHERE qt_votos_validos + qt_votos_brancos + qt_votos_nulos
+                 + coalesce(qt_votos_anulados, 0) + coalesce(qt_votos_anulados_subjudice, 0)
+                 <> qt_comparecimento  -- 2022: 1 voto por eleitor em todo cargo
+           """
+    ).fetchone() == (0,)

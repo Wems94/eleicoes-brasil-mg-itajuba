@@ -88,6 +88,8 @@ DETALHE_MUNZONA = Tabela(
         _int("qt_votos_brancos", obrigatoria=True),
         _int("qt_votos_nulos", "QT_TOTAL_VOTOS_NULOS", "QT_VOTOS_NULOS", obrigatoria=True),
         _int("qt_votos_anulados", "QT_TOTAL_VOTOS_ANULADOS", "QT_VOTOS_ANULADOS"),
+        # votos em candidatos sub judice (candidatura pendente de julgamento)
+        _int("qt_votos_anulados_subjudice", "QT_TOTAL_VOTOS_ANUL_SUBJUD"),
     ),
 )
 

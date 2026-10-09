@@ -277,3 +277,32 @@ def test_reconstrucao_e_idempotente(db):
     antes = _q(db, "SELECT * FROM marts.resultado_uf ORDER BY ALL")
     construir_marts(db)
     assert _q(db, "SELECT * FROM marts.resultado_uf ORDER BY ALL") == antes
+
+
+def test_voto_em_candidato_fora_da_totalizacao_e_nulo(con, zips, trabalho):
+    """Caso real de 2026: o nº 28 (candidatura não apta) aparece no arquivo de seção,
+    mas não no munzona; na totalização oficial esses votos são nulos."""
+    br = TSE / "2022" / "votacao_secao_2022_BR.csv"
+    linhas = br.read_bytes().splitlines()
+    modelo = next(lin for lin in linhas if b"ITAJUB" in lin and b'"PRESIDENTE"' in lin)
+    c = modelo.split(b";")
+    c[19], c[20], c[21], c[23] = (
+        b"28",
+        '"CANDIDATO INAPTO"'.encode("latin-1"),
+        b"2",
+        b"280001699999",
+    )
+    arquivos = zips(substituir={br.name: b"\n".join([*linhas, b";".join(c)]) + b"\n"})
+    carregar_particao(con, 2022, 1, arquivos, trabalho)
+    construir_marts(con)
+
+    assert _q(
+        con,
+        """SELECT tipo_votavel, pct_validos FROM marts.itajuba_resultado
+           WHERE turno = 1 AND cd_cargo = 1 AND nr_votavel = 28""",
+    ) == [("nulo", None)]
+    assert _q(
+        con,
+        f"""SELECT sum(pct_validos) FROM marts.itajuba_resultado
+            WHERE turno = 1 AND cd_cargo = 1 AND {CANDIDATO_E_LEGENDA}""",
+    )[0][0] == pytest.approx(100)
