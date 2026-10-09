@@ -177,3 +177,21 @@ def test_totais_eleitorais_nao_sao_confundidos_com_cpf(db):
     assert falsos  # existem totais plausíveis que "parecem" CPF
     db.execute(f"UPDATE marts.resultado_brasil SET votos_validos = {falsos[0]}")
     assert verificar_banco(db) == []
+
+
+def test_identificadores_do_tse_nao_sao_confundidos_com_cpf(db, tmp_path):
+    """Caso real de 2026: sq_candidato/sq_coligacao com 11 dígitos (ex.: 100…) às vezes
+    passam no DV por acaso. São sequenciais do TSE, não CPF."""
+    db.execute(
+        f"UPDATE staging.votacao_munzona SET sq_candidato = {CPF_VALIDO},"
+        f" sq_coligacao = {CPF_VALIDO}"
+    )
+    db.execute(f"UPDATE marts.resultado_uf SET sq_candidato = {CPF_VALIDO}, nr_candidato = 1")
+    assert verificar_banco(db) == []
+    _json(tmp_path / "uf.json", {"candidatos": [{"sq_candidato": int(CPF_VALIDO), "cd_x": 1}]})
+    assert verificar_snapshots(tmp_path) == []
+
+
+def test_cpf_numerico_em_coluna_que_nao_e_identificador_continua_detectado(db):
+    db.execute(f"ALTER TABLE staging.candidatos ADD COLUMN documento BIGINT DEFAULT {CPF_VALIDO}")
+    assert ("staging.candidatos.documento", "cpf") in _tipos(verificar_banco(db))

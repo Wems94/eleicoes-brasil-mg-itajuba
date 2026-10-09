@@ -30,6 +30,10 @@ SCHEMAS_DO_SISTEMA = ("information_schema", "pg_catalog")
 # nunca chegam a 1 bilhão; 9 dígitos daria falso positivo em 1% dos totais nacionais.
 # Custo: CPF iniciado por 0 gravado como número escapa (em texto, não escapa).
 CPF_NUM_MIN, CPF_NUM_MAX = 1_000_000_000, 99_999_999_999
+# Identificadores e códigos do TSE (sq_candidato, nr_partido, cd_municipio...) não
+# entram na checagem numérica: ~1% dos sq_* de 11 dígitos passa no DV por acaso
+# (visto nos dados reais de 2026). Em texto, todas as colunas continuam checadas.
+IDENTIFICADOR_TSE = re.compile(r"^(sq|nr|cd)_", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -100,7 +104,7 @@ def verificar_banco(con: duckdb.DuckDBPyConnection, *, exemplos: int = 3) -> lis
                 ex = sorted(m for tp, m in achados if tp == t)[:exemplos]
                 if ex:
                     out.append(Vazamento(local, t, ", ".join(ex)))
-        elif tipo in ("BIGINT", "HUGEINT", "UBIGINT"):
+        elif tipo in ("BIGINT", "HUGEINT", "UBIGINT") and not IDENTIFICADOR_TSE.match(coluna):
             suspeitos = con.execute(
                 f"SELECT DISTINCT {col} FROM {ref} WHERE {col} BETWEEN ? AND ?",
                 [CPF_NUM_MIN, CPF_NUM_MAX],
@@ -116,22 +120,23 @@ def verificar_banco(con: duckdb.DuckDBPyConnection, *, exemplos: int = 3) -> lis
 # --- snapshots ---------------------------------------------------------------------
 
 
-def _percorrer(valor: object, caminho: str) -> Iterator[tuple[str, str, str]]:
+def _percorrer(valor: object, caminho: str, chave: str = "") -> Iterator[tuple[str, str, str]]:
     if isinstance(valor, dict):
         for k, v in valor.items():
             filho = f"{caminho}.{k}"
             if NOME_PROIBIDO.search(str(k)):
                 yield filho, "coluna proibida", ""
-            yield from _percorrer(v, filho)
+            yield from _percorrer(v, filho, str(k))
     elif isinstance(valor, list):
         for i, v in enumerate(valor):
-            yield from _percorrer(v, f"{caminho}[{i}]")
+            yield from _percorrer(v, f"{caminho}[{i}]", chave)
     elif isinstance(valor, str):
         for tipo, ex in _achados_em_texto(valor):
             yield caminho, tipo, ex
     elif (
         isinstance(valor, int)
         and not isinstance(valor, bool)
+        and not IDENTIFICADOR_TSE.match(chave)
         and CPF_NUM_MIN <= valor <= CPF_NUM_MAX
         and cpf_valido(f"{valor:011d}")
     ):

@@ -25,7 +25,7 @@
 
 ## 5. Publicação
 
-- [ ] 5.1 Sincronização MotherDuck opcional por token (D4): baixar `eleicoes` antes da transformação (`COPY FROM DATABASE`, tolerando banco inexistente) e enviar após o gate (`CREATE OR REPLACE DATABASE ... FROM`); testes de pulo sem token e de que o envio não ocorre se o gate falhar
+- [x] 5.1 Sincronização MotherDuck opcional por token (D4): baixar `eleicoes` antes da transformação (`COPY FROM DATABASE`, tolerando banco inexistente) e enviar após o gate (`CREATE OR REPLACE DATABASE ... FROM`); testes de pulo sem token e de que o envio não ocorre se o gate falhar
 - [ ] 5.2 Snapshots JSON atômicos + manifesto; teste de falha no meio preservando diretório anterior
 - [ ] 5.3 CLI `eleicoes run --ano --turno` encadeando tudo; teste ponta a ponta com fixtures
 
