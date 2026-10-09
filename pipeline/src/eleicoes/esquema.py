@@ -28,6 +28,9 @@ _PARTICAO = (
     _int("ano", "ANO_ELEICAO", "AA_ELEICAO", obrigatoria=True),
     _int("turno", "NR_TURNO", obrigatoria=True),
 )
+# 2 = Eleição Ordinária. O arquivo de 2018 traz também a Eleição Suplementar para
+# Senador de MT (2020, tipo 1), que não pode se misturar com a eleição geral.
+_TIPO = _cod("cd_tipo_eleicao")
 _LOCALIZACAO = (
     _txt("sg_uf", obrigatoria=True),
     _int("cd_municipio", obrigatoria=True),
@@ -39,6 +42,7 @@ VOTACAO_MUNZONA = Tabela(
     "votacao_munzona",
     (
         *_PARTICAO,
+        _TIPO,
         _cod("cd_eleicao"),
         *_LOCALIZACAO,
         _int("cd_cargo", obrigatoria=True),
@@ -73,6 +77,7 @@ DETALHE_MUNZONA = Tabela(
     "detalhe_munzona",
     (
         *_PARTICAO,
+        _TIPO,
         *_LOCALIZACAO,
         _int("cd_cargo", obrigatoria=True),
         _txt("ds_cargo"),
@@ -90,6 +95,8 @@ DETALHE_MUNZONA = Tabela(
         _int("qt_votos_anulados", "QT_TOTAL_VOTOS_ANULADOS", "QT_VOTOS_ANULADOS"),
         # votos em candidatos sub judice (candidatura pendente de julgamento)
         _int("qt_votos_anulados_subjudice", "QT_TOTAL_VOTOS_ANUL_SUBJUD"),
+        # votos de seções anuladas e apuradas em separado (visto em 2018, BA)
+        _int("qt_votos_anulados_apu_sep"),
     ),
 )
 
@@ -97,6 +104,7 @@ VOTACAO_SECAO = Tabela(
     "votacao_secao",
     (
         *_PARTICAO,
+        _TIPO,
         *_LOCALIZACAO,
         _int("nr_secao", obrigatoria=True),
         _int("cd_cargo", obrigatoria=True),
@@ -115,6 +123,7 @@ DETALHE_SECAO = Tabela(
     "detalhe_secao",
     (
         *_PARTICAO,
+        _TIPO,
         *_LOCALIZACAO,
         _int("nr_secao", obrigatoria=True),
         _int("cd_cargo", obrigatoria=True),
@@ -139,6 +148,7 @@ CANDIDATOS = Tabela(
     "candidatos",
     (
         *_PARTICAO,
+        _TIPO,
         _txt("sg_uf", obrigatoria=True),
         _int("cd_cargo", obrigatoria=True),
         _txt("ds_cargo"),

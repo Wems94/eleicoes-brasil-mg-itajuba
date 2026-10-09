@@ -207,3 +207,12 @@ def test_cli_codigo_de_saida(banco_base, tmp_path, capsys):
     assert main(args) == 0
     assert main([*args[:-2], "MG", "SP", "RJ"]) == 1
     assert "completude_ufs" in capsys.readouterr().out
+
+
+def test_soma_munzona_considera_votos_anulados_apurados_em_separado(db):
+    db.execute(
+        """UPDATE staging.detalhe_munzona
+           SET qt_votos_validos = qt_votos_validos - 9, qt_votos_anulados_apu_sep = 9
+           WHERE ano = 2022 AND turno = 1 AND sg_uf = 'SP' AND cd_cargo = 3"""
+    )
+    assert _rodar(db).ok

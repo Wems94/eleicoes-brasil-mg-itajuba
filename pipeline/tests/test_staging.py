@@ -231,3 +231,68 @@ def test_fonte_opcional_ausente_nao_entra_nas_origens(con, zips, trabalho):
     carregar_particao(con, 2022, 1, zips(sem=["locais_votacao"]), trabalho)
     fontes = {r[0] for r in con.execute("SELECT fonte FROM staging.origens").fetchall()}
     assert "locais_votacao" not in fontes
+
+
+def _linhas_modificadas(nome: str, mudar) -> bytes:
+    """Reescreve um CSV de fixture aplicando `mudar(dict) -> dict | list[dict] | None`."""
+    texto = (TSE / "2022" / nome).read_text(encoding="latin-1").splitlines()
+    cab = [c.strip('"') for c in texto[0].split(";")]
+    saida = [texto[0]]
+    for lin in texto[1:]:
+        campos = lin.split(";")
+        r = mudar(dict(zip(cab, campos, strict=True)))
+        for item in r if isinstance(r, list) else [r]:
+            if item is not None:
+                saida.append(";".join(item[c] for c in cab))
+    return ("\n".join(saida) + "\n").encode("latin-1")
+
+
+def test_eleicao_extraordinaria_e_cargo_fora_do_dominio_sao_ignorados(con, zips, trabalho):
+    """Caso real: o arquivo de 2018 traz a Eleição Suplementar para Senador de MT
+    (15/11/2020, CD_TIPO_ELEICAO=1) e o Conselho Distrital de Fernando de Noronha
+    (CD_CARGO=25). Nenhum dos dois pode entrar nos resultados de 2018."""
+
+    def com_extras(r):
+        if r["CD_CARGO"] != "5" or r["NR_TURNO"] != "1":
+            return r
+        suplementar = r | {
+            "CD_TIPO_ELEICAO": "1",
+            "CD_ELEICAO": "438",
+            "DT_ELEICAO": '"15/11/2020"',
+        }
+        conselho = r | {"CD_CARGO": "25", "DS_CARGO": '"Conselheiro Distrital"'}
+        return [r, suplementar, conselho]
+
+    nomes = ["votacao_candidato_munzona_2022_MG.csv", "detalhe_votacao_munzona_2022_MG.csv"]
+    referencia = zips()
+    carregar_particao(con, 2022, 1, referencia, trabalho)
+    antes = _contagens(con)
+
+    arquivos = zips(substituir={n: _linhas_modificadas(n, com_extras) for n in nomes})
+    carregar_particao(con, 2022, 1, arquivos, trabalho)
+
+    assert _contagens(con) == antes
+    for t in ("votacao_munzona", "detalhe_munzona"):
+        assert con.execute(f"SELECT DISTINCT cd_tipo_eleicao FROM staging.{t}").fetchall() == [(2,)]
+        assert (25,) not in con.execute(f"SELECT DISTINCT cd_cargo FROM staging.{t}").fetchall()
+
+
+def test_detalhe_munzona_fecha_com_votos_anulados_apurados_em_separado(con, zips, trabalho):
+    """Caso real (BA, 2018): 746 votos de seção anulada e apurada em separado
+    (QT_VOTOS_ANULADOS_APU_SEP) completam a soma do comparecimento."""
+
+    def separa(r):
+        r = dict(r)
+        r["QT_TOTAL_VOTOS_VALIDOS"] = str(int(r["QT_TOTAL_VOTOS_VALIDOS"]) - 5)
+        r["QT_VOTOS_ANULADOS_APU_SEP"] = "5"
+        return r
+
+    nome = "detalhe_votacao_munzona_2022_SP.csv"
+    carregar_particao(
+        con, 2022, 1, zips(substituir={nome: _linhas_modificadas(nome, separa)}), trabalho
+    )
+
+    assert con.execute(
+        "SELECT DISTINCT qt_votos_anulados_apu_sep FROM staging.detalhe_munzona WHERE sg_uf = 'SP'"
+        " AND cd_cargo <> 1"
+    ).fetchall() == [(5,)]

@@ -12,6 +12,7 @@ import tempfile
 import zipfile
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
+from functools import cache
 from pathlib import Path
 
 import duckdb
@@ -26,6 +27,7 @@ log = logging.getLogger(__name__)
 
 SCHEMA = "staging"
 PRESIDENTE = 1
+ELEICAO_ORDINARIA = 2
 # Arquivos do TSE usados em cada partição (para o manifesto dos snapshots, 5.2).
 ORIGENS_DDL = f"""CREATE TABLE IF NOT EXISTS {SCHEMA}.origens (
     ano INTEGER, turno INTEGER, fonte VARCHAR, url VARCHAR, sha256 VARCHAR, tamanho BIGINT)"""
@@ -118,6 +120,11 @@ def resolver_municipio(
     return achados[0][0]
 
 
+@cache
+def _cargos(path: Path = CONFIG_DIR / "eleicoes.yaml") -> tuple[int, ...]:
+    return tuple(yaml.safe_load(path.read_text(encoding="utf-8"))["cargos"])
+
+
 def _inserir(
     con: duckdb.DuckDBPyConnection,
     tabela: Tabela,
@@ -127,6 +134,15 @@ def _inserir(
     filtro: str = "TRUE",
     params: Sequence[object] = (),
 ) -> int:
+    # Só a eleição geral: descarta eleições extraordinárias (ex.: suplementar de Senado)
+    # e cargos fora do domínio (ex.: Conselheiro Distrital de Fernando de Noronha).
+    colunas = {c.nome for c in tabela.colunas}
+    if "cd_tipo_eleicao" in colunas:
+        filtro = (
+            f"({filtro}) AND coalesce(cd_tipo_eleicao, {ELEICAO_ORDINARIA}) = {ELEICAO_ORDINARIA}"
+        )
+    if "cd_cargo" in colunas:
+        filtro = f"({filtro}) AND cd_cargo IN ({', '.join(map(str, _cargos()))})"
     (antes,) = con.execute(
         f"SELECT count(*) FROM {SCHEMA}.{tabela.nome} WHERE ano = ? AND turno = ?", [ano, turno]
     ).fetchone()

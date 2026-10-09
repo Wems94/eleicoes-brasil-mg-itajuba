@@ -110,16 +110,18 @@ WHERE coalesce(v.votos, 0)
       IS DISTINCT FROM coalesce(d.qt_comparecimento, 0) * coalesce(c.votos_por_eleitor, 1)
 ORDER BY ALL"""
 
-# Verificado com os dados reais de 2026: sem os votos sub judice a soma não fecha.
+# Verificado com dados reais: sem os votos sub judice (2026) e os anulados e apurados
+# em separado (2018) a soma não fecha.
 SOMA_MUNZONA = """
 SELECT ano, turno, sg_uf, cd_municipio, nr_zona, cd_cargo, qt_comparecimento,
        votos_por_eleitor, qt_votos_validos, qt_votos_brancos, qt_votos_nulos,
-       qt_votos_anulados, qt_votos_anulados_subjudice
+       qt_votos_anulados, qt_votos_anulados_subjudice, qt_votos_anulados_apu_sep
 FROM staging.detalhe_munzona
 JOIN marts.cargos USING (ano, cd_cargo)
 WHERE coalesce(qt_votos_validos, qt_votos_nominais + coalesce(qt_votos_legenda, 0))
       + qt_votos_brancos + qt_votos_nulos
       + coalesce(qt_votos_anulados, 0) + coalesce(qt_votos_anulados_subjudice, 0)
+      + coalesce(qt_votos_anulados_apu_sep, 0)
       IS DISTINCT FROM qt_comparecimento * votos_por_eleitor
 ORDER BY ALL"""
 
@@ -170,7 +172,7 @@ def regras(ano: int, turno: int, ufs: Sequence[str], cargos: Sequence[int]) -> l
         ),
         Regra(
             "soma_munzona",
-            "válidos + brancos + nulos + anulados + sub judice"
+            "válidos + brancos + nulos + anulados + sub judice + apurados em separado"
             " ≠ comparecimento × votos por eleitor",
             SOMA_MUNZONA,
         ),
