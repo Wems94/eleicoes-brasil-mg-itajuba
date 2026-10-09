@@ -1,0 +1,322 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "presidente": {
+  "votos_validos": 104838753,
+  "candidatos": [
+   {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "federacao": null,
+    "votos": 57797847,
+    "pct": 55.13,
+    "situacao": "ELEITO",
+    "posicao": 1
+   },
+   {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "federacao": null,
+    "votos": 47040906,
+    "pct": 44.87,
+    "situacao": "NÃO ELEITO",
+    "posicao": 2
+   }
+  ]
+ },
+ "comparecimento": {
+  "aptos": 147306294,
+  "comparecimento": 115933451,
+  "abstencoes": 31372373,
+  "brancos": 2486593,
+  "nulos": 8608105,
+  "pct_comparecimento": 78.7,
+  "pct_abstencao": 21.3,
+  "pct_brancos": 2.14,
+  "pct_nulos": 7.43
+ },
+ "ufs": [
+  {
+   "uf": "AC",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 77.22
+   },
+   "pct_comparecimento": 72.89
+  },
+  {
+   "uf": "AL",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 59.92
+   },
+   "pct_comparecimento": 75.17
+  },
+  {
+   "uf": "AM",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 50.27
+   },
+   "pct_comparecimento": 78.61
+  },
+  {
+   "uf": "AP",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 50.2
+   },
+   "pct_comparecimento": 77.12
+  },
+  {
+   "uf": "BA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 72.69
+   },
+   "pct_comparecimento": 78.91
+  },
+  {
+   "uf": "CE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 71.11
+   },
+   "pct_comparecimento": 81.31
+  },
+  {
+   "uf": "DF",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 69.99
+   },
+   "pct_comparecimento": 81.08
+  },
+  {
+   "uf": "ES",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 63.06
+   },
+   "pct_comparecimento": 79.08
+  },
+  {
+   "uf": "GO",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 65.52
+   },
+   "pct_comparecimento": 78.39
+  },
+  {
+   "uf": "MA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 73.26
+   },
+   "pct_comparecimento": 76.65
+  },
+  {
+   "uf": "MG",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 58.19
+   },
+   "pct_comparecimento": 76.87
+  },
+  {
+   "uf": "MS",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 65.22
+   },
+   "pct_comparecimento": 77.22
+  },
+  {
+   "uf": "MT",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 66.42
+   },
+   "pct_comparecimento": 73.77
+  },
+  {
+   "uf": "PA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 54.81
+   },
+   "pct_comparecimento": 76.71
+  },
+  {
+   "uf": "PB",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 64.98
+   },
+   "pct_comparecimento": 83.93
+  },
+  {
+   "uf": "PE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 66.5
+   },
+   "pct_comparecimento": 81.86
+  },
+  {
+   "uf": "PI",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 77.05
+   },
+   "pct_comparecimento": 82.14
+  },
+  {
+   "uf": "PR",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 68.43
+   },
+   "pct_comparecimento": 82.73
+  },
+  {
+   "uf": "RJ",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 67.95
+   },
+   "pct_comparecimento": 75.94
+  },
+  {
+   "uf": "RN",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 63.41
+   },
+   "pct_comparecimento": 81.86
+  },
+  {
+   "uf": "RO",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 72.18
+   },
+   "pct_comparecimento": 75.04
+  },
+  {
+   "uf": "RR",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 71.55
+   },
+   "pct_comparecimento": 81.14
+  },
+  {
+   "uf": "RS",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 63.24
+   },
+   "pct_comparecimento": 81.13
+  },
+  {
+   "uf": "SC",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 75.92
+   },
+   "pct_comparecimento": 83.13
+  },
+  {
+   "uf": "SE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 67.54
+   },
+   "pct_comparecimento": 80.19
+  },
+  {
+   "uf": "SP",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 67.97
+   },
+   "pct_comparecimento": 78.22
+  },
+  {
+   "uf": "TO",
+   "vencedor": {
+    "numero": 13,
+    "nome": "FERNANDO HADDAD",
+    "partido": "PT",
+    "pct": 51.02
+   },
+   "pct_comparecimento": 75.16
+  },
+  {
+   "uf": "ZZ",
+   "vencedor": {
+    "numero": 17,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PSL",
+    "pct": 71.02
+   },
+   "pct_comparecimento": 40.21
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "BA",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 8454843,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 6097815,
+     "pct": 72.12,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 2357028,
+     "pct": 27.88,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 8487487,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "JERÔNIMO",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 4480464,
+     "pct": 52.79,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 44,
+     "nome": "ACM NETO",
+     "partido": "UNIÃO",
+     "federacao": null,
+     "votos": 4007023,
+     "pct": 47.21,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 11282999,
+   "comparecimento": 8971728,
+   "abstencoes": 2311271,
+   "brancos": 121221,
+   "nulos": 395664,
+   "pct_comparecimento": 79.52,
+   "pct_abstencao": 20.48,
+   "pct_brancos": 1.35,
+   "pct_nulos": 4.41
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 11274423,
+   "comparecimento": 8964244,
+   "abstencoes": 2310179,
+   "brancos": 113101,
+   "nulos": 363656,
+   "pct_comparecimento": 79.51,
+   "pct_abstencao": 20.49,
+   "pct_brancos": 1.26,
+   "pct_nulos": 4.06
+  }
+ ]
+}

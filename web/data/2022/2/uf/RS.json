@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "RS",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 6625036,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 3733185,
+     "pct": 56.35,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 2891851,
+     "pct": 43.65,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 6454912,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "EDUARDO LEITE",
+     "partido": "PSDB",
+     "federacao": "PSDB/CIDADANIA",
+     "votos": 3687126,
+     "pct": 57.12,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "ONYX LORENZONI",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 2767786,
+     "pct": 42.88,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 8589684,
+   "comparecimento": 6930852,
+   "abstencoes": 1658832,
+   "brancos": 122456,
+   "nulos": 183360,
+   "pct_comparecimento": 80.69,
+   "pct_abstencao": 19.31,
+   "pct_brancos": 1.77,
+   "pct_nulos": 2.65
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 8582643,
+   "comparecimento": 6924603,
+   "abstencoes": 1658040,
+   "brancos": 202415,
+   "nulos": 267276,
+   "pct_comparecimento": 80.68,
+   "pct_abstencao": 19.32,
+   "pct_brancos": 2.92,
+   "pct_nulos": 3.86
+  }
+ ]
+}

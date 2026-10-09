@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "PA",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 3854957,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2112769,
+     "pct": 54.81,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1742188,
+     "pct": 45.19,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 3731364,
+   "candidatos": [
+    {
+     "numero": 15,
+     "nome": "HELDER",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 2068319,
+     "pct": 55.43,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 25,
+     "nome": "MARCIO MIRANDA",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 1663045,
+     "pct": 44.57,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 5498812,
+   "comparecimento": 4218043,
+   "abstencoes": 1280769,
+   "brancos": 60908,
+   "nulos": 302178,
+   "pct_comparecimento": 76.71,
+   "pct_abstencao": 23.29,
+   "pct_brancos": 1.44,
+   "pct_nulos": 7.16
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 5497638,
+   "comparecimento": 4217054,
+   "abstencoes": 1280584,
+   "brancos": 81232,
+   "nulos": 404458,
+   "pct_comparecimento": 76.71,
+   "pct_abstencao": 23.29,
+   "pct_brancos": 1.93,
+   "pct_nulos": 9.59
+  }
+ ]
+}

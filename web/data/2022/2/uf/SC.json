@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "SC",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 4399548,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 3047630,
+     "pct": 69.27,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 1351918,
+     "pct": 30.73,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 4220965,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JORGINHO MELLO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 2983949,
+     "pct": 70.69,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "DÉCIO LIMA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 1237016,
+     "pct": 29.31,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 5501284,
+   "comparecimento": 4542817,
+   "abstencoes": 958467,
+   "brancos": 56475,
+   "nulos": 86794,
+   "pct_comparecimento": 82.58,
+   "pct_abstencao": 17.42,
+   "pct_brancos": 1.24,
+   "pct_nulos": 1.91
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 5484339,
+   "comparecimento": 4527781,
+   "abstencoes": 956558,
+   "brancos": 165455,
+   "nulos": 141361,
+   "pct_comparecimento": 82.56,
+   "pct_abstencao": 17.44,
+   "pct_brancos": 3.65,
+   "pct_nulos": 3.12
+  }
+ ]
+}

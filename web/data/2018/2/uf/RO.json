@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "RO",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 824311,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 594968,
+     "pct": 72.18,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 229343,
+     "pct": 27.82,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 799220,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "CORONEL MARCOS ROCHA",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 530188,
+     "pct": 66.34,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 45,
+     "nome": "EXPEDITO JUNIOR",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 269032,
+     "pct": 33.66,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1175634,
+   "comparecimento": 882221,
+   "abstencoes": 293413,
+   "brancos": 13856,
+   "nulos": 44054,
+   "pct_comparecimento": 75.04,
+   "pct_abstencao": 24.96,
+   "pct_brancos": 1.57,
+   "pct_nulos": 4.99
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1175173,
+   "comparecimento": 881834,
+   "abstencoes": 293339,
+   "brancos": 21123,
+   "nulos": 61491,
+   "pct_comparecimento": 75.04,
+   "pct_abstencao": 24.96,
+   "pct_brancos": 2.4,
+   "pct_nulos": 6.97
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "AL",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1664658,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 976831,
+     "pct": 58.68,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 687827,
+     "pct": 41.32,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1594262,
+   "candidatos": [
+    {
+     "numero": 15,
+     "nome": "PAULO DANTAS",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 834278,
+     "pct": 52.33,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 44,
+     "nome": "RODRIGO CUNHA",
+     "partido": "UNIÃO",
+     "federacao": null,
+     "votos": 759984,
+     "pct": 47.67,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2325814,
+   "comparecimento": 1784988,
+   "abstencoes": 540826,
+   "brancos": 23376,
+   "nulos": 96954,
+   "pct_comparecimento": 76.75,
+   "pct_abstencao": 23.25,
+   "pct_brancos": 1.31,
+   "pct_nulos": 5.43
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2322904,
+   "comparecimento": 1782407,
+   "abstencoes": 540497,
+   "brancos": 47668,
+   "nulos": 140477,
+   "pct_comparecimento": 76.73,
+   "pct_abstencao": 23.27,
+   "pct_brancos": 2.67,
+   "pct_nulos": 7.88
+  }
+ ]
+}

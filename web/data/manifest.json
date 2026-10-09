@@ -1,0 +1,472 @@
+{
+ "schema_versao": 1,
+ "gerado_em": "2026-10-09T21:46:03+00:00",
+ "fonte": "TSE — Portal de Dados Abertos (dadosabertos.tse.jus.br)",
+ "municipio": {
+  "codigo": 46477,
+  "nome": "ITAJUBÁ",
+  "uf": "MG"
+ },
+ "eleicoes": [
+  {
+   "ano": 2018,
+   "turnos": [
+    1,
+    2
+   ]
+  },
+  {
+   "ano": 2022,
+   "turnos": [
+    1,
+    2
+   ]
+  },
+  {
+   "ano": 2026,
+   "turnos": [
+    1
+   ]
+  }
+ ],
+ "origens": [
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "consulta_cand",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2018.zip",
+   "sha256": "57f6881f1aa036142886ae548afd275e7ee6695643a2ab62826f2ee232d3fd44",
+   "tamanho": 4722704
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "detalhe_votacao_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2018.zip",
+   "sha256": "df68c258a2261dff37b379f65ea5f2e8de7b3d824bb2340d8f4830274a3fabb5",
+   "tamanho": 4269741
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "detalhe_votacao_secao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2018.zip",
+   "sha256": "de35b08db427ee0c3089d88317e6166ea5dea33630f5b1dabdccf3304de48f70",
+   "tamanho": 256133172
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "locais_votacao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/eleitorado_locais_votacao/eleitorado_local_votacao_2018.zip",
+   "sha256": "a0478dd3ad7b3ce7332058121f280d98454e3e7a4a54d146aee943402a544fb4",
+   "tamanho": 84041372
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "votacao_candidato_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2018.zip",
+   "sha256": "f880848ef4ba340b15cb91ff0754aa370d34ca7b7e605d6607c0f2a75009adc8",
+   "tamanho": 395389280
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "votacao_secao_br",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2018_BR.zip",
+   "sha256": "dde2250058a7efa3b7ee336520556905456cb75d7debf99ea4badfc4d598a48c",
+   "tamanho": 250985147
+  },
+  {
+   "ano": 2018,
+   "turno": 1,
+   "fonte": "votacao_secao_mg",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2018_MG.zip",
+   "sha256": "d549941f4c4362fff39d18df0f97352c0c4747051ec9023b3e68e0d2e20b2df9",
+   "tamanho": 192869746
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "consulta_cand",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2018.zip",
+   "sha256": "57f6881f1aa036142886ae548afd275e7ee6695643a2ab62826f2ee232d3fd44",
+   "tamanho": 4722704
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "detalhe_votacao_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2018.zip",
+   "sha256": "df68c258a2261dff37b379f65ea5f2e8de7b3d824bb2340d8f4830274a3fabb5",
+   "tamanho": 4269741
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "detalhe_votacao_secao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2018.zip",
+   "sha256": "de35b08db427ee0c3089d88317e6166ea5dea33630f5b1dabdccf3304de48f70",
+   "tamanho": 256133172
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "locais_votacao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/eleitorado_locais_votacao/eleitorado_local_votacao_2018.zip",
+   "sha256": "a0478dd3ad7b3ce7332058121f280d98454e3e7a4a54d146aee943402a544fb4",
+   "tamanho": 84041372
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "votacao_candidato_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2018.zip",
+   "sha256": "f880848ef4ba340b15cb91ff0754aa370d34ca7b7e605d6607c0f2a75009adc8",
+   "tamanho": 395389280
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "votacao_secao_br",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2018_BR.zip",
+   "sha256": "dde2250058a7efa3b7ee336520556905456cb75d7debf99ea4badfc4d598a48c",
+   "tamanho": 250985147
+  },
+  {
+   "ano": 2018,
+   "turno": 2,
+   "fonte": "votacao_secao_mg",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2018_MG.zip",
+   "sha256": "d549941f4c4362fff39d18df0f97352c0c4747051ec9023b3e68e0d2e20b2df9",
+   "tamanho": 192869746
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "consulta_cand",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2022.zip",
+   "sha256": "bfbe5007323a0459216cb4bcc515bdbbfeb1df70a643891144b9d68ff0516e64",
+   "tamanho": 4387268
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "detalhe_votacao_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2022.zip",
+   "sha256": "8fd10a41d40c2c6d9ced36dcbb6a9e212f96b62937bcdd09284587f118cf1a7b",
+   "tamanho": 4426933
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "detalhe_votacao_secao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2022.zip",
+   "sha256": "ad22c50b9e6d9dfb096a2170680a190f1734895ba89d8977b95fd63ca02c03da",
+   "tamanho": 243822213
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "locais_votacao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/eleitorado_locais_votacao/eleitorado_local_votacao_2022.zip",
+   "sha256": "6dc19c1ddb746cc067469e70ad5018f202334d97cd540edc8c9de3321e66da23",
+   "tamanho": 24028146
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "votacao_candidato_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2022.zip",
+   "sha256": "cd44bcc2260c3b7e53c254aa9b03ff989ad7511737d5df9a2b99c78e45eb00ef",
+   "tamanho": 580941971
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "votacao_secao_br",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_BR.zip",
+   "sha256": "9353993de5cf03778aef44e01d4925e7ee105f5262491d344a2f0dbc956b0139",
+   "tamanho": 271292455
+  },
+  {
+   "ano": 2022,
+   "turno": 1,
+   "fonte": "votacao_secao_mg",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_MG.zip",
+   "sha256": "e35b85dcc15fea438b7e6d039db49bcb9b035bc3174a91334ffd37ebd93db9f6",
+   "tamanho": 295129070
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "consulta_cand",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2022.zip",
+   "sha256": "bfbe5007323a0459216cb4bcc515bdbbfeb1df70a643891144b9d68ff0516e64",
+   "tamanho": 4387268
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "detalhe_votacao_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2022.zip",
+   "sha256": "8fd10a41d40c2c6d9ced36dcbb6a9e212f96b62937bcdd09284587f118cf1a7b",
+   "tamanho": 4426933
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "detalhe_votacao_secao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2022.zip",
+   "sha256": "ad22c50b9e6d9dfb096a2170680a190f1734895ba89d8977b95fd63ca02c03da",
+   "tamanho": 243822213
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "locais_votacao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/eleitorado_locais_votacao/eleitorado_local_votacao_2022.zip",
+   "sha256": "6dc19c1ddb746cc067469e70ad5018f202334d97cd540edc8c9de3321e66da23",
+   "tamanho": 24028146
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "votacao_candidato_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2022.zip",
+   "sha256": "cd44bcc2260c3b7e53c254aa9b03ff989ad7511737d5df9a2b99c78e45eb00ef",
+   "tamanho": 580941971
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "votacao_secao_br",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_BR.zip",
+   "sha256": "9353993de5cf03778aef44e01d4925e7ee105f5262491d344a2f0dbc956b0139",
+   "tamanho": 271292455
+  },
+  {
+   "ano": 2022,
+   "turno": 2,
+   "fonte": "votacao_secao_mg",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2022_MG.zip",
+   "sha256": "e35b85dcc15fea438b7e6d039db49bcb9b035bc3174a91334ffd37ebd93db9f6",
+   "tamanho": 295129070
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "consulta_cand",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2026.zip",
+   "sha256": "cc7b3caec58a25cae7fa854faf989b29255130ce9c4d105f7bccb0eb04d8b00f",
+   "tamanho": 3237450
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "detalhe_votacao_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_munzona/detalhe_votacao_munzona_2026.zip",
+   "sha256": "376db9ce8de26a5aa34b5d382aa363707735d8f114c61da604bc2f44caa2c61a",
+   "tamanho": 2504387
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "detalhe_votacao_secao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/detalhe_votacao_secao/detalhe_votacao_secao_2026.zip",
+   "sha256": "11a62c3a604e8b73fc328617b7688d2c635de1c76df02ba63b8f77879512f573",
+   "tamanho": 176923175
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "locais_votacao",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/eleitorado_locais_votacao/eleitorado_local_votacao_2026.zip",
+   "sha256": "6732e4868a0fcac9c46ad32987710ebfd58f43428b93a4d63bcc8fc63d7870da",
+   "tamanho": 175693754
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "votacao_candidato_munzona",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_2026.zip",
+   "sha256": "aa15b38bec3043bfaf1a4b1b90a3e0726d59407e6ca2055995ec99ec279f514b",
+   "tamanho": 304412595
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "votacao_secao_br",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2026_BR.zip",
+   "sha256": "2d42006d0f6c6e00bad83f5c23cd3d78cd3e3182dbc1ad6718222b6b132c23e1",
+   "tamanho": 161616519
+  },
+  {
+   "ano": 2026,
+   "turno": 1,
+   "fonte": "votacao_secao_mg",
+   "url": "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_secao/votacao_secao_2026_MG.zip",
+   "sha256": "56826e143f4fb2628a6f82f9697a3e4ad87094ed89782ad8ab51d06c7c30877a",
+   "tamanho": 255063843
+  }
+ ],
+ "arquivos": {
+  "2018/1/brasil.json": "9c3bf3914e77486c1fa45205a1c2ef5b781d88b7dea669a4082e997258b02ab3",
+  "2018/1/itajuba.json": "a948bc4730bc8c96b3984626cc96d0852e6d357959d70cae543ed99ccd8bd8cc",
+  "2018/1/itajuba_secoes.json": "5d23d1890e8191cd128f0ff839741c198aebfdcb2b883e7edc1eeb4400edbaec",
+  "2018/1/uf/AC.json": "150221922de514936f7da529bf6ce318f4795f8a8f8aae55a3b50d429bbfd5ee",
+  "2018/1/uf/AL.json": "c85e0dbcf9a31bc29cb3aac2dc2be0d886ac4fe02bca0da5460b30c7da5bd93c",
+  "2018/1/uf/AM.json": "19ab9ea7dae437de6206a77a3e141b7b4b2288fa6a6c13f76ab6889ea6778cf2",
+  "2018/1/uf/AP.json": "34637472a90cc8a99bcd59df1d8b185317e2477c44c0decdad6c265da0c1793b",
+  "2018/1/uf/BA.json": "9853e452d8aa80742adcfef46e2af97d2572acdcb3663fa4ba47feda34485d18",
+  "2018/1/uf/CE.json": "748b2341f752a7bd7b6280c0cb72cd8cc1fd8a8acd7ce1b9b9243c446d42769e",
+  "2018/1/uf/DF.json": "8355f6f33f7e289795aded656d6e5ee3a9f5dba482a13cfb59884e765f08d74b",
+  "2018/1/uf/ES.json": "0c22aabb008c1e4f6440bf0beee6627424d8619bf3a59734fcd873604b194508",
+  "2018/1/uf/GO.json": "cc906e6b596884008657e3e16c89c8bd36795fd752e8d59ea58f6f6ce411d71a",
+  "2018/1/uf/MA.json": "2192b2fa9e33962eda87840fa284ea47f2fe6a0c2b2f05c3de4dca5ac7038e01",
+  "2018/1/uf/MG.json": "5613b0c38764e9827b4504b37054666f6f8c8b3548ae2d2c8339e6d9de5d93b4",
+  "2018/1/uf/MS.json": "015bfb2f9efb1f06a85dc2c421c1ec9c0beabdae5c3850eacb8286dedc457f50",
+  "2018/1/uf/MT.json": "e0de6b683cb261495f84e76e81222c1f4a03cce429c4cc8e9e1acf7d5f672f41",
+  "2018/1/uf/PA.json": "02800fdf82ba06da9a96ee718fe76d6b9f4795b54941cc2c5de82b544480388a",
+  "2018/1/uf/PB.json": "293bde95d6103a7c3ab949e19ea869e98f87884871c9e7f26eaa87d647304fdc",
+  "2018/1/uf/PE.json": "e03a8537c4bca0a9dddb2639b868acedf0ce1d6eaa511752eaec74e2230a87af",
+  "2018/1/uf/PI.json": "710ed39f789681ac1885ddc3da3e3a0fb9f36b27b67105419cd872433be3d3be",
+  "2018/1/uf/PR.json": "7548c4110a4492ab3cb32e7297a73c4a5803e9150978fce1eff84ff38b45886a",
+  "2018/1/uf/RJ.json": "69782f13e0c2b4a3bcd6e8a5a606519a7d20e0aeda72549db7b764aa47fdcdc9",
+  "2018/1/uf/RN.json": "5d9c2ee1fc1c3abaa3d7e5a66e292b45126056a724e0e422008f8a19de7ee457",
+  "2018/1/uf/RO.json": "1a4682b027730d1b311b44bcb788bcd42f5947ae7d1ee9c99d85dfe16b6e1ca7",
+  "2018/1/uf/RR.json": "0d04b3abbaf39fe91770a2af6370dd08960e7a5abd029ebd9495e3fa1bfca7f9",
+  "2018/1/uf/RS.json": "94a7bd75eaf008465e3576a33dfb5f81a0f37b4fa84f710c6730385d908bf364",
+  "2018/1/uf/SC.json": "dcb66ae058f59be95e8a6fa39eb7626b88fb0a4cdbe7eb3566b5c5799344e41c",
+  "2018/1/uf/SE.json": "2a338571ed71cd92eeaad58fb2bebdb5096bc59a146227391a8e6ce4161671c4",
+  "2018/1/uf/SP.json": "0ecaa459a8c9d89ae9e03955edc0c27e23f02ee4f38bfefdabb4002488de8409",
+  "2018/1/uf/TO.json": "858d76034d5c710a3ce63af0712c6d6dabebbb61b8f980c4a683012ff34c61a0",
+  "2018/1/uf/ZZ.json": "a37da0dd2b92e98d7b80fc67c17e63884c14f163dd5c948ad539393630c0f4e5",
+  "2018/2/brasil.json": "a3f97c9cf6d70e5001d3ca64a439981de19aeed132b09edcdde17f2ff69d02ae",
+  "2018/2/itajuba.json": "5a7636386d347ec8d50e9475ad55dd6bcea9f83a90b923a286f94ae42968eaa3",
+  "2018/2/itajuba_secoes.json": "32edbe6029fbf98036c73c010915a184366ef9ada2d979c0bdfffe4245d4af52",
+  "2018/2/uf/AC.json": "b46611828df329ea5fa569f712b2ff2858402c4e705192622c2233f298d69f0f",
+  "2018/2/uf/AL.json": "ad4083ecf44b0fc6e2f3bb79d0897b041e1ee61743f954de7200e35a5ba2651f",
+  "2018/2/uf/AM.json": "6cdc445a965c10c0cde0967c065d11d807f569b6d00eedef0b63c16663ff0d80",
+  "2018/2/uf/AP.json": "a6059b0c33ead5e617348622db425cf40f5063a9c27cccbd567a3f63ad0eba35",
+  "2018/2/uf/BA.json": "1c61a288b53571c6aee71e3a98a6e776b50e43fc119a585961cb6bc8c45b3b82",
+  "2018/2/uf/CE.json": "d77e40113823bed938f5442dd3764ca3a7d2bbc20e6cc48d38046d3e2c53db1e",
+  "2018/2/uf/DF.json": "ece750de0d6888e70079a3c2bf22b1dc04e2733292cc41a365f7972f5d52a253",
+  "2018/2/uf/ES.json": "216eb01eed0387e3fd59dd27c81d6ed3e8b1c6c20854eee047669314cfdf44bb",
+  "2018/2/uf/GO.json": "1b428f63fbc055b2df3b239b111a69dabfc416ba13a1122a8b607795460ece9a",
+  "2018/2/uf/MA.json": "00327be20fa177a6296e109c5ab8ba451ea70ba53d5fed4be79f67159fd7658f",
+  "2018/2/uf/MG.json": "68dd46d86a39bb555d89d94ee2433fb2874e8c38f637d4bac3352f81df4bea9d",
+  "2018/2/uf/MS.json": "6b5d38dca51cf91b5e4fb6c8e682b4605c289a22a75a0f98e9560ae46eb82d1d",
+  "2018/2/uf/MT.json": "b37049c336c058cefdc88355366937cf48b3a58fca29a274f34783404f5eee46",
+  "2018/2/uf/PA.json": "a2a00c7ca2ea17de266c473a834729bdfbf73bdd14dad06f4c4d70e036011d48",
+  "2018/2/uf/PB.json": "092ccfc29910e9b88fa8d22c0d473f21adefa09b9cd547e98f88ef423268ca97",
+  "2018/2/uf/PE.json": "33daba181f65b9f28086b83b7399afdd97baf0b2965244bcc81c36edce6ccb98",
+  "2018/2/uf/PI.json": "384b34a423e45a6aaa0908cbbb65dbadb2e47340a32d5ccc3db4ad8eda084caf",
+  "2018/2/uf/PR.json": "d6c1256259722dc00257ada1e7d97c0732d16561b3be044151e46a5477dbc05d",
+  "2018/2/uf/RJ.json": "d67b33d34c7d6b160d5dce87b682200777831badad06c844765d0f8273c22771",
+  "2018/2/uf/RN.json": "89202c3d994d576edb5244e374317678bb8ac833eea27a351da9a8a1f267528b",
+  "2018/2/uf/RO.json": "9409feb2954b225dc2b59372201fcf2501173e759c1ea2b2b6e26cd93b9343b9",
+  "2018/2/uf/RR.json": "27dbf5397de2b00a81899a78975cf81a27c83233c48a214f4a9b03343cad57c1",
+  "2018/2/uf/RS.json": "b9327cbe7fefe90535f734b4c5c919c6b5932c536d3df6a307b3343af30daf4b",
+  "2018/2/uf/SC.json": "f7677d2b215025db5fe6ffbdfc160410fea725a7bbc73e5807a3ae8c1a892254",
+  "2018/2/uf/SE.json": "3e0983760b887b96d78a49eed6a7ace8bd7f17fcf79fc0b7d5f9eb72192b2c2d",
+  "2018/2/uf/SP.json": "f14e74bb1c917c6728bf88720747f92c453017432e8c52c0a7ceaed3d86c7291",
+  "2018/2/uf/TO.json": "fc57a0cbdc72c293093b1e6a4e60d951dec53203644d5209975310b70b66b848",
+  "2018/2/uf/ZZ.json": "977c376ddf350e629002014426b77677325dc2073b14e86f512546ab97c8e7f0",
+  "2022/1/brasil.json": "e53faff34206bde5cbf346ff368bf026e0c2673c3ec9f86bb153c5a5568542fc",
+  "2022/1/itajuba.json": "4f4f0ad735475fca03645d6b1f622790034eca10d45006a67ad9a63d21baa8ba",
+  "2022/1/itajuba_secoes.json": "feb062d864bba94a004187bbf1b36e184fb5ef1b84e83887d7e2aaf708893206",
+  "2022/1/uf/AC.json": "bcaf7549ca3fa595406427aae713ae32609298a64af12ac84fa710765621a8b4",
+  "2022/1/uf/AL.json": "d299d25ab3f971b4e87234b81a7418e62f79c391792e8d3573f5d4bbd801d470",
+  "2022/1/uf/AM.json": "c25d72caa111a743b5d5888327bad5dece84fa3a754dcf293fe94f8643e1b8d6",
+  "2022/1/uf/AP.json": "0971eba08806ac7df8128c7ff5060449399c86861787932e69b8681df87dd3d4",
+  "2022/1/uf/BA.json": "8d79a88991fbcdc1d201c682effa358ebeda59c40230b5832914304063b79dfa",
+  "2022/1/uf/CE.json": "4a3d0114a9201554f57fa50998aba34ca9ceefb5c0d14c7b0d71e0ee03adffc3",
+  "2022/1/uf/DF.json": "9f22831bef9f7120a44b9261486061e63eff26c28a3964114dc36ba63d3c640e",
+  "2022/1/uf/ES.json": "7b03ffbd4a6289cbb7a3e51e0e863ba9fa15d8956bede5c62d63c5732f4f3dc2",
+  "2022/1/uf/GO.json": "eed24d3ed20dc3dd47238635b20ad6cae236eb5a00908626019225ec9f161ef2",
+  "2022/1/uf/MA.json": "ba7691324f5f77a5c58515fc7bc6df69a857e7b42dcfcf33b4b5753261d7e2db",
+  "2022/1/uf/MG.json": "0618c5947d5e7924494e83af756a7eddf02517a5356dc2c8803527215b12504a",
+  "2022/1/uf/MS.json": "ac0aaab6bd2f7da0ed064606f400f3eca9544d6c10fcd26a1e28e8827c5135f1",
+  "2022/1/uf/MT.json": "b39d37c4827e73f3ed136d97022ae7b617cac5a86c13cc37d1a87f4a37038098",
+  "2022/1/uf/PA.json": "33c207a5c75aa568f96e71dada90371c272544606daf44fcd924382b6800c3db",
+  "2022/1/uf/PB.json": "b64e1bbfae0cb850f6646201d434a37f8cea13b30cf4763370fa736d671c8abd",
+  "2022/1/uf/PE.json": "941eedc3313b4a8be6d29791e3c2763bcd124273c9b5a86dba39d7a36a75c692",
+  "2022/1/uf/PI.json": "d48c8dec980897e005f690b1f1ec304438ca4ae9cfb678df9dbc8fab55214d41",
+  "2022/1/uf/PR.json": "9b4d5373d7b3f177a906b401f501841ff6b73b7eb9786f4c83b7507490c00165",
+  "2022/1/uf/RJ.json": "cf311ceaa031c273370daaf6272f6ea47ac0cd6c4e54ea80db4c5eb08ff31529",
+  "2022/1/uf/RN.json": "f869892a0d5b6dd522773b9f4b46d6fa591bff678def9c1db865c525793b9466",
+  "2022/1/uf/RO.json": "89ba8c78f584c4398138b2bcd5ed948248d59ebe1d9a6af8a8737dffc5976c77",
+  "2022/1/uf/RR.json": "2407050349f6da9df9d38b599a8a51f9f394e6bd30bf1d21928055c57878525a",
+  "2022/1/uf/RS.json": "6efcd202457bc94f90df9667ba521e00b7979a1876e1174ce5ae2ac1f74aa753",
+  "2022/1/uf/SC.json": "5899b20f8419338c66156cae9b931f3e60863bcc0062804fa072f45e643f7ba9",
+  "2022/1/uf/SE.json": "d685762c957bf00d3f6670a9ff6e4763cbbdd282134501aed16fbf623277ac10",
+  "2022/1/uf/SP.json": "afef98b8ff86cad094fa53a6bf77311b7d044eaf75cb1247b6fe0a091efc96ca",
+  "2022/1/uf/TO.json": "23eb147443958ee3b59ab0ce7e9a5cc313159d3515118951ba7a4d953d790121",
+  "2022/1/uf/ZZ.json": "5fb92d86cdedacae9c17490449b306d57fe92526bc27597c796f3385fa0777e6",
+  "2022/2/brasil.json": "50f1bbeb248e480e4889dd75f1b150727e7536dd463c34896b59d1b8ba7e7b60",
+  "2022/2/itajuba.json": "ae461c12684b91f2ea76bc7b0c99f8942f3591aeccc1929b6cd0e51b32ca1e16",
+  "2022/2/itajuba_secoes.json": "41f16f9a16dd484649ae09ab5d0c375d2d90a68b8d5bb7f92bc3da2f231b2f1d",
+  "2022/2/uf/AC.json": "36fb94acd13fa2110929cc036e006af6f0a0e3da76058ded4f0382361ac8c477",
+  "2022/2/uf/AL.json": "be9330b60ec84642dfc853682708fcd7047d461c9a5fd66f8d145d71165d5a17",
+  "2022/2/uf/AM.json": "357799cf6561f59b7048d87ddce12abc3c93da11de6fc0a24badfa90858a59d8",
+  "2022/2/uf/AP.json": "c9d95051754d35dc683d41f4ea7a53492e431ee32204ce8e7b855a3a31e4aded",
+  "2022/2/uf/BA.json": "b8915c01db0c86ce24bfbe1014926a7e21a285f8a4cb91ec91b76e90dfef4446",
+  "2022/2/uf/CE.json": "8ec88770a55ec596784e740debe50f8ce8b3834b727393901354ba24672c8a89",
+  "2022/2/uf/DF.json": "465c40d40f61b976c6ef85631940b737a1c8d244bddc76815448ea84b5a31280",
+  "2022/2/uf/ES.json": "9ce655ebe89701ee5d0b6fe0dc0cc9b56200ac9fcc6a182da7ca2bc11599f3c2",
+  "2022/2/uf/GO.json": "cfab45d2254fa523363bafcb96df9d0fe9d51a69bd299704b9b4e2567e70bfd4",
+  "2022/2/uf/MA.json": "134ea28357f1eaa501b121e624c904e1056aaa662f84bb277e84cbc84af6d916",
+  "2022/2/uf/MG.json": "311addad1997d67f19175db6a9fd388b925bd36240a9f87cf5c1b4cb3509bd0d",
+  "2022/2/uf/MS.json": "ba5df66b18b91d939ee4204f6426802e9993dbd55a8b69aa5d45bd79c8adc369",
+  "2022/2/uf/MT.json": "3157508565ddfd5c7e45187023595b3bc75aad85cad1c2e256418f538e6080cf",
+  "2022/2/uf/PA.json": "a0adff8f187ad084530961badfcd83e823c1ba385260c50732202dfc87861317",
+  "2022/2/uf/PB.json": "3f793167beddd98e753c8efd1fc7ff37684b438e349eb9262e4c7b1fa843cf2e",
+  "2022/2/uf/PE.json": "283e9af8fc4af483438497c060679ad5301bee249588e97203c95f19afee6bcd",
+  "2022/2/uf/PI.json": "b5a7318e93df2cb50fc1362fe22a84398ed6524d6a8871c7c387da7fdf8bb1ae",
+  "2022/2/uf/PR.json": "78c23cc12d9c2ba9141c1dedbc65c926b4c0e7088ce99fe04259e09a7f67afaa",
+  "2022/2/uf/RJ.json": "de621763a6d9e1e44524587c6da1d8efe3c6e2e545281313361e504e8ae13a9d",
+  "2022/2/uf/RN.json": "152acb7b6f8517d063e75f985c71f897a8daa2e3f491d3e5464597d6d49aace6",
+  "2022/2/uf/RO.json": "b09a5810d3036965963fa94e332fe3cbc766185f16c3db62080971525df451df",
+  "2022/2/uf/RR.json": "d54cdb22ea0fdbf6e925d5dc649ca4a030e9f03d43ef2cd2c2e9c779e3439ae6",
+  "2022/2/uf/RS.json": "a31baca8b3ca35b57df9a8c19eaa98df6a4be8c4c2e1edcd14bb61010796af7c",
+  "2022/2/uf/SC.json": "f55e85768c1c19161881cf58b88029f9c4cd99a4783f4214cab563f88dc4ff44",
+  "2022/2/uf/SE.json": "17c173300be16a8e7e10a7db1d88280a68b65a9d56ddeb125b8f1020ca4f275b",
+  "2022/2/uf/SP.json": "d60e6416e45b49725de886089528ff4dd4bbf924731f6076656daf9da8556ad6",
+  "2022/2/uf/TO.json": "8fc9a243f1c8f4ef0dad8d866de9bc69f4b457de40aad9587e3d4370f62a16bd",
+  "2022/2/uf/ZZ.json": "0077e202a19655b67a479c4b4de926e9f7eb598fe54a0d31bfc9f1ad557385e0",
+  "2026/1/brasil.json": "7179934f1e813139ec496d0c49e611eee76a368add6477857bd32867fa0dd887",
+  "2026/1/itajuba.json": "36031f877fa8bbebe18bd0d46a4d84dfc54364d2b7a7021bbca4b17c3c713117",
+  "2026/1/itajuba_secoes.json": "21b886d4c56c9e160a36d9a1e044f44d9cc250518a544497f643d181fe6dc86a",
+  "2026/1/uf/AC.json": "a00eb8eacc361268acc196dea7a5b7b1a6d77874cdc0483ae273b20ac62bdc12",
+  "2026/1/uf/AL.json": "7ac2b0993a41067764f08302856fa934087ff119dc161f3f81cb57532a33e553",
+  "2026/1/uf/AM.json": "4d9ff52dc9c7f64dc146a65ea7cf465e71500c0b160044ea3e382dacb2374512",
+  "2026/1/uf/AP.json": "55dda770072ea3326f0bd5d0014e8fc80ec2804e4df6e694031c2b1346dacffb",
+  "2026/1/uf/BA.json": "42a9f5078aac30b6aa46da0f908541422ca7e0f6577d18a1444495dfed275fce",
+  "2026/1/uf/CE.json": "ce1a5ba9f45f64975a060605d1292c137e63c11d4e9f31915c829d077483f784",
+  "2026/1/uf/DF.json": "c9b79de48b0bacad4c01e15e41dd71355281a6cb05fc293aef3c900b4d2cb333",
+  "2026/1/uf/ES.json": "afd32324648291c8ef64a935ffcf36cd75776a0b43ae2991ae4471b4e3ec0730",
+  "2026/1/uf/GO.json": "f90f9e6850881ce32c681d5c6187eedab782667e5c11ec6c0347a71ac7af68a4",
+  "2026/1/uf/MA.json": "37b6fd03a940c09674eaf97fb9eeabe50814ec56deb9b691587feb005936492b",
+  "2026/1/uf/MG.json": "de35f5123c9ca69afcfcf1eee4cd82d489aad621771fb47a8d93aec58ea1397f",
+  "2026/1/uf/MS.json": "62079b6b748adc31614792c48d46acc98fd62cba0bd1231c944c7b951aefc4ff",
+  "2026/1/uf/MT.json": "f42ac6c86872ceac29ec43f5b91ca324d8b350f3ded2d7adb937968e14fa9b78",
+  "2026/1/uf/PA.json": "e512d8a34fc0e0010b2da495d08c05d507905407a586420141091a0bd26a05fc",
+  "2026/1/uf/PB.json": "0141d7270666c2d7f8beb1f0eb3f6fc5f5ac5832e3fe5834971b7bc517d8dc99",
+  "2026/1/uf/PE.json": "57e8651b86fc7cdf3417713324f624e7443e57eb73f4001ff5d05a7f8f5209ae",
+  "2026/1/uf/PI.json": "24112e64a35e3b599ffef7afa2f2559eaa674fdf5819735d33ca21b898c894cf",
+  "2026/1/uf/PR.json": "247121604a1fa5de4384bf38eea4bb8e8dc88a4e3589d7c00b4db440c79e65bd",
+  "2026/1/uf/RJ.json": "a96df3bbe96682ac32fe07a4f35472cd3301c9fd5c3f080237b2511885974bd6",
+  "2026/1/uf/RN.json": "91ff7525f6316234cb00fcfb6cee028ba6cf2af04faee5bee215268714cf5558",
+  "2026/1/uf/RO.json": "a76e9b6feaf131981b2c075d74e6108e0063e06c7fa476e7c01aae05d56b3c58",
+  "2026/1/uf/RR.json": "21ca9bdc7dc43e96f18a09b4299a6b5a4703770237228d028f53e04c24e0a021",
+  "2026/1/uf/RS.json": "5f6de1ef632d90b820f6de7813c8e7002dc19f2ca8dcb8b05f90b2962222061b",
+  "2026/1/uf/SC.json": "e715af0e33e99f5e4e9c2e192bab213164fba5e000f0e78ccfaa09ba10d82966",
+  "2026/1/uf/SE.json": "16960acbb136e397d286c453a9f878868b6ff615ec0b5a7d96a532d9d14791b0",
+  "2026/1/uf/SP.json": "5315fc571880b298b50780c3a008f0ebca00d3d2d65e2a662a53739be0d1b578",
+  "2026/1/uf/TO.json": "116afa8c88e51c1af45dfc85cf0b3131523d0d7ad3655db68e0496f6320c9129",
+  "2026/1/uf/ZZ.json": "e3a977e442c3a649f0802330b9547e8833ca1b523cb927d55964ffb85d445fec",
+  "historico_itajuba.json": "89e21524cf60ad0332e17401f77ad966d5980375a350def061c783d023c562a3"
+ }
+}

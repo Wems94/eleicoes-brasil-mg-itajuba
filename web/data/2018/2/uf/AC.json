@@ -1,0 +1,49 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "AC",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 381876,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 294899,
+     "pct": 77.22,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 86977,
+     "pct": 22.78,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 547590,
+   "comparecimento": 399129,
+   "abstencoes": 148461,
+   "brancos": 6594,
+   "nulos": 10659,
+   "pct_comparecimento": 72.89,
+   "pct_abstencao": 27.11,
+   "pct_brancos": 1.65,
+   "pct_nulos": 2.67
+  }
+ ]
+}

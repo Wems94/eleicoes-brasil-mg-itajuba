@@ -1,0 +1,2035 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votaveis": [
+    {
+     "tipo": "candidato",
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "votos": 36611,
+     "pct": 65.48,
+     "posicao": 1
+    },
+    {
+     "tipo": "candidato",
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "votos": 19299,
+     "pct": 34.52,
+     "posicao": 2
+    },
+    {
+     "tipo": "nulo",
+     "numero": 96,
+     "nome": "VOTO NULO",
+     "partido": null,
+     "votos": 1503,
+     "pct": null,
+     "posicao": null
+    },
+    {
+     "tipo": "branco",
+     "numero": 95,
+     "nome": "VOTO BRANCO",
+     "partido": null,
+     "votos": 868,
+     "pct": null,
+     "posicao": null
+    }
+   ],
+   "comparecimento": {
+    "aptos": 73291,
+    "comparecimento": 58281,
+    "abstencoes": 15010,
+    "brancos": 868,
+    "nulos": 1503,
+    "pct_comparecimento": 79.52,
+    "pct_abstencao": 20.48
+   }
+  }
+ ],
+ "zonas": [
+  {
+   "zona": 134,
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 36611,
+       "pct": 65.48,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 19299,
+       "pct": 34.52,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 1503,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 868,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "locais": [
+  {
+   "zona": 134,
+   "local": 1058,
+   "nome": "COLÉGIO XIX DE MARÇO",
+   "endereco": "RUA PADRE JOÃO BATISTA ROYEN , 56",
+   "bairro": "ORIENTE",
+   "lat": -22.4213935,
+   "lon": -45.447719,
+   "secoes": [
+    31,
+    32,
+    33,
+    48,
+    49
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 723,
+       "pct": 62.76,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 429,
+       "pct": 37.24,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 28,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 16,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1066,
+   "nome": "COLÉGIO SAGRADO CORAÇÃO DE JESUS",
+   "endereco": "RUA JOSÉ JOAQUIM, 36",
+   "bairro": "VARGINHA",
+   "lat": -22.4277409,
+   "lon": -45.449704,
+   "secoes": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    180,
+    290
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1292,
+       "pct": 63.77,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 734,
+       "pct": 36.23,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 41,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 20,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1074,
+   "nome": "SENAI - CFP AURELIANO CHAVES",
+   "endereco": "RUA DR. LUIZ RENNÓ, 715",
+   "bairro": "AVENIDA",
+   "lat": -22.4294056,
+   "lon": -45.464969,
+   "secoes": [
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    181
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 771,
+       "pct": 66.24,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 393,
+       "pct": 33.76,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 33,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 16,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1104,
+   "nome": "E.M. PROF. CARMO CASCARDO",
+   "endereco": "RUA MIGUEL VIANA, S/N",
+   "bairro": "MORRO CHIC",
+   "lat": -22.4204554,
+   "lon": -45.460443,
+   "secoes": [
+    50,
+    51,
+    52,
+    53,
+    189,
+    210,
+    292
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1268,
+       "pct": 70.6,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 528,
+       "pct": 29.4,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 55,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 34,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1112,
+   "nome": "E.E. CEL. CARNEIRO JUNIOR",
+   "endereco": "RUA DR JOAO DE AZEVEDO, 433",
+   "bairro": "CENTRO",
+   "lat": -22.4233871,
+   "lon": -45.45417,
+   "secoes": [
+    21,
+    22,
+    54,
+    55,
+    56,
+    57,
+    213,
+    222,
+    230,
+    232,
+    241,
+    256
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2216,
+       "pct": 69.47,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 974,
+       "pct": 30.53,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 65,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 53,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1120,
+   "nome": "E.E. CEL. CASIMIRO OSORIO",
+   "endereco": "RUA JOSE MANSO PEREIRA CABRAL, 329",
+   "bairro": "SAO VICENTE",
+   "lat": -22.4313801,
+   "lon": -45.456621,
+   "secoes": [
+    45,
+    46,
+    47,
+    58,
+    117,
+    171,
+    233,
+    282,
+    291
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 996,
+       "pct": 68.27,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 463,
+       "pct": 31.73,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 36,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 19,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1139,
+   "nome": "E.E. MAJOR JOÃO PEREIRA",
+   "endereco": "AV PAULO CHIARADIA, 405",
+   "bairro": "SAO VICENTE",
+   "lat": -22.430038,
+   "lon": -45.4573,
+   "secoes": [
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    118,
+    119,
+    120,
+    121,
+    217
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1700,
+       "pct": 65.51,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 895,
+       "pct": 34.49,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 62,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 24,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1147,
+   "nome": "E.M. DR. XAVIER LISBOA",
+   "endereco": "RUA DR. IVO MARTINS DE MENESES, 130",
+   "bairro": "VARGINHA",
+   "lat": -22.4299693,
+   "lon": -45.435227,
+   "secoes": [
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    169,
+    201
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1292,
+       "pct": 67.05,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 635,
+       "pct": 32.95,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 56,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 25,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1155,
+   "nome": "E.E. PROF. RAFAEL MAGALHAES",
+   "endereco": "RUA MAURICIO KAISERMAN , 6",
+   "bairro": "BOA VISTA",
+   "lat": -22.4267816,
+   "lon": -45.461597,
+   "secoes": [
+    18,
+    19,
+    20,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    186
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2012,
+       "pct": 67.77,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 957,
+       "pct": 32.23,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 79,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 49,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1163,
+   "nome": "E.E. SILVERIO SANCHES",
+   "endereco": "RUA JOSE DIAS COELHO, 245",
+   "bairro": "VILA RUBENS",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    267,
+    278
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2019,
+       "pct": 64.44,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1114,
+       "pct": 35.56,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 112,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 44,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1171,
+   "nome": "E.M.  WENCESLAU NETO",
+   "endereco": "RUA GERALDINO CAMPISTA, 289",
+   "bairro": "VILA PODDIS",
+   "lat": -22.4326425,
+   "lon": -45.466674,
+   "secoes": [
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    166,
+    174,
+    206
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1784,
+       "pct": 60.72,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1154,
+       "pct": 39.28,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 73,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 52,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1180,
+   "nome": "COLÉGIO DE ITAJUBÁ",
+   "endereco": "RUA DR. XAVIER LISBOA, 274",
+   "bairro": "CENTRO",
+   "lat": -22.4273692,
+   "lon": -45.450512,
+   "secoes": [
+    23,
+    25,
+    28,
+    95,
+    123
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1012,
+       "pct": 73.23,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 370,
+       "pct": 26.77,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 39,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 14,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1198,
+   "nome": "UNIVERSIDADE FEDERAL DE ITAJUBA - UNIFEI - CAMPUS",
+   "endereco": "AV. BPS, 1.303",
+   "bairro": "PINHEIRINHO",
+   "lat": -22.4127679,
+   "lon": -45.449406,
+   "secoes": [
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    172,
+    194,
+    198,
+    238,
+    261,
+    266,
+    283
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2230,
+       "pct": 59.37,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1526,
+       "pct": 40.63,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 100,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 58,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1201,
+   "nome": "FACULDADE DE CIÊNCIAS SOCIAIS APLICADAS DO SUL DE MINAS - FACESM",
+   "endereco": "AV. PRESIDENTE TANCREDO ALMEIDA NEVES, 45",
+   "bairro": "AVENIDA",
+   "lat": -22.4283163,
+   "lon": -45.464663,
+   "secoes": [
+    102,
+    103,
+    104,
+    105,
+    106,
+    184,
+    209,
+    216,
+    228,
+    237,
+    245,
+    253,
+    262,
+    272
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2052,
+       "pct": 68.17,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 958,
+       "pct": 31.83,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 73,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 54,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1210,
+   "nome": "CENTRO UNIVERSITÁRIO DE ITAJUBÁ - FEPI",
+   "endereco": "AV. DR. ANTONIO BRAGA FILHO , 687",
+   "bairro": "VARGINHA",
+   "lat": -22.4292298,
+   "lon": -45.44812,
+   "secoes": [
+    107,
+    108,
+    109,
+    211,
+    226,
+    235,
+    250,
+    263,
+    289
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1582,
+       "pct": 65.4,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 837,
+       "pct": 34.6,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 78,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 38,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1228,
+   "nome": "FACULDADE DE MEDICINA",
+   "endereco": "AV RENNO JUNIOR, 368",
+   "bairro": "MEDICINA",
+   "lat": -22.4348645,
+   "lon": -45.456194,
+   "secoes": [
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    185,
+    205,
+    269
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2406,
+       "pct": 66.96,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1187,
+       "pct": 33.04,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 78,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 54,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1279,
+   "nome": "E.M. OLIMPIO JOSÉ JOAQUIM (CAPETINGA)",
+   "endereco": "ESTRADA VELHA PARA MARIA DA FÉ, SN",
+   "bairro": "CAPETINGA (ZONA RURAL)",
+   "lat": -22.3850777,
+   "lon": -45.452902,
+   "secoes": [
+    124,
+    227
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 385,
+       "pct": 67.19,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 188,
+       "pct": 32.81,
+       "posicao": 2
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 12,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 10,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1287,
+   "nome": "E.E. BARÃO DO RIO BRANCO",
+   "endereco": "VILA MESTRE SEBASTIÃO ERNESTO COELHO, SN",
+   "bairro": "IMBEL",
+   "lat": -22.4417946,
+   "lon": -45.429065,
+   "secoes": [
+    125,
+    126,
+    127,
+    128,
+    129,
+    177,
+    191,
+    225,
+    252,
+    279
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1976,
+       "pct": 64.7,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1078,
+       "pct": 35.3,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 69,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 61,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1295,
+   "nome": "E.E. ANA LAURA PEREIRA",
+   "endereco": "RUA JOSE DIAS CHAVES SOBRINHO, 505",
+   "bairro": "PIEDADE",
+   "lat": -22.4448736,
+   "lon": -45.486548,
+   "secoes": [
+    130,
+    131,
+    208,
+    284
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 604,
+       "pct": 59.92,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 404,
+       "pct": 40.08,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 43,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 14,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1309,
+   "nome": "E.E. FLORIVAL XAVIER",
+   "endereco": "RUA PEDRO MUNIZ , 131",
+   "bairro": "REBOURGEON",
+   "lat": -22.4446866,
+   "lon": -45.476957,
+   "secoes": [
+    132,
+    133,
+    134,
+    135,
+    136,
+    167,
+    193,
+    212,
+    239,
+    254,
+    280
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 2056,
+       "pct": 63.79,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 1167,
+       "pct": 36.21,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 102,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 57,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1317,
+   "nome": "E.M. PADRE DONATO",
+   "endereco": "RUA SEBASTIAO FLORENCIO DA COSTA, 70",
+   "bairro": "SANTA ROSA",
+   "lat": -22.4473547,
+   "lon": -45.418629,
+   "secoes": [
+    137,
+    138,
+    139,
+    187,
+    215,
+    244,
+    274
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1324,
+       "pct": 64.71,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 722,
+       "pct": 35.29,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 48,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 30,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1325,
+   "nome": "E.M. ANA JUNQUEIRA FERRAZ (ANO BOM)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ (ZONA RURAL)",
+   "bairro": "ANO BOM (ZONA RURAL)",
+   "lat": -22.3772038,
+   "lon": -45.396041,
+   "secoes": [
+    140,
+    168,
+    277
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 524,
+       "pct": 69.77,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 227,
+       "pct": 30.23,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 25,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 12,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1333,
+   "nome": "E.M. FRANCISCO FLORENCIO DA SILVA (BAIRRO JURU)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ, KM 5 (ZONA RURAL)",
+   "bairro": "JURU (ZONA RURAL)",
+   "lat": -22.3891657,
+   "lon": -45.423469,
+   "secoes": [
+    141,
+    142,
+    214
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 460,
+       "pct": 75.53,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 149,
+       "pct": 24.47,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 16,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 10,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1350,
+   "nome": "E.M. ALCIDES FARIA (RIO MANSO)",
+   "endereco": "RIO MANSO (ZONA RURAL)",
+   "bairro": "RIO MANSO",
+   "lat": -22.3680269,
+   "lon": -45.326073,
+   "secoes": [
+    143,
+    249
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 269,
+       "pct": 71.35,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 108,
+       "pct": 28.65,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 7,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 5,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1368,
+   "nome": "FUNDAÇÃO BRADESCO",
+   "endereco": "AV. POCOS DE CALDAS, 1058",
+   "bairro": "DISTRITO INDUSTRIAL",
+   "lat": -22.4269868,
+   "lon": -45.494852,
+   "secoes": [
+    173,
+    196,
+    223,
+    242,
+    251,
+    264,
+    271
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1173,
+       "pct": 65.79,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 610,
+       "pct": 34.21,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 60,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 27,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1384,
+   "nome": "POSTO DE SAÚDE (ANHUMAS)",
+   "endereco": "ANHUMAS - ZONA RURAL",
+   "bairro": "ANHUMAS",
+   "lat": -22.4715322,
+   "lon": -45.467123,
+   "secoes": [
+    179,
+    288
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 240,
+       "pct": 68.57,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 110,
+       "pct": 31.43,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 6,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 3,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1392,
+   "nome": "E.M. FRANCISCO PEREIRA COUTINHO - CAIC",
+   "endereco": "RUA RAIMUNDO DOMICIANO, 200",
+   "bairro": "NOVO HORIZONTE",
+   "lat": -22.4117455,
+   "lon": -45.477699,
+   "secoes": [
+    190,
+    207,
+    229,
+    243,
+    255,
+    265,
+    281
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 1134,
+       "pct": 62.79,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 672,
+       "pct": 37.21,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 57,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 31,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1406,
+   "nome": "E.M. DURVAL BRAGA (PONTE SANTO ANTONIO)",
+   "endereco": "RODOVIA ITAJUBA/LORENA, KM 10 (ZONA RURAL)",
+   "bairro": "PONTE SANTO ANTONIO (ZONA RURAL)",
+   "lat": -22.4793885,
+   "lon": -45.38499,
+   "secoes": [
+    197,
+    202,
+    220
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 365,
+       "pct": 69.39,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 161,
+       "pct": 30.61,
+       "posicao": 2
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 12,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 11,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1430,
+   "nome": "E.M. SANTA RITA (BAIRRO PEROBA)",
+   "endereco": "BAIRRO PEROBA (ZONA RURAL)",
+   "bairro": "PEROBA",
+   "lat": -22.4002448,
+   "lon": -45.360886,
+   "secoes": [
+    203
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 30,
+       "pct": 54.55,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 25,
+       "pct": 45.45,
+       "posicao": 2
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 2,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 1,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1449,
+   "nome": "POSTO DE SAÚDE (FREIRES)",
+   "endereco": "ESTRADA DOS FREIRES (ZONA RURAL)",
+   "bairro": "FREIRES (ZONA RURAL)",
+   "lat": -22.5255202,
+   "lon": -45.436126,
+   "secoes": [
+    268
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 43,
+       "pct": 71.67,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 17,
+       "pct": 28.33,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 2,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1465,
+   "nome": "E.M. ISAURA PEREIRA DOS SANTOS",
+   "endereco": "AV. WAGNER LEMOS MACHADO, 320",
+   "bairro": "AÇUDE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    273,
+    275,
+    276,
+    285
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 606,
+       "pct": 56.85,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 460,
+       "pct": 43.15,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 36,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 22,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1473,
+   "nome": "E.M. CEL. SILVESTRE (GOIABAL)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ, KM 14 (ZONA RURAL)",
+   "bairro": "GOIABAL (ZONA RURAL)",
+   "lat": -22.3511411,
+   "lon": -45.362239,
+   "secoes": [
+    286
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 22,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PL",
+       "votos": 67,
+       "pct": 58.77,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "LULA",
+       "partido": "PT",
+       "votos": 47,
+       "pct": 41.23,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 2,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

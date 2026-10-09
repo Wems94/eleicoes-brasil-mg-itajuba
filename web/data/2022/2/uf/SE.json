@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "SE",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1284037,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 862951,
+     "pct": 67.21,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 421086,
+     "pct": 32.79,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1206791,
+   "candidatos": [
+    {
+     "numero": 55,
+     "nome": "FÁBIO",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 623851,
+     "pct": 51.7,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "ROGÉRIO CARVALHO",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 582940,
+     "pct": 48.3,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1671241,
+   "comparecimento": 1355467,
+   "abstencoes": 315774,
+   "brancos": 18240,
+   "nulos": 53190,
+   "pct_comparecimento": 81.11,
+   "pct_abstencao": 18.89,
+   "pct_brancos": 1.35,
+   "pct_nulos": 3.92
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1669054,
+   "comparecimento": 1353538,
+   "abstencoes": 315516,
+   "brancos": 47242,
+   "nulos": 99505,
+   "pct_comparecimento": 81.1,
+   "pct_abstencao": 18.9,
+   "pct_brancos": 3.49,
+   "pct_nulos": 7.35
+  }
+ ]
+}

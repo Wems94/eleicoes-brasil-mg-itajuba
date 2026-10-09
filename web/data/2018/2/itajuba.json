@@ -1,0 +1,3451 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votaveis": [
+    {
+     "tipo": "candidato",
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "votos": 39418,
+     "pct": 77.67,
+     "posicao": 1
+    },
+    {
+     "tipo": "candidato",
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "votos": 11330,
+     "pct": 22.33,
+     "posicao": 2
+    },
+    {
+     "tipo": "nulo",
+     "numero": 96,
+     "nome": "VOTO NULO",
+     "partido": null,
+     "votos": 4485,
+     "pct": null,
+     "posicao": null
+    },
+    {
+     "tipo": "branco",
+     "numero": 95,
+     "nome": "VOTO BRANCO",
+     "partido": null,
+     "votos": 1237,
+     "pct": null,
+     "posicao": null
+    }
+   ],
+   "comparecimento": {
+    "aptos": 72627,
+    "comparecimento": 56470,
+    "abstencoes": 16157,
+    "brancos": 1237,
+    "nulos": 4485,
+    "pct_comparecimento": 77.75,
+    "pct_abstencao": 22.25
+   }
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votaveis": [
+    {
+     "tipo": "candidato",
+     "numero": 30,
+     "nome": "ROMEU ZEMA",
+     "partido": "NOVO",
+     "votos": 34504,
+     "pct": 73.62,
+     "posicao": 1
+    },
+    {
+     "tipo": "candidato",
+     "numero": 45,
+     "nome": "ANTONIO ANASTASIA",
+     "partido": "PSDB",
+     "votos": 12366,
+     "pct": 26.38,
+     "posicao": 2
+    },
+    {
+     "tipo": "nulo",
+     "numero": 96,
+     "nome": "VOTO NULO",
+     "partido": null,
+     "votos": 7182,
+     "pct": null,
+     "posicao": null
+    },
+    {
+     "tipo": "branco",
+     "numero": 95,
+     "nome": "VOTO BRANCO",
+     "partido": null,
+     "votos": 2413,
+     "pct": null,
+     "posicao": null
+    }
+   ],
+   "comparecimento": {
+    "aptos": 72621,
+    "comparecimento": 56465,
+    "abstencoes": 16156,
+    "brancos": 2413,
+    "nulos": 7182,
+    "pct_comparecimento": 77.75,
+    "pct_abstencao": 22.25
+   }
+  }
+ ],
+ "zonas": [
+  {
+   "zona": 134,
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 39418,
+       "pct": 77.67,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 11330,
+       "pct": 22.33,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 4485,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 1237,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 34504,
+       "pct": 73.62,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 12366,
+       "pct": 26.38,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 7182,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 2413,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "locais": [
+  {
+   "zona": 134,
+   "local": 1058,
+   "nome": "COLÉGIO 19 DE MARÇO",
+   "endereco": "RUA PADRE JOÃO BATISTA ROYEN , 56",
+   "bairro": "ORIENTE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    31,
+    32,
+    33,
+    48,
+    49
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 850,
+       "pct": 75.62,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 274,
+       "pct": 24.38,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 80,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 11,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 735,
+       "pct": 71.85,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 288,
+       "pct": 28.15,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 158,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 34,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1066,
+   "nome": "COLÉGIO SAGRADO CORAÇÃO DE JESUS",
+   "endereco": "RUA JOSÉ JOAQUIM, 36",
+   "bairro": "VARGINHA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    34,
+    35,
+    36,
+    37,
+    38,
+    180,
+    290
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1288,
+       "pct": 77.87,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 366,
+       "pct": 22.13,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 107,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 28,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1118,
+       "pct": 70.63,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 465,
+       "pct": 29.37,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 144,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 60,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1074,
+   "nome": "SENAI - CFP AURELIANO CHAVES",
+   "endereco": "RUA DR. LUIZ RENNÓ, 715",
+   "bairro": "AVENIDA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    181
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 903,
+       "pct": 79.91,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 227,
+       "pct": 20.09,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 119,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 21,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 749,
+       "pct": 70.93,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 307,
+       "pct": 29.07,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 179,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 35,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1104,
+   "nome": "E.M. PROF. CARMO CASCARDO",
+   "endereco": "RUA MIGUEL VIANA, S/N",
+   "bairro": "MORRO CHIC",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    50,
+    51,
+    52,
+    53,
+    189,
+    210
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1292,
+       "pct": 79.61,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 331,
+       "pct": 20.39,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 137,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 49,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1100,
+       "pct": 72.18,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 424,
+       "pct": 27.82,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 210,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 75,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1112,
+   "nome": "E.E. CEL. CARNEIRO JUNIOR",
+   "endereco": "RUA DR JOAO DE AZEVEDO, 433",
+   "bairro": "CENTRO",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    21,
+    22,
+    54,
+    55,
+    56,
+    57,
+    213,
+    222,
+    230,
+    232,
+    241,
+    256
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2431,
+       "pct": 80.63,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 584,
+       "pct": 19.37,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 180,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 48,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1947,
+       "pct": 67.93,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 919,
+       "pct": 32.07,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 271,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 106,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1120,
+   "nome": "E.E. CEL. CASIMIRO OSORIO",
+   "endereco": "RUA JOSE MANSO PEREIRA CABRAL, 329",
+   "bairro": "SAO VICENTE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    45,
+    46,
+    47,
+    58,
+    117,
+    171,
+    233
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1189,
+       "pct": 80.39,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 290,
+       "pct": 19.61,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 92,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 32,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1033,
+       "pct": 74.26,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 358,
+       "pct": 25.74,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 143,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 69,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1139,
+   "nome": "E.E. MAJOR JOÃO PEREIRA",
+   "endereco": "AV PAULO CHIARADIA, 405",
+   "bairro": "SAO VICENTE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    118,
+    119,
+    120,
+    121,
+    217
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1823,
+       "pct": 77.91,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 517,
+       "pct": 22.09,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 152,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 50,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1581,
+       "pct": 72.59,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 597,
+       "pct": 27.41,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 265,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 99,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1147,
+   "nome": "E.M. DR. XAVIER LISBOA",
+   "endereco": "RUA DR. IVO MARTINS DE MENESES, 130",
+   "bairro": "VARGINHA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    169,
+    201
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1637,
+       "pct": 80.28,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 402,
+       "pct": 19.72,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 200,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 39,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1470,
+       "pct": 75.62,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 474,
+       "pct": 24.38,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 276,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 57,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1155,
+   "nome": "E.E. PROF. RAFAEL MAGALHAES",
+   "endereco": "RUA MAURICIO KAISERMAN , 6",
+   "bairro": "BOA VISTA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    18,
+    19,
+    20,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    186
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2179,
+       "pct": 79.21,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 572,
+       "pct": 20.79,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 241,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 70,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1844,
+       "pct": 71.22,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 745,
+       "pct": 28.78,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 367,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 106,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1163,
+   "nome": "E.E. SILVERIO SANCHES",
+   "endereco": "RUA JOSE DIAS COELHO, 245",
+   "bairro": "VILA RUBENS",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    267,
+    278
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2254,
+       "pct": 76.2,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 704,
+       "pct": 23.8,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 337,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 76,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 2069,
+       "pct": 77.29,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 608,
+       "pct": 22.71,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 525,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 169,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1171,
+   "nome": "E.M.  WENCESLAU NETO",
+   "endereco": "RUA GERALDINO CAMPISTA, 289",
+   "bairro": "VILA PODDIS",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    166,
+    174,
+    206
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1852,
+       "pct": 72.83,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 691,
+       "pct": 27.17,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 291,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 90,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1655,
+       "pct": 72.91,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 615,
+       "pct": 27.09,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 496,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 158,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1180,
+   "nome": "COLÉGIO DE ITAJUBÁ",
+   "endereco": "RUA DR. XAVIER LISBOA, 274",
+   "bairro": "CENTRO",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    95,
+    123
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1306,
+       "pct": 84.04,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 248,
+       "pct": 15.96,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 86,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 29,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 998,
+       "pct": 65.83,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 518,
+       "pct": 34.17,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 112,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 41,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1198,
+   "nome": "UNIVERSIDADE FEDERAL DE ITAJUBA - UNIFEI - CAMPUS",
+   "endereco": "AV. BPS, 1.303",
+   "bairro": "PINHEIRINHO",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    172,
+    194,
+    198,
+    238,
+    261,
+    266
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2410,
+       "pct": 73.54,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 867,
+       "pct": 26.46,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 271,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 82,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 2188,
+       "pct": 71.57,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 869,
+       "pct": 28.43,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 414,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 158,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1201,
+   "nome": "FACULDADE DE CIÊNCIAS SOCIAIS APLICADAS DO SUL DE MINAS - FACESM",
+   "endereco": "AV. PRESIDENTE TANCREDO ALMEIDA NEVES, 45",
+   "bairro": "AVENIDA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    102,
+    103,
+    104,
+    105,
+    106,
+    184,
+    209,
+    216,
+    228,
+    237,
+    245,
+    253,
+    272
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2446,
+       "pct": 78.7,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 662,
+       "pct": 21.3,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 264,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 71,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 2130,
+       "pct": 73.8,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 756,
+       "pct": 26.2,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 423,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 134,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1210,
+   "nome": "FUNDAÇÃO DE ENSINO E PESQUISA DE ITAJUBÁ - FEPI",
+   "endereco": "AV. DR. ANTONIO BRAGA FILHO , 687",
+   "bairro": "VARGINHA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    107,
+    108,
+    109,
+    211,
+    226,
+    235,
+    250,
+    263
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1596,
+       "pct": 78.39,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 440,
+       "pct": 21.61,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 158,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 37,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1446,
+       "pct": 75.59,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 467,
+       "pct": 24.41,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 236,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 81,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1228,
+   "nome": "FACULDADE DE MEDICINA",
+   "endereco": "AV RENNO JUNIOR, 368",
+   "bairro": "MEDICINA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    185,
+    205,
+    269,
+    282
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2379,
+       "pct": 77.09,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 707,
+       "pct": 22.91,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 228,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 77,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 2208,
+       "pct": 75.69,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 709,
+       "pct": 24.31,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 358,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 116,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1279,
+   "nome": "E.M. OLIMPIO JOSÉ JOAQUIM (CAPETINGA)",
+   "endereco": "ESTRADA VELHA PARA MARIA DA FÉ, SN",
+   "bairro": "CAPETINGA (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    124,
+    227
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 359,
+       "pct": 71.51,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 143,
+       "pct": 28.49,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 63,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 22,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 319,
+       "pct": 71.85,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 125,
+       "pct": 28.15,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 112,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 31,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1287,
+   "nome": "E.E. BARÃO DO RIO BRANCO",
+   "endereco": "RUA MESTRE SEBASTIAO ERNESTO COELHO, S/N",
+   "bairro": "IMBEL",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    125,
+    126,
+    127,
+    128,
+    129,
+    177,
+    191,
+    225,
+    252,
+    279
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2265,
+       "pct": 80.43,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 551,
+       "pct": 19.57,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 210,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 47,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1991,
+       "pct": 77.44,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 580,
+       "pct": 22.56,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 360,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 142,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1295,
+   "nome": "E.E. ANA LAURA PEREIRA",
+   "endereco": "RUA JOSE DIAS CHAVES SOBRINHO, 505",
+   "bairro": "PIEDADE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    130,
+    131,
+    208,
+    284
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 651,
+       "pct": 76.32,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 202,
+       "pct": 23.68,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 100,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 24,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 584,
+       "pct": 75.06,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 194,
+       "pct": 24.94,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 160,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 39,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1309,
+   "nome": "E.E. FLORIVAL XAVIER",
+   "endereco": "RUA PEDRO MUNIZ , 131",
+   "bairro": "REBOURGEON",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    132,
+    133,
+    134,
+    135,
+    136,
+    167,
+    193,
+    212,
+    239,
+    254,
+    280
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 2286,
+       "pct": 76.61,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 698,
+       "pct": 23.39,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 316,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 80,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1960,
+       "pct": 71.9,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 766,
+       "pct": 28.1,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 494,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 160,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1317,
+   "nome": "E.M. PADRE DONATO",
+   "endereco": "RUA SEBASTIAO FLORENCIO DA COSTA, 70",
+   "bairro": "SANTA ROSA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    137,
+    138,
+    139,
+    187,
+    215,
+    244,
+    274
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1355,
+       "pct": 76.81,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 409,
+       "pct": 23.19,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 197,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 65,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1248,
+       "pct": 78.84,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 335,
+       "pct": 21.16,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 319,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 124,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1325,
+   "nome": "E.M. ANA JUNQUEIRA FERRAZ (ANO BOM)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ (ZONA RURAL)",
+   "bairro": "ANO BOM (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    140,
+    168,
+    277
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 532,
+       "pct": 81.97,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 117,
+       "pct": 18.03,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 104,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 17,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 490,
+       "pct": 82.91,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 101,
+       "pct": 17.09,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 142,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 37,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1333,
+   "nome": "E.M. FRANCISCO FLORENCIO DA SILVA (BAIRRO JURU)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ, KM 5 (ZONA RURAL)",
+   "bairro": "JURU (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    141,
+    142
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 408,
+       "pct": 82.59,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 86,
+       "pct": 17.41,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 43,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 21,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 381,
+       "pct": 83.55,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 75,
+       "pct": 16.45,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 71,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 31,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1350,
+   "nome": "E.M. ALCIDES FARIA (RIO MANSO)",
+   "endereco": "RIO MANSO (ZONA RURAL)",
+   "bairro": "RIO MANSO",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    143,
+    249
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 281,
+       "pct": 80.29,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 69,
+       "pct": 19.71,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 30,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 6,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 262,
+       "pct": 81.62,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 59,
+       "pct": 18.38,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 57,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 8,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1368,
+   "nome": "FUNDAÇÃO BRADESCO",
+   "endereco": "AV. POCOS DE CALDAS, 1058",
+   "bairro": "SANTOS DUMONT",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    173,
+    196,
+    223,
+    242,
+    251,
+    271
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1289,
+       "pct": 78.22,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 359,
+       "pct": 21.78,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 151,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 48,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 1150,
+       "pct": 77.86,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 327,
+       "pct": 22.14,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 265,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 105,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1384,
+   "nome": "POSTO DE SAÚDE (ANHUMAS)",
+   "endereco": "ANHUMAS - ZONA RURAL",
+   "bairro": "ANHUMAS",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    179
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 240,
+       "pct": 81.63,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 54,
+       "pct": 18.37,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 34,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 13,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 194,
+       "pct": 69.53,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 85,
+       "pct": 30.47,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 46,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 16,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1392,
+   "nome": "E.M. FRANCISCO PEREIRA COUTINHO - CAIC",
+   "endereco": "RUA RAIMUNDO DOMICIANO, 200",
+   "bairro": "NOVO HORIZONTE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    190,
+    207,
+    229,
+    243,
+    255,
+    281
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 1114,
+       "pct": 72.81,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 416,
+       "pct": 27.19,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 156,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 54,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 912,
+       "pct": 71.92,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 356,
+       "pct": 28.08,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 341,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 131,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1406,
+   "nome": "E.M. DURVAL BRAGA (PONTE SANTO ANTONIO)",
+   "endereco": "RODOVIA ITAJUBA/LORENA, KM 10 (ZONA RURAL)",
+   "bairro": "PONTE SANTO ANTONIO (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    197,
+    202
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 349,
+       "pct": 81.92,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 77,
+       "pct": 18.08,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 57,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 10,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 300,
+       "pct": 80.0,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 75,
+       "pct": 20.0,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 86,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 32,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1430,
+   "nome": "E.M. SANTA RITA (BAIRRO PEROBA)",
+   "endereco": "BAIRRO PEROBA (ZONA RURAL)",
+   "bairro": "PEROBA",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    203
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 32,
+       "pct": 51.61,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 30,
+       "pct": 48.39,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 4,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 1,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 34,
+       "pct": 54.84,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 28,
+       "pct": 45.16,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 3,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 2,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1449,
+   "nome": "POSTO DE SAÚDE (FREIRES)",
+   "endereco": "ESTRADA DOS FREIRES (ZONA RURAL)",
+   "bairro": "FREIRES (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    268
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 43,
+       "pct": 84.31,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 8,
+       "pct": 15.69,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 3,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 1,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 39,
+       "pct": 84.78,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 7,
+       "pct": 15.22,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 6,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 3,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1465,
+   "nome": "E.M. ISAURA PEREIRA DOS SANTOS",
+   "endereco": "AV. WAGNER LEMOS MACHADO, 320",
+   "bairro": "AÇUDE",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    273,
+    275,
+    276
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 351,
+       "pct": 64.4,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 194,
+       "pct": 35.6,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 70,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 15,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 327,
+       "pct": 73.15,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 120,
+       "pct": 26.85,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 133,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 50,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "zona": 134,
+   "local": 1473,
+   "nome": "E.M. CEL. SILVESTRE (GOIABAL)",
+   "endereco": "RODOVIA ITAJUBÁ/MARIA DA FÉ, KM 14 (ZONA RURAL)",
+   "bairro": "GOIABAL (ZONA RURAL)",
+   "lat": null,
+   "lon": null,
+   "secoes": [
+    286
+   ],
+   "cargos": [
+    {
+     "codigo": 1,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 13,
+       "nome": "FERNANDO HADDAD",
+       "partido": "PT",
+       "votos": 33,
+       "pct": 52.38,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 17,
+       "nome": "JAIR BOLSONARO",
+       "partido": "PSL",
+       "votos": 30,
+       "pct": 47.62,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 4,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 3,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    },
+    {
+     "codigo": 3,
+     "votaveis": [
+      {
+       "tipo": "candidato",
+       "numero": 30,
+       "nome": "ROMEU ZEMA",
+       "partido": "NOVO",
+       "votos": 42,
+       "pct": 75.0,
+       "posicao": 1
+      },
+      {
+       "tipo": "candidato",
+       "numero": 45,
+       "nome": "ANTONIO ANASTASIA",
+       "partido": "PSDB",
+       "votos": 14,
+       "pct": 25.0,
+       "posicao": 2
+      },
+      {
+       "tipo": "nulo",
+       "numero": 96,
+       "nome": "VOTO NULO",
+       "partido": null,
+       "votos": 10,
+       "pct": null,
+       "posicao": null
+      },
+      {
+       "tipo": "branco",
+       "numero": 95,
+       "nome": "VOTO BRANCO",
+       "partido": null,
+       "votos": 4,
+       "pct": null,
+       "posicao": null
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

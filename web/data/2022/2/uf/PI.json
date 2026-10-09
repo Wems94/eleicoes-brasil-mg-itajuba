@@ -1,0 +1,49 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "PI",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 2018448,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 1551383,
+     "pct": 76.86,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 467065,
+     "pct": 23.14,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2570253,
+   "comparecimento": 2088530,
+   "abstencoes": 481723,
+   "brancos": 19027,
+   "nulos": 51055,
+   "pct_comparecimento": 81.26,
+   "pct_abstencao": 18.74,
+   "pct_brancos": 0.91,
+   "pct_nulos": 2.44
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "MS",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1337074,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 872049,
+     "pct": 65.22,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 465025,
+     "pct": 34.78,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1293732,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "REINALDO AZAMBUJA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 677310,
+     "pct": 52.35,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 12,
+     "nome": "JUIZ ODILON",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 616422,
+     "pct": 47.65,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1877747,
+   "comparecimento": 1449977,
+   "abstencoes": 427770,
+   "brancos": 27014,
+   "nulos": 85889,
+   "pct_comparecimento": 77.22,
+   "pct_abstencao": 22.78,
+   "pct_brancos": 1.86,
+   "pct_nulos": 5.92
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1877020,
+   "comparecimento": 1449374,
+   "abstencoes": 427646,
+   "brancos": 38745,
+   "nulos": 116897,
+   "pct_comparecimento": 77.22,
+   "pct_abstencao": 22.78,
+   "pct_brancos": 2.67,
+   "pct_nulos": 8.07
+  }
+ ]
+}

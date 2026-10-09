@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "MS",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1480153,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 880606,
+     "pct": 59.49,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 599547,
+     "pct": 40.51,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1420323,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "EDUARDO RIEDEL",
+     "partido": "PSDB",
+     "federacao": "PSDB/CIDADANIA",
+     "votos": 808210,
+     "pct": 56.9,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 28,
+     "nome": "CAPITÃO CONTAR",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 612113,
+     "pct": 43.1,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1996066,
+   "comparecimento": 1549873,
+   "abstencoes": 446193,
+   "brancos": 18062,
+   "nulos": 51658,
+   "pct_comparecimento": 77.65,
+   "pct_abstencao": 22.35,
+   "pct_brancos": 1.17,
+   "pct_nulos": 3.33
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1993450,
+   "comparecimento": 1547610,
+   "abstencoes": 445840,
+   "brancos": 39059,
+   "nulos": 88228,
+   "pct_comparecimento": 77.63,
+   "pct_abstencao": 22.37,
+   "pct_brancos": 2.52,
+   "pct_nulos": 5.7
+  }
+ ]
+}

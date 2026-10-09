@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "RO",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 896140,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 633236,
+     "pct": 70.66,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 262904,
+     "pct": 29.34,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 873648,
+   "candidatos": [
+    {
+     "numero": 44,
+     "nome": "CORONEL MARCOS ROCHA",
+     "partido": "UNIÃO",
+     "federacao": null,
+     "votos": 458370,
+     "pct": 52.47,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "MARCOS ROGERIO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 415278,
+     "pct": 47.53,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1230172,
+   "comparecimento": 926517,
+   "abstencoes": 303655,
+   "brancos": 9428,
+   "nulos": 20949,
+   "pct_comparecimento": 75.32,
+   "pct_abstencao": 24.68,
+   "pct_brancos": 1.02,
+   "pct_nulos": 2.26
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1229033,
+   "comparecimento": 925563,
+   "abstencoes": 303470,
+   "brancos": 20103,
+   "nulos": 31812,
+   "pct_comparecimento": 75.31,
+   "pct_abstencao": 24.69,
+   "pct_brancos": 2.17,
+   "pct_nulos": 3.44
+  }
+ ]
+}

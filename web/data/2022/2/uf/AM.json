@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "AM",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1966732,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 1004991,
+     "pct": 51.1,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 961741,
+     "pct": 48.9,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1834290,
+   "candidatos": [
+    {
+     "numero": 44,
+     "nome": "WILSON LIMA",
+     "partido": "UNIÃO",
+     "federacao": null,
+     "votos": 1039192,
+     "pct": 56.65,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 15,
+     "nome": "EDUARDO BRAGA",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 795098,
+     "pct": 43.35,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2647123,
+   "comparecimento": 2067875,
+   "abstencoes": 579164,
+   "brancos": 21594,
+   "nulos": 79549,
+   "pct_comparecimento": 78.12,
+   "pct_abstencao": 21.88,
+   "pct_brancos": 1.04,
+   "pct_nulos": 3.85
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2643862,
+   "comparecimento": 2065079,
+   "abstencoes": 578702,
+   "brancos": 72907,
+   "nulos": 157882,
+   "pct_comparecimento": 78.11,
+   "pct_abstencao": 21.89,
+   "pct_brancos": 3.53,
+   "pct_nulos": 7.65
+  }
+ ]
+}

@@ -1,0 +1,322 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "presidente": {
+  "votos_validos": 118552353,
+  "candidatos": [
+   {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "federacao": "PT/PC do B/PV",
+    "votos": 60345999,
+    "pct": 50.9,
+    "situacao": "ELEITO",
+    "posicao": 1
+   },
+   {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "federacao": null,
+    "votos": 58206354,
+    "pct": 49.1,
+    "situacao": "NÃO ELEITO",
+    "posicao": 2
+   }
+  ]
+ },
+ "comparecimento": {
+  "aptos": 156454011,
+  "comparecimento": 124252796,
+  "abstencoes": 32200558,
+  "brancos": 1769678,
+  "nulos": 3930765,
+  "pct_comparecimento": 79.42,
+  "pct_abstencao": 20.58,
+  "pct_brancos": 1.42,
+  "pct_nulos": 3.16
+ },
+ "ufs": [
+  {
+   "uf": "AC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 70.3
+   },
+   "pct_comparecimento": 71.59
+  },
+  {
+   "uf": "AL",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 58.68
+   },
+   "pct_comparecimento": 76.75
+  },
+  {
+   "uf": "AM",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 51.1
+   },
+   "pct_comparecimento": 78.12
+  },
+  {
+   "uf": "AP",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 51.36
+   },
+   "pct_comparecimento": 72.83
+  },
+  {
+   "uf": "BA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 72.12
+   },
+   "pct_comparecimento": 79.52
+  },
+  {
+   "uf": "CE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 69.97
+   },
+   "pct_comparecimento": 82.86
+  },
+  {
+   "uf": "DF",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 58.81
+   },
+   "pct_comparecimento": 83.28
+  },
+  {
+   "uf": "ES",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 58.04
+   },
+   "pct_comparecimento": 79.47
+  },
+  {
+   "uf": "GO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 58.71
+   },
+   "pct_comparecimento": 79.26
+  },
+  {
+   "uf": "MA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 71.14
+   },
+   "pct_comparecimento": 76.49
+  },
+  {
+   "uf": "MG",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 50.2
+   },
+   "pct_comparecimento": 79.01
+  },
+  {
+   "uf": "MS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 59.49
+   },
+   "pct_comparecimento": 77.65
+  },
+  {
+   "uf": "MT",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 65.08
+   },
+   "pct_comparecimento": 77.47
+  },
+  {
+   "uf": "PA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 54.75
+   },
+   "pct_comparecimento": 77.35
+  },
+  {
+   "uf": "PB",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 66.62
+   },
+   "pct_comparecimento": 83.26
+  },
+  {
+   "uf": "PE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 66.93
+   },
+   "pct_comparecimento": 82.69
+  },
+  {
+   "uf": "PI",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 76.86
+   },
+   "pct_comparecimento": 81.26
+  },
+  {
+   "uf": "PR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 62.4
+   },
+   "pct_comparecimento": 81.37
+  },
+  {
+   "uf": "RJ",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 56.53
+   },
+   "pct_comparecimento": 77.76
+  },
+  {
+   "uf": "RN",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 65.1
+   },
+   "pct_comparecimento": 82.56
+  },
+  {
+   "uf": "RO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 70.66
+   },
+   "pct_comparecimento": 75.32
+  },
+  {
+   "uf": "RR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 76.08
+   },
+   "pct_comparecimento": 78.08
+  },
+  {
+   "uf": "RS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 56.35
+   },
+   "pct_comparecimento": 80.69
+  },
+  {
+   "uf": "SC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 69.27
+   },
+   "pct_comparecimento": 82.58
+  },
+  {
+   "uf": "SE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 67.21
+   },
+   "pct_comparecimento": 81.11
+  },
+  {
+   "uf": "SP",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 55.24
+   },
+   "pct_comparecimento": 78.94
+  },
+  {
+   "uf": "TO",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 51.36
+   },
+   "pct_comparecimento": 79.62
+  },
+  {
+   "uf": "ZZ",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 51.28
+   },
+   "pct_comparecimento": 44.59
+  }
+ ]
+}

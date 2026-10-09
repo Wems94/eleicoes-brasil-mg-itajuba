@@ -1,0 +1,412 @@
+{
+ "ano": 2022,
+ "turno": 1,
+ "presidente": {
+  "votos_validos": 118229719,
+  "candidatos": [
+   {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "federacao": "PT/PC do B/PV",
+    "votos": 57259504,
+    "pct": 48.43,
+    "situacao": "2º TURNO",
+    "posicao": 1
+   },
+   {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "federacao": null,
+    "votos": 51072345,
+    "pct": 43.2,
+    "situacao": "2º TURNO",
+    "posicao": 2
+   },
+   {
+    "numero": 15,
+    "nome": "SIMONE TEBET",
+    "partido": "MDB",
+    "federacao": null,
+    "votos": 4915423,
+    "pct": 4.16,
+    "situacao": "NÃO ELEITO",
+    "posicao": 3
+   },
+   {
+    "numero": 12,
+    "nome": "CIRO GOMES",
+    "partido": "PDT",
+    "federacao": null,
+    "votos": 3599287,
+    "pct": 3.04,
+    "situacao": "NÃO ELEITO",
+    "posicao": 4
+   },
+   {
+    "numero": 44,
+    "nome": "SORAYA THRONICKE",
+    "partido": "UNIÃO",
+    "federacao": null,
+    "votos": 600955,
+    "pct": 0.51,
+    "situacao": "NÃO ELEITO",
+    "posicao": 5
+   },
+   {
+    "numero": 30,
+    "nome": "FELIPE D AVILA",
+    "partido": "NOVO",
+    "federacao": null,
+    "votos": 559708,
+    "pct": 0.47,
+    "situacao": "NÃO ELEITO",
+    "posicao": 6
+   },
+   {
+    "numero": 14,
+    "nome": "PADRE KELMON",
+    "partido": "PTB",
+    "federacao": null,
+    "votos": 81129,
+    "pct": 0.07,
+    "situacao": "NÃO ELEITO",
+    "posicao": 7
+   },
+   {
+    "numero": 80,
+    "nome": "LÉO PÉRICLES",
+    "partido": "UP",
+    "federacao": null,
+    "votos": 53519,
+    "pct": 0.05,
+    "situacao": "NÃO ELEITO",
+    "posicao": 8
+   },
+   {
+    "numero": 21,
+    "nome": "SOFIA MANZANO",
+    "partido": "PCB",
+    "federacao": null,
+    "votos": 45620,
+    "pct": 0.04,
+    "situacao": "NÃO ELEITO",
+    "posicao": 9
+   },
+   {
+    "numero": 16,
+    "nome": "VERA",
+    "partido": "PSTU",
+    "federacao": null,
+    "votos": 25625,
+    "pct": 0.02,
+    "situacao": "NÃO ELEITO",
+    "posicao": 10
+   },
+   {
+    "numero": 27,
+    "nome": "CONSTITUINTE EYMAEL",
+    "partido": "DC",
+    "federacao": null,
+    "votos": 16604,
+    "pct": 0.01,
+    "situacao": "NÃO ELEITO",
+    "posicao": 11
+   }
+  ]
+ },
+ "comparecimento": {
+  "aptos": 156454011,
+  "comparecimento": 123682372,
+  "abstencoes": 32770982,
+  "brancos": 1964779,
+  "nulos": 3487874,
+  "pct_comparecimento": 79.05,
+  "pct_abstencao": 20.95,
+  "pct_brancos": 1.59,
+  "pct_nulos": 2.82
+ },
+ "ufs": [
+  {
+   "uf": "AC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 62.5
+   },
+   "pct_comparecimento": 77.57
+  },
+  {
+   "uf": "AL",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 56.5
+   },
+   "pct_comparecimento": 77.63
+  },
+  {
+   "uf": "AM",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 49.58
+   },
+   "pct_comparecimento": 79.86
+  },
+  {
+   "uf": "AP",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 45.67
+   },
+   "pct_comparecimento": 80.49
+  },
+  {
+   "uf": "BA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 69.73
+   },
+   "pct_comparecimento": 78.65
+  },
+  {
+   "uf": "CE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 65.91
+   },
+   "pct_comparecimento": 82.55
+  },
+  {
+   "uf": "DF",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 51.65
+   },
+   "pct_comparecimento": 82.46
+  },
+  {
+   "uf": "ES",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 52.23
+   },
+   "pct_comparecimento": 79.25
+  },
+  {
+   "uf": "GO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 52.16
+   },
+   "pct_comparecimento": 78.28
+  },
+  {
+   "uf": "MA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 68.84
+   },
+   "pct_comparecimento": 77.8
+  },
+  {
+   "uf": "MG",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 48.29
+   },
+   "pct_comparecimento": 77.72
+  },
+  {
+   "uf": "MS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 52.7
+   },
+   "pct_comparecimento": 77.92
+  },
+  {
+   "uf": "MT",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 59.84
+   },
+   "pct_comparecimento": 76.62
+  },
+  {
+   "uf": "PA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 52.22
+   },
+   "pct_comparecimento": 78.78
+  },
+  {
+   "uf": "PB",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 64.21
+   },
+   "pct_comparecimento": 82.71
+  },
+  {
+   "uf": "PE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 65.27
+   },
+   "pct_comparecimento": 81.8
+  },
+  {
+   "uf": "PI",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 74.25
+   },
+   "pct_comparecimento": 82.31
+  },
+  {
+   "uf": "PR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 55.26
+   },
+   "pct_comparecimento": 80.52
+  },
+  {
+   "uf": "RJ",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 51.09
+   },
+   "pct_comparecimento": 77.26
+  },
+  {
+   "uf": "RN",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 62.98
+   },
+   "pct_comparecimento": 81.83
+  },
+  {
+   "uf": "RO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 64.36
+   },
+   "pct_comparecimento": 75.35
+  },
+  {
+   "uf": "RR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 69.57
+   },
+   "pct_comparecimento": 83.3
+  },
+  {
+   "uf": "RS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 48.89
+   },
+   "pct_comparecimento": 80.22
+  },
+  {
+   "uf": "SC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 62.21
+   },
+   "pct_comparecimento": 81.57
+  },
+  {
+   "uf": "SE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 63.82
+   },
+   "pct_comparecimento": 81.65
+  },
+  {
+   "uf": "SP",
+   "vencedor": {
+    "numero": 22,
+    "nome": "JAIR BOLSONARO",
+    "partido": "PL",
+    "pct": 47.71
+   },
+   "pct_comparecimento": 78.39
+  },
+  {
+   "uf": "TO",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 50.4
+   },
+   "pct_comparecimento": 81.46
+  },
+  {
+   "uf": "ZZ",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 47.17
+   },
+   "pct_comparecimento": 43.72
+  }
+ ]
+}

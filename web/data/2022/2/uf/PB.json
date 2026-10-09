@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "PB",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 2404455,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 1601953,
+     "pct": 66.62,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 802502,
+     "pct": 33.38,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 2326867,
+   "candidatos": [
+    {
+     "numero": 40,
+     "nome": "JOÃO",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 1221904,
+     "pct": 52.51,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 45,
+     "nome": "PEDRO CUNHA LIMA",
+     "partido": "PSDB",
+     "federacao": "PSDB/CIDADANIA",
+     "votos": 1104963,
+     "pct": 47.49,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 3091719,
+   "comparecimento": 2574215,
+   "abstencoes": 517504,
+   "brancos": 35467,
+   "nulos": 134293,
+   "pct_comparecimento": 83.26,
+   "pct_abstencao": 16.74,
+   "pct_brancos": 1.38,
+   "pct_nulos": 5.22
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 3086131,
+   "comparecimento": 2569106,
+   "abstencoes": 517025,
+   "brancos": 61286,
+   "nulos": 180953,
+   "pct_comparecimento": 83.25,
+   "pct_abstencao": 16.75,
+   "pct_brancos": 2.39,
+   "pct_nulos": 7.04
+  }
+ ]
+}

@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "AM",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1761246,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 885401,
+     "pct": 50.27,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 875845,
+     "pct": 49.73,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1767368,
+   "candidatos": [
+    {
+     "numero": 20,
+     "nome": "WILSON LIMA",
+     "partido": "PSC",
+     "federacao": null,
+     "votos": 1033954,
+     "pct": 58.5,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 12,
+     "nome": "AMAZONINO MENDES",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 733414,
+     "pct": 41.5,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2428821,
+   "comparecimento": 1909279,
+   "abstencoes": 519542,
+   "brancos": 29353,
+   "nulos": 118680,
+   "pct_comparecimento": 78.61,
+   "pct_abstencao": 21.39,
+   "pct_brancos": 1.54,
+   "pct_nulos": 6.22
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2427159,
+   "comparecimento": 1907930,
+   "abstencoes": 519229,
+   "brancos": 20364,
+   "nulos": 120198,
+   "pct_comparecimento": 78.61,
+   "pct_abstencao": 21.39,
+   "pct_brancos": 1.07,
+   "pct_nulos": 6.3
+  }
+ ]
+}

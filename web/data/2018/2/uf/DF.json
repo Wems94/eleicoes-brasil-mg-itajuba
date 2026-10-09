@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "DF",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1543751,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1080411,
+     "pct": 69.99,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 463340,
+     "pct": 30.01,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1493903,
+   "candidatos": [
+    {
+     "numero": 15,
+     "nome": "IBANEIS",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 1042574,
+     "pct": 69.79,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 40,
+     "nome": "RODRIGO ROLLEMBERG",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 451329,
+     "pct": 30.21,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2086086,
+   "comparecimento": 1691396,
+   "abstencoes": 394690,
+   "brancos": 44657,
+   "nulos": 102988,
+   "pct_comparecimento": 81.08,
+   "pct_abstencao": 18.92,
+   "pct_brancos": 2.64,
+   "pct_nulos": 6.09
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2081505,
+   "comparecimento": 1687230,
+   "abstencoes": 394275,
+   "brancos": 58471,
+   "nulos": 134856,
+   "pct_comparecimento": 81.06,
+   "pct_abstencao": 18.94,
+   "pct_brancos": 3.47,
+   "pct_nulos": 7.99
+  }
+ ]
+}

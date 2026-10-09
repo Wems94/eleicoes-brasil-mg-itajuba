@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "RN",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1783589,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 1131027,
+     "pct": 63.41,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 652562,
+     "pct": 36.59,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1775945,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "FATIMA BEZERRA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 1022910,
+     "pct": 57.6,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 12,
+     "nome": "CARLOS EDUARDO",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 753035,
+     "pct": 42.4,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2373876,
+   "comparecimento": 1943331,
+   "abstencoes": 430545,
+   "brancos": 29990,
+   "nulos": 129752,
+   "pct_comparecimento": 81.86,
+   "pct_abstencao": 18.14,
+   "pct_brancos": 1.54,
+   "pct_nulos": 6.68
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2372579,
+   "comparecimento": 1942196,
+   "abstencoes": 430383,
+   "brancos": 34072,
+   "nulos": 132179,
+   "pct_comparecimento": 81.86,
+   "pct_abstencao": 18.14,
+   "pct_brancos": 1.75,
+   "pct_nulos": 6.81
+  }
+ ]
+}

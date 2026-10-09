@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "MG",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 10483059,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 6100107,
+     "pct": 58.19,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 4382952,
+     "pct": 41.81,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 9698258,
+   "candidatos": [
+    {
+     "numero": 30,
+     "nome": "ROMEU ZEMA",
+     "partido": "NOVO",
+     "federacao": null,
+     "votos": 6963806,
+     "pct": 71.8,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 45,
+     "nome": "ANTONIO ANASTASIA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 2734452,
+     "pct": 28.2,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 15699063,
+   "comparecimento": 12067502,
+   "abstencoes": 3631561,
+   "brancos": 309049,
+   "nulos": 1275394,
+   "pct_comparecimento": 76.87,
+   "pct_abstencao": 23.13,
+   "pct_brancos": 2.56,
+   "pct_nulos": 10.57
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 15695460,
+   "comparecimento": 12064283,
+   "abstencoes": 3631177,
+   "brancos": 476476,
+   "nulos": 1889549,
+   "pct_comparecimento": 76.86,
+   "pct_abstencao": 23.14,
+   "pct_brancos": 3.95,
+   "pct_nulos": 15.66
+  }
+ ]
+}

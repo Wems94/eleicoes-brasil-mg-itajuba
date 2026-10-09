@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "ES",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 2208912,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 1282145,
+     "pct": 58.04,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 926767,
+     "pct": 41.96,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 2177309,
+   "candidatos": [
+    {
+     "numero": 40,
+     "nome": "RENATO CASAGRANDE",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 1171288,
+     "pct": 53.8,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "MANATO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 1006021,
+     "pct": 46.2,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 2922264,
+   "comparecimento": 2322269,
+   "abstencoes": 599995,
+   "brancos": 37214,
+   "nulos": 76143,
+   "pct_comparecimento": 79.47,
+   "pct_abstencao": 20.53,
+   "pct_brancos": 1.6,
+   "pct_nulos": 3.28
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 2917863,
+   "comparecimento": 2318350,
+   "abstencoes": 599513,
+   "brancos": 46259,
+   "nulos": 94782,
+   "pct_comparecimento": 79.45,
+   "pct_abstencao": 20.55,
+   "pct_brancos": 2.0,
+   "pct_nulos": 4.09
+  }
+ ]
+}
