@@ -77,7 +77,9 @@ As regras rodam em SQL sobre o DuckDB recém-construído. Qualquer erro interrom
 Alternativa descartada: o site consultar o MotherDuck em runtime, porque cria acoplamento a disponibilidade, custo e latência.
 
 ### D8. Site Next.js com exportação estática (`output: "export"`)
-Todas as rotas são pré-geradas a partir dos snapshots. A interface usa Tailwind com componentes no estilo shadcn/ui, ECharts nos gráficos e MapLibre com tiles OpenFreeMap (sem chave) no mapa dos locais de Itajubá. A visão do Brasil usa um tile-grid map das UFs, que não exige geometria.
+Todas as rotas são pré-geradas a partir dos snapshots. A interface usa Tailwind e MapLibre com tiles OpenFreeMap (sem chave) no mapa dos locais de Itajubá. A visão do Brasil usa um tile-grid map das UFs, que não exige geometria.
+
+**Gráficos sem ECharts (revisão na implementação).** Os gráficos de barras são tabelas semânticas com a barra decorativa dentro da célula: atendem por construção ao requisito de tabela equivalente a cada gráfico, não usam JavaScript no cliente e mantêm um único sistema visual. ECharts fica para visualizações que tabelas não cubram (ex.: séries temporais), se surgirem. Nenhuma cor partidária é usada.
 
 ### D9. Decodificador de Boletim de Urna (opcional)
 Lê arquivos `.bu`/`.dat` (ASN.1 BER do TSE) colocados em `data/manual/bu/`. Serve para auditar seções de Itajubá contra o CSV oficial. Não é fonte primária.
@@ -87,7 +89,9 @@ Lê arquivos `.bu`/`.dat` (ASN.1 BER do TSE) colocados em `data/manual/bu/`. Ser
 - [Mudança de layout dos CSVs do TSE] → O aliasing de colunas (D3) e os testes com fixtures de cada ano tratam isso; uma coluna obrigatória ausente gera erro explícito.
 - [Arquivo de 2026 atualizado pelo TSE após a carga] → Basta reexecutar o mesmo `(ano, turno)`, já que a partição é substituída (D4).
 - [Download grande ou instável] → Retentativas com backoff, download em arquivo `.part` e manifest com sha256; o cache de `data/raw` reaproveita o que já foi baixado.
-- [Duplicidade entre o arquivo `_BR` e os arquivos por UF no munzona] → Só os membros por UF e `ZZ` (exterior) são lidos, e a regra de unicidade detecta qualquer sobreposição.
+- [Duplicidade entre os membros dos ZIPs] → Nos arquivos reais, os membros por UF (`_MG`, `_SP`…) trazem só a eleição estadual e o Presidente vem no membro `_BR` (com `SG_UF` real, inclusive `ZZ`); o membro `_BRASIL` é a união de todos. São lidos todos os membros **exceto `_BRASIL`**, e a regra de unicidade detecta qualquer sobreposição.
+- [Votos sub judice e candidaturas não aptas] → Verificado nos dados de 2026: o detalhe por município/zona fecha com válidos + brancos + nulos + anulados + `QT_TOTAL_VOTOS_ANUL_SUBJUD`. Votáveis do arquivo de seção ausentes da totalização (candidatura não apta) são contados como nulos, como faz o TSE.
+- [Mudança de layout entre anos] → Em 2026 o arquivo de locais de votação passou a ser dividido por UF; o catálogo aceita os dois formatos, e uma fonte opcional com layout inesperado gera aviso em vez de erro.
 - [Plano Hobby da Vercel] → É adequado enquanto o projeto não tiver fins comerciais; o README registra essa condição.
 
 ## Migration Plan

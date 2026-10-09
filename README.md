@@ -7,7 +7,7 @@ Site público com os resultados das Eleições Gerais do Brasil (2018, 2022, 202
 ```
 TSE Dados Abertos (ZIP/CSV) → pipeline Python (uv: DuckDB + Polars)
   → EXTRACT (manifest sha256) → TRANSFORM (allowlist de colunas, LGPD) → QUALITY GATE
-  → LOAD MotherDuck (banco oficial) → PUBLISH snapshots JSON (web/public/data) via PR
+  → LOAD MotherDuck (banco oficial) → PUBLISH snapshots JSON (web/data) via PR
   → Next.js estático (SSG) na Vercel
 ```
 
@@ -24,11 +24,54 @@ Todas as decisões e os requisitos estão em `openspec/changes/bootstrap-platafo
 
 ## Estado atual
 
-- [x] OpenSpec inicializado (`openspec/config.yaml`, pt-BR) com o change `bootstrap-plataforma-eleicoes` validado (`openspec validate --strict`)
-- [x] Projeto uv em `pipeline/` com dependências (duckdb, polars, httpx, pyyaml, typer, pytest, ruff)
-- [ ] Código do pipeline — **próximo passo**: tarefas 2.x a 5.x do `tasks.md`
-- [ ] Site `web/` — tarefas 6.x
-- [ ] Workflows `.github/workflows/` — tarefas 7.x
+- [x] OpenSpec inicializado (`openspec/config.yaml`, pt-BR) com o change `bootstrap-plataforma-eleicoes`
+- [x] Pipeline em `pipeline/` (tarefas 2.x a 5.x): download, staging, marts, gate de qualidade, LGPD, MotherDuck, snapshots e CLI `eleicoes run`
+- [x] Site em `web/` (tarefas 6.x): Next.js estático com Brasil, UF, Itajubá e metodologia
+- [x] Workflows em `.github/workflows/` (tarefas 7.x): `ci.yml`, `etl.yml`, `deploy.yml` e `validacao-real.yml`
+- [ ] Decodificador de BU validado com um BU real (tarefa 2.3)
+- [ ] Verificação integrada (tarefa 8.1)
+
+## Comandos
+
+```bash
+# pipeline (de dentro de pipeline/)
+uv run pytest                                   # testes
+uv run eleicoes run --ano 2026 --turno 1        # ETL completo com dados reais (~1,5 GB por ano)
+
+# site (de dentro de web/)
+pnpm fixture && pnpm build:fixture              # build com dados de teste (fictícios)
+pnpm build                                      # build com os snapshots publicados em web/data
+```
+
+## CI/CD
+
+| Workflow | Quando roda | O que faz |
+|---|---|---|
+| `ci.yml` | push na `main` e PRs | ruff, pytest, LGPD em `web/data`, build do site (fixture e, se houver, dados reais), typecheck |
+| `etl.yml` | manual (Actions → ETL) | `eleicoes run` para cada eleição informada, trava contra perda de eleições publicadas e **PR** com os snapshots |
+| `deploy.yml` | push na `main` em `web/**` (ou seja, após o merge do PR do ETL) | build e deploy de produção na Vercel pela CLI |
+| `validacao-real.yml` | manual | diagnóstico do pipeline com dados reais, sem publicar |
+
+**Fluxo de publicação:** Actions → ETL → revisar e fazer merge do PR `dados/snapshots` → o deploy roda sozinho.
+
+Sem `MOTHERDUCK_TOKEN`, o banco do runner começa vazio, então o ETL precisa processar **todas** as
+eleições na mesma execução (é o padrão: `2018/1 2018/2 2022/1 2022/2 2026/1`). Com o token, o banco
+vem do MotherDuck e basta informar o turno novo (ex.: `2026/2`). Se o TSE republicar um arquivo,
+rode o ETL com "forcar" marcado.
+
+### Secrets (Settings → Secrets and variables → Actions)
+
+| Secret | Uso | Onde obter |
+|---|---|---|
+| `MOTHERDUCK_TOKEN` | opcional; persiste o banco entre execuções (D4) | MotherDuck → Settings → Access Tokens |
+| `VERCEL_TOKEN` | deploy | Vercel → Account Settings → Tokens |
+| `VERCEL_ORG_ID` | deploy | `web/.vercel/project.json` após `vercel link` (campo `orgId`) |
+| `VERCEL_PROJECT_ID` | deploy | `web/.vercel/project.json` (campo `projectId`) |
+
+Configurações necessárias:
+- **GitHub:** Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests" (o ETL abre o PR com o `GITHUB_TOKEN`).
+- **Vercel:** o projeto é criado com `npx vercel@63.1.0 link` rodado dentro de `web/` (não precisa mudar nada no painel). O `web/vercel.json` desliga os deploys automáticos da integração Git: só o `deploy.yml` publica.
+- PRs abertos pelo `GITHUB_TOKEN` não disparam o `ci.yml`; o gate de qualidade e o LGPD já rodam dentro do ETL antes da geração dos snapshots.
 
 ## Começando no VS Code
 

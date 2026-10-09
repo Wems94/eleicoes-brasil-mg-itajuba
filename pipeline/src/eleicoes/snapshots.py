@@ -455,3 +455,44 @@ def gerar_snapshots(
         return manifesto
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+# --- trava de publicação ---------------------------------------------------------------
+
+
+def eleicoes_removidas(anterior: dict | None, novo: dict) -> list[tuple[int, int]]:
+    """(ano, turno) publicados em `anterior` que sumiriam em `novo`."""
+
+    def pares(m: dict | None) -> set[tuple[int, int]]:
+        return {(e["ano"], t) for e in (m or {}).get("eleicoes", []) for t in e["turnos"]}
+
+    return sorted(pares(anterior) - pares(novo))
+
+
+def main(argv: list[str] | None = None) -> int:
+    """`python -m eleicoes.snapshots conferir <manifest anterior> <manifest novo>`
+
+    Sai com 1 se a nova publicação apagaria alguma eleição já publicada.
+    """
+    import sys
+
+    args = sys.argv[1:] if argv is None else argv
+    if len(args) != 3 or args[0] != "conferir":
+        print(main.__doc__)
+        return 2
+    anterior_p, novo_p = Path(args[1]), Path(args[2])
+    anterior = json.loads(anterior_p.read_text(encoding="utf-8")) if anterior_p.exists() else None
+    removidas = eleicoes_removidas(anterior, json.loads(novo_p.read_text(encoding="utf-8")))
+    if removidas:
+        lista = ", ".join(f"{a}/{t}" for a, t in removidas)
+        print(
+            f"ERRO: a nova publicação removeria {lista}. Sem MOTHERDUCK_TOKEN o banco do CI "
+            "começa vazio: processe todas as eleições na mesma execução ou configure o token."
+        )
+        return 1
+    print("Publicação conferida: nenhuma eleição publicada seria removida.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

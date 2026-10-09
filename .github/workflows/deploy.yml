@@ -1,0 +1,79 @@
+# Deploy do site na Vercel (produção) a cada push na main que mexa no site ou nos
+# snapshots, ou seja, depois do merge do PR do ETL. Build e deploy pela CLI.
+#
+# Secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID (ver README).
+# A CLI roda dentro de web/, a pasta ligada ao projeto com `vercel link`.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-producao
+  cancel-in-progress: false
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  VERCEL_CLI: vercel@63.1.0
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: producao
+      url: ${{ steps.deploy.outputs.url }}
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Conferir pré-requisitos
+        id: pre
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::warning::Secrets da Vercel não configurados; deploy pulado (ver README)."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          elif [ ! -f data/manifest.json ]; then
+            echo "::warning::web/data ainda não tem snapshots publicados; rode o workflow ETL e faça merge do PR."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: pnpm/action-setup@v6
+        if: steps.pre.outputs.ok == 'true'
+        with:
+          package_json_file: web/package.json
+
+      - uses: actions/setup-node@v7
+        if: steps.pre.outputs.ok == 'true'
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Vercel pull
+        if: steps.pre.outputs.ok == 'true'
+        run: npx --yes "$VERCEL_CLI" pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Vercel build
+        if: steps.pre.outputs.ok == 'true'
+        run: npx --yes "$VERCEL_CLI" build --prod --token="$VERCEL_TOKEN"
+
+      - name: Vercel deploy
+        id: deploy
+        if: steps.pre.outputs.ok == 'true'
+        run: |
+          url=$(npx --yes "$VERCEL_CLI" deploy --prebuilt --prod --token="$VERCEL_TOKEN")
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "Produção publicada - $url" >> "$GITHUB_STEP_SUMMARY"

@@ -7,7 +7,7 @@ import pytest
 
 from eleicoes import snapshots
 from eleicoes.lgpd import verificar_snapshots
-from eleicoes.snapshots import SCHEMA_VERSAO, gerar_snapshots
+from eleicoes.snapshots import SCHEMA_VERSAO, eleicoes_removidas, gerar_snapshots
 
 GERADO_EM = "2026-10-09T20:00:00+00:00"
 
@@ -216,3 +216,32 @@ def test_validacao_roda_antes_da_troca(con, publicado):
 
     assert vistos and vistos[0] != publicado
     assert _arvore(publicado) == antes
+
+
+def _m(*eleicoes: tuple[int, list[int]]) -> dict:
+    return {"eleicoes": [{"ano": a, "turnos": t} for a, t in eleicoes]}
+
+
+def test_eleicoes_removidas_detecta_perda_de_publicacao():
+    """Sem MotherDuck, o runner do CI começa vazio: rodar só 2026/1 apagaria 2018 e 2022
+    do site. A trava do etl.yml usa esta função para impedir isso."""
+    anterior = _m((2018, [1, 2]), (2022, [1, 2]))
+    assert eleicoes_removidas(anterior, _m((2026, [1]))) == [
+        (2018, 1),
+        (2018, 2),
+        (2022, 1),
+        (2022, 2),
+    ]
+    assert eleicoes_removidas(anterior, _m((2018, [1, 2]), (2022, [1, 2]), (2026, [1]))) == []
+    assert eleicoes_removidas(None, _m((2026, [1]))) == []  # primeira publicação
+
+
+def test_cli_conferir_publicacao(tmp_path, capsys):
+    a, n = tmp_path / "anterior.json", tmp_path / "novo.json"
+    a.write_text(json.dumps(_m((2022, [1, 2]))))
+    n.write_text(json.dumps(_m((2026, [1]))))
+    assert snapshots.main(["conferir", str(a), str(n)]) == 1
+    assert "2022/1" in capsys.readouterr().out
+    n.write_text(json.dumps(_m((2022, [1, 2]), (2026, [1]))))
+    assert snapshots.main(["conferir", str(a), str(n)]) == 0
+    assert snapshots.main(["conferir", str(tmp_path / "nao_existe.json"), str(n)]) == 0

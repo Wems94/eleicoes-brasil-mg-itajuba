@@ -39,9 +39,9 @@
 
 ## 7. CI/CD
 
-- [ ] 7.1 `ci.yml`: ruff, pytest, verificador LGPD em `web/data`, typecheck e build do site
-- [ ] 7.2 `etl.yml`: `workflow_dispatch` (ano, turno), `concurrency` única sem cancelamento, cache de `data/raw`, pipeline, PR de snapshots
-- [ ] 7.3 `deploy.yml`: deploy Vercel na main via CLI com secrets documentados
+- [x] 7.1 `ci.yml`: ruff, pytest, verificador LGPD em `web/data`, typecheck e build do site
+- [x] 7.2 `etl.yml`: `workflow_dispatch` (ano, turno), `concurrency` única sem cancelamento, cache de `data/raw`, pipeline, PR de snapshots
+- [x] 7.3 `deploy.yml`: deploy Vercel na main via CLI com secrets documentados
 
 ## 8. Verificação integrada
 

@@ -1,0 +1,89 @@
+# Integração contínua: pipeline (ruff, pytest, LGPD nos snapshots publicados) e site
+# (testes, build com dados de fixture, typecheck e, se houver, build com os dados reais).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: pipeline
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: pipeline/uv.lock
+
+      - name: Instalar dependências
+        run: uv sync --frozen
+
+      - name: Ruff
+        run: |
+          uv run ruff check
+          uv run ruff format --check
+
+      - name: Pytest
+        run: uv run pytest
+
+      - name: Verificador LGPD nos snapshots publicados (web/data)
+        run: uv run python -m eleicoes.lgpd --snapshots ../web/data
+
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+
+      # os snapshots de fixture são gerados pelo pipeline (pnpm fixture -> uv)
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: pipeline/uv.lock
+
+      - uses: pnpm/action-setup@v6
+        with:
+          package_json_file: web/package.json
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Snapshots de fixture
+        run: pnpm fixture
+
+      - name: Build com dados de fixture
+        run: pnpm build:fixture
+
+      # depois do build, que gera next-env.d.ts e os tipos das rotas
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Testes
+        run: pnpm test
+
+      - name: Build com os dados publicados
+        if: hashFiles('web/data/manifest.json') != ''
+        run: pnpm build

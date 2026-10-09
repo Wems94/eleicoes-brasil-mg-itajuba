@@ -1,0 +1,118 @@
+# ETL com dados reais do TSE: pipeline completo (gate de qualidade + LGPD) e
+# Pull Request com os snapshots. O deploy só acontece depois do merge (D7).
+#
+# Sem o secret MOTHERDUCK_TOKEN o banco do runner começa vazio: processe todas as
+# eleições na mesma execução (padrão). Com o token, o banco vem do MotherDuck (D4)
+# e basta informar o turno novo (ex.: "2026/2").
+name: ETL
+
+on:
+  workflow_dispatch:
+    inputs:
+      eleicoes:
+        description: Eleições a processar, "ano/turno" separados por espaço
+        default: "2018/1 2018/2 2022/1 2022/2 2026/1"
+      forcar:
+        description: Baixar de novo os arquivos do TSE (quando o TSE republica um arquivo)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+# Uma carga por vez e sem cancelar a que está rodando: a última sobrescreveria a outra.
+concurrency:
+  group: etl
+  cancel-in-progress: false
+
+jobs:
+  etl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        working-directory: pipeline
+    env:
+      MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
+      ELEICOES: ${{ inputs.eleicoes }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Liberar espaço em disco
+        working-directory: .
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: pipeline/uv.lock
+
+      - name: Instalar dependências
+        run: uv sync --frozen
+
+      # Cache dos ZIPs do TSE (~1,4 GB por ano). O manifest com sha256 garante que
+      # um arquivo restaurado só é reutilizado se estiver íntegro.
+      - name: Cache dos arquivos do TSE
+        uses: actions/cache@v6
+        with:
+          path: pipeline/data/raw
+          key: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-${{ github.run_id }}
+          restore-keys: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-
+
+      - name: Guardar o manifesto publicado
+        run: cp ../web/data/manifest.json "$RUNNER_TEMP/manifest_anterior.json" 2>/dev/null || true
+
+      - name: Pipeline
+        env:
+          FORCAR: ${{ inputs.forcar && '--forcar' || '--no-forcar' }}
+        run: |
+          set -euo pipefail
+          if [ -z "$MOTHERDUCK_TOKEN" ]; then
+            echo "::warning::MOTHERDUCK_TOKEN não configurado: banco começa vazio e não é persistido."
+          fi
+          for e in $ELEICOES; do
+            if ! [[ "$e" =~ ^[0-9]{4}/[12]$ ]]; then
+              echo "::error::Eleição inválida: '$e' (use ano/turno, ex.: 2026/1)"; exit 1
+            fi
+            echo "::group::eleicoes run ${e}"
+            uv run eleicoes run --ano "${e%/*}" --turno "${e#*/}" "$FORCAR" 2>&1 | tee -a "$RUNNER_TEMP/etl.log"
+            echo "::endgroup::"
+          done
+
+      - name: Trava contra perda de eleições publicadas
+        run: uv run python -m eleicoes.snapshots conferir "$RUNNER_TEMP/manifest_anterior.json" ../web/data/manifest.json
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "### ETL: ${ELEICOES}"
+            echo '```'
+            grep -E "Gate de qualidade|\[ERRO\]|\[AVISO\]|MotherDuck:|Snapshots:|ERRO:" "$RUNNER_TEMP/etl.log" || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Abrir Pull Request com os snapshots
+        id: pr
+        uses: peter-evans/create-pull-request@v8
+        with:
+          add-paths: web/data
+          branch: dados/snapshots
+          delete-branch: true
+          commit-message: "dados: snapshots ${{ inputs.eleicoes }}"
+          title: "dados: snapshots ${{ inputs.eleicoes }}"
+          body: |
+            Snapshots gerados pelo workflow ETL ([execução](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})) para: `${{ inputs.eleicoes }}`.
+
+            - Gate de qualidade e verificador LGPD aprovados antes da geração (a execução falha se não forem).
+            - Nenhuma eleição já publicada foi removida (trava do manifesto).
+            - O deploy na Vercel acontece depois do merge.
+
+      - name: Link do PR
+        if: steps.pr.outputs.pull-request-url
+        env:
+          URL_PR: ${{ steps.pr.outputs.pull-request-url }}
+        run: echo "Pull Request dos snapshots - $URL_PR" >> "$GITHUB_STEP_SUMMARY"
