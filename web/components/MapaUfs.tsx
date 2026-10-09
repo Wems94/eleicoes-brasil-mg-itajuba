@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { coresPorEntidade, corDaPosicao } from "@/lib/cores";
 import { NOME_UF, pct } from "@/lib/formato";
 import type { Brasil } from "@/lib/tipos";
 
@@ -16,85 +17,96 @@ const POSICAO: Record<string, [number, number]> = {
   RS: [1, 7],
 };
 
-// Marcas neutras por colocação nacional do vencedor: nunca cores partidárias.
-const MARCA = [
-  "bg-tinta text-papel",
-  "text-tinta bg-[repeating-linear-gradient(135deg,var(--color-barra-2)_0_3px,transparent_3px_7px)]",
-  "text-tinta border-2 border-dashed border-barra",
-];
-
 export function MapaUfs({ brasil }: { brasil: Brasil }) {
-  const ordem = new Map(brasil.presidente?.candidatos.map((c, i) => [c.numero, i]) ?? []);
-  const marca = (numero: number) => MARCA[Math.min(ordem.get(numero) ?? 2, MARCA.length - 1)];
+  // mesma cor do candidato no gráfico nacional (ordem do resultado no Brasil)
+  const cores = coresPorEntidade(brasil.presidente?.candidatos.map((c) => c.numero) ?? []);
+  const cor = (numero: number) => cores.get(String(numero)) ?? corDaPosicao(99);
   const base = `/${brasil.ano}/${brasil.turno}/uf`;
   const porUf = new Map(brasil.ufs.map((u) => [u.uf, u]));
-  const vencedores = [
-    ...new Map(brasil.ufs.map((u) => [u.vencedor.numero, u.vencedor])).values(),
-  ].sort((a, b) => (ordem.get(a.numero) ?? 99) - (ordem.get(b.numero) ?? 99));
+  // o exterior (ZZ) não é UF: aparece à parte, fora da contagem
+  const estados = brasil.ufs.filter((u) => u.uf !== "ZZ");
+  const vencedores = [...new Map(estados.map((u) => [u.vencedor.numero, u.vencedor])).values()]
+    .map((v) => ({ ...v, ufs: estados.filter((u) => u.vencedor.numero === v.numero).length }))
+    .sort((a, b) => b.ufs - a.ufs);
+  const exterior = porUf.get("ZZ");
 
   return (
     <figure>
-      <div
-        className="grid aspect-[5/8] max-w-sm grid-cols-5 grid-rows-8 gap-1"
-        aria-hidden="true"
-      >
+      <div className="mx-auto grid max-w-sm grid-cols-5 gap-1.5" aria-hidden="true">
         {Object.entries(POSICAO).map(([uf, [x, y]]) => {
           const d = porUf.get(uf);
+          const c = d ? cor(d.vencedor.numero) : null;
           return (
             <Link
               key={uf}
               href={d ? `${base}/${uf}/` : "#"}
               tabIndex={-1}
-              style={{ gridColumn: x + 1, gridRow: y + 1 }}
-              className={`flex flex-col items-center justify-center text-xs leading-tight transition-transform hover:scale-105 ${
-                d ? marca(d.vencedor.numero) : "border border-regua text-tinta-2"
+              style={{
+                gridColumn: x + 1,
+                gridRow: y + 1,
+                ...(c ? { background: c.fundo, color: c.texto } : {}),
+              }}
+              className={`flex aspect-square flex-col items-center justify-center rounded-lg text-xs leading-tight transition hover:scale-105 hover:shadow-md ${
+                d ? "" : "bg-realce text-texto-3"
               }`}
-              title={d ? `${NOME_UF[uf]}: ${d.vencedor.nome} (${pct(d.vencedor.pct)})` : uf}
+              title={d ? `${NOME_UF[uf]}: ${d.vencedor.nome} (${pct(d.vencedor.pct)})` : NOME_UF[uf]}
             >
               <span className="font-semibold">{uf}</span>
-              {d ? <span className="num text-[10px] opacity-80">{d.vencedor.numero}</span> : null}
+              {d ? <span className="num text-[10px] opacity-90">{Math.round(d.vencedor.pct ?? 0)}%</span> : null}
             </Link>
           );
         })}
       </div>
-      <figcaption className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-tinta-2">
+
+      <figcaption className="mt-4 space-y-1.5 text-sm">
         {vencedores.map((v) => (
-          <span key={v.numero} className="flex items-center gap-1.5">
-            <span className={`inline-block size-3 ${marca(v.numero)}`} aria-hidden="true" />
-            {v.numero} · {v.nome}
-          </span>
+          <div key={v.numero} className="flex items-center gap-2">
+            <span className="size-3 rounded" style={{ background: cor(v.numero).fundo }} aria-hidden="true" />
+            <span className="font-medium">{v.nome}</span>
+            <span className="text-texto-3">
+              venceu em {v.ufs} {v.ufs === 1 ? "UF" : "UFs"}
+            </span>
+          </div>
         ))}
+        {exterior ? (
+          <p className="text-xs text-texto-3">
+            Exterior: {exterior.vencedor.nome} ({pct(exterior.vencedor.pct)})
+          </p>
+        ) : null}
       </figcaption>
 
-      <table className="mt-6 w-full text-sm">
-        <caption className="mb-2 text-left text-xs uppercase tracking-wider text-tinta-2">
-          Mais votado para Presidente por UF
-        </caption>
-        <thead>
-          <tr className="border-b border-tinta text-left text-xs text-tinta-2">
-            <th scope="col" className="py-1 font-medium">UF</th>
-            <th scope="col" className="py-1 font-medium">Mais votado</th>
-            <th scope="col" className="py-1 text-right font-medium">Válidos</th>
-            <th scope="col" className="py-1 text-right font-medium">Comparecimento</th>
-          </tr>
-        </thead>
-        <tbody>
-          {brasil.ufs.map((u) => (
-            <tr key={u.uf} className="border-b border-regua">
-              <th scope="row" className="py-1 text-left font-normal">
-                <Link href={`${base}/${u.uf}/`} className="underline decoration-regua underline-offset-2 hover:decoration-ocre">
-                  {NOME_UF[u.uf] ?? u.uf}
-                </Link>
-              </th>
-              <td className="py-1">
-                {u.vencedor.nome} <span className="text-tinta-2">({u.vencedor.partido})</span>
-              </td>
-              <td className="num py-1 text-right">{pct(u.vencedor.pct)}</td>
-              <td className="num py-1 text-right">{pct(u.pct_comparecimento)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <details className="mt-4 rounded-xl border border-borda">
+        <summary className="cursor-pointer px-4 py-2.5 text-sm font-medium text-texto-2 hover:text-texto">
+          Ver tabela por UF
+        </summary>
+        <div className="overflow-x-auto px-4 pb-3">
+          <table className="w-full text-sm">
+            <caption className="sr-only">Mais votado para Presidente por UF</caption>
+            <thead>
+              <tr className="border-b border-borda text-left text-xs text-texto-3">
+                <th scope="col" className="py-2 font-medium">UF</th>
+                <th scope="col" className="py-2 font-medium">Mais votado</th>
+                <th scope="col" className="py-2 text-right font-medium">Válidos</th>
+                <th scope="col" className="py-2 text-right font-medium">Compar.</th>
+              </tr>
+            </thead>
+            <tbody>
+              {brasil.ufs.map((u) => (
+                <tr key={u.uf} className="border-b border-borda last:border-0">
+                  <th scope="row" className="py-1.5 text-left font-normal">
+                    <Link href={`${base}/${u.uf}/`} className="hover:underline">
+                      {NOME_UF[u.uf] ?? u.uf}
+                    </Link>
+                  </th>
+                  <td className="py-1.5">{u.vencedor.nome}</td>
+                  <td className="num py-1.5 text-right">{pct(u.vencedor.pct)}</td>
+                  <td className="num py-1.5 text-right text-texto-2">{pct(u.pct_comparecimento)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </details>
     </figure>
   );
 }

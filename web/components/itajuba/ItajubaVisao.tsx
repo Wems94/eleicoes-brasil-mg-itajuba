@@ -1,10 +1,12 @@
 import { BarrasTabela } from "@/components/BarrasTabela";
 import { TabelaDeputados } from "@/components/TabelaDeputados";
-import { Participacao, SeletorEleicao, Secao } from "@/components/base";
+import { CabecalhoPagina, Participacao, SeletorEleicao, Secao } from "@/components/base";
 import { BuscaSecao } from "@/components/itajuba/BuscaSecao";
 import { MapaLocais, type PontoLocal } from "@/components/itajuba/MapaLocais";
 import { dados } from "@/lib/dados";
+import { deputadosDeItajuba } from "@/lib/deputados";
 import { nomeTurno, numero, pct } from "@/lib/formato";
+import { coresPorEntidade } from "@/lib/cores";
 import { NOME_CARGO, historicoPorCargo } from "@/lib/itajuba";
 import type { CargoVotaveis, Eleicao, Votavel } from "@/lib/tipos";
 
@@ -12,7 +14,7 @@ const MAJORITARIOS = [1, 3, 5];
 const validos = (v: Votavel) => v.tipo === "candidato" || v.tipo === "legenda";
 
 function rotulo(v: Votavel): string {
-  return v.tipo === "legenda" ? `Legenda ${v.partido ?? v.numero}` : `${v.numero} · ${v.nome}`;
+  return v.tipo === "legenda" ? `Legenda ${v.partido ?? v.numero}` : (v.nome ?? `Nº ${v.numero}`);
 }
 
 function maisVotado(cargos: CargoVotaveis[], codigo: number): Votavel | undefined {
@@ -23,7 +25,7 @@ function BrancosNulos({ votaveis }: { votaveis: Votavel[] }) {
   const outros = votaveis.filter((v) => !validos(v));
   if (!outros.length) return null;
   return (
-    <p className="num mt-3 text-xs text-tinta-2">
+    <p className="num mt-3 text-xs text-texto-2">
       {outros.map((v) => `${v.tipo === "branco" ? "Brancos" : v.tipo === "nulo" ? "Nulos" : "Anulados"}: ${numero(v.votos)}`).join(" · ")}
     </p>
   );
@@ -32,15 +34,8 @@ function BrancosNulos({ votaveis }: { votaveis: Votavel[] }) {
 export function ItajubaVisao({ ano, turno }: Eleicao) {
   const it = dados.itajuba(ano, turno);
   const municipio = dados.manifesto().municipio;
-  // Situação do deputado (eleito, suplente...) é estadual: vem da página da UF.
   const uf = municipio?.uf ?? "MG";
-  const situacaoNaUf = new Map<string, string | null>(
-    dados.ufs(ano, turno).includes(uf)
-      ? dados
-          .uf(ano, turno, uf)
-          .cargos.flatMap((c) => c.candidatos.map((k) => [`${c.codigo}-${k.numero}`, k.situacao]))
-      : [],
-  );
+  const deputados = deputadosDeItajuba(ano, turno);
   const principal = it.cargos.find((c) => c.comparecimento);
   const cargoMapa = MAJORITARIOS.find((cd) => it.cargos.some((c) => c.codigo === cd)) ?? 1;
 
@@ -58,20 +53,18 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
     });
 
   return (
-    <div className="space-y-12">
-      <header className="space-y-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocre">
-          Deep dive · {municipio?.uf ?? "MG"} · {nomeTurno(turno)}
-        </p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">
-          Itajubá <span className="font-normal italic text-tinta-2">{ano}</span>
-        </h1>
+    <div className="space-y-6">
+      <CabecalhoPagina
+        sobretitulo={`Deep dive · ${municipio?.uf ?? "MG"} · ${nomeTurno(turno)} · ${ano}`}
+        titulo="Itajubá"
+        subtitulo="Resultados por cargo, zona, local de votação e seção, e a comparação entre eleições."
+      >
         <SeletorEleicao
           eleicoes={dados.eleicoes()}
           atual={{ ano, turno }}
           href={(e) => `/itajuba/${e.ano}/${e.turno}/`}
         />
-        <nav aria-label="Seções da página" className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+        <nav aria-label="Seções da página" className="flex flex-wrap gap-2 text-sm">
           {[
             ["#cargos", "Por cargo"],
             ["#zonas", "Por zona"],
@@ -79,31 +72,28 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
             ["#secao", "Busca de seção"],
             ["#comparacao", "Comparação histórica"],
           ].map(([href, t]) => (
-            <a key={href} href={href} className="underline decoration-regua underline-offset-4 hover:decoration-ocre">
+            <a key={href} href={href} className="rounded-full border border-borda bg-superficie px-3 py-1 text-texto-2 hover:bg-realce hover:text-texto">
               {t}
             </a>
           ))}
         </nav>
-      </header>
+      </CabecalhoPagina>
 
       {it.cargos.length === 0 ? (
-        <p className="text-tinta-2">Sem votação em Itajubá neste turno.</p>
+        <p className="text-texto-2">Sem votação em Itajubá neste turno.</p>
       ) : null}
 
       {principal?.comparecimento ? (
-        <Secao id="participacao" titulo="Participação" sobretitulo={principal.nome ?? undefined}>
-          <Participacao
-            dados={{
-              ...principal.comparecimento,
-              pct_brancos: (100 * principal.comparecimento.brancos) / principal.comparecimento.comparecimento,
-              pct_nulos: (100 * principal.comparecimento.nulos) / principal.comparecimento.comparecimento,
-            }}
-          />
-          <p className="num mt-2 text-xs text-tinta-2">{numero(principal.comparecimento.aptos)} eleitores aptos</p>
-        </Secao>
+        <Participacao
+          dados={{
+            ...principal.comparecimento,
+            pct_brancos: (100 * principal.comparecimento.brancos) / principal.comparecimento.comparecimento,
+            pct_nulos: (100 * principal.comparecimento.nulos) / principal.comparecimento.comparecimento,
+          }}
+        />
       ) : null}
 
-      <div id="cargos" className="grid gap-12 md:grid-cols-2">
+      <div id="cargos" className="grid scroll-mt-20 items-start gap-6 md:grid-cols-2">
         {it.cargos
           .filter((c) => MAJORITARIOS.includes(c.codigo))
           .map((c) => (
@@ -114,7 +104,7 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
                 linhas={c.votaveis.filter(validos).map((v) => ({
                   chave: `${v.tipo}-${v.numero}`,
                   rotulo: rotulo(v),
-                  detalhe: v.partido,
+                  detalhe: [v.tipo === "candidato" ? `Nº ${v.numero}` : null, v.partido].filter(Boolean).join(" · "),
                   votos: v.votos,
                   pct: v.pct,
                   destaque: v.posicao === 1,
@@ -131,21 +121,12 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
           <Secao key={c.codigo} id={`cargo-${c.codigo}`} titulo={c.nome ?? NOME_CARGO[c.codigo]} sobretitulo="Itajubá · proporcional">
             <TabelaDeputados
               legenda={`${c.nome} em Itajubá`}
-              candidatos={c.votaveis
-                .filter((v) => v.tipo === "candidato")
-                .map((v) => ({
-                  numero: v.numero,
-                  nome: v.nome ?? `Nº ${v.numero}`,
-                  partido: v.partido,
-                  federacao: null,
-                  votos: v.votos,
-                  pct: v.pct,
-                  situacao: situacaoNaUf.get(`${c.codigo}-${v.numero}`) ?? null,
-                  posicao: v.posicao ?? 0,
-                }))}
+              candidatos={deputados[String(c.codigo)] ?? []}
+              codigo={c.codigo}
+              urlCompleta={`/dados/${ano}/${turno}/itajuba_deputados.json`}
             />
             <BrancosNulos votaveis={c.votaveis} />
-            <p className="mt-1 text-xs text-tinta-2">
+            <p className="mt-1 text-xs text-texto-2">
               Situação: resultado do candidato em {uf}, onde a vaga é disputada.
             </p>
           </Secao>
@@ -157,7 +138,7 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
             <table className="w-full min-w-[32rem] text-sm">
               <caption className="sr-only">Mais votado por zona eleitoral de Itajubá</caption>
               <thead>
-                <tr className="border-b border-tinta text-left text-xs text-tinta-2">
+                <tr className="border-b border-borda text-left text-xs text-texto-2">
                   <th scope="col" className="py-1 font-medium">Zona</th>
                   {MAJORITARIOS.filter((cd) => it.cargos.some((c) => c.codigo === cd)).map((cd) => (
                     <th key={cd} scope="col" className="py-1 font-medium">{NOME_CARGO[cd]}: mais votado</th>
@@ -166,13 +147,13 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
               </thead>
               <tbody>
                 {it.zonas.map((z) => (
-                  <tr key={z.zona} className="border-b border-regua">
+                  <tr key={z.zona} className="border-b border-borda">
                     <th scope="row" className="num py-1 text-left font-normal">{z.zona}</th>
                     {MAJORITARIOS.filter((cd) => it.cargos.some((c) => c.codigo === cd)).map((cd) => {
                       const v = maisVotado(z.cargos, cd);
                       return (
                         <td key={cd} className="py-1">
-                          {v ? <>{v.nome} <span className="num text-tinta-2">{pct(v.pct)}</span></> : "—"}
+                          {v ? <>{v.nome} <span className="num text-texto-2">{pct(v.pct)}</span></> : "—"}
                         </td>
                       );
                     })}
@@ -188,11 +169,11 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
         <MapaLocais pontos={pontos} />
         <div className="mt-6 overflow-x-auto">
           <table className="w-full min-w-[40rem] text-sm">
-            <caption className="mb-2 text-left text-xs text-tinta-2">
+            <caption className="mb-2 text-left text-xs text-texto-2">
               Locais de votação e mais votado para {NOME_CARGO[cargoMapa]}
             </caption>
             <thead>
-              <tr className="border-b border-tinta text-left text-xs text-tinta-2">
+              <tr className="border-b border-borda text-left text-xs text-texto-2">
                 <th scope="col" className="py-1 font-medium">Local</th>
                 <th scope="col" className="py-1 font-medium">Bairro</th>
                 <th scope="col" className="py-1 font-medium">Seções</th>
@@ -203,15 +184,15 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
               {it.locais.map((l) => {
                 const v = maisVotado(l.cargos, cargoMapa);
                 return (
-                  <tr key={`${l.zona}-${l.local}`} className="border-b border-regua align-top">
+                  <tr key={`${l.zona}-${l.local}`} className="border-b border-borda align-top">
                     <th scope="row" className="py-1.5 pr-3 text-left font-normal">
                       {l.nome}
-                      {l.endereco ? <span className="block text-xs text-tinta-2">{l.endereco}</span> : null}
+                      {l.endereco ? <span className="block text-xs text-texto-2">{l.endereco}</span> : null}
                     </th>
                     <td className="py-1.5 pr-3">{l.bairro ?? "—"}</td>
                     <td className="num py-1.5 pr-3">{l.secoes.join(", ")}</td>
                     <td className="py-1.5">
-                      {v ? <>{v.nome} <span className="num text-tinta-2">{pct(v.pct)}</span></> : "—"}
+                      {v ? <>{v.nome} <span className="num text-texto-2">{pct(v.pct)}</span></> : "—"}
                     </td>
                   </tr>
                 );
@@ -235,13 +216,17 @@ function Comparacao() {
   const h = dados.historico();
   return (
     <Secao id="comparacao" titulo="Comparação histórica" sobretitulo="2018 · 2022 · 2026">
-      <div className="space-y-12">
+      <div className="space-y-10">
         {MAJORITARIOS.map((cargo) => {
           const eleicoes = historicoPorCargo(h, cargo);
           if (!eleicoes.length) return null;
+          // a cor segue o partido em todos os anos (ordem: total de votos no período)
+          const total = new Map<string, number>();
+          for (const e of eleicoes) for (const p of e.partidos) total.set(p.partido ?? "—", (total.get(p.partido ?? "—") ?? 0) + p.votos);
+          const cores = coresPorEntidade([...total].sort((a, b) => b[1] - a[1]).map(([p]) => p));
           return (
             <div key={cargo}>
-              <h3 className="mb-4 font-display text-xl font-semibold">{NOME_CARGO[cargo]}</h3>
+              <h3 className="mb-4 text-base font-semibold">{NOME_CARGO[cargo]}</h3>
               <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                 {eleicoes.map((e) => (
                   <BarrasTabela
@@ -254,14 +239,15 @@ function Comparacao() {
                       votos: p.votos,
                       pct: p.pct,
                       destaque: i === 0,
+                      cor: cores.get(p.partido ?? "—"),
                     }))}
                   />
                 ))}
               </div>
               <table className="mt-4 w-full max-w-xl text-sm">
-                <caption className="mb-1 text-left text-xs text-tinta-2">Comparecimento em Itajubá, {NOME_CARGO[cargo]}</caption>
+                <caption className="mb-1 text-left text-xs text-texto-2">Comparecimento em Itajubá, {NOME_CARGO[cargo]}</caption>
                 <thead>
-                  <tr className="border-b border-tinta text-left text-xs text-tinta-2">
+                  <tr className="border-b border-borda text-left text-xs text-texto-2">
                     <th scope="col" className="py-1 font-medium">Eleição</th>
                     <th scope="col" className="py-1 text-right font-medium">Aptos</th>
                     <th scope="col" className="py-1 text-right font-medium">Comparecimento</th>
@@ -271,7 +257,7 @@ function Comparacao() {
                 <tbody>
                   {eleicoes.map((e) =>
                     e.comparecimento ? (
-                      <tr key={`${e.ano}-${e.turno}`} className="border-b border-regua">
+                      <tr key={`${e.ano}-${e.turno}`} className="border-b border-borda">
                         <th scope="row" className="py-1 text-left font-normal">
                           {e.ano} · {nomeTurno(e.turno)}
                         </th>

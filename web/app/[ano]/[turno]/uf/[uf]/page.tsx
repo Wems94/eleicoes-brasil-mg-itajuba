@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { BarrasTabela } from "@/components/BarrasTabela";
 import { TabelaDeputados } from "@/components/TabelaDeputados";
-import { Participacao, SeletorEleicao, Secao } from "@/components/base";
+import { CabecalhoPagina, Participacao, SeletorEleicao, Secao } from "@/components/base";
 import { dados } from "@/lib/dados";
 import { NOME_UF, nomeTurno, numero, pct } from "@/lib/formato";
 
@@ -36,19 +36,16 @@ export default async function PaginaUf({ params }: { params: Params }) {
   const principal = d.comparecimento[0];
 
   return (
-    <div className="space-y-12">
-      <header className="space-y-5">
-        <p className="text-sm">
-          <Link href={`/${ano}/${turno}/`} className="text-tinta-2 hover:text-ocre">
-            ← Brasil {ano}
+    <div className="space-y-6">
+      <CabecalhoPagina
+        sobretitulo={`${uf} · ${nomeTurno(turno)} · ${ano}`}
+        titulo={NOME_UF[uf] ?? uf}
+        subtitulo={
+          <Link href={`/${ano}/${turno}/`} className="text-base hover:underline">
+            ← Voltar ao Brasil {ano}
           </Link>
-        </p>
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocre">
-          {uf} · {nomeTurno(turno)}
-        </p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">
-          {NOME_UF[uf] ?? uf} <span className="font-normal italic text-tinta-2">{ano}</span>
-        </h1>
+        }
+      >
         <SeletorEleicao
           eleicoes={dados.eleicoes()}
           atual={{ ano, turno }}
@@ -56,16 +53,11 @@ export default async function PaginaUf({ params }: { params: Params }) {
             dados.ufs(e.ano, e.turno).includes(uf) ? `/${e.ano}/${e.turno}/uf/${uf}/` : `/${e.ano}/${e.turno}/`
           }
         />
-      </header>
+      </CabecalhoPagina>
 
-      {principal ? (
-        <Secao id="participacao" titulo="Participação" sobretitulo={principal.nome}>
-          <Participacao dados={principal} />
-          <p className="num mt-2 text-xs text-tinta-2">{numero(principal.aptos)} eleitores aptos</p>
-        </Secao>
-      ) : null}
+      {principal ? <Participacao dados={principal} /> : null}
 
-      <div className="grid gap-12 md:grid-cols-2">
+      <div className="grid items-start gap-6 md:grid-cols-2">
         {d.cargos
           .filter((c) => MAJORITARIOS.has(c.codigo))
           .map((c) => (
@@ -75,14 +67,14 @@ export default async function PaginaUf({ params }: { params: Params }) {
                 ocultarLegenda
                 linhas={c.candidatos.map((k) => ({
                   chave: String(k.numero),
-                  rotulo: `${k.numero} · ${k.nome}`,
-                  detalhe: [k.partido, k.situacao].filter(Boolean).join(" · "),
+                  rotulo: k.nome,
+                  detalhe: [`Nº ${k.numero}`, k.partido, k.situacao].filter(Boolean).join(" · "),
                   votos: k.votos,
                   pct: k.pct,
                   destaque: k.situacao === "ELEITO",
                 }))}
               />
-              <p className="num mt-3 text-xs text-tinta-2">{numero(c.votos_validos)} votos válidos</p>
+              <p className="num mt-3 text-xs text-texto-2">{numero(c.votos_validos)} votos válidos</p>
             </Secao>
           ))}
       </div>
@@ -91,8 +83,13 @@ export default async function PaginaUf({ params }: { params: Params }) {
         .filter((c) => !MAJORITARIOS.has(c.codigo))
         .map((c) => (
           <Secao key={c.codigo} id={`cargo-${c.codigo}`} titulo={c.nome} sobretitulo="Proporcional">
-            <TabelaDeputados legenda={c.nome} candidatos={c.candidatos} />
-            <p className="mt-3 text-xs text-tinta-2">
+            <TabelaDeputados
+              legenda={c.nome}
+              candidatos={c.candidatos}
+              codigo={c.codigo}
+              urlCompleta={`/dados/${ano}/${turno}/uf/${uf}/deputados.json`}
+            />
+            <p className="mt-3 text-xs text-texto-2">
               Percentual sobre os {numero(c.votos_validos)} votos válidos (nominais e de legenda).
             </p>
           </Secao>
@@ -103,7 +100,7 @@ export default async function PaginaUf({ params }: { params: Params }) {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[32rem] text-sm">
               <thead>
-                <tr className="border-b border-tinta text-left text-xs text-tinta-2">
+                <tr className="border-b border-borda text-left text-xs text-texto-2">
                   <th scope="col" className="py-1 font-medium">Cargo</th>
                   <th scope="col" className="py-1 text-right font-medium">Comparecimento</th>
                   <th scope="col" className="py-1 text-right font-medium">Abstenção</th>
@@ -113,7 +110,7 @@ export default async function PaginaUf({ params }: { params: Params }) {
               </thead>
               <tbody>
                 {d.comparecimento.map((c) => (
-                  <tr key={c.codigo} className="border-b border-regua">
+                  <tr key={c.codigo} className="border-b border-borda">
                     <th scope="row" className="py-1 text-left font-normal">{c.nome}</th>
                     <td className="num py-1 text-right">{pct(c.pct_comparecimento)}</td>
                     <td className="num py-1 text-right">{pct(c.pct_abstencao)}</td>

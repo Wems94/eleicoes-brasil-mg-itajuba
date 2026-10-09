@@ -1,68 +1,88 @@
 @import "tailwindcss";
 
 /*
- * "Boletim impresso": papel, tinta e um único acento ocre.
- * Sem cores partidárias: nenhuma cor pode sugerir apoio a candidato ou partido.
+ * Painel claro e moderno. A cor de dados é reservada aos candidatos (paleta
+ * validada para daltonismo, todos os pares, nos dois modos); a interface usa
+ * só tons neutros. Nenhuma cor é ligada a partido: as cores seguem cada
+ * candidato, na ordem do resultado da eleição exibida.
  */
 @theme {
-  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
-  --font-sans: var(--font-plex-sans), ui-sans-serif, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  --color-papel: #f3eee2;
-  --color-papel-2: #e9e1cf;
-  --color-tinta: #1c1913;
-  --color-tinta-2: #5b5442;
-  --color-regua: #cbbfa5;
-  --color-barra: #3b3529;
-  --color-barra-2: #a99f88;
-  --color-ocre: #9c5b06;
-  --color-ocre-claro: #f0d9a8;
+  --color-fundo: #f4f5f7;
+  --color-superficie: #ffffff;
+  --color-realce: #eef0f3;
+  --color-borda: #e3e6ea;
+  --color-texto: #0f172a;
+  --color-texto-2: #4b5563;
+  --color-texto-3: #8a919c;
+  --color-acento: #0f172a;
+  --color-acento-claro: #eef0f3;
+}
+
+/*
+ * Séries: 1º, 2º e 3º candidatos e "outros" (validate_palette, todos os pares: PASS).
+ * Fora do @theme de propósito: são usadas via style (cores por entidade), e o
+ * Tailwind só emite variáveis do @theme que alguma classe utiliza.
+ */
+:root {
+  --color-serie-1: #4a3aa7;
+  --color-serie-2: #1baf7a;
+  --color-serie-3: #eda100;
+  --color-serie-outros: #b4b9c2;
+  --color-sobre-serie-1: #ffffff;
+  --color-sobre-serie-2: #06261b;
+  --color-sobre-serie-3: #2a1d00;
+  --color-sobre-serie-outros: #111827;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-papel: #14120e;
-    --color-papel-2: #1e1b15;
-    --color-tinta: #ede6d6;
-    --color-tinta-2: #a89f8b;
-    --color-regua: #3a352a;
-    --color-barra: #d8cfba;
-    --color-barra-2: #6b6453;
-    --color-ocre: #e3a447;
-    --color-ocre-claro: #4a3512;
+    --color-fundo: #111214;
+    --color-superficie: #1a1a19;
+    --color-realce: #26272b;
+    --color-borda: #2c2e33;
+    --color-texto: #f4f4f5;
+    --color-texto-2: #b4b4bb;
+    --color-texto-3: #7c7c85;
+    --color-acento: #f4f4f5;
+    --color-acento-claro: #26272b;
+
+    --color-serie-1: #9085e9;
+    --color-serie-2: #199e70;
+    --color-serie-3: #c98500;
+    --color-serie-outros: #5c5f66;
+    --color-sobre-serie-1: #110d33;
+    --color-sobre-serie-2: #03140d;
+    --color-sobre-serie-3: #1a1200;
+    --color-sobre-serie-outros: #f4f4f5;
   }
 }
 
 html {
-  background: var(--color-papel);
-  color: var(--color-tinta);
+  background: var(--color-fundo);
+  color: var(--color-texto);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-body {
-  /* grão de papel, bem discreto */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* algarismos tabulares: colunas de votos alinhadas como num boletim */
+/* números alinhados em colunas */
 .num {
-  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.01em;
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-ocre);
+  outline: 2px solid var(--color-acento);
   outline-offset: 2px;
+  border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .barra {
     transform-origin: left;
-    animation: crescer 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    animation-delay: calc(var(--i, 0) * 45ms);
+    animation: crescer 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 40ms);
   }
   @keyframes crescer {
     from {

@@ -11,8 +11,8 @@ const REPOSITORIO = "https://github.com/Wems94/eleicoes-brasil-mg-itajuba";
 
 function Item({ titulo, children }: { titulo: string; children: ReactNode }) {
   return (
-    <div className="grid gap-1 border-t border-regua py-4 md:grid-cols-[14rem_1fr] md:gap-8">
-      <h3 className="font-display text-lg font-semibold">{titulo}</h3>
+    <div className="grid gap-1 border-t border-borda py-4 md:grid-cols-[14rem_1fr] md:gap-8">
+      <h3 className="text-lg font-semibold">{titulo}</h3>
       <div className="max-w-prose space-y-2 text-[15px] leading-relaxed">{children}</div>
     </div>
   );
@@ -25,9 +25,9 @@ export default function Metodologia() {
   return (
     <div className="space-y-12">
       <header className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ocre">Transparência</p>
-        <h1 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">Metodologia</h1>
-        <p className="max-w-prose text-lg text-tinta-2">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-texto-3">Transparência</p>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-6xl">Metodologia</h1>
+        <p className="max-w-prose text-lg text-texto-2">
           Como os números deste site são obtidos, validados e publicados. Dados gerados em{" "}
           <time dateTime={m.gerado_em} className="num">{dataGeracao(m.gerado_em)}</time>.
         </p>
@@ -55,9 +55,9 @@ export default function Metodologia() {
         </Item>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[44rem] text-sm">
-            <caption className="mb-2 text-left text-xs text-tinta-2">Arquivos de origem e sha256</caption>
+            <caption className="mb-2 text-left text-xs text-texto-2">Arquivos de origem e sha256</caption>
             <thead>
-              <tr className="border-b border-tinta text-left text-xs text-tinta-2">
+              <tr className="border-b border-borda text-left text-xs text-texto-2">
                 <th scope="col" className="py-1 font-medium">Eleição</th>
                 <th scope="col" className="py-1 font-medium">Arquivo do TSE</th>
                 <th scope="col" className="py-1 pr-3 text-right font-medium">Tamanho</th>
@@ -66,15 +66,15 @@ export default function Metodologia() {
             </thead>
             <tbody>
               {m.origens.map((o) => (
-                <tr key={`${o.ano}-${o.turno}-${o.fonte}`} className="border-b border-regua">
+                <tr key={`${o.ano}-${o.turno}-${o.fonte}`} className="border-b border-borda">
                   <td className="num py-1 pr-3">{o.ano}/{o.turno}</td>
                   <td className="py-1 pr-3">
-                    <a className="underline decoration-regua hover:decoration-ocre" href={o.url}>
+                    <a className="underline decoration-borda hover:decoration-texto" href={o.url}>
                       {o.url.split("/").pop()}
                     </a>
                   </td>
                   <td className="num py-1 pr-3 text-right">{tamanho(o.tamanho)}</td>
-                  <td className="num py-1 text-xs text-tinta-2" title={o.sha256}>
+                  <td className="num py-1 text-xs text-texto-2" title={o.sha256}>
                     {o.sha256.slice(0, 16)}…
                   </td>
                 </tr>

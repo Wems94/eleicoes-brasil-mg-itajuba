@@ -42,7 +42,7 @@ export function MapaLocais({ pontos }: { pontos: PontoLocal[] }) {
         m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
         for (const p of pontos) {
           const el = document.createElement("div");
-          el.className = "size-3 rounded-full border-2 border-papel bg-ocre shadow";
+          el.className = "size-3 rounded-full border-2 border-white bg-[var(--color-serie-1)] shadow";
           el.setAttribute("aria-hidden", "true");
           new maplibregl.Marker({ element: el })
             .setLngLat([p.lon, p.lat])
@@ -68,7 +68,7 @@ export function MapaLocais({ pontos }: { pontos: PontoLocal[] }) {
   }, [pontos]);
 
   if (pontos.length === 0) {
-    return <p className="text-sm text-tinta-2">Sem coordenadas dos locais de votação nesta eleição.</p>;
+    return <p className="text-sm text-texto-2">Sem coordenadas dos locais de votação nesta eleição.</p>;
   }
   return (
     <figure>
@@ -76,10 +76,10 @@ export function MapaLocais({ pontos }: { pontos: PontoLocal[] }) {
         ref={ref}
         role="img"
         aria-label={`Mapa com ${pontos.length} locais de votação de Itajubá; a lista completa está na tabela abaixo.`}
-        className="h-96 w-full border border-regua bg-papel-2"
+        className="h-96 w-full border border-borda bg-realce"
       />
       {erro ? (
-        <figcaption className="mt-2 text-xs text-tinta-2">
+        <figcaption className="mt-2 text-xs text-texto-2">
           Não foi possível carregar o mapa; os locais estão listados na tabela.
         </figcaption>
       ) : null}
