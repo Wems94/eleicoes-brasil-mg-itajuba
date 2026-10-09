@@ -54,9 +54,10 @@ jobs:
         run: uv sync --frozen
 
       # Cache dos ZIPs do TSE (~1,4 GB por ano). O manifest com sha256 garante que
-      # um arquivo restaurado só é reutilizado se estiver íntegro.
-      - name: Cache dos arquivos do TSE
-        uses: actions/cache@v6
+      # um arquivo restaurado só é reutilizado se estiver íntegro. Restauração e
+      # gravação separadas: o cache é salvo mesmo quando o gate reprova os dados.
+      - name: Restaurar cache dos arquivos do TSE
+        uses: actions/cache/restore@v6
         with:
           path: pipeline/data/raw
           key: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-${{ github.run_id }}
@@ -81,6 +82,13 @@ jobs:
             uv run eleicoes run --ano "${e%/*}" --turno "${e#*/}" "$FORCAR" 2>&1 | tee -a "$RUNNER_TEMP/etl.log"
             echo "::endgroup::"
           done
+
+      - name: Salvar cache dos arquivos do TSE
+        if: always() && hashFiles('pipeline/data/raw/manifest.json') != ''
+        uses: actions/cache/save@v6
+        with:
+          path: pipeline/data/raw
+          key: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-${{ github.run_id }}
 
       - name: Trava contra perda de eleições publicadas
         run: uv run python -m eleicoes.snapshots conferir "$RUNNER_TEMP/manifest_anterior.json" ../web/data/manifest.json
