@@ -63,9 +63,6 @@ jobs:
           key: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-${{ github.run_id }}
           restore-keys: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-
 
-      - name: Guardar o manifesto publicado
-        run: cp ../web/data/manifest.json "$RUNNER_TEMP/manifest_anterior.json" 2>/dev/null || true
-
       - name: Pipeline
         env:
           FORCAR: ${{ inputs.forcar && '--forcar' || '--no-forcar' }}
@@ -90,8 +87,14 @@ jobs:
           path: pipeline/data/raw
           key: tse-raw-v1-${{ hashFiles('pipeline/config/fontes.yaml') }}-${{ github.run_id }}
 
-      - name: Trava contra perda de eleições publicadas
-        run: uv run python -m eleicoes.snapshots conferir "$RUNNER_TEMP/manifest_anterior.json" ../web/data/manifest.json
+      # Os snapshots ficam guardados mesmo que a abertura do PR falhe.
+      - name: Guardar snapshots como artefato
+        uses: actions/upload-artifact@v7
+        with:
+          name: snapshots
+          path: web/data
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Resumo
         if: always()
@@ -103,10 +106,50 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  # Job separado e curto, a partir da main ATUAL: se a main mudou durante o ETL
+  # (que leva ~40 min), o PR continua contendo só web/data. O GITHUB_TOKEN não pode
+  # enviar mudanças em .github/workflows, e uma branch baseada num commit antigo
+  # acabaria levando essas mudanças junto.
+  pull-request:
+    needs: etl
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      ELEICOES: ${{ inputs.eleicoes }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+          cache-dependency-glob: pipeline/uv.lock
+
+      - name: Guardar o manifesto publicado
+        run: cp web/data/manifest.json "$RUNNER_TEMP/manifest_anterior.json" 2>/dev/null || true
+
+      - name: Baixar snapshots do ETL
+        run: rm -rf web/data
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: snapshots
+          path: web/data
+
+      - name: Trava contra perda de eleições publicadas
+        working-directory: pipeline
+        run: uv run python -m eleicoes.snapshots conferir "$RUNNER_TEMP/manifest_anterior.json" ../web/data/manifest.json
+
+      - name: Verificador LGPD nos snapshots
+        working-directory: pipeline
+        run: uv run python -m eleicoes.lgpd --snapshots ../web/data
+
       - name: Abrir Pull Request com os snapshots
         id: pr
         uses: peter-evans/create-pull-request@v8
         with:
+          base: main
           add-paths: web/data
           branch: dados/snapshots
           delete-branch: true
