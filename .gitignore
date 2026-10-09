@@ -1,0 +1,25 @@
+# Dados (brutos podem conter CPF/e-mail de candidatos — LGPD)
+pipeline/data/
+data/
+*.duckdb
+*.duckdb.wal
+
+# Segredos
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# Node / Next.js
+node_modules/
+web/.next/
+web/out/
+
+# SO / editor
+.DS_Store
