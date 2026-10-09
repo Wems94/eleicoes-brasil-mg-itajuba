@@ -19,16 +19,17 @@ TSE Dados Abertos (ZIP/CSV) → pipeline Python (uv: DuckDB + Polars)
 | Site | Next.js (export estático), Tailwind, shadcn/ui, ECharts, MapLibre |
 | Orquestração/CI | GitHub Actions (`workflow_dispatch` com `ano`/`turno`) + Vercel |
 
-Todas as decisões e os requisitos estão em `openspec/changes/bootstrap-plataforma-eleicoes/`:
-`proposal.md` (por quê), `design.md` (como), `specs/*/spec.md` (requisitos testáveis) e `tasks.md` (checklist).
+Os requisitos vigentes estão em `openspec/specs/*/spec.md` (6 capabilities). O change que criou a
+plataforma está arquivado em `openspec/changes/archive/2026-10-09-bootstrap-plataforma-eleicoes/`:
+`proposal.md` (por quê), `design.md` (como, com as decisões D1–D9) e `tasks.md` (checklist).
 
 ## Estado atual
 
-- [x] OpenSpec inicializado (`openspec/config.yaml`, pt-BR) com o change `bootstrap-plataforma-eleicoes`
+- [x] OpenSpec (`openspec/config.yaml`, pt-BR): change `bootstrap-plataforma-eleicoes` concluído e arquivado; specs em `openspec/specs/`
 - [x] Pipeline em `pipeline/` (tarefas 2.x a 5.x): download, staging, marts, gate de qualidade, LGPD, MotherDuck, snapshots e CLI `eleicoes run`
 - [x] Site em `web/` (tarefas 6.x): Next.js estático com Brasil, UF, Itajubá e metodologia
 - [x] Workflows em `.github/workflows/` (tarefas 7.x): `ci.yml`, `etl.yml`, `deploy.yml` e `validacao-real.yml`
-- [ ] Decodificador de BU validado com um BU real (tarefa 2.3)
+- [ ] Pendência conhecida: decodificador de BU validado só com BU sintético (tarefa 2.3, opcional pela D9)
 - [x] Verificação integrada (tarefa 8.1): site no ar em https://eleicoes-brasil-mg-itajuba.vercel.app com 2018, 2022 e 2026 (1º turno)
 
 ## Comandos
@@ -79,7 +80,7 @@ Configurações necessárias:
 cd pipeline && uv sync          # cria o .venv
 npm i -g @fission-ai/openspec   # CLI do OpenSpec
 openspec list                   # changes em andamento
-openspec show bootstrap-plataforma-eleicoes
+openspec list --specs          # specs vigentes
 ```
 
 Com o Claude Code, use os comandos instalados em `.claude/commands/opsx/` (`/opsx:apply` para implementar as tarefas do change, `/opsx:archive` ao concluir).

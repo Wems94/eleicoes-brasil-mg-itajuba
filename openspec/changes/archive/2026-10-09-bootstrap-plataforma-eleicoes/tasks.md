@@ -10,6 +10,7 @@
 - [x] 2.1 Catálogo de fontes TSE em `config/fontes.yaml` com URL por ano, membros do ZIP e obrigatoriedade; teste unitário de resolução de URLs
 - [x] 2.2 Download com `.part`, retentativas, manifest sha256 e reutilização; testes com servidor HTTP local (idempotência, falha, 404 obrigatório/opcional)
 - [ ] 2.3 Decodificador de Boletim de Urna; teste com o BU real de MG (soma = comparecimento)
+  - Pendência conhecida (opcional, D9): decodificador em `pipeline/src/eleicoes/bu.py` validado só com BU sintético; o teste com BU real roda sozinho quando um `.bu` for colocado em `pipeline/tests/fixtures/bu/`.
 
 ## 3. Transformação
 
