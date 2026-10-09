@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "PE",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 5439765,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 3640933,
+     "pct": 66.93,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 1798832,
+     "pct": 33.07,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 5303679,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "RAQUEL LYRA",
+     "partido": "PSDB",
+     "federacao": "PSDB/CIDADANIA",
+     "votos": 3113415,
+     "pct": 58.7,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 77,
+     "nome": "MARÍLIA ARRAES",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 2190264,
+     "pct": 41.3,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 7015086,
+   "comparecimento": 5800735,
+   "abstencoes": 1214351,
+   "brancos": 74435,
+   "nulos": 286535,
+   "pct_comparecimento": 82.69,
+   "pct_abstencao": 17.31,
+   "pct_brancos": 1.28,
+   "pct_nulos": 4.94
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 7009112,
+   "comparecimento": 5795359,
+   "abstencoes": 1213753,
+   "brancos": 113730,
+   "nulos": 377950,
+   "pct_comparecimento": 82.68,
+   "pct_abstencao": 17.32,
+   "pct_brancos": 1.96,
+   "pct_nulos": 6.52
+  }
+ ]
+}

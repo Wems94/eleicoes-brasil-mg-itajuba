@@ -1,0 +1,89 @@
+{
+ "ano": 2022,
+ "turno": 2,
+ "uf": "SP",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 25736469,
+   "candidatos": [
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 14216587,
+     "pct": 55.24,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 11519882,
+     "pct": 44.76,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 24390014,
+   "candidatos": [
+    {
+     "numero": 10,
+     "nome": "TARCÍSIO",
+     "partido": "REPUBLICANOS",
+     "federacao": null,
+     "votos": 13480643,
+     "pct": 55.27,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 10909371,
+     "pct": 44.73,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 34684876,
+   "comparecimento": 27380491,
+   "abstencoes": 7304385,
+   "brancos": 526677,
+   "nulos": 1117345,
+   "pct_comparecimento": 78.94,
+   "pct_abstencao": 21.06,
+   "pct_brancos": 1.92,
+   "pct_nulos": 4.08
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 34642067,
+   "comparecimento": 27341816,
+   "abstencoes": 7300251,
+   "brancos": 1102504,
+   "nulos": 1849298,
+   "pct_comparecimento": 78.93,
+   "pct_abstencao": 21.07,
+   "pct_brancos": 4.03,
+   "pct_nulos": 6.76
+  }
+ ]
+}

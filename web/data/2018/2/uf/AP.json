@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "AP",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 368712,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 185096,
+     "pct": 50.2,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 183616,
+     "pct": 49.8,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 366281,
+   "candidatos": [
+    {
+     "numero": 12,
+     "nome": "WALDEZ",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 191741,
+     "pct": 52.35,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 40,
+     "nome": "CAPI 40",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 174540,
+     "pct": 47.65,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 512117,
+   "comparecimento": 394939,
+   "abstencoes": 117178,
+   "brancos": 6589,
+   "nulos": 19638,
+   "pct_comparecimento": 77.12,
+   "pct_abstencao": 22.88,
+   "pct_brancos": 1.67,
+   "pct_nulos": 4.97
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 511826,
+   "comparecimento": 394703,
+   "abstencoes": 117123,
+   "brancos": 6169,
+   "nulos": 22253,
+   "pct_comparecimento": 77.12,
+   "pct_abstencao": 22.88,
+   "pct_brancos": 1.56,
+   "pct_nulos": 5.64
+  }
+ ]
+}

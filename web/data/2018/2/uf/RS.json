@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "RS",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 6156908,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 3893737,
+     "pct": 63.24,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2263171,
+     "pct": 36.76,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 5833918,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "EDUARDO LEITE",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 3128317,
+     "pct": 53.62,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 15,
+     "nome": "JOSÉ IVO SARTORI",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 2705601,
+     "pct": 46.38,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 8353814,
+   "comparecimento": 6777418,
+   "abstencoes": 1576396,
+   "brancos": 208909,
+   "nulos": 411601,
+   "pct_comparecimento": 81.13,
+   "pct_abstencao": 18.87,
+   "pct_brancos": 3.08,
+   "pct_nulos": 6.07
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 8350956,
+   "comparecimento": 6774869,
+   "abstencoes": 1576087,
+   "brancos": 298456,
+   "nulos": 642495,
+   "pct_comparecimento": 81.13,
+   "pct_abstencao": 18.87,
+   "pct_brancos": 4.41,
+   "pct_nulos": 9.48
+  }
+ ]
+}

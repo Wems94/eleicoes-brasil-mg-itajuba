@@ -1,0 +1,139 @@
+{
+ "ano": 2022,
+ "turno": 1,
+ "uf": "ZZ",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 294525,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 138933,
+     "pct": 47.17,
+     "situacao": "2º TURNO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 122548,
+     "pct": 41.61,
+     "situacao": "2º TURNO",
+     "posicao": 2
+    },
+    {
+     "numero": 12,
+     "nome": "CIRO GOMES",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 13341,
+     "pct": 4.53,
+     "situacao": "NÃO ELEITO",
+     "posicao": 3
+    },
+    {
+     "numero": 15,
+     "nome": "SIMONE TEBET",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 13167,
+     "pct": 4.47,
+     "situacao": "NÃO ELEITO",
+     "posicao": 4
+    },
+    {
+     "numero": 30,
+     "nome": "FELIPE D AVILA",
+     "partido": "NOVO",
+     "federacao": null,
+     "votos": 3780,
+     "pct": 1.28,
+     "situacao": "NÃO ELEITO",
+     "posicao": 5
+    },
+    {
+     "numero": 44,
+     "nome": "SORAYA THRONICKE",
+     "partido": "UNIÃO",
+     "federacao": null,
+     "votos": 753,
+     "pct": 0.26,
+     "situacao": "NÃO ELEITO",
+     "posicao": 6
+    },
+    {
+     "numero": 21,
+     "nome": "SOFIA MANZANO",
+     "partido": "PCB",
+     "federacao": null,
+     "votos": 618,
+     "pct": 0.21,
+     "situacao": "NÃO ELEITO",
+     "posicao": 7
+    },
+    {
+     "numero": 16,
+     "nome": "VERA",
+     "partido": "PSTU",
+     "federacao": null,
+     "votos": 464,
+     "pct": 0.16,
+     "situacao": "NÃO ELEITO",
+     "posicao": 8
+    },
+    {
+     "numero": 14,
+     "nome": "PADRE KELMON",
+     "partido": "PTB",
+     "federacao": null,
+     "votos": 344,
+     "pct": 0.12,
+     "situacao": "NÃO ELEITO",
+     "posicao": 9
+    },
+    {
+     "numero": 80,
+     "nome": "LÉO PÉRICLES",
+     "partido": "UP",
+     "federacao": null,
+     "votos": 319,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 10
+    },
+    {
+     "numero": 27,
+     "nome": "CONSTITUINTE EYMAEL",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 258,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 11
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 695355,
+   "comparecimento": 304032,
+   "abstencoes": 390750,
+   "brancos": 4857,
+   "nulos": 4650,
+   "pct_comparecimento": 43.72,
+   "pct_abstencao": 56.19,
+   "pct_brancos": 1.6,
+   "pct_nulos": 1.53
+  }
+ ]
+}

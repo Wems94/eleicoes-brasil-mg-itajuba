@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "RJ",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 8342445,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 5669059,
+     "pct": 67.95,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2673386,
+     "pct": 32.05,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 7809755,
+   "candidatos": [
+    {
+     "numero": 20,
+     "nome": "WILSON WITZEL",
+     "partido": "PSC",
+     "federacao": null,
+     "votos": 4675355,
+     "pct": 59.87,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 25,
+     "nome": "EDUARDO PAES",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 3134400,
+     "pct": 40.13,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 12406861,
+   "comparecimento": 9421512,
+   "abstencoes": 2985349,
+   "brancos": 219829,
+   "nulos": 859238,
+   "pct_comparecimento": 75.94,
+   "pct_abstencao": 24.06,
+   "pct_brancos": 2.33,
+   "pct_nulos": 9.12
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 12401560,
+   "comparecimento": 9416708,
+   "abstencoes": 2984852,
+   "brancos": 346970,
+   "nulos": 1259983,
+   "pct_comparecimento": 75.93,
+   "pct_abstencao": 24.07,
+   "pct_brancos": 3.68,
+   "pct_nulos": 13.38
+  }
+ ]
+}

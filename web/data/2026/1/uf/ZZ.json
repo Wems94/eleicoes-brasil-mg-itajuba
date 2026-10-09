@@ -1,0 +1,149 @@
+{
+ "ano": 2026,
+ "turno": 1,
+ "uf": "ZZ",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 330882,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "LULA",
+     "partido": "PT",
+     "federacao": "PT/PC do B/PV",
+     "votos": 157387,
+     "pct": 47.57,
+     "situacao": "2º TURNO",
+     "posicao": 1
+    },
+    {
+     "numero": 22,
+     "nome": "FLAVIO BOLSONARO",
+     "partido": "PL",
+     "federacao": null,
+     "votos": 143900,
+     "pct": 43.49,
+     "situacao": "2º TURNO",
+     "posicao": 2
+    },
+    {
+     "numero": 70,
+     "nome": "ESCRITOR AUGUSTO CURY",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 9734,
+     "pct": 2.94,
+     "situacao": "NÃO ELEITO",
+     "posicao": 3
+    },
+    {
+     "numero": 14,
+     "nome": "RENAN SANTOS",
+     "partido": "MISSÃO",
+     "federacao": null,
+     "votos": 8580,
+     "pct": 2.59,
+     "situacao": "NÃO ELEITO",
+     "posicao": 4
+    },
+    {
+     "numero": 55,
+     "nome": "RONALDO CAIADO",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 4708,
+     "pct": 1.42,
+     "situacao": "NÃO ELEITO",
+     "posicao": 5
+    },
+    {
+     "numero": 30,
+     "nome": "ZEMA",
+     "partido": "NOVO",
+     "federacao": null,
+     "votos": 3329,
+     "pct": 1.01,
+     "situacao": "NÃO ELEITO",
+     "posicao": 6
+    },
+    {
+     "numero": 80,
+     "nome": "SAMARA",
+     "partido": "UP",
+     "federacao": null,
+     "votos": 1053,
+     "pct": 0.32,
+     "situacao": "NÃO ELEITO",
+     "posicao": 7
+    },
+    {
+     "numero": 27,
+     "nome": "CLARIANA BARAO",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 825,
+     "pct": 0.25,
+     "situacao": "NÃO ELEITO",
+     "posicao": 8
+    },
+    {
+     "numero": 21,
+     "nome": "EDMILSON COSTA",
+     "partido": "PCB",
+     "federacao": null,
+     "votos": 421,
+     "pct": 0.13,
+     "situacao": "NÃO ELEITO",
+     "posicao": 9
+    },
+    {
+     "numero": 16,
+     "nome": "HERTZ DIAS",
+     "partido": "PSTU",
+     "federacao": null,
+     "votos": 373,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 10
+    },
+    {
+     "numero": 35,
+     "nome": "VETERINÁRIO WILSON GRASSI",
+     "partido": "DEMOCRATA",
+     "federacao": null,
+     "votos": 373,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 10
+    },
+    {
+     "numero": 29,
+     "nome": "RUI COSTA PIMENTA",
+     "partido": "PCO",
+     "federacao": null,
+     "votos": 199,
+     "pct": 0.06,
+     "situacao": "NÃO ELEITO",
+     "posicao": 12
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 916534,
+   "comparecimento": 341766,
+   "abstencoes": 574345,
+   "brancos": 5816,
+   "nulos": 5068,
+   "pct_comparecimento": 37.29,
+   "pct_abstencao": 62.66,
+   "pct_brancos": 1.7,
+   "pct_nulos": 1.48
+  }
+ ]
+}

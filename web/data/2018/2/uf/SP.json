@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "SP",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 22518155,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 15306023,
+     "pct": 67.97,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 7212132,
+     "pct": 32.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 21239090,
+   "candidatos": [
+    {
+     "numero": 45,
+     "nome": "JOÃO DORIA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 10990350,
+     "pct": 51.75,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 40,
+     "nome": "MARCIO FRANÇA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 10248740,
+     "pct": 48.25,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 33042569,
+   "comparecimento": 25846143,
+   "abstencoes": 7196426,
+   "brancos": 746949,
+   "nulos": 2581039,
+   "pct_comparecimento": 78.22,
+   "pct_abstencao": 21.78,
+   "pct_brancos": 2.89,
+   "pct_nulos": 9.99
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 33032785,
+   "comparecimento": 25837462,
+   "abstencoes": 7195323,
+   "brancos": 1054978,
+   "nulos": 3543394,
+   "pct_comparecimento": 78.22,
+   "pct_abstencao": 21.78,
+   "pct_brancos": 4.08,
+   "pct_nulos": 13.71
+  }
+ ]
+}

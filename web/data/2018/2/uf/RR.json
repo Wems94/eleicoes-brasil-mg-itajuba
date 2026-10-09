@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "RR",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 256140,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 183268,
+     "pct": 71.55,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 72872,
+     "pct": 28.45,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 256101,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "ANTONIO DENARIUM",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 136612,
+     "pct": 53.34,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 45,
+     "nome": "ANCHIETA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 119489,
+     "pct": 46.66,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 333576,
+   "comparecimento": 270651,
+   "abstencoes": 62925,
+   "brancos": 3700,
+   "nulos": 10811,
+   "pct_comparecimento": 81.14,
+   "pct_abstencao": 18.86,
+   "pct_brancos": 1.37,
+   "pct_nulos": 3.99
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 333166,
+   "comparecimento": 270315,
+   "abstencoes": 62851,
+   "brancos": 3232,
+   "nulos": 10982,
+   "pct_comparecimento": 81.14,
+   "pct_abstencao": 18.86,
+   "pct_brancos": 1.2,
+   "pct_nulos": 4.06
+  }
+ ]
+}

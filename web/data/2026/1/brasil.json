@@ -1,0 +1,422 @@
+{
+ "ano": 2026,
+ "turno": 1,
+ "presidente": {
+  "votos_validos": 119300788,
+  "candidatos": [
+   {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "federacao": null,
+    "votos": 56104503,
+    "pct": 47.03,
+    "situacao": "2º TURNO",
+    "posicao": 1
+   },
+   {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "federacao": "PT/PC do B/PV",
+    "votos": 53879538,
+    "pct": 45.16,
+    "situacao": "2º TURNO",
+    "posicao": 2
+   },
+   {
+    "numero": 70,
+    "nome": "ESCRITOR AUGUSTO CURY",
+    "partido": "AVANTE",
+    "federacao": null,
+    "votos": 3448569,
+    "pct": 2.89,
+    "situacao": "NÃO ELEITO",
+    "posicao": 3
+   },
+   {
+    "numero": 14,
+    "nome": "RENAN SANTOS",
+    "partido": "MISSÃO",
+    "federacao": null,
+    "votos": 2675887,
+    "pct": 2.24,
+    "situacao": "NÃO ELEITO",
+    "posicao": 4
+   },
+   {
+    "numero": 55,
+    "nome": "RONALDO CAIADO",
+    "partido": "PSD",
+    "federacao": null,
+    "votos": 2605148,
+    "pct": 2.18,
+    "situacao": "NÃO ELEITO",
+    "posicao": 5
+   },
+   {
+    "numero": 30,
+    "nome": "ZEMA",
+    "partido": "NOVO",
+    "federacao": null,
+    "votos": 326488,
+    "pct": 0.27,
+    "situacao": "NÃO ELEITO",
+    "posicao": 6
+   },
+   {
+    "numero": 80,
+    "nome": "SAMARA",
+    "partido": "UP",
+    "federacao": null,
+    "votos": 122911,
+    "pct": 0.1,
+    "situacao": "NÃO ELEITO",
+    "posicao": 7
+   },
+   {
+    "numero": 16,
+    "nome": "HERTZ DIAS",
+    "partido": "PSTU",
+    "federacao": null,
+    "votos": 43103,
+    "pct": 0.04,
+    "situacao": "NÃO ELEITO",
+    "posicao": 8
+   },
+   {
+    "numero": 27,
+    "nome": "CLARIANA BARAO",
+    "partido": "DC",
+    "federacao": null,
+    "votos": 40043,
+    "pct": 0.03,
+    "situacao": "NÃO ELEITO",
+    "posicao": 9
+   },
+   {
+    "numero": 21,
+    "nome": "EDMILSON COSTA",
+    "partido": "PCB",
+    "federacao": null,
+    "votos": 22693,
+    "pct": 0.02,
+    "situacao": "NÃO ELEITO",
+    "posicao": 10
+   },
+   {
+    "numero": 35,
+    "nome": "VETERINÁRIO WILSON GRASSI",
+    "partido": "DEMOCRATA",
+    "federacao": null,
+    "votos": 16881,
+    "pct": 0.01,
+    "situacao": "NÃO ELEITO",
+    "posicao": 11
+   },
+   {
+    "numero": 29,
+    "nome": "RUI COSTA PIMENTA",
+    "partido": "PCO",
+    "federacao": null,
+    "votos": 15024,
+    "pct": 0.01,
+    "situacao": "NÃO ELEITO",
+    "posicao": 12
+   }
+  ]
+ },
+ "comparecimento": {
+  "aptos": 158745502,
+  "comparecimento": 125275835,
+  "abstencoes": 33469244,
+  "brancos": 2300798,
+  "nulos": 3674249,
+  "pct_comparecimento": 78.92,
+  "pct_abstencao": 21.08,
+  "pct_brancos": 1.84,
+  "pct_nulos": 2.93
+ },
+ "ufs": [
+  {
+   "uf": "AC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 64.56
+   },
+   "pct_comparecimento": 79.57
+  },
+  {
+   "uf": "AL",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 54.73
+   },
+   "pct_comparecimento": 79.37
+  },
+  {
+   "uf": "AM",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 48.23
+   },
+   "pct_comparecimento": 79.84
+  },
+  {
+   "uf": "AP",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 45.71
+   },
+   "pct_comparecimento": 82.59
+  },
+  {
+   "uf": "BA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 66.17
+   },
+   "pct_comparecimento": 80.03
+  },
+  {
+   "uf": "CE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 63.29
+   },
+   "pct_comparecimento": 84.48
+  },
+  {
+   "uf": "DF",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 51.31
+   },
+   "pct_comparecimento": 81.1
+  },
+  {
+   "uf": "ES",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 54.78
+   },
+   "pct_comparecimento": 78.63
+  },
+  {
+   "uf": "GO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 53.6
+   },
+   "pct_comparecimento": 78.17
+  },
+  {
+   "uf": "MA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 63.99
+   },
+   "pct_comparecimento": 80.27
+  },
+  {
+   "uf": "MG",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 48.24
+   },
+   "pct_comparecimento": 77.19
+  },
+  {
+   "uf": "MS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 58.6
+   },
+   "pct_comparecimento": 76.13
+  },
+  {
+   "uf": "MT",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 65.15
+   },
+   "pct_comparecimento": 77.8
+  },
+  {
+   "uf": "PA",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 49.91
+   },
+   "pct_comparecimento": 80.9
+  },
+  {
+   "uf": "PB",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 61.31
+   },
+   "pct_comparecimento": 82.62
+  },
+  {
+   "uf": "PE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 63.45
+   },
+   "pct_comparecimento": 81.83
+  },
+  {
+   "uf": "PI",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 70.99
+   },
+   "pct_comparecimento": 82.85
+  },
+  {
+   "uf": "PR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 59.91
+   },
+   "pct_comparecimento": 79.43
+  },
+  {
+   "uf": "RJ",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 53.01
+   },
+   "pct_comparecimento": 76.68
+  },
+  {
+   "uf": "RN",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 59.75
+   },
+   "pct_comparecimento": 81.62
+  },
+  {
+   "uf": "RO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 67.45
+   },
+   "pct_comparecimento": 78.29
+  },
+  {
+   "uf": "RR",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 71.06
+   },
+   "pct_comparecimento": 82.88
+  },
+  {
+   "uf": "RS",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 55.64
+   },
+   "pct_comparecimento": 78.65
+  },
+  {
+   "uf": "SC",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 66.65
+   },
+   "pct_comparecimento": 81.05
+  },
+  {
+   "uf": "SE",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 62.75
+   },
+   "pct_comparecimento": 82.7
+  },
+  {
+   "uf": "SP",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 51.93
+   },
+   "pct_comparecimento": 77.46
+  },
+  {
+   "uf": "TO",
+   "vencedor": {
+    "numero": 22,
+    "nome": "FLAVIO BOLSONARO",
+    "partido": "PL",
+    "pct": 50.44
+   },
+   "pct_comparecimento": 81.66
+  },
+  {
+   "uf": "ZZ",
+   "vencedor": {
+    "numero": 13,
+    "nome": "LULA",
+    "partido": "PT",
+    "pct": 47.57
+   },
+   "pct_comparecimento": 37.29
+  }
+ ]
+}

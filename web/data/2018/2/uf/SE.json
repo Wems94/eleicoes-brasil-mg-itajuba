@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "SE",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 1123921,
+   "candidatos": [
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 759061,
+     "pct": 67.54,
+     "situacao": "NÃO ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 364860,
+     "pct": 32.46,
+     "situacao": "ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 1049212,
+   "candidatos": [
+    {
+     "numero": 55,
+     "nome": "BELIVALDO",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 679051,
+     "pct": 64.72,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 40,
+     "nome": "VALADARES FILHO",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 370161,
+     "pct": 35.28,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1577191,
+   "comparecimento": 1264754,
+   "abstencoes": 312437,
+   "brancos": 21087,
+   "nulos": 119746,
+   "pct_comparecimento": 80.19,
+   "pct_abstencao": 19.81,
+   "pct_brancos": 1.67,
+   "pct_nulos": 9.47
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1576420,
+   "comparecimento": 1264065,
+   "abstencoes": 312355,
+   "brancos": 34855,
+   "nulos": 179998,
+   "pct_comparecimento": 80.19,
+   "pct_abstencao": 19.81,
+   "pct_brancos": 2.76,
+   "pct_nulos": 14.24
+  }
+ ]
+}

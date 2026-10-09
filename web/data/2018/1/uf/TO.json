@@ -1,0 +1,3249 @@
+{
+ "ano": 2018,
+ "turno": 1,
+ "uf": "TO",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 756760,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 337782,
+     "pct": 44.64,
+     "situacao": "2º TURNO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 311212,
+     "pct": 41.12,
+     "situacao": "2º TURNO",
+     "posicao": 2
+    },
+    {
+     "numero": 12,
+     "nome": "CIRO GOMES",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 54262,
+     "pct": 7.17,
+     "situacao": "NÃO ELEITO",
+     "posicao": 3
+    },
+    {
+     "numero": 45,
+     "nome": "GERALDO ALCKMIN",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 21666,
+     "pct": 2.86,
+     "situacao": "NÃO ELEITO",
+     "posicao": 4
+    },
+    {
+     "numero": 18,
+     "nome": "MARINA SILVA",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 7229,
+     "pct": 0.96,
+     "situacao": "NÃO ELEITO",
+     "posicao": 5
+    },
+    {
+     "numero": 30,
+     "nome": "JOÃO AMOÊDO",
+     "partido": "NOVO",
+     "federacao": null,
+     "votos": 7113,
+     "pct": 0.94,
+     "situacao": "NÃO ELEITO",
+     "posicao": 6
+    },
+    {
+     "numero": 51,
+     "nome": "CABO DACIOLO",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 6284,
+     "pct": 0.83,
+     "situacao": "NÃO ELEITO",
+     "posicao": 7
+    },
+    {
+     "numero": 15,
+     "nome": "HENRIQUE MEIRELLES",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 5324,
+     "pct": 0.7,
+     "situacao": "NÃO ELEITO",
+     "posicao": 8
+    },
+    {
+     "numero": 50,
+     "nome": "GUILHERME BOULOS",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 2764,
+     "pct": 0.37,
+     "situacao": "NÃO ELEITO",
+     "posicao": 9
+    },
+    {
+     "numero": 19,
+     "nome": "ALVARO DIAS",
+     "partido": "PODE",
+     "federacao": null,
+     "votos": 2471,
+     "pct": 0.33,
+     "situacao": "NÃO ELEITO",
+     "posicao": 10
+    },
+    {
+     "numero": 16,
+     "nome": "VERA",
+     "partido": "PSTU",
+     "federacao": null,
+     "votos": 251,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 11
+    },
+    {
+     "numero": 27,
+     "nome": "EYMAEL",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 242,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 12
+    },
+    {
+     "numero": 54,
+     "nome": "JOÃO GOULART FILHO",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 160,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 13
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 704803,
+   "candidatos": [
+    {
+     "numero": 31,
+     "nome": "MAURO CARLESSE",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 404484,
+     "pct": 57.39,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 40,
+     "nome": "CARLOS AMASTHA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 219842,
+     "pct": 31.19,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    },
+    {
+     "numero": 18,
+     "nome": "MARLON REIS",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 47046,
+     "pct": 6.68,
+     "situacao": "NÃO ELEITO",
+     "posicao": 3
+    },
+    {
+     "numero": 17,
+     "nome": "CESAR SIMONI",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 31231,
+     "pct": 4.43,
+     "situacao": "NÃO ELEITO",
+     "posicao": 4
+    },
+    {
+     "numero": 50,
+     "nome": "BERNADETE APARECIDA",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 2200,
+     "pct": 0.31,
+     "situacao": "NÃO ELEITO",
+     "posicao": 5
+    }
+   ]
+  },
+  {
+   "codigo": 5,
+   "nome": "Senador",
+   "votos_validos": 1274703,
+   "candidatos": [
+    {
+     "numero": 777,
+     "nome": "EDUARDO GOMES",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 248358,
+     "pct": 19.48,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 555,
+     "nome": "IRAJÁ",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 214355,
+     "pct": 16.82,
+     "situacao": "ELEITO",
+     "posicao": 2
+    },
+    {
+     "numero": 101,
+     "nome": "CÉSAR HALUM",
+     "partido": "PRB",
+     "federacao": null,
+     "votos": 184235,
+     "pct": 14.45,
+     "situacao": "NÃO ELEITO",
+     "posicao": 3
+    },
+    {
+     "numero": 222,
+     "nome": "VICENTINHO",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 176012,
+     "pct": 13.81,
+     "situacao": "NÃO ELEITO",
+     "posicao": 4
+    },
+    {
+     "numero": 455,
+     "nome": "ATAÍDES OLIVEIRA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 170012,
+     "pct": 13.34,
+     "situacao": "NÃO ELEITO",
+     "posicao": 5
+    },
+    {
+     "numero": 131,
+     "nome": "PAULO MOURÃO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 137654,
+     "pct": 10.8,
+     "situacao": "NÃO ELEITO",
+     "posicao": 6
+    },
+    {
+     "numero": 177,
+     "nome": "ANTÔNIO JORGE",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 66089,
+     "pct": 5.18,
+     "situacao": "NÃO ELEITO",
+     "posicao": 7
+    },
+    {
+     "numero": 170,
+     "nome": "FARLEI O FEDERAL",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 65676,
+     "pct": 5.15,
+     "situacao": "NÃO ELEITO",
+     "posicao": 8
+    },
+    {
+     "numero": 500,
+     "nome": "MELK AIRES",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 12312,
+     "pct": 0.97,
+     "situacao": "NÃO ELEITO",
+     "posicao": 9
+    }
+   ]
+  },
+  {
+   "codigo": 6,
+   "nome": "Deputado Federal",
+   "votos_validos": 715942,
+   "candidatos": [
+    {
+     "numero": 7788,
+     "nome": "TIAGO DIMAS",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 71842,
+     "pct": 10.03,
+     "situacao": "ELEITO POR QP",
+     "posicao": 1
+    },
+    {
+     "numero": 2020,
+     "nome": "OSIRES DAMASO",
+     "partido": "PSC",
+     "federacao": null,
+     "votos": 58726,
+     "pct": 8.2,
+     "situacao": "ELEITO POR QP",
+     "posicao": 2
+    },
+    {
+     "numero": 2222,
+     "nome": "VICENTINHO JUNIOR",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 49868,
+     "pct": 6.97,
+     "situacao": "ELEITO POR QP",
+     "posicao": 3
+    },
+    {
+     "numero": 7700,
+     "nome": "ELI BORGES",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 48812,
+     "pct": 6.82,
+     "situacao": "ELEITO POR QP",
+     "posicao": 4
+    },
+    {
+     "numero": 2525,
+     "nome": "CARLOS HENRIQUE GAGUIM",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 48012,
+     "pct": 6.71,
+     "situacao": "ELEITO POR QP",
+     "posicao": 5
+    },
+    {
+     "numero": 2580,
+     "nome": "PROFESSORA DORINHA",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 48008,
+     "pct": 6.71,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 6
+    },
+    {
+     "numero": 1511,
+     "nome": "DULCE MIRANDA",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 40719,
+     "pct": 5.69,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 7
+    },
+    {
+     "numero": 1145,
+     "nome": "LAZARO BOTELHO",
+     "partido": "PP",
+     "federacao": null,
+     "votos": 40270,
+     "pct": 5.62,
+     "situacao": "SUPLENTE",
+     "posicao": 8
+    },
+    {
+     "numero": 9090,
+     "nome": "JOSI NUNES",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 31510,
+     "pct": 4.4,
+     "situacao": "SUPLENTE",
+     "posicao": 9
+    },
+    {
+     "numero": 4040,
+     "nome": "TIAGO ANDRINO",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 22538,
+     "pct": 3.15,
+     "situacao": "SUPLENTE",
+     "posicao": 10
+    },
+    {
+     "numero": 1303,
+     "nome": "CELIO MOURA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 18167,
+     "pct": 2.54,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 11
+    },
+    {
+     "numero": 5510,
+     "nome": "DIOGO FERNANDES",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 17170,
+     "pct": 2.4,
+     "situacao": "SUPLENTE",
+     "posicao": 12
+    },
+    {
+     "numero": 4511,
+     "nome": "EDUARDO FORTES",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 14451,
+     "pct": 2.02,
+     "situacao": "SUPLENTE",
+     "posicao": 13
+    },
+    {
+     "numero": 4555,
+     "nome": "RUBEN RITTER",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 13173,
+     "pct": 1.84,
+     "situacao": "SUPLENTE",
+     "posicao": 14
+    },
+    {
+     "numero": 3131,
+     "nome": "JOAO OLIVEIRA",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 11836,
+     "pct": 1.65,
+     "situacao": "SUPLENTE",
+     "posicao": 15
+    },
+    {
+     "numero": 2888,
+     "nome": "DR. ROBERTO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 9871,
+     "pct": 1.38,
+     "situacao": "NÃO ELEITO",
+     "posicao": 16
+    },
+    {
+     "numero": 1700,
+     "nome": "CORONEL JAIR",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 9858,
+     "pct": 1.38,
+     "situacao": "NÃO ELEITO",
+     "posicao": 17
+    },
+    {
+     "numero": 1789,
+     "nome": "AUGUSTO SIMONI",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 5611,
+     "pct": 0.78,
+     "situacao": "NÃO ELEITO",
+     "posicao": 18
+    },
+    {
+     "numero": 2810,
+     "nome": "CORONEL EDVAN",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 5576,
+     "pct": 0.78,
+     "situacao": "NÃO ELEITO",
+     "posicao": 19
+    },
+    {
+     "numero": 1010,
+     "nome": "SARGENTO JOÃO VICTOR",
+     "partido": "PRB",
+     "federacao": null,
+     "votos": 5295,
+     "pct": 0.74,
+     "situacao": "SUPLENTE",
+     "posicao": 20
+    },
+    {
+     "numero": 4545,
+     "nome": "MARTA RAMOS",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 5225,
+     "pct": 0.73,
+     "situacao": "SUPLENTE",
+     "posicao": 21
+    },
+    {
+     "numero": 6565,
+     "nome": "JOAO LUCAS",
+     "partido": "PC do B",
+     "federacao": null,
+     "votos": 4896,
+     "pct": 0.68,
+     "situacao": "SUPLENTE",
+     "posicao": 22
+    },
+    {
+     "numero": 1744,
+     "nome": "CAPITÃO DIÓGENES",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 4575,
+     "pct": 0.64,
+     "situacao": "NÃO ELEITO",
+     "posicao": 23
+    },
+    {
+     "numero": 4343,
+     "nome": "GEFERSON BARROS",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 4357,
+     "pct": 0.61,
+     "situacao": "SUPLENTE",
+     "posicao": 24
+    },
+    {
+     "numero": 4010,
+     "nome": "FELIPE ROCHA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 4211,
+     "pct": 0.59,
+     "situacao": "SUPLENTE",
+     "posicao": 25
+    },
+    {
+     "numero": 3333,
+     "nome": ".NUIR JUNIOR",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 4128,
+     "pct": 0.58,
+     "situacao": "NÃO ELEITO",
+     "posicao": 26
+    },
+    {
+     "numero": 1310,
+     "nome": "PROFESSOR ADÃO FRANCISCO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 3635,
+     "pct": 0.51,
+     "situacao": "SUPLENTE",
+     "posicao": 27
+    },
+    {
+     "numero": 2300,
+     "nome": "EMMANOEL MARLON",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 3336,
+     "pct": 0.47,
+     "situacao": "NÃO ELEITO",
+     "posicao": 28
+    },
+    {
+     "numero": 1031,
+     "nome": "JOYCE",
+     "partido": "PRB",
+     "federacao": null,
+     "votos": 3158,
+     "pct": 0.44,
+     "situacao": "SUPLENTE",
+     "posicao": 29
+    },
+    {
+     "numero": 1355,
+     "nome": "CICERA DO PT",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 3063,
+     "pct": 0.43,
+     "situacao": "SUPLENTE",
+     "posicao": 30
+    },
+    {
+     "numero": 1333,
+     "nome": "DR. ARIMATEIA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2932,
+     "pct": 0.41,
+     "situacao": "SUPLENTE",
+     "posicao": 31
+    },
+    {
+     "numero": 1314,
+     "nome": "MARIA VANIR",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2764,
+     "pct": 0.39,
+     "situacao": "SUPLENTE",
+     "posicao": 32
+    },
+    {
+     "numero": 1330,
+     "nome": "VILELA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2589,
+     "pct": 0.36,
+     "situacao": "SUPLENTE",
+     "posicao": 33
+    },
+    {
+     "numero": 5120,
+     "nome": "PASTORA HILDA",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 2385,
+     "pct": 0.33,
+     "situacao": "SUPLENTE",
+     "posicao": 34
+    },
+    {
+     "numero": 4321,
+     "nome": "ANTONIO BANDEIRA",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 2379,
+     "pct": 0.33,
+     "situacao": "SUPLENTE",
+     "posicao": 35
+    },
+    {
+     "numero": 4500,
+     "nome": "DR. LUCIANO DE CASTRO",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 2316,
+     "pct": 0.32,
+     "situacao": "SUPLENTE",
+     "posicao": 36
+    },
+    {
+     "numero": 1711,
+     "nome": "ELENILSON B. RODRIGUES",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 2314,
+     "pct": 0.32,
+     "situacao": "NÃO ELEITO",
+     "posicao": 37
+    },
+    {
+     "numero": 2727,
+     "nome": "DELEGADO ADRIERLIS",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 2122,
+     "pct": 0.3,
+     "situacao": "NÃO ELEITO",
+     "posicao": 38
+    },
+    {
+     "numero": 2800,
+     "nome": "APÓSTOLO ELIAS",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 2100,
+     "pct": 0.29,
+     "situacao": "NÃO ELEITO",
+     "posicao": 39
+    },
+    {
+     "numero": 1322,
+     "nome": "RONALDINHO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 1947,
+     "pct": 0.27,
+     "situacao": "SUPLENTE",
+     "posicao": 40
+    },
+    {
+     "numero": 4510,
+     "nome": "MARCOS DA ETICAM",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 1842,
+     "pct": 0.26,
+     "situacao": "SUPLENTE",
+     "posicao": 41
+    },
+    {
+     "numero": 1234,
+     "nome": "JENALDO TAVEIRO",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 1754,
+     "pct": 0.24,
+     "situacao": "NÃO ELEITO",
+     "posicao": 42
+    },
+    {
+     "numero": 5050,
+     "nome": "MONALISA FARIAS",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 1669,
+     "pct": 0.23,
+     "situacao": "NÃO ELEITO",
+     "posicao": 43
+    },
+    {
+     "numero": 1344,
+     "nome": "JULIO CARTEIRO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 1602,
+     "pct": 0.22,
+     "situacao": "SUPLENTE",
+     "posicao": 44
+    },
+    {
+     "numero": 7070,
+     "nome": "TOM LYRA",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 1524,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 45
+    },
+    {
+     "numero": 4417,
+     "nome": "HENRIQUE FRAGATA",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 1144,
+     "pct": 0.16,
+     "situacao": "NÃO ELEITO",
+     "posicao": 46
+    },
+    {
+     "numero": 1777,
+     "nome": "PATRÍCIA FLEISCHER",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1089,
+     "pct": 0.15,
+     "situacao": "NÃO ELEITO",
+     "posicao": 47
+    },
+    {
+     "numero": 1713,
+     "nome": "ANTONIO CARLOS",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 845,
+     "pct": 0.12,
+     "situacao": "NÃO ELEITO",
+     "posicao": 48
+    },
+    {
+     "numero": 5040,
+     "nome": "ZÉ ADÃO RUFO",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 821,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 49
+    },
+    {
+     "numero": 1731,
+     "nome": "ANTONIO CARLOS ALEXANDRE",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 811,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 50
+    },
+    {
+     "numero": 2833,
+     "nome": "EUGÊNIO COLORIN",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 765,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 51
+    },
+    {
+     "numero": 1747,
+     "nome": "NILCE GAMA",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 748,
+     "pct": 0.1,
+     "situacao": "NÃO ELEITO",
+     "posicao": 52
+    },
+    {
+     "numero": 5454,
+     "nome": "PROFESSOR ABRAÃO LIMA",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 675,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 53
+    },
+    {
+     "numero": 5055,
+     "nome": "LUCIA VIANA",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 669,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 54
+    },
+    {
+     "numero": 5456,
+     "nome": "BENIZA LUZ",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 667,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 55
+    },
+    {
+     "numero": 2828,
+     "nome": "VÂNIA SEVERO VIDAL",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 563,
+     "pct": 0.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 56
+    },
+    {
+     "numero": 2890,
+     "nome": "ITAMAR ZORCHI",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 559,
+     "pct": 0.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 57
+    },
+    {
+     "numero": 1818,
+     "nome": "QUEOPS",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 523,
+     "pct": 0.07,
+     "situacao": "SUPLENTE",
+     "posicao": 58
+    },
+    {
+     "numero": 4488,
+     "nome": "REGEIS GONZAGA",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 435,
+     "pct": 0.06,
+     "situacao": "NÃO ELEITO",
+     "posicao": 59
+    },
+    {
+     "numero": 1727,
+     "nome": "IRMÃ LAURA",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 409,
+     "pct": 0.06,
+     "situacao": "NÃO ELEITO",
+     "posicao": 60
+    },
+    {
+     "numero": 3500,
+     "nome": "WILLIAMS SILVA",
+     "partido": "PMB",
+     "federacao": null,
+     "votos": 401,
+     "pct": 0.06,
+     "situacao": "NÃO ELEITO",
+     "posicao": 61
+    },
+    {
+     "numero": 2877,
+     "nome": "COQUEIRO FILHO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 388,
+     "pct": 0.05,
+     "situacao": "NÃO ELEITO",
+     "posicao": 62
+    },
+    {
+     "numero": 3100,
+     "nome": "EULA ANGELIM",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 369,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 63
+    },
+    {
+     "numero": 4300,
+     "nome": "POLEANY GOMES",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 329,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 64
+    },
+    {
+     "numero": 4000,
+     "nome": "KALENE CRISTINA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 306,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 65
+    },
+    {
+     "numero": 2700,
+     "nome": "PASTOR EDUARDO MARTINS",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 299,
+     "pct": 0.04,
+     "situacao": "NÃO ELEITO",
+     "posicao": 66
+    },
+    {
+     "numero": 4567,
+     "nome": "SÉRGIUS PRESTES",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 282,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 67
+    },
+    {
+     "numero": 5010,
+     "nome": "ARLINDO SANTOS",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 269,
+     "pct": 0.04,
+     "situacao": "NÃO ELEITO",
+     "posicao": 68
+    },
+    {
+     "numero": 3535,
+     "nome": "MARCIO MENEZES",
+     "partido": "PMB",
+     "federacao": null,
+     "votos": 218,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 69
+    },
+    {
+     "numero": 1919,
+     "nome": "ADIR GENTIL",
+     "partido": "PODE",
+     "federacao": null,
+     "votos": 216,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 70
+    },
+    {
+     "numero": 3663,
+     "nome": "ORLANDO DOS REIS SILVA",
+     "partido": "PTC",
+     "federacao": null,
+     "votos": 199,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 71
+    },
+    {
+     "numero": 3310,
+     "nome": "MARIANGELA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 192,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 72
+    },
+    {
+     "numero": 2815,
+     "nome": "DR. FÁTIMA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 187,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 73
+    },
+    {
+     "numero": 2221,
+     "nome": "DARLLEM TAVARES",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 169,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 74
+    },
+    {
+     "numero": 5500,
+     "nome": "ROSE PEQUENO",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 166,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 75
+    },
+    {
+     "numero": 2712,
+     "nome": "ISABEL",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 157,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 76
+    },
+    {
+     "numero": 1733,
+     "nome": "ROGERIA FERNANDA",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 110,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 77
+    },
+    {
+     "numero": 6510,
+     "nome": "RANIELE ARAUJO",
+     "partido": "PC do B",
+     "federacao": null,
+     "votos": 78,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 78
+    },
+    {
+     "numero": 2899,
+     "nome": "JULIO FIDELIX",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 59,
+     "pct": 0.01,
+     "situacao": "NÃO ELEITO",
+     "posicao": 79
+    },
+    {
+     "numero": 2882,
+     "nome": "ELAINE COSTA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 33,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 80
+    }
+   ]
+  },
+  {
+   "codigo": 7,
+   "nome": "Deputado Estadual",
+   "votos_validos": 746638,
+   "candidatos": [
+    {
+     "numero": 77100,
+     "nome": "LEO BARBOSA",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 23477,
+     "pct": 3.14,
+     "situacao": "ELEITO POR QP",
+     "posicao": 1
+    },
+    {
+     "numero": 77700,
+     "nome": "VILMAR DE OLIVEIRA",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 23255,
+     "pct": 3.11,
+     "situacao": "ELEITO POR QP",
+     "posicao": 2
+    },
+    {
+     "numero": 36000,
+     "nome": "CLEITON CARDOSO",
+     "partido": "PTC",
+     "federacao": null,
+     "votos": 23245,
+     "pct": 3.11,
+     "situacao": "ELEITO POR QP",
+     "posicao": 3
+    },
+    {
+     "numero": 77333,
+     "nome": "AMELIO CAYRES",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 22980,
+     "pct": 3.08,
+     "situacao": "ELEITO POR QP",
+     "posicao": 4
+    },
+    {
+     "numero": 15777,
+     "nome": "JAIR FARIAS",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 22952,
+     "pct": 3.07,
+     "situacao": "ELEITO POR QP",
+     "posicao": 5
+    },
+    {
+     "numero": 45555,
+     "nome": "LUANA RIBEIRO",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 19084,
+     "pct": 2.56,
+     "situacao": "ELEITO POR QP",
+     "posicao": 6
+    },
+    {
+     "numero": 31111,
+     "nome": "TOINHO ANDRADE",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 18947,
+     "pct": 2.54,
+     "situacao": "ELEITO POR QP",
+     "posicao": 7
+    },
+    {
+     "numero": 23222,
+     "nome": "EDUARDO DO DERTINS",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 18907,
+     "pct": 2.53,
+     "situacao": "ELEITO POR QP",
+     "posicao": 8
+    },
+    {
+     "numero": 45045,
+     "nome": "OLYNTHO NETO",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 18853,
+     "pct": 2.53,
+     "situacao": "ELEITO POR QP",
+     "posicao": 9
+    },
+    {
+     "numero": 25888,
+     "nome": "EDUARDO SIQUEIRA CAMPOS",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 17951,
+     "pct": 2.4,
+     "situacao": "ELEITO POR QP",
+     "posicao": 10
+    },
+    {
+     "numero": 11145,
+     "nome": "VALDEREZ CASTELO BRANCO",
+     "partido": "PP",
+     "federacao": null,
+     "votos": 17790,
+     "pct": 2.38,
+     "situacao": "ELEITO POR QP",
+     "posicao": 11
+    },
+    {
+     "numero": 15123,
+     "nome": "NILTON FRANCO",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 17637,
+     "pct": 2.36,
+     "situacao": "ELEITO POR QP",
+     "posicao": 12
+    },
+    {
+     "numero": 40123,
+     "nome": "RICARDO AYRES",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 17024,
+     "pct": 2.28,
+     "situacao": "ELEITO POR QP",
+     "posicao": 13
+    },
+    {
+     "numero": 15115,
+     "nome": "ELENIL DA PENHA",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 16826,
+     "pct": 2.25,
+     "situacao": "ELEITO POR QP",
+     "posicao": 14
+    },
+    {
+     "numero": 15015,
+     "nome": "VALDEMAR JUNIOR",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 16624,
+     "pct": 2.23,
+     "situacao": "ELEITO POR QP",
+     "posicao": 15
+    },
+    {
+     "numero": 15456,
+     "nome": "JORGE FREDERICO",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 16576,
+     "pct": 2.22,
+     "situacao": "ELEITO POR QP",
+     "posicao": 16
+    },
+    {
+     "numero": 22111,
+     "nome": "FABION GOMES",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 14367,
+     "pct": 1.92,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 17
+    },
+    {
+     "numero": 45123,
+     "nome": "GUTIERRES TORQUATO",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 13874,
+     "pct": 1.86,
+     "situacao": "SUPLENTE",
+     "posicao": 18
+    },
+    {
+     "numero": 22456,
+     "nome": "MARCUS MARCELO",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 13616,
+     "pct": 1.82,
+     "situacao": "SUPLENTE",
+     "posicao": 19
+    },
+    {
+     "numero": 13613,
+     "nome": "AMALIA SANTANA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 13193,
+     "pct": 1.77,
+     "situacao": "ELEITO POR QP",
+     "posicao": 20
+    },
+    {
+     "numero": 20123,
+     "nome": "FILIPE MARTINS",
+     "partido": "PSC",
+     "federacao": null,
+     "votos": 13137,
+     "pct": 1.76,
+     "situacao": "SUPLENTE",
+     "posicao": 21
+    },
+    {
+     "numero": 90090,
+     "nome": "PROFESSOR JUNIOR GEO",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 10944,
+     "pct": 1.47,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 22
+    },
+    {
+     "numero": 13456,
+     "nome": "ZÉ ROBERTO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 10090,
+     "pct": 1.35,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 23
+    },
+    {
+     "numero": 31123,
+     "nome": "GLEYDSON NATO",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 9645,
+     "pct": 1.29,
+     "situacao": "SUPLENTE",
+     "posicao": 24
+    },
+    {
+     "numero": 43333,
+     "nome": "ISSAM",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 9251,
+     "pct": 1.24,
+     "situacao": "ELEITO POR QP",
+     "posicao": 25
+    },
+    {
+     "numero": 13200,
+     "nome": "SOLANGE DUAILIBE",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 9089,
+     "pct": 1.22,
+     "situacao": "SUPLENTE",
+     "posicao": 26
+    },
+    {
+     "numero": 13123,
+     "nome": "JOSE SALOMÃO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 8328,
+     "pct": 1.12,
+     "situacao": "SUPLENTE",
+     "posicao": 27
+    },
+    {
+     "numero": 90123,
+     "nome": "EDINHO",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 8328,
+     "pct": 1.12,
+     "situacao": "SUPLENTE",
+     "posicao": 27
+    },
+    {
+     "numero": 17123,
+     "nome": "VANDA MONTEIRO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 7796,
+     "pct": 1.04,
+     "situacao": "ELEITO POR QP",
+     "posicao": 29
+    },
+    {
+     "numero": 90690,
+     "nome": "RONIVON MACIEL",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 7743,
+     "pct": 1.04,
+     "situacao": "SUPLENTE",
+     "posicao": 30
+    },
+    {
+     "numero": 54777,
+     "nome": "IVORY DE LIRA",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 7300,
+     "pct": 0.98,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 31
+    },
+    {
+     "numero": 43123,
+     "nome": "CLAUDIA LELIS",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 6746,
+     "pct": 0.9,
+     "situacao": "ELEITO POR MÉDIA",
+     "posicao": 32
+    },
+    {
+     "numero": 27777,
+     "nome": "DELEGADO RERISSON",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 6642,
+     "pct": 0.89,
+     "situacao": "SUPLENTE",
+     "posicao": 33
+    },
+    {
+     "numero": 23000,
+     "nome": "IVAN VAQUEIRO",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 6597,
+     "pct": 0.88,
+     "situacao": "SUPLENTE",
+     "posicao": 34
+    },
+    {
+     "numero": 22123,
+     "nome": "STALIN BUCAR",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 6509,
+     "pct": 0.87,
+     "situacao": "SUPLENTE",
+     "posicao": 35
+    },
+    {
+     "numero": 12345,
+     "nome": "JOSE AUGUSTO",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 6336,
+     "pct": 0.85,
+     "situacao": "SUPLENTE",
+     "posicao": 36
+    },
+    {
+     "numero": 40400,
+     "nome": "WISTON GOMES DIAS",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 6327,
+     "pct": 0.85,
+     "situacao": "SUPLENTE",
+     "posicao": 37
+    },
+    {
+     "numero": 27100,
+     "nome": "YGOR CORTEZ",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 6128,
+     "pct": 0.82,
+     "situacao": "SUPLENTE",
+     "posicao": 38
+    },
+    {
+     "numero": 10123,
+     "nome": "PASTOR WELLINGTON",
+     "partido": "PRB",
+     "federacao": null,
+     "votos": 6024,
+     "pct": 0.81,
+     "situacao": "SUPLENTE",
+     "posicao": 39
+    },
+    {
+     "numero": 55100,
+     "nome": "FOLHA",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 5575,
+     "pct": 0.75,
+     "situacao": "SUPLENTE",
+     "posicao": 40
+    },
+    {
+     "numero": 43456,
+     "nome": "CENOURÃO",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 5505,
+     "pct": 0.74,
+     "situacao": "SUPLENTE",
+     "posicao": 41
+    },
+    {
+     "numero": 12000,
+     "nome": "ATAIDE RODRIGUES",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 5389,
+     "pct": 0.72,
+     "situacao": "SUPLENTE",
+     "posicao": 42
+    },
+    {
+     "numero": 70000,
+     "nome": "HELIO SANTANA",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 5221,
+     "pct": 0.7,
+     "situacao": "SUPLENTE",
+     "posicao": 43
+    },
+    {
+     "numero": 35555,
+     "nome": "DR. HIDER ALENCAR",
+     "partido": "PMB",
+     "federacao": null,
+     "votos": 4949,
+     "pct": 0.66,
+     "situacao": "SUPLENTE",
+     "posicao": 44
+    },
+    {
+     "numero": 19000,
+     "nome": "MOISEMAR MARINHO",
+     "partido": "PODE",
+     "federacao": null,
+     "votos": 4765,
+     "pct": 0.64,
+     "situacao": "SUPLENTE",
+     "posicao": 45
+    },
+    {
+     "numero": 40678,
+     "nome": "KITA MACIEL",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 4715,
+     "pct": 0.63,
+     "situacao": "SUPLENTE",
+     "posicao": 46
+    },
+    {
+     "numero": 44123,
+     "nome": "JOAQUIM ALVES",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 4566,
+     "pct": 0.61,
+     "situacao": "SUPLENTE",
+     "posicao": 47
+    },
+    {
+     "numero": 40100,
+     "nome": "WAGNER ENOQUE",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 4261,
+     "pct": 0.57,
+     "situacao": "SUPLENTE",
+     "posicao": 48
+    },
+    {
+     "numero": 22333,
+     "nome": "CORONEL BENICIO",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 3996,
+     "pct": 0.54,
+     "situacao": "SUPLENTE",
+     "posicao": 49
+    },
+    {
+     "numero": 19123,
+     "nome": "CRISTIANO RODRIGUES",
+     "partido": "PODE",
+     "federacao": null,
+     "votos": 3661,
+     "pct": 0.49,
+     "situacao": "SUPLENTE",
+     "posicao": 50
+    },
+    {
+     "numero": 65123,
+     "nome": "DR. NESIO FERNANDES",
+     "partido": "PC do B",
+     "federacao": null,
+     "votos": 3619,
+     "pct": 0.48,
+     "situacao": "SUPLENTE",
+     "posicao": 51
+    },
+    {
+     "numero": 33100,
+     "nome": "CLEITON PINHEIRO",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 3527,
+     "pct": 0.47,
+     "situacao": "SUPLENTE",
+     "posicao": 52
+    },
+    {
+     "numero": 28190,
+     "nome": "SARGENTO JENILSON",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 3387,
+     "pct": 0.45,
+     "situacao": "NÃO ELEITO",
+     "posicao": 53
+    },
+    {
+     "numero": 17357,
+     "nome": "TENENTE GILBERTO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 3382,
+     "pct": 0.45,
+     "situacao": "SUPLENTE",
+     "posicao": 54
+    },
+    {
+     "numero": 28888,
+     "nome": "DRA MAYARA CABRAL",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 3253,
+     "pct": 0.44,
+     "situacao": "NÃO ELEITO",
+     "posicao": 55
+    },
+    {
+     "numero": 45145,
+     "nome": "RONIS SILVA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 2999,
+     "pct": 0.4,
+     "situacao": "SUPLENTE",
+     "posicao": 56
+    },
+    {
+     "numero": 23010,
+     "nome": "SANDRO BANDEIRA",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 2947,
+     "pct": 0.39,
+     "situacao": "SUPLENTE",
+     "posicao": 57
+    },
+    {
+     "numero": 31133,
+     "nome": "JÚNIOR VERAS",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 2878,
+     "pct": 0.39,
+     "situacao": "SUPLENTE",
+     "posicao": 58
+    },
+    {
+     "numero": 10000,
+     "nome": "MARCIA HELENA",
+     "partido": "PRB",
+     "federacao": null,
+     "votos": 2872,
+     "pct": 0.38,
+     "situacao": "SUPLENTE",
+     "posicao": 59
+    },
+    {
+     "numero": 70190,
+     "nome": "SARGENTO MOREIRA",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 2545,
+     "pct": 0.34,
+     "situacao": "SUPLENTE",
+     "posicao": 60
+    },
+    {
+     "numero": 18120,
+     "nome": "GILSON LOPES VALADARES",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 2536,
+     "pct": 0.34,
+     "situacao": "SUPLENTE",
+     "posicao": 61
+    },
+    {
+     "numero": 13013,
+     "nome": "EUTALIA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2527,
+     "pct": 0.34,
+     "situacao": "SUPLENTE",
+     "posicao": 62
+    },
+    {
+     "numero": 45100,
+     "nome": "PROFESSOR DELAN",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 2361,
+     "pct": 0.32,
+     "situacao": "SUPLENTE",
+     "posicao": 63
+    },
+    {
+     "numero": 13500,
+     "nome": "ANTONIO MARCOS",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 2283,
+     "pct": 0.31,
+     "situacao": "SUPLENTE",
+     "posicao": 64
+    },
+    {
+     "numero": 23123,
+     "nome": "IAN CAVALCANTE",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 2276,
+     "pct": 0.3,
+     "situacao": "SUPLENTE",
+     "posicao": 65
+    },
+    {
+     "numero": 28333,
+     "nome": "SARGENTO QUIRINO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 2274,
+     "pct": 0.3,
+     "situacao": "NÃO ELEITO",
+     "posicao": 66
+    },
+    {
+     "numero": 27700,
+     "nome": "CLEYDSON COIMBRA",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 2001,
+     "pct": 0.27,
+     "situacao": "SUPLENTE",
+     "posicao": 67
+    },
+    {
+     "numero": 12456,
+     "nome": "GLEIDY BRAGA",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 2000,
+     "pct": 0.27,
+     "situacao": "SUPLENTE",
+     "posicao": 68
+    },
+    {
+     "numero": 28150,
+     "nome": "MAJOR EDVARDES",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 1867,
+     "pct": 0.25,
+     "situacao": "NÃO ELEITO",
+     "posicao": 69
+    },
+    {
+     "numero": 17777,
+     "nome": "VANUSA MARTINS",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1831,
+     "pct": 0.25,
+     "situacao": "SUPLENTE",
+     "posicao": 70
+    },
+    {
+     "numero": 25192,
+     "nome": "ENFERMEIRA SOL",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 1747,
+     "pct": 0.23,
+     "situacao": "SUPLENTE",
+     "posicao": 71
+    },
+    {
+     "numero": 28456,
+     "nome": "PROFESSOR JANIVALDO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 1689,
+     "pct": 0.23,
+     "situacao": "NÃO ELEITO",
+     "posicao": 72
+    },
+    {
+     "numero": 15000,
+     "nome": "JC",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 1605,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 73
+    },
+    {
+     "numero": 40000,
+     "nome": "LAZINHO RENOVA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 1588,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 74
+    },
+    {
+     "numero": 17000,
+     "nome": "LUCAS BELINELLE",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1584,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 75
+    },
+    {
+     "numero": 31456,
+     "nome": "PADERINHO",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 1576,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 76
+    },
+    {
+     "numero": 51200,
+     "nome": "SARGENTO ARAGÃO",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 1565,
+     "pct": 0.21,
+     "situacao": "SUPLENTE",
+     "posicao": 77
+    },
+    {
+     "numero": 43200,
+     "nome": "PEDRO DIAS (PEDRÃO)",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 1479,
+     "pct": 0.2,
+     "situacao": "SUPLENTE",
+     "posicao": 78
+    },
+    {
+     "numero": 43433,
+     "nome": "DJALMA ARAUJO",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 1465,
+     "pct": 0.2,
+     "situacao": "SUPLENTE",
+     "posicao": 79
+    },
+    {
+     "numero": 33000,
+     "nome": "ROBERTO DA CLÍNICA DAS MOTOS",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 1386,
+     "pct": 0.19,
+     "situacao": "SUPLENTE",
+     "posicao": 80
+    },
+    {
+     "numero": 18888,
+     "nome": "NATAL CASTRO",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 1337,
+     "pct": 0.18,
+     "situacao": "SUPLENTE",
+     "posicao": 81
+    },
+    {
+     "numero": 17700,
+     "nome": "PROF. EDISOM ALVES",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 1310,
+     "pct": 0.18,
+     "situacao": "SUPLENTE",
+     "posicao": 82
+    },
+    {
+     "numero": 33123,
+     "nome": "IRANCILDO NUNES SERRA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 1282,
+     "pct": 0.17,
+     "situacao": "SUPLENTE",
+     "posicao": 83
+    },
+    {
+     "numero": 14789,
+     "nome": "NASSA ÉLIDA",
+     "partido": "PTB",
+     "federacao": null,
+     "votos": 1189,
+     "pct": 0.16,
+     "situacao": "SUPLENTE",
+     "posicao": 84
+    },
+    {
+     "numero": 65000,
+     "nome": "ELPIDIO NAVES",
+     "partido": "PC do B",
+     "federacao": null,
+     "votos": 1149,
+     "pct": 0.15,
+     "situacao": "SUPLENTE",
+     "posicao": 85
+    },
+    {
+     "numero": 13321,
+     "nome": "JOESSI DO SKINÃO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 1115,
+     "pct": 0.15,
+     "situacao": "SUPLENTE",
+     "posicao": 86
+    },
+    {
+     "numero": 33456,
+     "nome": "PROFESSOR BERNARDO KLEPA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 1088,
+     "pct": 0.15,
+     "situacao": "SUPLENTE",
+     "posicao": 87
+    },
+    {
+     "numero": 31333,
+     "nome": "KASSYO FERNANDO",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 964,
+     "pct": 0.13,
+     "situacao": "SUPLENTE",
+     "posicao": 88
+    },
+    {
+     "numero": 40300,
+     "nome": "NELIO LOPES",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 945,
+     "pct": 0.13,
+     "situacao": "SUPLENTE",
+     "posicao": 89
+    },
+    {
+     "numero": 70555,
+     "nome": "JOSÉ BORGES",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 927,
+     "pct": 0.12,
+     "situacao": "SUPLENTE",
+     "posicao": 90
+    },
+    {
+     "numero": 27270,
+     "nome": "ANA POLICARPO",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 888,
+     "pct": 0.12,
+     "situacao": "SUPLENTE",
+     "posicao": 91
+    },
+    {
+     "numero": 18800,
+     "nome": "LETO LAPERO MILHOMEM",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 871,
+     "pct": 0.12,
+     "situacao": "SUPLENTE",
+     "posicao": 92
+    },
+    {
+     "numero": 27222,
+     "nome": "MÁRIO PRADO",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 869,
+     "pct": 0.12,
+     "situacao": "SUPLENTE",
+     "posicao": 93
+    },
+    {
+     "numero": 31222,
+     "nome": "DR. JORGE SEIXAS",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 865,
+     "pct": 0.12,
+     "situacao": "SUPLENTE",
+     "posicao": 94
+    },
+    {
+     "numero": 90111,
+     "nome": "PASTOR HUEDER NOLETO",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 834,
+     "pct": 0.11,
+     "situacao": "SUPLENTE",
+     "posicao": 95
+    },
+    {
+     "numero": 28040,
+     "nome": "DR. CLEYBBER CÂMARA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 790,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 96
+    },
+    {
+     "numero": 28000,
+     "nome": "THIAGO PAULINO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 787,
+     "pct": 0.11,
+     "situacao": "NÃO ELEITO",
+     "posicao": 97
+    },
+    {
+     "numero": 28123,
+     "nome": "PASTORA LUIZA REGINA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 748,
+     "pct": 0.1,
+     "situacao": "NÃO ELEITO",
+     "posicao": 98
+    },
+    {
+     "numero": 28121,
+     "nome": "ALEXANDRE FILHO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 744,
+     "pct": 0.1,
+     "situacao": "NÃO ELEITO",
+     "posicao": 99
+    },
+    {
+     "numero": 17017,
+     "nome": "FERNANDO DA RAÇÃO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 717,
+     "pct": 0.1,
+     "situacao": "SUPLENTE",
+     "posicao": 100
+    },
+    {
+     "numero": 28999,
+     "nome": "SUB TENENTE SOLEY",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 683,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 101
+    },
+    {
+     "numero": 50123,
+     "nome": "EDISSORENE CAPISTRANO",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 672,
+     "pct": 0.09,
+     "situacao": "NÃO ELEITO",
+     "posicao": 102
+    },
+    {
+     "numero": 12123,
+     "nome": "ALEX BOTELHO",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 633,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 103
+    },
+    {
+     "numero": 28900,
+     "nome": "EDI CALDOS E CALDOS",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 625,
+     "pct": 0.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 104
+    },
+    {
+     "numero": 28028,
+     "nome": "MANINHO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 617,
+     "pct": 0.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 105
+    },
+    {
+     "numero": 15111,
+     "nome": "MIRIAN",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 595,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 106
+    },
+    {
+     "numero": 77123,
+     "nome": "JOÃO TAVARES",
+     "partido": "SOLIDARIEDADE",
+     "federacao": null,
+     "votos": 589,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 107
+    },
+    {
+     "numero": 22222,
+     "nome": "EDNA ALVES",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 587,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 108
+    },
+    {
+     "numero": 13300,
+     "nome": "PRETINHA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 585,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 109
+    },
+    {
+     "numero": 28778,
+     "nome": "ELENA SANTOS",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 572,
+     "pct": 0.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 110
+    },
+    {
+     "numero": 23400,
+     "nome": "RODOLFO ALEXANDRE",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 569,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 111
+    },
+    {
+     "numero": 13000,
+     "nome": "PROFESSORA DA PAZ",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 563,
+     "pct": 0.08,
+     "situacao": "SUPLENTE",
+     "posicao": 112
+    },
+    {
+     "numero": 25123,
+     "nome": "PROFESSORA SILVIA MARRAFON",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 556,
+     "pct": 0.07,
+     "situacao": "SUPLENTE",
+     "posicao": 113
+    },
+    {
+     "numero": 23500,
+     "nome": "CLAUDIO MONTEIRO",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 501,
+     "pct": 0.07,
+     "situacao": "SUPLENTE",
+     "posicao": 114
+    },
+    {
+     "numero": 40200,
+     "nome": "ALMIR",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 481,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 115
+    },
+    {
+     "numero": 31031,
+     "nome": "LUCIMAR GODOY",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 475,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 116
+    },
+    {
+     "numero": 70222,
+     "nome": "VILMA MELO",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 472,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 117
+    },
+    {
+     "numero": 33233,
+     "nome": "HERCULANO RODRIGUES SILVA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 463,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 118
+    },
+    {
+     "numero": 33200,
+     "nome": "NUIMA MACHADO",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 456,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 119
+    },
+    {
+     "numero": 44444,
+     "nome": "COMADEIRA",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 426,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 120
+    },
+    {
+     "numero": 15500,
+     "nome": "JAMIR LOURENÇO",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 425,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 121
+    },
+    {
+     "numero": 40500,
+     "nome": "NEIVA CERQUEIRA",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 417,
+     "pct": 0.06,
+     "situacao": "SUPLENTE",
+     "posicao": 122
+    },
+    {
+     "numero": 17750,
+     "nome": "INDIO PARENTE",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 405,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 123
+    },
+    {
+     "numero": 19190,
+     "nome": "LU KHATAT",
+     "partido": "PODE",
+     "federacao": null,
+     "votos": 403,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 124
+    },
+    {
+     "numero": 27123,
+     "nome": "ENGENHEIRO JC CARVALHO",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 388,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 125
+    },
+    {
+     "numero": 15118,
+     "nome": "ZÉ HAROLDO",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 374,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 126
+    },
+    {
+     "numero": 18123,
+     "nome": "JULANE MARISE",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 354,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 127
+    },
+    {
+     "numero": 23300,
+     "nome": "MCACLLOUD",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 351,
+     "pct": 0.05,
+     "situacao": "SUPLENTE",
+     "posicao": 128
+    },
+    {
+     "numero": 54111,
+     "nome": "PROF LEONAM",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 333,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 129
+    },
+    {
+     "numero": 28013,
+     "nome": "TENENTE AMARAL",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 332,
+     "pct": 0.04,
+     "situacao": "NÃO ELEITO",
+     "posicao": 130
+    },
+    {
+     "numero": 15680,
+     "nome": "NOELI KOSSANN",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 331,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 131
+    },
+    {
+     "numero": 40600,
+     "nome": "MARCIA RIBEIRO",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 319,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 132
+    },
+    {
+     "numero": 28111,
+     "nome": "ELTOHN JOHN",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 296,
+     "pct": 0.04,
+     "situacao": "NÃO ELEITO",
+     "posicao": 133
+    },
+    {
+     "numero": 13077,
+     "nome": "PROF. FRANCISCO FRANCELINO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 293,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 134
+    },
+    {
+     "numero": 14100,
+     "nome": "ROSE LUZ",
+     "partido": "PTB",
+     "federacao": null,
+     "votos": 291,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 135
+    },
+    {
+     "numero": 23456,
+     "nome": "ROBERTO CARLOS",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 291,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 135
+    },
+    {
+     "numero": 40444,
+     "nome": "LAZARO GOMES",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 282,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 137
+    },
+    {
+     "numero": 25000,
+     "nome": "CLEIDE DO INDIGENA",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 278,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 138
+    },
+    {
+     "numero": 33600,
+     "nome": "IRMÃ ROSA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 278,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 138
+    },
+    {
+     "numero": 65186,
+     "nome": "DUENDE DE TAQUARUÇU",
+     "partido": "PC do B",
+     "federacao": null,
+     "votos": 269,
+     "pct": 0.04,
+     "situacao": "SUPLENTE",
+     "posicao": 140
+    },
+    {
+     "numero": 18111,
+     "nome": "IZZIA HIBRAHIM",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 259,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 141
+    },
+    {
+     "numero": 18018,
+     "nome": "CHARLLES PITA",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 254,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 142
+    },
+    {
+     "numero": 33033,
+     "nome": "PEDRO IMOVEIS",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 248,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 143
+    },
+    {
+     "numero": 31555,
+     "nome": "PAYAKAN",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 238,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 144
+    },
+    {
+     "numero": 51000,
+     "nome": "OLIVEIRA DESPACHANTE",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 234,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 145
+    },
+    {
+     "numero": 28007,
+     "nome": "PROFESSOR DR. ORLANDO",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 232,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 146
+    },
+    {
+     "numero": 28200,
+     "nome": "PROFESSOR ALVARENGA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 225,
+     "pct": 0.03,
+     "situacao": "NÃO ELEITO",
+     "posicao": 147
+    },
+    {
+     "numero": 90000,
+     "nome": "EDUARDO MAIA",
+     "partido": "PROS",
+     "federacao": null,
+     "votos": 222,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 148
+    },
+    {
+     "numero": 13513,
+     "nome": "CAXAPAU",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 215,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 149
+    },
+    {
+     "numero": 40567,
+     "nome": "TALITA PARRIÃO",
+     "partido": "PSB",
+     "federacao": null,
+     "votos": 214,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 150
+    },
+    {
+     "numero": 17500,
+     "nome": "REGIANE MACEDO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 213,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 151
+    },
+    {
+     "numero": 13113,
+     "nome": "FABRISQUIANO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 208,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 152
+    },
+    {
+     "numero": 33333,
+     "nome": "PROFESSOR MARTINS",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 198,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 153
+    },
+    {
+     "numero": 23333,
+     "nome": "PAULO AMARAL",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 191,
+     "pct": 0.03,
+     "situacao": "SUPLENTE",
+     "posicao": 154
+    },
+    {
+     "numero": 50100,
+     "nome": "SILVIO SOUSA",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 183,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 155
+    },
+    {
+     "numero": 15789,
+     "nome": "DONA SANTA",
+     "partido": "MDB",
+     "federacao": null,
+     "votos": 182,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 156
+    },
+    {
+     "numero": 44111,
+     "nome": "APARECIDO DA BELINA",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 170,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 157
+    },
+    {
+     "numero": 13451,
+     "nome": "RAIMUNDO MARCOS",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 169,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 158
+    },
+    {
+     "numero": 22022,
+     "nome": "MILENA AIRES",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 162,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 159
+    },
+    {
+     "numero": 25555,
+     "nome": "CAIO CESAR CORDEIRO",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 160,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 160
+    },
+    {
+     "numero": 23444,
+     "nome": "NAÍZE MELO",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 147,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 161
+    },
+    {
+     "numero": 45777,
+     "nome": "CRYS FRAGA",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 145,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 162
+    },
+    {
+     "numero": 45020,
+     "nome": "KEED WORLEY",
+     "partido": "PSDB",
+     "federacao": null,
+     "votos": 144,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 163
+    },
+    {
+     "numero": 22221,
+     "nome": "TELMA CAMPOS",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 142,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 164
+    },
+    {
+     "numero": 31000,
+     "nome": "ARIENE FONSECA SOUZA MACHADO",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 138,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 165
+    },
+    {
+     "numero": 12108,
+     "nome": "DENES DO IPÊ",
+     "partido": "PDT",
+     "federacao": null,
+     "votos": 132,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 166
+    },
+    {
+     "numero": 25027,
+     "nome": "DORIENE OLIVEIRA",
+     "partido": "DEM",
+     "federacao": null,
+     "votos": 125,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 167
+    },
+    {
+     "numero": 28886,
+     "nome": "CLEUDILENE SILVA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 124,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 168
+    },
+    {
+     "numero": 13111,
+     "nome": "DOMICIO DO NORDESTE",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 117,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 169
+    },
+    {
+     "numero": 28010,
+     "nome": "MANOEL SANTANA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 115,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 170
+    },
+    {
+     "numero": 28558,
+     "nome": "RUBENS JUNIOR",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 112,
+     "pct": 0.02,
+     "situacao": "NÃO ELEITO",
+     "posicao": 171
+    },
+    {
+     "numero": 36500,
+     "nome": "VILMAR XERENTE",
+     "partido": "PTC",
+     "federacao": null,
+     "votos": 112,
+     "pct": 0.02,
+     "situacao": "SUPLENTE",
+     "posicao": 171
+    },
+    {
+     "numero": 13999,
+     "nome": "THAWANNY JUVENTUDE",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 110,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 173
+    },
+    {
+     "numero": 50330,
+     "nome": "RAQUEL NASCIMENTO",
+     "partido": "PSOL",
+     "federacao": null,
+     "votos": 110,
+     "pct": 0.01,
+     "situacao": "NÃO ELEITO",
+     "posicao": 173
+    },
+    {
+     "numero": 31500,
+     "nome": "MARIA CLARICE LUSTOSA MILHOMEM",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 109,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 175
+    },
+    {
+     "numero": 22000,
+     "nome": "GORDIM ROSAL",
+     "partido": "PR",
+     "federacao": null,
+     "votos": 108,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 176
+    },
+    {
+     "numero": 27300,
+     "nome": "MARTHA HADASSA",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 107,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 177
+    },
+    {
+     "numero": 31231,
+     "nome": "PROFETA SEBASTIAN",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 103,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 178
+    },
+    {
+     "numero": 33500,
+     "nome": "JOSÉ MENESES",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 102,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 179
+    },
+    {
+     "numero": 23600,
+     "nome": "POLLYANNA MARTINS",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 96,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 180
+    },
+    {
+     "numero": 33300,
+     "nome": "ESTELA VANESSA",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 96,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 180
+    },
+    {
+     "numero": 33777,
+     "nome": "ILMA DA SAÚDE",
+     "partido": "PMN",
+     "federacao": null,
+     "votos": 92,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 182
+    },
+    {
+     "numero": 13777,
+     "nome": "PROFESSORA TEREZINHA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 86,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 183
+    },
+    {
+     "numero": 43777,
+     "nome": "KAUBY PESCADOR",
+     "partido": "PV",
+     "federacao": null,
+     "votos": 80,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 184
+    },
+    {
+     "numero": 51777,
+     "nome": "GALVÃO",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 78,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 185
+    },
+    {
+     "numero": 28222,
+     "nome": "MARISA AMORIM",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 77,
+     "pct": 0.01,
+     "situacao": "NÃO ELEITO",
+     "posicao": 186
+    },
+    {
+     "numero": 13789,
+     "nome": "CLEUDIANE PEREIRA CARDOSO",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 74,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 187
+    },
+    {
+     "numero": 23623,
+     "nome": "KARINE ALVES",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 67,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 188
+    },
+    {
+     "numero": 27333,
+     "nome": "LEONIDAS FERREIRA",
+     "partido": "DC",
+     "federacao": null,
+     "votos": 55,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 189
+    },
+    {
+     "numero": 70031,
+     "nome": "POLIANA SANTIS",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 48,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 190
+    },
+    {
+     "numero": 23032,
+     "nome": "EDILEUSA ALTO FOGOSO",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 47,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 191
+    },
+    {
+     "numero": 23100,
+     "nome": "RAYANNE ALENCAR",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 45,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 192
+    },
+    {
+     "numero": 31700,
+     "nome": "PAULINHA DO POVO",
+     "partido": "PHS",
+     "federacao": null,
+     "votos": 39,
+     "pct": 0.01,
+     "situacao": "SUPLENTE",
+     "posicao": 193
+    },
+    {
+     "numero": 23800,
+     "nome": "JOZELIA SILVA",
+     "partido": "PPS",
+     "federacao": null,
+     "votos": 34,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 194
+    },
+    {
+     "numero": 28321,
+     "nome": "REGINA DO SÃO LUCAS",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 33,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 195
+    },
+    {
+     "numero": 70123,
+     "nome": "RAIMUNDO BOI",
+     "partido": "AVANTE",
+     "federacao": null,
+     "votos": 32,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 196
+    },
+    {
+     "numero": 20200,
+     "nome": "ELIENE ALMEIDA",
+     "partido": "PSC",
+     "federacao": null,
+     "votos": 30,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 197
+    },
+    {
+     "numero": 13567,
+     "nome": "VILMAR SOUSA",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 23,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 198
+    },
+    {
+     "numero": 54567,
+     "nome": "TINHO SANTOS",
+     "partido": "PPL",
+     "federacao": null,
+     "votos": 21,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 199
+    },
+    {
+     "numero": 28555,
+     "nome": "JOCYLAINE SANTOS",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 19,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 200
+    },
+    {
+     "numero": 18742,
+     "nome": "MARIA DO ROSARIO",
+     "partido": "REDE",
+     "federacao": null,
+     "votos": 16,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 201
+    },
+    {
+     "numero": 28800,
+     "nome": "ALBERTO SABACK",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 16,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 201
+    },
+    {
+     "numero": 51500,
+     "nome": "FATIMA FREITAS",
+     "partido": "PATRI",
+     "federacao": null,
+     "votos": 16,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 201
+    },
+    {
+     "numero": 28777,
+     "nome": "FOSTER",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 9,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 204
+    },
+    {
+     "numero": 44800,
+     "nome": "JORGE GAÚCHO",
+     "partido": "PRP",
+     "federacao": null,
+     "votos": 8,
+     "pct": 0.0,
+     "situacao": "SUPLENTE",
+     "posicao": 205
+    },
+    {
+     "numero": 28567,
+     "nome": "TILINHA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 5,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 206
+    },
+    {
+     "numero": 28444,
+     "nome": "SANDRA INOMATA",
+     "partido": "PRTB",
+     "federacao": null,
+     "votos": 4,
+     "pct": 0.0,
+     "situacao": "NÃO ELEITO",
+     "posicao": 207
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 1039188,
+   "comparecimento": 831599,
+   "abstencoes": 207589,
+   "brancos": 8915,
+   "nulos": 65924,
+   "pct_comparecimento": 80.02,
+   "pct_abstencao": 19.98,
+   "pct_brancos": 1.07,
+   "pct_nulos": 7.93
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 1038754,
+   "comparecimento": 831214,
+   "abstencoes": 207540,
+   "brancos": 14389,
+   "nulos": 112022,
+   "pct_comparecimento": 80.02,
+   "pct_abstencao": 19.98,
+   "pct_brancos": 1.73,
+   "pct_nulos": 13.48
+  },
+  {
+   "codigo": 5,
+   "nome": "Senador",
+   "aptos": 1038754,
+   "comparecimento": 831214,
+   "abstencoes": 207540,
+   "brancos": 76167,
+   "nulos": 311558,
+   "pct_comparecimento": 80.02,
+   "pct_abstencao": 19.98,
+   "pct_brancos": 4.58,
+   "pct_nulos": 18.74
+  },
+  {
+   "codigo": 6,
+   "nome": "Deputado Federal",
+   "aptos": 1038754,
+   "comparecimento": 831214,
+   "abstencoes": 207540,
+   "brancos": 27259,
+   "nulos": 88013,
+   "pct_comparecimento": 80.02,
+   "pct_abstencao": 19.98,
+   "pct_brancos": 3.28,
+   "pct_nulos": 10.59
+  },
+  {
+   "codigo": 7,
+   "nome": "Deputado Estadual",
+   "aptos": 1038754,
+   "comparecimento": 831214,
+   "abstencoes": 207540,
+   "brancos": 19634,
+   "nulos": 64942,
+   "pct_comparecimento": 80.02,
+   "pct_abstencao": 19.98,
+   "pct_brancos": 2.36,
+   "pct_nulos": 7.81
+  }
+ ]
+}

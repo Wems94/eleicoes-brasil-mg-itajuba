@@ -1,0 +1,89 @@
+{
+ "ano": 2018,
+ "turno": 2,
+ "uf": "SC",
+ "cargos": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "votos_validos": 3906966,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "JAIR BOLSONARO",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 2966242,
+     "pct": 75.92,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 13,
+     "nome": "FERNANDO HADDAD",
+     "partido": "PT",
+     "federacao": null,
+     "votos": 940724,
+     "pct": 24.08,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "votos_validos": 3719421,
+   "candidatos": [
+    {
+     "numero": 17,
+     "nome": "COMANDANTE MOISÉS",
+     "partido": "PSL",
+     "federacao": null,
+     "votos": 2644179,
+     "pct": 71.09,
+     "situacao": "ELEITO",
+     "posicao": 1
+    },
+    {
+     "numero": 55,
+     "nome": "GELSON MERÍSIO",
+     "partido": "PSD",
+     "federacao": null,
+     "votos": 1075242,
+     "pct": 28.91,
+     "situacao": "NÃO ELEITO",
+     "posicao": 2
+    }
+   ]
+  }
+ ],
+ "comparecimento": [
+  {
+   "codigo": 1,
+   "nome": "Presidente",
+   "aptos": 5073146,
+   "comparecimento": 4217534,
+   "abstencoes": 855612,
+   "brancos": 88680,
+   "nulos": 221888,
+   "pct_comparecimento": 83.13,
+   "pct_abstencao": 16.87,
+   "pct_brancos": 2.1,
+   "pct_nulos": 5.26
+  },
+  {
+   "codigo": 3,
+   "nome": "Governador",
+   "aptos": 5068559,
+   "comparecimento": 4213519,
+   "abstencoes": 855040,
+   "brancos": 151683,
+   "nulos": 342415,
+   "pct_comparecimento": 83.13,
+   "pct_abstencao": 16.87,
+   "pct_brancos": 3.6,
+   "pct_nulos": 8.13
+  }
+ ]
+}
