@@ -10,7 +10,7 @@
 
 - [x] 2.1 Implementar o mart `municipio_ibge`, que casa (UF, nome normalizado) com a lista do IBGE e aplica `config/municipios_excecoes.yaml`, sem incluir o exterior. Verificar: testes cobrem um nome com acento, um caso resolvido por exceção e o exterior (ZZ) ignorado.
 - [x] 2.2 Adicionar ao gate as regras "município sem código IBGE", "código IBGE duplicado" e "código fora da malha", todas com severidade erro. Verificar: testes de `qualidade.py` com um município sem correspondência fazem o gate falhar listando UF e nome.
-- [ ] 2.3 Rodar `validacao-real.yml` e completar `municipios_excecoes.yaml` até não sobrar município sem código em 2018, 2022 e 2026. Verificar: relatório do gate sem erros dessas regras.
+- [x] 2.3 Rodar `validacao-real.yml` e completar `municipios_excecoes.yaml` até não sobrar município sem código em 2018, 2022 e 2026. Verificar: relatório do gate sem erros dessas regras.
 
 ## 3. Marts por município e zona
 
