@@ -81,6 +81,28 @@ def _sugestoes_ibge(con: duckdb.DuckDBPyConnection) -> None:
         print(f"  {uf}: {nome!r} -> {sugestao}")
 
 
+def _duplicatas_partido(con: duckdb.DuckDBPyConnection) -> None:
+    """Linhas inteiras de partido repetidas por zona (qual coluna as distingue?)."""
+    linhas = con.sql(
+        """WITH d AS (
+               SELECT ano, turno, sg_uf, cd_municipio, nr_zona, cd_cargo, nr_partido,
+                      st_voto_em_transito
+               FROM staging.votacao_partido_munzona GROUP BY ALL HAVING count(*) > 1
+               LIMIT 3)
+           SELECT p.* FROM staging.votacao_partido_munzona p JOIN d USING
+               (ano, turno, sg_uf, cd_municipio, nr_zona, cd_cargo, nr_partido,
+                st_voto_em_transito)
+           ORDER BY ALL"""
+    )
+    colunas, rows = linhas.columns, linhas.fetchall()
+    if not rows:
+        return
+    print("\n## Votação por partido: linhas repetidas por zona (exemplos)")
+    print(" | ".join(colunas))
+    for r in rows:
+        print(" | ".join(str(v) for v in r))
+
+
 def _orcamento_malha(con: duckdb.DuckDBPyConnection) -> bool:
     """Tarefa 4.1: a malha publicada cabe no orçamento comprimido?"""
     conteudo = geometria.serializar(geometria.montar(con))
@@ -173,6 +195,7 @@ def main() -> int:
     )
 
     _sugestoes_ibge(con)
+    _duplicatas_partido(con)
     ok = _orcamento_malha(con)
     _tabela(
         con,

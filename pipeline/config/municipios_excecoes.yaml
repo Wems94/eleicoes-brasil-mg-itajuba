@@ -2,5 +2,27 @@
 # acento, sem espaço e sem pontuação). Formato: UF -> nome como o TSE grava -> código
 # IBGE de 7 dígitos. O gate de qualidade lista os casos sem correspondência, e o
 # `scripts/validar_real.py` sugere os nomes do IBGE mais parecidos para completar aqui.
+# Casos de 2022 conferidos com a validação real de 2026-10-13.
+BA:
+  CAMACÃ: 2905602 # IBGE: Camacan
 MG:
+  BARÃO DE MONTE ALTO: 3105509 # IBGE: Barão do Monte Alto
   BRASÓPOLIS: 3108909 # IBGE: Brazópolis
+  DONA EUSÉBIA: 3122900 # IBGE: Dona Euzébia
+  SÃO THOMÉ DAS LETRAS: 3165206 # IBGE: São Tomé das Letras
+MT:
+  SANTO ANTÔNIO DO LEVERGER: 5107800 # IBGE: Santo Antônio de Leverger
+PA:
+  ELDORADO DOS CARAJÁS: 1502954 # IBGE: Eldorado do Carajás
+  SANTA ISABEL DO PARÁ: 1506500 # IBGE: Santa Izabel do Pará
+RN:
+  BOA SAÚDE: 2405306 # IBGE: Januário Cicco (nome atual do município)
+RO:
+  ALVORADA DO OESTE: 1100346 # IBGE: Alvorada D'Oeste
+  ESPIGÃO DO OESTE: 1100098 # IBGE: Espigão D'Oeste
+RR:
+  SÃO LUIZ: 1400605 # IBGE: São Luiz do Anauá
+SE:
+  AMPARO DE SÃO FRANCISCO: 2800100 # IBGE: Amparo do São Francisco
+SP:
+  SÃO LUÍS DO PARAITINGA: 3550001 # IBGE: São Luiz do Paraitinga

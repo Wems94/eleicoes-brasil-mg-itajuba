@@ -117,6 +117,9 @@ VOTACAO_PARTIDO_MUNZONA = Tabela(
         _txt("nm_partido"),
         _cod("nr_federacao"),
         _txt("sg_federacao"),
+        # um mesmo partido pode vir em mais de uma linha por zona (visto em 2022 com o
+        # PROS, nº 90): as linhas se somam, e a coligação/agremiação as distingue
+        _cod("sq_coligacao", tipo="BIGINT"),
         _txt("st_voto_em_transito"),
         _int(
             "qt_votos_nominais_validos",

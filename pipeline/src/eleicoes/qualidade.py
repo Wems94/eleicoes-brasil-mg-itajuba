@@ -94,6 +94,8 @@ CHAVES = {
         "nr_zona",
         "cd_cargo",
         "nr_partido",
+        "tp_agremiacao",
+        "sq_coligacao",
         "st_voto_em_transito",
     ),
     "detalhe_munzona": ("sg_uf", "cd_municipio", "nr_zona", "cd_cargo", "st_voto_em_transito"),
