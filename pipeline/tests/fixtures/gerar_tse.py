@@ -52,6 +52,42 @@ def _munzona(diploma: str) -> list[str]:
 
 
 H_MUNZONA = {2018: _munzona("DIPLOMA"), 2022: _munzona("DCONST_DIPLOMA")}
+# votacao_partido_munzona: 2022 traz os válidos separados (nominais e legenda);
+# 2018, as colunas antigas (a ser conferido com os arquivos reais, tarefa 1.3).
+_PARTIDO_MUNZONA = [
+    "CD_MUNICIPIO",
+    "NM_MUNICIPIO",
+    "NR_ZONA",
+    "CD_CARGO",
+    "DS_CARGO",
+    "TP_AGREMIACAO",
+    "NR_PARTIDO",
+    "SG_PARTIDO",
+    "NM_PARTIDO",
+    "NR_FEDERACAO",
+    "NM_FEDERACAO",
+    "SG_FEDERACAO",
+    "DS_COMPOSICAO_FEDERACAO",
+    "SQ_COLIGACAO",
+    "NM_COLIGACAO",
+    "DS_COMPOSICAO_COLIGACAO",
+    "ST_VOTO_EM_TRANSITO",
+]
+H_PARTIDO_MUNZONA = {
+    2018: _PREFIXO + _PARTIDO_MUNZONA + ["QT_VOTOS_NOMINAIS", "QT_VOTOS_LEGENDA"],
+    2022: _PREFIXO
+    + _PARTIDO_MUNZONA
+    + [
+        "QT_VOTOS_LEGENDA_VALIDOS",
+        "QT_VOTOS_NOM_CONVR_LEG_VALIDOS",
+        "QT_TOTAL_VOTOS_LEG_VALIDOS",
+        "QT_VOTOS_NOMINAIS_VALIDOS",
+        "QT_VOTOS_LEGENDA_ANUL_SUBJUD",
+        "QT_VOTOS_NOMINAIS_ANUL_SUBJUD",
+        "QT_VOTOS_LEGENDA_ANULADOS",
+        "QT_VOTOS_NOMINAIS_ANULADOS",
+    ],
+}
 H_DETALHE_MUNZONA = _PREFIXO + [
     "CD_MUNICIPIO",
     "NM_MUNICIPIO",
@@ -355,6 +391,34 @@ SECOES = [
         "BARREIRO",
         "-19.97",
         "-44.02",
+    ),
+    # Belo Horizonte com duas zonas (32 e 33)
+    Secao(
+        "MG",
+        41238,
+        "BELO HORIZONTE",
+        33,
+        40,
+        1210,
+        "ESCOLA MUNICIPAL PROFESSOR DANIEL ALVARENGA",
+        "RUA RIO GRANDE DO SUL, 700",
+        "CENTRO",
+        "-19.92",
+        "-43.94",
+    ),
+    # A zona 134 atende Itajubá e Brasópolis (grafia do TSE; o IBGE escreve Brazópolis)
+    Secao(
+        "MG",
+        40592,
+        "BRASÓPOLIS",
+        134,
+        300,
+        1309,
+        "E.E. DOUTOR VENCESLAU BRAZ",
+        "PRAÇA CEL. JOSÉ MARCELINO, 10",
+        "CENTRO",
+        "-22.47",
+        "-45.61",
     ),
     Secao(
         "SP",
@@ -736,6 +800,30 @@ def gerar(ano: int, destino: Path) -> None:
                             "DS_SIT_TOT_TURNO": situacao,
                         },
                     )
+                for num_partido in sorted({c.partido for c in cands}):
+                    nom_p = sum(
+                        soma("nominal", c.numero) for c in cands if c.partido == num_partido
+                    )
+                    leg_p = soma("legenda", num_partido)
+                    qtd = (
+                        {"QT_VOTOS_NOMINAIS": nom_p, "QT_VOTOS_LEGENDA": leg_p}
+                        if ano == 2018
+                        else {
+                            "QT_VOTOS_LEGENDA_VALIDOS": leg_p,
+                            "QT_VOTOS_NOM_CONVR_LEG_VALIDOS": 0,
+                            "QT_TOTAL_VOTOS_LEG_VALIDOS": leg_p,
+                            "QT_VOTOS_NOMINAIS_VALIDOS": nom_p,
+                            "QT_VOTOS_LEGENDA_ANUL_SUBJUD": 0,
+                            "QT_VOTOS_NOMINAIS_ANUL_SUBJUD": 0,
+                            "QT_VOTOS_LEGENDA_ANULADOS": 0,
+                            "QT_VOTOS_NOMINAIS_ANULADOS": 0,
+                        }
+                    )
+                    e.linha(
+                        f"votacao_partido_munzona_{ano}_{m}.csv",
+                        H_PARTIDO_MUNZONA[ano],
+                        base | partido_cols(num_partido) | {"SQ_COLIGACAO": -1} | qtd,
+                    )
                 aptos = sum(presenca[(turno, s)][0] for s in secoes)
                 comp = sum(presenca[(turno, s)][1] for s in secoes)
                 nom, leg = soma("nominal"), soma("legenda")
@@ -860,7 +948,51 @@ def gerar(ano: int, destino: Path) -> None:
     e.gravar(destino)
 
 
+# --- IBGE ------------------------------------------------------------------------
+
+SAIDA_IBGE = Path(__file__).parent / "ibge"
+# (código IBGE, nome IBGE, UF, coluna e linha do quadrado na malha fictícia).
+# Brazópolis tem grafia diferente da do TSE (resolvida pela tabela de exceções);
+# Delfim Moreira está na lista e na malha, mas não nos dados do TSE.
+MUNICIPIOS_IBGE = [
+    (3106200, "Belo Horizonte", "MG", 2, 0),
+    (3108909, "Brazópolis", "MG", 0, 1),
+    (3121258, "Delfim Moreira", "MG", 2, 1),
+    (3132404, "Itajubá", "MG", 1, 1),
+    (3550308, "São Paulo", "SP", 1, 2),
+]
+
+
+def gerar_ibge(destino: Path) -> None:
+    """Lista de municípios (formato `view=nivelado`) e malha TopoJSON de quadrados."""
+    import json
+
+    destino.mkdir(parents=True, exist_ok=True)
+    lista = [
+        {"municipio-id": cd, "municipio-nome": nome, "UF-sigla": uf, "UF-nome": UF_NOME[uf]}
+        for cd, nome, uf, _, _ in MUNICIPIOS_IBGE
+    ]
+    (destino / "municipios.json").write_text(
+        json.dumps(lista, ensure_ascii=False), encoding="utf-8"
+    )
+    # Cada município é um quadrado 10×10 (coordenadas quantizadas, sem arcos compartilhados).
+    arcs, geometrias = [], []
+    for cd, _nome, _uf, x, y in MUNICIPIOS_IBGE:
+        arcs.append([[x * 10, y * 10], [10, 0], [0, 10], [-10, 0], [0, -10]])
+        geometrias.append(
+            {"type": "Polygon", "arcs": [[len(arcs) - 1]], "properties": {"codarea": str(cd)}}
+        )
+    topo = {
+        "type": "Topology",
+        "arcs": arcs,
+        "transform": {"scale": [0.1, 0.1], "translate": [-47.0, -24.0]},
+        "objects": {"BRMU": {"type": "GeometryCollection", "geometries": geometrias}},
+    }
+    (destino / "malha.json").write_text(json.dumps(topo), encoding="utf-8")
+
+
 if __name__ == "__main__":
     for ano in (2018, 2022):
         gerar(ano, SAIDA / str(ano))
-    print(f"Fixtures gerados em {SAIDA}")
+    gerar_ibge(SAIDA_IBGE)
+    print(f"Fixtures gerados em {SAIDA} e {SAIDA_IBGE}")

@@ -1,6 +1,6 @@
 # eleicoes-brasil-mg-itajuba
 
-Site público com os resultados das Eleições Gerais do Brasil (2018, 2022, 2026), com visão por UF e deep dive em **Itajubá-MG**. O desenvolvimento é guiado por specs ([OpenSpec](https://github.com/Fission-AI/OpenSpec)).
+Site público com os resultados das Eleições Gerais do Brasil (2018, 2022, 2026), com mapa por município (todos os cargos, abstenção e detalhe por zona eleitoral), visão por UF e deep dive em **Itajubá-MG**. O desenvolvimento é guiado por specs ([OpenSpec](https://github.com/Fission-AI/OpenSpec)).
 
 ## Arquitetura (aprovada)
 
@@ -14,9 +14,9 @@ TSE Dados Abertos (ZIP/CSV) → pipeline Python (uv: DuckDB + Polars)
 | Componente | Tecnologia |
 |---|---|
 | Specs | OpenSpec (`openspec/`) |
-| Pipeline | Python 3.12, uv, httpx, DuckDB, Polars, Typer |
+| Pipeline | Python 3.12, uv, httpx, DuckDB, Polars, Typer, Pillow |
 | Banco | DuckDB local + MotherDuck |
-| Site | Next.js (export estático), Tailwind, shadcn/ui, ECharts, MapLibre |
+| Site | Next.js (export estático), Tailwind, MapLibre + topojson-client (malha do IBGE) |
 | Orquestração/CI | GitHub Actions (`workflow_dispatch` com `ano`/`turno`) + Vercel |
 
 Os requisitos vigentes estão em `openspec/specs/*/spec.md` (6 capabilities). O change que criou a
@@ -54,6 +54,11 @@ pnpm build                                      # build com os snapshots publica
 | `validacao-real.yml` | manual | diagnóstico do pipeline com dados reais, sem publicar |
 
 **Fluxo de publicação:** Actions → ETL → revisar e fazer merge do PR `dados/snapshots` → o deploy roda sozinho.
+
+**Mudança de schema dos snapshots** (ex.: schema 2, mapa por município): o código novo e os dados
+precisam chegar juntos à `main`, senão o build falha. Dispare o ETL **a partir da branch da
+feature** com o input `base` igual a essa branch; o PR `dados/snapshots` entra nela, e o PR da
+feature leva código e dados para a `main` num único deploy.
 
 Sem `MOTHERDUCK_TOKEN`, o banco do runner começa vazio, então o ETL precisa processar **todas** as
 eleições na mesma execução (é o padrão: `2018/1 2018/2 2022/1 2022/2 2026/1`). Com o token, o banco

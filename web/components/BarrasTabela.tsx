@@ -1,5 +1,6 @@
-import { type Cor, corDaPosicao } from "@/lib/cores";
+import { FotoCandidato, urlFoto } from "@/components/FotoCandidato";
 import { numero, pct } from "@/lib/formato";
+import { type Cor, coresDaDisputa } from "@/lib/partidos";
 
 export type LinhaBarra = {
   chave: string;
@@ -8,7 +9,9 @@ export type LinhaBarra = {
   votos: number;
   pct: number | null;
   destaque?: boolean;
-  cor?: Cor; // padrão: cor da posição na lista
+  partido?: string | null; // sigla: dá a cor (cores-partidarias)
+  foto?: string | null; // só Presidente: caminho da foto (null = iniciais); ausente = sem avatar
+  cor?: Cor; // padrão: cor do partido, ajustada entre as linhas desta disputa
 };
 
 /**
@@ -27,6 +30,8 @@ export function BarrasTabela({
   rotuloColuna?: string;
   ocultarLegenda?: boolean;
 }) {
+  // as linhas vêm em ordem de votos: é a ordem de prioridade das cores da disputa
+  const cores = coresDaDisputa(linhas.map((l) => l.partido));
   return (
     <table className="w-full border-collapse text-sm">
       <caption className={ocultarLegenda ? "sr-only" : "mb-3 text-left text-sm font-semibold"}>
@@ -41,16 +46,20 @@ export function BarrasTabela({
       </thead>
       <tbody>
         {linhas.map((l, i) => {
-          const cor = l.cor ?? corDaPosicao(i);
+          const cor = l.cor ?? cores.get(l.partido ?? "")!;
           return (
             <tr key={l.chave} className="group">
               <th scope="row" className="py-2.5 pr-3 text-left align-top font-normal">
                 <div className="flex items-center gap-2">
-                  <span
-                    className="size-2.5 shrink-0 rounded-full"
-                    style={{ background: cor.fundo }}
-                    aria-hidden="true"
-                  />
+                  {l.foto !== undefined ? (
+                    <FotoCandidato src={urlFoto(l.foto)} nome={l.rotulo} cor={cor} tamanho={36} />
+                  ) : (
+                    <span
+                      className="size-2.5 shrink-0 rounded-full"
+                      style={{ background: cor.fundo }}
+                      aria-hidden="true"
+                    />
+                  )}
                   <span className={l.destaque ? "font-semibold" : "font-medium"}>{l.rotulo}</span>
                 </div>
                 {l.detalhe ? (

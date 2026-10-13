@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 import { BarrasTabela } from "@/components/BarrasTabela";
-import { MapaUfs } from "@/components/MapaUfs";
+import { MapaMunicipal } from "@/components/mapa/MapaMunicipal";
 import { CabecalhoPagina, Participacao, SeletorEleicao, Secao } from "@/components/base";
-import { type Cor, coresPorEntidade } from "@/lib/cores";
 import { dados } from "@/lib/dados";
 import { nomeTurno, numero, pct } from "@/lib/formato";
+import { type Cor, coresDaDisputa } from "@/lib/partidos";
 import type { Candidato, Eleicao } from "@/lib/tipos";
 
 function mancheteDoPresidente(c: Candidato[]): string | null {
@@ -47,8 +47,9 @@ function DestaqueItajuba({ ano, turno, cores }: Eleicao & { cores: Map<string, C
           votos: v.votos,
           pct: v.pct,
           destaque: i === 0,
+          partido: v.partido,
           // no Presidente, a mesma cor do gráfico nacional desta página
-          cor: cargo.codigo === 1 ? cores.get(String(v.numero)) : undefined,
+          cor: cargo.codigo === 1 ? cores.get(v.partido ?? "") : undefined,
         }))}
       />
       {cargo.comparecimento ? (
@@ -61,10 +62,31 @@ function DestaqueItajuba({ ano, turno, cores }: Eleicao & { cores: Map<string, C
   );
 }
 
+/** Props do mapa municipal a partir dos snapshots (cargos do turno, fotos, Itajubá). */
+export function propsDoMapa(ano: number, turno: number) {
+  const fotos: Record<string, string> = {};
+  for (const c of dados.brasil(ano, turno).presidente?.candidatos ?? []) {
+    const sq = c.foto?.match(/(\d+)\.jpg$/)?.[1];
+    if (sq && c.foto) fotos[sq] = c.foto;
+  }
+  return {
+    ano,
+    turno,
+    cargos: dados.cargosMapa(ano, turno).map((cargo) => ({ cargo, nome: dados.mapa(ano, turno, cargo).nome })),
+    itajuba: dados.manifesto().municipio?.ibge ?? null,
+    fotos,
+  };
+}
+
+export function MapaDaEleicao({ ano, turno, uf }: Eleicao & { uf?: string }) {
+  return <MapaMunicipal {...propsDoMapa(ano, turno)} ufInicial={uf ?? null} fixarUf={Boolean(uf)} />;
+}
+
 export function BrasilVisao({ ano, turno }: Eleicao) {
   const b = dados.brasil(ano, turno);
   const candidatos = b.presidente?.candidatos ?? [];
-  const cores = coresPorEntidade(candidatos.map((c) => c.numero));
+  // cores da disputa nacional, por partido (as mesmas do mapa e do destaque de Itajubá)
+  const cores = coresDaDisputa(candidatos.map((c) => c.partido));
   return (
     <div className="space-y-6">
       <CabecalhoPagina
@@ -78,8 +100,7 @@ export function BrasilVisao({ ano, turno }: Eleicao) {
       {b.comparecimento ? <Participacao dados={b.comparecimento} /> : null}
 
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
-        <div className="space-y-6">
-          <Secao id="presidente" titulo="Presidente" sobretitulo="Brasil">
+        <Secao id="presidente" titulo="Presidente" sobretitulo="Brasil">
             {b.presidente ? (
               <>
                 <BarrasTabela
@@ -92,7 +113,9 @@ export function BrasilVisao({ ano, turno }: Eleicao) {
                     votos: c.votos,
                     pct: c.pct,
                     destaque: c.posicao === 1,
-                    cor: cores.get(String(c.numero)),
+                    partido: c.partido,
+                    foto: c.foto,
+                    cor: cores.get(c.partido ?? ""),
                   }))}
                 />
                 <p className="num mt-3 text-xs text-texto-3">{numero(b.presidente.votos_validos)} votos válidos</p>
@@ -101,15 +124,12 @@ export function BrasilVisao({ ano, turno }: Eleicao) {
               <p className="text-texto-2">Sem disputa presidencial neste turno.</p>
             )}
           </Secao>
-          <DestaqueItajuba ano={ano} turno={turno} cores={cores} />
-        </div>
-
-        {b.ufs.length ? (
-          <Secao id="ufs" titulo="Mais votado por UF" sobretitulo="Mapa">
-            <MapaUfs brasil={b} />
-          </Secao>
-        ) : null}
+        <DestaqueItajuba ano={ano} turno={turno} cores={cores} />
       </div>
+
+      <Secao id="mapa" titulo="Resultado por município" sobretitulo="Mapa">
+        <MapaDaEleicao ano={ano} turno={turno} />
+      </Secao>
     </div>
   );
 }

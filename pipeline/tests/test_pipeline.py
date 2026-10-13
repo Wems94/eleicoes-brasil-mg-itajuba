@@ -34,7 +34,7 @@ def ambiente(tmp_path, monkeypatch):
         def publicar(ano: int, **kwargs) -> None:
             for d in montar_zips(ano, tmp_path / "zips" / str(ano), **kwargs).values():
                 if d.caminho is not None:
-                    srv.arquivos[d.fonte.url.split("odsele/", 1)[1]] = d.caminho.read_bytes()
+                    srv.arquivos[d.fonte.caminho] = d.caminho.read_bytes()
 
         publicar(2018)
         publicar(2022)

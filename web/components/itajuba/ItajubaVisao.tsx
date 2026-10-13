@@ -6,8 +6,8 @@ import { MapaLocais, type PontoLocal } from "@/components/itajuba/MapaLocais";
 import { dados } from "@/lib/dados";
 import { deputadosDeItajuba } from "@/lib/deputados";
 import { nomeTurno, numero, pct } from "@/lib/formato";
-import { coresPorEntidade } from "@/lib/cores";
 import { NOME_CARGO, historicoPorCargo } from "@/lib/itajuba";
+import { coresDaDisputa } from "@/lib/partidos";
 import type { CargoVotaveis, Eleicao, Votavel } from "@/lib/tipos";
 
 const MAJORITARIOS = [1, 3, 5];
@@ -108,6 +108,7 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
                   votos: v.votos,
                   pct: v.pct,
                   destaque: v.posicao === 1,
+                  partido: v.partido,
                 }))}
               />
               <BrancosNulos votaveis={c.votaveis} />
@@ -223,7 +224,7 @@ function Comparacao() {
           // a cor segue o partido em todos os anos (ordem: total de votos no período)
           const total = new Map<string, number>();
           for (const e of eleicoes) for (const p of e.partidos) total.set(p.partido ?? "—", (total.get(p.partido ?? "—") ?? 0) + p.votos);
-          const cores = coresPorEntidade([...total].sort((a, b) => b[1] - a[1]).map(([p]) => p));
+          const cores = coresDaDisputa([...total].sort((a, b) => b[1] - a[1]).map(([p]) => p));
           return (
             <div key={cargo}>
               <h3 className="mb-4 text-base font-semibold">{NOME_CARGO[cargo]}</h3>

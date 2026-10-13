@@ -100,6 +100,40 @@ DETALHE_MUNZONA = Tabela(
     ),
 )
 
+# Votos por partido, município e zona. Os nomes das colunas mudaram entre os anos;
+# em todos eles, nominais válidos + legenda válidos (incluindo os nominais
+# convertidos em legenda) é o total de votos válidos do partido.
+VOTACAO_PARTIDO_MUNZONA = Tabela(
+    "votacao_partido_munzona",
+    (
+        *_PARTICAO,
+        _TIPO,
+        *_LOCALIZACAO,
+        _int("cd_cargo", obrigatoria=True),
+        _txt("ds_cargo"),
+        _txt("tp_agremiacao"),
+        _cod("nr_partido", obrigatoria=True),
+        _txt("sg_partido", obrigatoria=True),
+        _txt("nm_partido"),
+        _cod("nr_federacao"),
+        _txt("sg_federacao"),
+        _txt("st_voto_em_transito"),
+        _int(
+            "qt_votos_nominais_validos",
+            "QT_VOTOS_NOMINAIS_VALIDOS",
+            "QT_VOTOS_NOMINAIS",
+            obrigatoria=True,
+        ),
+        _int(
+            "qt_votos_legenda_validos",
+            "QT_TOTAL_VOTOS_LEG_VALIDOS",
+            "QT_VOTOS_LEGENDA_VALIDOS",
+            "QT_VOTOS_LEGENDA",
+            obrigatoria=True,
+        ),
+    ),
+)
+
 VOTACAO_SECAO = Tabela(
     "votacao_secao",
     (
@@ -187,6 +221,7 @@ LOCAIS_VOTACAO = Tabela(
 
 TABELAS = (
     VOTACAO_MUNZONA,
+    VOTACAO_PARTIDO_MUNZONA,
     DETALHE_MUNZONA,
     VOTACAO_SECAO,
     DETALHE_SECAO,

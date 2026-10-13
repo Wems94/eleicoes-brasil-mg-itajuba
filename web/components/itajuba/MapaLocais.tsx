@@ -4,6 +4,8 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
 import { useEffect, useRef, useState } from "react";
 
+import { LOCALE_PT, carregarMaplibre } from "@/lib/maplibre";
+
 export type PontoLocal = {
   local: number;
   nome: string;
@@ -25,7 +27,7 @@ export function MapaLocais({ pontos }: { pontos: PontoLocal[] }) {
     let mapa: import("maplibre-gl").Map | undefined;
     let cancelado = false;
 
-    import("maplibre-gl")
+    carregarMaplibre()
       .then((maplibregl) => {
         if (cancelado || !ref.current) return;
         const limites = new maplibregl.LngLatBounds();
@@ -37,12 +39,13 @@ export function MapaLocais({ pontos }: { pontos: PontoLocal[] }) {
           fitBoundsOptions: { padding: 48, maxZoom: 15 },
           attributionControl: { compact: true },
           cooperativeGestures: true,
+          locale: LOCALE_PT,
         });
         mapa = m;
         m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
         for (const p of pontos) {
           const el = document.createElement("div");
-          el.className = "size-3 rounded-full border-2 border-white bg-[var(--color-serie-1)] shadow";
+          el.className = "size-3 rounded-full border-2 border-white bg-[var(--color-acento)] shadow";
           el.setAttribute("aria-hidden", "true");
           new maplibregl.Marker({ element: el })
             .setLngLat([p.lon, p.lat])

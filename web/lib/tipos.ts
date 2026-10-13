@@ -1,4 +1,4 @@
-// Contrato dos snapshots (schema_versao 1), gerado por pipeline/src/eleicoes/snapshots.py.
+// Contrato dos snapshots (schema_versao 2), gerado por pipeline/src/eleicoes/snapshots.py.
 
 export type Eleicao = { ano: number; turno: number };
 
@@ -6,7 +6,7 @@ export type Manifesto = {
   schema_versao: number;
   gerado_em: string;
   fonte: string;
-  municipio: { codigo: number; nome: string; uf: string } | null;
+  municipio: { codigo: number; nome: string; uf: string; ibge: number | null } | null;
   eleicoes: { ano: number; turnos: number[] }[];
   origens: {
     ano: number;
@@ -43,7 +43,8 @@ export type Comparecimento = {
 };
 
 export type Brasil = Eleicao & {
-  presidente: { votos_validos: number; candidatos: Candidato[] } | null;
+  // `foto`: caminho relativo a /dados/ (fotos/{ano}/{sq}.jpg), só para Presidente
+  presidente: { votos_validos: number; candidatos: (Candidato & { foto: string | null })[] } | null;
   comparecimento: Comparecimento | null;
   ufs: {
     uf: string;
@@ -117,4 +118,55 @@ export type Historico = {
     cargo: number;
     nome_cargo: string;
   })[];
+};
+
+// --- mapa municipal ---------------------------------------------------------------------
+
+export const CARGOS_MAPA = [
+  "presidente",
+  "governador",
+  "senador",
+  "deputado-federal",
+  "deputado-estadual",
+] as const;
+export type CargoMapa = (typeof CARGOS_MAPA)[number];
+
+export type VotavelMapa = { chave: string; numero: number | null; nome: string | null; partido: string | null };
+
+/** [índice em `votaveis` (-1 = empate), pct do vencedor × 100, abstenção × 100] */
+export type CelulaMapa = [number, number | null, number | null];
+
+export type CamadaMapa = Eleicao & {
+  cargo: CargoMapa;
+  nome: string;
+  por: "candidato" | "partido";
+  votaveis: VotavelMapa[];
+  municipios: Record<string, CelulaMapa>; // código IBGE
+  ufs: Record<string, CelulaMapa>;
+  exterior: CelulaMapa | null;
+};
+
+/** [chave do votável, votos, pct dos válidos] */
+export type VotoDetalhe = [string, number, number | null];
+
+export type BlocoDetalhe = {
+  comparecimento: Comparecimento | null;
+  votos: VotoDetalhe[]; // candidatos (majoritários) ou partidos (proporcionais)
+  candidatos?: VotoDetalhe[]; // proporcionais: os mais votados
+};
+
+export type DetalheUf = Eleicao & {
+  uf: string;
+  cargo: CargoMapa;
+  por: "candidato" | "partido";
+  votaveis: Record<string, { numero: number | null; nome: string | null; partido: string | null }>;
+  municipios: Record<
+    string,
+    {
+      nome: string | null;
+      codigo_tse: number;
+      total: BlocoDetalhe;
+      zonas: (BlocoDetalhe & { zona: number; outros_municipios: number })[];
+    }
+  >;
 };

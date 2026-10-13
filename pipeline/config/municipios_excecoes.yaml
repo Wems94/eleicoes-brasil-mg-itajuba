@@ -1,0 +1,6 @@
+# Municípios cujo nome no TSE não casa com o do IBGE (comparação por UF e nome sem
+# acento, sem espaço e sem pontuação). Formato: UF -> nome como o TSE grava -> código
+# IBGE de 7 dígitos. O gate de qualidade lista os casos sem correspondência, e o
+# `scripts/validar_real.py` sugere os nomes do IBGE mais parecidos para completar aqui.
+MG:
+  BRASÓPOLIS: 3108909 # IBGE: Brazópolis

@@ -18,7 +18,7 @@ from pathlib import Path
 import duckdb
 import yaml
 
-from eleicoes import esquema
+from eleicoes import esquema, fotos, ibge
 from eleicoes.config import CONFIG_DIR
 from eleicoes.download import ResultadoDownload, sha256_arquivo
 from eleicoes.tse_csv import Tabela, select_sql
@@ -27,6 +27,7 @@ log = logging.getLogger(__name__)
 
 SCHEMA = "staging"
 PRESIDENTE = 1
+PROPORCIONAIS = (6, 7, 8)
 ELEICAO_ORDINARIA = 2
 # Arquivos do TSE usados em cada partição (para o manifesto dos snapshots, 5.2).
 ORIGENS_DDL = f"""CREATE TABLE IF NOT EXISTS {SCHEMA}.origens (
@@ -69,6 +70,8 @@ class ResumoCarga:
 def criar_tabelas(con: duckdb.DuckDBPyConnection) -> None:
     con.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
     con.execute(ORIGENS_DDL)
+    con.execute(fotos.DDL)
+    ibge.criar_tabelas(con)
     for t in esquema.TABELAS:
         con.execute(t.ddl(SCHEMA))
         existentes = [
@@ -187,6 +190,10 @@ def carregar_particao(
             if d.caminho is None:
                 arquivos[nome] = []
                 continue
+            # JSON do IBGE e o ZIP de fotos são lidos direto (as fotos, filtradas)
+            if d.fonte.formato != "zip" or nome == "fotos_presidente":
+                arquivos[nome] = [d.caminho]
+                continue
             try:
                 arquivos[nome] = extrair(d, Path(tmp) / nome)
             except FileNotFoundError as e:
@@ -200,7 +207,7 @@ def carregar_particao(
 
         con.execute("BEGIN TRANSACTION")
         try:
-            for nome in [t.nome for t in esquema.TABELAS] + ["origens"]:
+            for nome in [t.nome for t in esquema.TABELAS] + ["origens", "fotos_presidente"]:
                 con.execute(
                     f"DELETE FROM {SCHEMA}.{nome} WHERE ano = ? AND turno = ?", [ano, turno]
                 )
@@ -216,6 +223,13 @@ def carregar_particao(
                     f"Nenhuma linha de votação para {ano} turno {turno} nos arquivos do TSE "
                     "(o turno já aconteceu e foi publicado?)"
                 )
+            # só os cargos proporcionais: o partido mais votado no mapa de Deputado
+            carregar(
+                esquema.VOTACAO_PARTIDO_MUNZONA,
+                arquivos.get("votacao_partido_munzona", []),
+                f"cd_cargo IN ({', '.join(map(str, PROPORCIONAIS))})",
+            )
+            ibge.carregar(con, *arquivos["ibge_municipios"], *arquivos["ibge_malha"])
 
             cd = resolver_municipio(con, ano, turno, recorte)
             do_municipio = ("sg_uf = ? AND cd_municipio = ?", (recorte.uf, cd))
@@ -243,6 +257,13 @@ def carregar_particao(
                 else:
                     log.warning("Fonte opcional '%s' ausente em %d turno %d", fonte, ano, turno)
                     ausentes.append(fonte)
+            if arquivos.get("fotos_presidente"):
+                d = downloads["fotos_presidente"]
+                n = fotos.carregar(con, ano, turno, d.caminho, d.fonte)
+                log.info("Fotos de candidatos a Presidente: %d", n)
+            else:
+                log.warning("Fotos dos candidatos ausentes em %d turno %d", ano, turno)
+                ausentes.append("fotos_presidente")
 
             for nome, d in downloads.items():
                 if arquivos.get(nome) and d.caminho is not None:

@@ -5,13 +5,20 @@ por renomeação: uma falha no meio deixa o diretório publicado intacto. A saí
 é determinística (mesmos dados -> mesmos bytes, exceto `gerado_em`), para que o
 PR de snapshots mostre só o que mudou.
 
-Contrato (schema_versao 1), relativo ao diretório publicado:
+Contrato (schema_versao 2), relativo ao diretório publicado:
   manifest.json                    anos/turnos, origens (sha256), sha256 de cada arquivo
   historico_itajuba.json           todos os anos: partido × cargo majoritário, comparecimento
-  {ano}/{turno}/brasil.json        Presidente nacional + vencedor por UF
+  geo/municipios.topo.json         malha municipal do IBGE (id = código IBGE, nome, uf)
+  fotos/{ano}/{sq}.jpg             fotos dos candidatos a Presidente (160×200)
+  {ano}/{turno}/brasil.json        Presidente nacional (com `foto`) + vencedor por UF
   {ano}/{turno}/uf/{UF}.json       todos os cargos da UF + comparecimento
+  {ano}/{turno}/mapa/{cargo}.json  camada do mapa: vencedor e abstenção por município e UF
+  {ano}/{turno}/municipios/{UF}/{cargo}.json  detalhe por município e zona (sob demanda)
   {ano}/{turno}/itajuba.json       Itajubá por cargo, zona e local de votação
   {ano}/{turno}/itajuba_secoes.json  Itajubá por seção (formato compacto)
+
+`{cargo}` é um slug (CARGOS_MAPA); `deputado-estadual` inclui o Distrital do DF.
+Nos cargos proporcionais o mapa é por partido (nominais + legenda).
 """
 
 from __future__ import annotations
@@ -29,10 +36,21 @@ from typing import Any
 
 import duckdb
 
-SCHEMA_VERSAO = 1
+from eleicoes import geometria
+
+SCHEMA_VERSAO = 2
 FONTE = "TSE — Portal de Dados Abertos (dadosabertos.tse.jus.br)"
 MAJORITARIOS = (1, 3, 5)
 TOP_LOCAL_PROPORCIONAIS = 10  # por local de votação, só os 10 mais votados de deputado
+TOP_CANDIDATOS_MAPA = 10  # no detalhe por município/zona dos proporcionais
+# slug do mapa -> (nome, códigos de cargo do TSE, camada por partido?)
+CARGOS_MAPA: dict[str, tuple[str, tuple[int, ...], bool]] = {
+    "presidente": ("Presidente", (1,), False),
+    "governador": ("Governador", (3,), False),
+    "senador": ("Senador", (5,), False),
+    "deputado-federal": ("Deputado Federal", (6,), True),
+    "deputado-estadual": ("Deputado Estadual", (7, 8), True),
+}
 
 
 def _linhas(con: duckdb.DuckDBPyConnection, sql: str, params: list | None = None) -> list[dict]:
@@ -69,7 +87,13 @@ def _comparecimento(r: dict) -> dict:
 # --- arquivos por (ano, turno) ---------------------------------------------------------
 
 
-def _brasil(con: duckdb.DuckDBPyConnection, ano: int, turno: int) -> dict:
+def _foto(ano: int, sq: int) -> str:
+    return f"fotos/{ano}/{sq}.jpg"
+
+
+def _brasil(
+    con: duckdb.DuckDBPyConnection, ano: int, turno: int, fotos: set[tuple[int, int]]
+) -> dict:
     cands = _linhas(
         con,
         """SELECT * FROM marts.resultado_brasil WHERE ano = ? AND turno = ?
@@ -103,7 +127,15 @@ def _brasil(con: duckdb.DuckDBPyConnection, ano: int, turno: int) -> dict:
         "presidente": (
             {
                 "votos_validos": cands[0]["votos_validos"],
-                "candidatos": [_candidato(c) for c in cands],
+                "candidatos": [
+                    {
+                        **_candidato(c),
+                        "foto": _foto(ano, c["sq_candidato"])
+                        if (ano, c["sq_candidato"]) in fotos
+                        else None,
+                    }
+                    for c in cands
+                ],
             }
             if cands
             else None
@@ -159,6 +191,239 @@ def _uf(con: duckdb.DuckDBPyConnection, ano: int, turno: int, uf: str) -> dict:
             {"codigo": c["cd_cargo"], "nome": c["nm_cargo"], **_comparecimento(c)}
             for c in comparecimento
         ],
+    }
+
+
+# --- mapa municipal ---------------------------------------------------------------------
+
+
+def _cem(v: float | None) -> int | None:
+    """Percentual 0–100 como inteiro em centésimos (62,37% -> 6237): arquivo menor."""
+    return None if v is None else round(v * 100)
+
+
+def _cargos_sql(codigos: tuple[int, ...]) -> str:
+    return "(" + ", ".join(map(str, codigos)) + ")"
+
+
+def _vencedores(linhas: list[dict], chave: str) -> dict[tuple, dict]:
+    """Agrupa por `chave` e devolve o 1º colocado, ou None se houver empate."""
+    por: dict[tuple, list[dict]] = {}
+    for r in linhas:
+        por.setdefault(tuple(r[k] for k in chave.split(",")), []).append(r)
+    out = {}
+    for k, rs in por.items():
+        primeiros = [r for r in rs if r["posicao"] == 1]
+        out[k] = primeiros[0] if len(primeiros) == 1 else {**primeiros[0], "empate": True}
+    return out
+
+
+def _mapa_linhas(
+    con: duckdb.DuckDBPyConnection, ano: int, turno: int, slug: str, nivel: str
+) -> list[dict]:
+    """1º colocado (e empatados) por município ou UF, com a abstenção do cargo."""
+    _, codigos, por_partido = CARGOS_MAPA[slug]
+    p = [ano, turno]
+    if nivel == "municipio":
+        chave, junta = "sg_uf, cd_municipio", "USING (ano, turno, sg_uf, cd_municipio, cd_cargo)"
+        votos = "marts.partido_municipio" if por_partido else "marts.resultado_municipio"
+        comp = "marts.comparecimento_municipio"
+    elif por_partido:  # partido por UF: soma dos municípios (não há mart por UF)
+        return _linhas(
+            con,
+            f"""WITH p AS (
+                    SELECT sg_uf, cd_cargo, sg_partido, nr_partido, sum(votos) AS votos
+                    FROM marts.partido_municipio
+                    WHERE ano = ? AND turno = ? AND cd_cargo IN {_cargos_sql(codigos)}
+                    GROUP BY ALL)
+                SELECT p.*, 100.0 * p.votos / nullif(c.votos_validos, 0) AS pct_validos,
+                       rank() OVER (PARTITION BY p.sg_uf, p.cd_cargo ORDER BY p.votos DESC)
+                           AS posicao,
+                       c.pct_abstencao, NULL AS sq_candidato, NULL AS nr_candidato,
+                       NULL AS nm_urna_candidato
+                FROM p JOIN marts.comparecimento_uf c
+                     ON (c.ano, c.turno, c.sg_uf, c.cd_cargo) = (?, ?, p.sg_uf, p.cd_cargo)
+                QUALIFY posicao = 1 ORDER BY ALL""",
+            [*p, *p],
+        )
+    else:
+        chave, junta = "sg_uf", "USING (ano, turno, sg_uf, cd_cargo)"
+        votos, comp = "marts.resultado_uf", "marts.comparecimento_uf"
+    cand = "" if por_partido else ", r.sq_candidato, r.nr_candidato, r.nm_urna_candidato"
+    return _linhas(
+        con,
+        f"""SELECT {", ".join(f"r.{k.strip()}" for k in chave.split(","))}, r.cd_cargo,
+                   r.sg_partido, r.nr_partido, r.votos, r.pct_validos, r.posicao,
+                   c.pct_abstencao{cand}
+            FROM {votos} r JOIN {comp} c {junta}
+            WHERE r.ano = ? AND r.turno = ? AND r.cd_cargo IN {_cargos_sql(codigos)}
+              AND r.posicao = 1
+            ORDER BY ALL""",
+        p,
+    )
+
+
+def _mapa(
+    con: duckdb.DuckDBPyConnection, ano: int, turno: int, slug: str, ibge: dict[tuple, int]
+) -> dict:
+    nome, _, por_partido = CARGOS_MAPA[slug]
+    votaveis: list[dict] = []
+    indice: dict[str, int] = {}
+
+    def entrada(r: dict) -> list:
+        if r.get("empate"):
+            idx = -1
+        else:
+            k = r["sg_partido"] if por_partido else str(r["sq_candidato"])
+            if k not in indice:
+                indice[k] = len(votaveis)
+                votaveis.append(
+                    {
+                        "chave": k,
+                        "numero": r["nr_partido"],
+                        "nome": r["sg_partido"],
+                        "partido": r["sg_partido"],
+                    }
+                    if por_partido
+                    else {
+                        "chave": k,
+                        "numero": r["nr_candidato"],
+                        "nome": r["nm_urna_candidato"],
+                        "partido": r["sg_partido"],
+                    }
+                )
+            idx = indice[k]
+        return [idx, _cem(r["pct_validos"]), _cem(r["pct_abstencao"])]
+
+    chave_mun = "sg_uf,cd_municipio"
+    municipios = {}
+    for (uf, cd), r in sorted(
+        _vencedores(_mapa_linhas(con, ano, turno, slug, "municipio"), chave_mun).items()
+    ):
+        if uf == "ZZ" or (uf, cd) not in ibge:
+            continue
+        municipios[str(ibge[(uf, cd)])] = entrada(r)
+    ufs = _vencedores(_mapa_linhas(con, ano, turno, slug, "uf"), "sg_uf")
+    exterior = ufs.pop(("ZZ",), None)
+    return {
+        "ano": ano,
+        "turno": turno,
+        "cargo": slug,
+        "nome": nome,
+        "por": "partido" if por_partido else "candidato",
+        "votaveis": votaveis,
+        # código IBGE -> [índice do vencedor (-1 = empate), pct×100, abstenção×100]
+        "municipios": dict(sorted(municipios.items())),
+        "ufs": {uf: entrada(r) for (uf,), r in sorted(ufs.items())},
+        "exterior": entrada(exterior) if exterior else None,
+    }
+
+
+def _detalhe_uf(
+    con: duckdb.DuckDBPyConnection,
+    ano: int,
+    turno: int,
+    uf: str,
+    slug: str,
+    ibge: dict[tuple, int],
+    nomes_ibge: dict[int, str],
+) -> dict:
+    """Município e zonas de uma UF para um cargo: o painel do mapa."""
+    _, codigos, por_partido = CARGOS_MAPA[slug]
+    p = [ano, turno, uf]
+    filtro = f"ano = ? AND turno = ? AND sg_uf = ? AND cd_cargo IN {_cargos_sql(codigos)}"
+    votaveis: dict[str, dict] = {}
+
+    def votos_de(linhas: list[dict], partido: bool) -> dict[tuple, list]:
+        grupos: dict[tuple, list] = {}
+        for r in linhas:
+            k = r["sg_partido"] if partido else str(r["sq_candidato"])
+            if k not in votaveis:
+                votaveis[k] = (
+                    {"numero": r["nr_partido"], "nome": r["sg_partido"], "partido": r["sg_partido"]}
+                    if partido
+                    else {
+                        "numero": r["nr_candidato"],
+                        "nome": r["nm_urna_candidato"],
+                        "partido": r["sg_partido"],
+                    }
+                )
+            grupos.setdefault((r["cd_municipio"], r.get("nr_zona")), []).append(
+                [k, r["votos"], _pct(r["pct_validos"])]
+            )
+        return grupos
+
+    def consulta(tabela: str, zona: bool, extra: str = "") -> list[dict]:
+        z = ", nr_zona" if zona else ""
+        return _linhas(
+            con,
+            f"""SELECT * {", NULL AS nr_zona" if not zona else ""} FROM {tabela}
+                WHERE {filtro} {extra}
+                ORDER BY cd_municipio{z}, votos DESC, {
+                "sg_partido" if "partido" in tabela else "nr_candidato"
+            }""",
+            p,
+        )
+
+    top = f"AND posicao <= {TOP_CANDIDATOS_MAPA}"
+    if por_partido:
+        principal = {
+            **votos_de(consulta("marts.partido_municipio", False), True),
+            **votos_de(consulta("marts.partido_zona", True), True),
+        }
+        candidatos = {
+            **votos_de(consulta("marts.resultado_municipio", False, top), False),
+            **votos_de(consulta("marts.resultado_zona", True, top), False),
+        }
+    else:
+        principal = {
+            **votos_de(consulta("marts.resultado_municipio", False), False),
+            **votos_de(consulta("marts.resultado_zona", True), False),
+        }
+        candidatos = {}
+
+    comparecimento: dict[tuple, dict] = {}
+    for tabela, zona in (
+        ("marts.comparecimento_municipio", False),
+        ("marts.comparecimento_zona", True),
+    ):
+        for r in _linhas(con, f"SELECT * FROM {tabela} WHERE {filtro} ORDER BY ALL", p):
+            comparecimento[(r["cd_municipio"], r["nr_zona"] if zona else None)] = _comparecimento(r)
+    # municípios atendidos por cada zona (uma zona pode atender vários)
+    por_zona: dict[int, int] = {}
+    for _cd, z in comparecimento:
+        if z is not None:
+            por_zona[z] = por_zona.get(z, 0) + 1
+
+    def bloco(cd: int, z: int | None) -> dict:
+        b = {"comparecimento": comparecimento.get((cd, z)), "votos": principal.get((cd, z), [])}
+        if por_partido:
+            b["candidatos"] = candidatos.get((cd, z), [])
+        return b
+
+    municipios = {}
+    tse = sorted({cd for cd, _z in comparecimento})
+    for cd in tse:
+        cd_ibge = ibge.get((uf, cd))
+        if cd_ibge is None:
+            continue
+        zonas = sorted(z for c, z in comparecimento if c == cd and z is not None)
+        municipios[str(cd_ibge)] = {
+            "nome": nomes_ibge.get(cd_ibge),
+            "codigo_tse": cd,
+            "total": bloco(cd, None),
+            "zonas": [
+                {"zona": z, "outros_municipios": por_zona[z] - 1, **bloco(cd, z)} for z in zonas
+            ],
+        }
+    return {
+        "ano": ano,
+        "turno": turno,
+        "uf": uf,
+        "cargo": slug,
+        "por": "partido" if por_partido else "candidato",
+        "votaveis": dict(sorted(votaveis.items())),
+        "municipios": dict(sorted(municipios.items())),
     }
 
 
@@ -361,8 +626,12 @@ def _manifesto(con: duckdb.DuckDBPyConnection, gerado_em: str, arquivos: dict[st
         eleicoes.setdefault(r["ano"], []).append(r["turno"])
     municipio = _linhas(
         con,
-        """SELECT cd_municipio AS codigo, nm_municipio AS nome, sg_uf AS uf
-           FROM staging.votacao_secao GROUP BY ALL ORDER BY count(*) DESC LIMIT 1""",
+        """SELECT s.cd_municipio AS codigo, s.nm_municipio AS nome, s.sg_uf AS uf,
+                  any_value(i.cd_ibge) AS ibge
+           FROM staging.votacao_secao s
+           LEFT JOIN marts.municipio_ibge i USING (sg_uf, cd_municipio)
+           GROUP BY s.cd_municipio, s.nm_municipio, s.sg_uf
+           ORDER BY count(*) DESC LIMIT 1""",
     )
     origens = _linhas(
         con,
@@ -385,6 +654,11 @@ def _manifesto(con: duckdb.DuckDBPyConnection, gerado_em: str, arquivos: dict[st
 
 def _json(obj: Any) -> bytes:
     return (json.dumps(obj, ensure_ascii=False, indent=1) + "\n").encode("utf-8")
+
+
+def _json_compacto(obj: Any) -> bytes:
+    """Arquivos grandes do mapa: sem indentação (o diff no PR não seria legível mesmo)."""
+    return (json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
 
 
 def _trocar(novo: Path, destino: Path) -> None:
@@ -421,12 +695,36 @@ def gerar_snapshots(
     try:
         arquivos: dict[str, str] = {}
 
-        def gravar(relativo: str, obj: Any) -> None:
-            corpo = _json(obj)
+        def gravar(relativo: str, obj: Any, *, compacto: bool = False) -> None:
+            gravar_bytes(relativo, _json_compacto(obj) if compacto else _json(obj))
+
+        def gravar_bytes(relativo: str, corpo: bytes) -> None:
             caminho = tmp / relativo
             caminho.parent.mkdir(parents=True, exist_ok=True)
             caminho.write_bytes(corpo)
             arquivos[relativo] = hashlib.sha256(corpo).hexdigest()
+
+        gravar_bytes("geo/municipios.topo.json", geometria.serializar(geometria.montar(con)))
+        fotos: set[tuple[int, int]] = set()
+        for f in _linhas(
+            con,
+            """SELECT ano, sq_candidato, any_value(jpeg ORDER BY turno) AS jpeg
+               FROM staging.fotos_presidente GROUP BY ALL ORDER BY ALL""",
+        ):
+            gravar_bytes(_foto(f["ano"], f["sq_candidato"]), f["jpeg"])
+            fotos.add((f["ano"], f["sq_candidato"]))
+        ibge = {
+            (r["sg_uf"], r["cd_municipio"]): r["cd_ibge"]
+            for r in _linhas(
+                con,
+                "SELECT sg_uf, cd_municipio, cd_ibge FROM marts.municipio_ibge "
+                "WHERE cd_ibge IS NOT NULL",
+            )
+        }
+        nomes_ibge = {
+            r["cd_ibge"]: r["nm_municipio"]
+            for r in _linhas(con, "SELECT cd_ibge, nm_municipio FROM staging.ibge_municipios")
+        }
 
         particoes = _linhas(
             con, "SELECT DISTINCT ano, turno FROM marts.resultado_uf ORDER BY ano, turno"
@@ -434,7 +732,34 @@ def gerar_snapshots(
         for p in particoes:
             ano, turno = p["ano"], p["turno"]
             base = f"{ano}/{turno}"
-            gravar(f"{base}/brasil.json", _brasil(con, ano, turno))
+            gravar(f"{base}/brasil.json", _brasil(con, ano, turno, fotos))
+            cargos_turno = {
+                r["cd_cargo"]
+                for r in _linhas(
+                    con,
+                    "SELECT DISTINCT cd_cargo FROM marts.resultado_uf WHERE ano = ? AND turno = ?",
+                    [ano, turno],
+                )
+            }
+            for slug, (_, codigos, _) in CARGOS_MAPA.items():
+                if not cargos_turno.intersection(codigos):
+                    continue
+                gravar(
+                    f"{base}/mapa/{slug}.json", _mapa(con, ano, turno, slug, ibge), compacto=True
+                )
+                ufs_cargo = _linhas(
+                    con,
+                    f"""SELECT DISTINCT sg_uf FROM marts.comparecimento_municipio
+                        WHERE ano = ? AND turno = ? AND cd_cargo IN {_cargos_sql(codigos)}
+                          AND sg_uf <> 'ZZ' ORDER BY 1""",
+                    [ano, turno],
+                )
+                for u in ufs_cargo:
+                    gravar(
+                        f"{base}/municipios/{u['sg_uf']}/{slug}.json",
+                        _detalhe_uf(con, ano, turno, u["sg_uf"], slug, ibge, nomes_ibge),
+                        compacto=True,
+                    )
             ufs = _linhas(
                 con,
                 "SELECT DISTINCT sg_uf FROM marts.resultado_uf"

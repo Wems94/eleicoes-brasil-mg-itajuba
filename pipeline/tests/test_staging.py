@@ -7,7 +7,7 @@ import pytest
 
 from eleicoes import esquema, staging
 from eleicoes.staging import SchemaDivergente, SemDados, carregar_particao
-from tests.conftest import TSE
+from tests.conftest import TSE, sq_de, sq_presidentes
 
 
 def _contagens(con) -> dict[tuple[str, int, int], int]:
@@ -34,14 +34,22 @@ def test_carga_cria_todas_as_tabelas_de_staging(con, zips, trabalho):
             "SELECT table_name FROM information_schema.tables WHERE table_schema = 'staging'"
         ).fetchall()
     }
-    assert tabelas == {t.nome for t in esquema.TABELAS} | {"origens"}
+    assert tabelas == {t.nome for t in esquema.TABELAS} | {
+        "origens",
+        "fotos_presidente",
+        "ibge_municipios",
+        "ibge_malha",
+    }
     assert all(resumo.linhas[t.nome] > 0 for t in esquema.TABELAS)
 
 
 def test_somente_o_turno_pedido_e_carregado(con, zips, trabalho):
     carregar_particao(con, 2022, 2, zips(), trabalho)
 
+    # no 2º turno não há cargo proporcional: a votação por partido fica vazia
     for t in esquema.TABELAS:
+        if t is esquema.VOTACAO_PARTIDO_MUNZONA:
+            continue
         assert con.execute(f"SELECT DISTINCT ano, turno FROM staging.{t.nome}").fetchall() == [
             (2022, 2)
         ]
@@ -296,3 +304,81 @@ def test_detalhe_munzona_fecha_com_votos_anulados_apurados_em_separado(con, zips
         "SELECT DISTINCT qt_votos_anulados_apu_sep FROM staging.detalhe_munzona WHERE sg_uf = 'SP'"
         " AND cd_cargo <> 1"
     ).fetchall() == [(5,)]
+
+
+# --- votação por partido, IBGE e fotos ------------------------------------------------
+
+
+def test_votacao_por_partido_so_dos_proporcionais(con, zips, trabalho):
+    carregar_particao(con, 2022, 1, zips(), trabalho)
+
+    cargos = {
+        c
+        for (c,) in con.execute(
+            "SELECT DISTINCT cd_cargo FROM staging.votacao_partido_munzona"
+        ).fetchall()
+    }
+    assert cargos == {6, 7}
+    # 2022: nominais válidos + legenda válidos do partido = válidos do município/zona
+    (dif,) = con.execute(
+        """WITH p AS (
+               SELECT sg_uf, cd_municipio, nr_zona, cd_cargo,
+                      sum(qt_votos_nominais_validos + qt_votos_legenda_validos) AS votos
+               FROM staging.votacao_partido_munzona GROUP BY ALL)
+           SELECT count(*) FROM p JOIN staging.detalhe_munzona d
+               USING (sg_uf, cd_municipio, nr_zona, cd_cargo)
+           WHERE p.votos <> d.qt_votos_validos"""
+    ).fetchone()
+    assert dif == 0
+
+
+def test_votacao_por_partido_com_colunas_de_2018(con, zips, trabalho):
+    carregar_particao(con, 2018, 1, zips(2018), trabalho)
+
+    (legenda,) = con.execute(
+        "SELECT sum(qt_votos_legenda_validos) FROM staging.votacao_partido_munzona"
+    ).fetchone()
+    assert legenda > 0
+
+
+def test_ibge_substitui_lista_e_malha_a_cada_carga(con, zips, trabalho):
+    carregar_particao(con, 2022, 1, zips(), trabalho)
+    carregar_particao(con, 2022, 2, zips(), trabalho)
+
+    assert con.execute(
+        "SELECT cd_ibge, sg_uf FROM staging.ibge_municipios WHERE nm_municipio = 'Itajubá'"
+    ).fetchall() == [(3132404, "MG")]
+    assert con.execute("SELECT count(*) FROM staging.ibge_municipios").fetchone() == (5,)
+    assert con.execute("SELECT count(*) FROM staging.ibge_malha").fetchone() == (1,)
+
+
+def test_fotos_so_dos_presidentes_do_turno_e_reduzidas(con, zips, trabalho):
+    import io
+
+    from PIL import Image
+
+    carregar_particao(con, 2022, 1, zips(), trabalho)
+
+    linhas = con.execute(
+        "SELECT sq_candidato, jpeg FROM staging.fotos_presidente ORDER BY 1"
+    ).fetchall()
+    # o fixture traz todos os presidentes menos o último, e um deputado
+    assert [sq for sq, _ in linhas] == sorted(sq_presidentes(2022)[:-1])
+    assert sq_de(2022, 6) not in {sq for sq, _ in linhas}
+    for _, jpeg in linhas:
+        with Image.open(io.BytesIO(jpeg)) as img:
+            assert img.size == (160, 200)
+
+
+def test_fotos_do_segundo_turno_so_dos_finalistas(con, zips, trabalho):
+    carregar_particao(con, 2022, 2, zips(), trabalho)
+
+    (n,) = con.execute("SELECT count(*) FROM staging.fotos_presidente").fetchone()
+    assert n == 2  # os dois finalistas (13 e 22) têm foto no fixture
+
+
+def test_pacote_de_fotos_ausente_segue_com_aviso(con, zips, trabalho, caplog):
+    resumo = carregar_particao(con, 2022, 1, zips(sem=["fotos_presidente"]), trabalho)
+
+    assert "fotos_presidente" in resumo.fontes_ausentes
+    assert con.execute("SELECT count(*) FROM staging.fotos_presidente").fetchone() == (0,)

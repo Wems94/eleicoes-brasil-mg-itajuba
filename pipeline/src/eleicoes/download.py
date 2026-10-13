@@ -1,4 +1,4 @@
-"""Download idempotente dos arquivos do TSE.
+"""Download idempotente dos arquivos do TSE e do IBGE.
 
 Cada arquivo é gravado primeiro em `<nome>.part` e só é renomeado depois de
 completo; o manifest (`manifest.json` no diretório de destino) guarda URL,
@@ -100,10 +100,13 @@ def _baixar_para(client: httpx.Client, url: str, part: Path) -> tuple[int, str]:
                     f.write(bloco)
                     h.update(bloco)
                     tamanho += len(bloco)
+            # com Content-Encoding (o IBGE responde em gzip) o Content-Length é o
+            # tamanho comprimido: compara com os bytes recebidos, não os gravados
+            recebidos = resp.num_bytes_downloaded
     except httpx.TransportError as e:
         raise _ErroRetentavel(f"{type(e).__name__}: {e}") from e
-    if esperado is not None and int(esperado) != tamanho:
-        raise _ErroRetentavel(f"download incompleto ({tamanho} de {esperado} bytes)")
+    if esperado is not None and int(esperado) != recebidos:
+        raise _ErroRetentavel(f"download incompleto ({recebidos} de {esperado} bytes)")
     return tamanho, h.hexdigest()
 
 

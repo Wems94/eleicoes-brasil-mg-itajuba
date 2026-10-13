@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 /*
- * Painel claro e moderno. A cor de dados é reservada aos candidatos (paleta
- * validada para daltonismo, todos os pares, nos dois modos); a interface usa
- * só tons neutros. Nenhuma cor é ligada a partido: as cores seguem cada
- * candidato, na ordem do resultado da eleição exibida.
+ * Painel claro e moderno. A cor de dados é a do partido de cada candidato
+ * (lib/partidos.ts, capability cores-partidarias); a interface usa só tons
+ * neutros. A cor nunca é a única pista: legenda, dica e tabela trazem a sigla.
  */
 @theme {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
@@ -21,22 +20,6 @@
   --color-acento-claro: #eef0f3;
 }
 
-/*
- * Séries: 1º, 2º e 3º candidatos e "outros" (validate_palette, todos os pares: PASS).
- * Fora do @theme de propósito: são usadas via style (cores por entidade), e o
- * Tailwind só emite variáveis do @theme que alguma classe utiliza.
- */
-:root {
-  --color-serie-1: #4a3aa7;
-  --color-serie-2: #1baf7a;
-  --color-serie-3: #eda100;
-  --color-serie-outros: #b4b9c2;
-  --color-sobre-serie-1: #ffffff;
-  --color-sobre-serie-2: #06261b;
-  --color-sobre-serie-3: #2a1d00;
-  --color-sobre-serie-outros: #111827;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --color-fundo: #111214;
@@ -48,15 +31,6 @@
     --color-texto-3: #7c7c85;
     --color-acento: #f4f4f5;
     --color-acento-claro: #26272b;
-
-    --color-serie-1: #9085e9;
-    --color-serie-2: #199e70;
-    --color-serie-3: #c98500;
-    --color-serie-outros: #5c5f66;
-    --color-sobre-serie-1: #110d33;
-    --color-sobre-serie-2: #03140d;
-    --color-sobre-serie-3: #1a1200;
-    --color-sobre-serie-outros: #f4f4f5;
   }
 }
 

@@ -16,6 +16,9 @@ on:
         description: Baixar de novo os arquivos do TSE (quando o TSE republica um arquivo)
         type: boolean
         default: false
+      base:
+        description: Branch de destino do PR de snapshots (outra branch só em mudança de schema)
+        default: main
 
 permissions:
   contents: write
@@ -106,7 +109,7 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
-  # Job separado e curto, a partir da main ATUAL: se a main mudou durante o ETL
+  # Job separado e curto, a partir da branch de destino ATUAL (main por padrão): se a main mudou durante o ETL
   # (que leva ~40 min), o PR continua contendo só web/data. O GITHUB_TOKEN não pode
   # enviar mudanças em .github/workflows, e uma branch baseada num commit antigo
   # acabaria levando essas mudanças junto.
@@ -119,7 +122,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ inputs.base }}
 
       - uses: astral-sh/setup-uv@v10.2.0
         with:
@@ -149,7 +152,7 @@ jobs:
         id: pr
         uses: peter-evans/create-pull-request@v8
         with:
-          base: main
+          base: ${{ inputs.base }}
           add-paths: web/data
           branch: dados/snapshots
           delete-branch: true

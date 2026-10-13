@@ -1,8 +1,12 @@
 """Verificador LGPD: falha se dados pessoais de candidatos aparecerem no banco
 derivado ou nos snapshots publicados.
 
-Procura (1) colunas/chaves com nomes proibidos e (2) valores com padrão de CPF
-(com dígitos verificadores válidos, para evitar falso positivo) ou de e-mail.
+Procura (1) colunas/chaves com nomes proibidos, (2) valores com padrão de CPF
+(com dígitos verificadores válidos, para evitar falso positivo) ou de e-mail e
+(3) fotos de candidatos que não disputam Presidente: no banco, toda foto tem de
+ser de um candidato a Presidente do mesmo (ano, turno); nos snapshots, toda
+imagem tem de estar em `fotos/{ano}/` e ser referenciada por um candidato a
+Presidente no `brasil.json` daquele ano.
 O relatório mascara o que encontra: logs de CI de repositório público são públicos.
 
 Uso: python -m eleicoes.lgpd --db data/eleicoes.duckdb --snapshots ../web/data
@@ -39,7 +43,7 @@ IDENTIFICADOR_TSE = re.compile(r"^(sq|nr|cd)_", re.IGNORECASE)
 @dataclass(frozen=True)
 class Vazamento:
     local: str
-    tipo: str  # "coluna proibida" | "cpf" | "email"
+    tipo: str  # "coluna proibida" | "cpf" | "email" | "foto indevida"
     exemplo: str = ""
 
     def __str__(self) -> str:
@@ -78,6 +82,28 @@ def _achados_em_texto(texto: str) -> Iterator[tuple[str, str]]:
 # --- banco -----------------------------------------------------------------------
 
 
+def _fotos_no_banco(con: duckdb.DuckDBPyConnection) -> list[Vazamento]:
+    existe = con.execute(
+        """SELECT count(*) FROM information_schema.tables
+           WHERE table_schema = 'staging' AND table_name = 'fotos_presidente'
+             AND table_catalog = current_database()"""
+    ).fetchone()[0]
+    if not existe:
+        return []
+    indevidas = con.execute(
+        """SELECT f.ano, f.turno, count(*) FROM staging.fotos_presidente f
+           WHERE NOT EXISTS (
+               SELECT 1 FROM staging.votacao_munzona m
+               WHERE (m.ano, m.turno, m.sq_candidato, m.cd_cargo)
+                   = (f.ano, f.turno, f.sq_candidato, 1))
+           GROUP BY ALL ORDER BY ALL"""
+    ).fetchall()
+    return [
+        Vazamento(f"staging.fotos_presidente {a}/{t}", "foto indevida", f"{n} foto(s)")
+        for a, t, n in indevidas
+    ]
+
+
 def verificar_banco(con: duckdb.DuckDBPyConnection, *, exemplos: int = 3) -> list[Vazamento]:
     colunas = con.execute(
         f"""SELECT table_schema, table_name, column_name, data_type
@@ -85,7 +111,7 @@ def verificar_banco(con: duckdb.DuckDBPyConnection, *, exemplos: int = 3) -> lis
             WHERE table_schema NOT IN {SCHEMAS_DO_SISTEMA} AND table_catalog = current_database()
             ORDER BY ALL"""
     ).fetchall()
-    out: list[Vazamento] = []
+    out: list[Vazamento] = _fotos_no_banco(con)
     for schema, tabela, coluna, tipo in colunas:
         local = f"{schema}.{tabela}.{coluna}"
         ref = f'"{schema}"."{tabela}"'
@@ -143,11 +169,33 @@ def _percorrer(valor: object, caminho: str, chave: str = "") -> Iterator[tuple[s
         yield caminho, "cpf", mascarar("cpf", f"{valor:011d}")
 
 
+IMAGENS = (".jpg", ".jpeg", ".png", ".webp", ".gif")
+_FOTO = re.compile(r"^fotos/(\d{4})/\d+\.jpg$")
+
+
+def _fotos_nos_snapshots(diretorio: Path) -> list[Vazamento]:
+    """Toda imagem publicada é foto de um candidato a Presidente do ano indicado."""
+    referenciadas: set[str] = set()
+    for brasil in diretorio.glob("*/*/brasil.json"):
+        ano = brasil.parent.parent.name
+        dados = json.loads(brasil.read_text(encoding="utf-8"))
+        for c in (dados.get("presidente") or {}).get("candidatos", []):
+            foto = c.get("foto")
+            if foto and _FOTO.match(foto) and foto.split("/")[1] == ano:
+                referenciadas.add(foto)
+    out = []
+    for arq in sorted(p for p in diretorio.rglob("*") if p.suffix.lower() in IMAGENS):
+        rel = arq.relative_to(diretorio).as_posix()
+        if rel not in referenciadas:
+            out.append(Vazamento(rel, "foto indevida", "não é de candidato a Presidente"))
+    return out
+
+
 def verificar_snapshots(diretorio: Path) -> list[Vazamento]:
     diretorio = Path(diretorio)
     if not diretorio.exists():
         return []
-    out = []
+    out = _fotos_nos_snapshots(diretorio)
     for arq in sorted(diretorio.rglob("*.json")):
         rel = arq.relative_to(diretorio).as_posix()
         dados = json.loads(arq.read_text(encoding="utf-8"))
