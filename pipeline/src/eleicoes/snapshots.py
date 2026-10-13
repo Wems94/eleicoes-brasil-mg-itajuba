@@ -9,7 +9,7 @@ Contrato (schema_versao 2), relativo ao diretório publicado:
   manifest.json                    anos/turnos, origens (sha256), sha256 de cada arquivo
   historico_itajuba.json           todos os anos: partido × cargo majoritário, comparecimento
   geo/municipios.topo.json         malha municipal do IBGE (id = código IBGE, nome, uf)
-  fotos/{ano}/{sq}.jpg             fotos dos candidatos a Presidente (160×200)
+  fotos/{ano}/{numero}.jpg         fotos dos candidatos a Presidente (160×200)
   {ano}/{turno}/brasil.json        Presidente nacional (com `foto`) + vencedor por UF
   {ano}/{turno}/uf/{UF}.json       todos os cargos da UF + comparecimento
   {ano}/{turno}/mapa/{cargo}.json  camada do mapa: vencedor e abstenção por município e UF
@@ -87,8 +87,17 @@ def _comparecimento(r: dict) -> dict:
 # --- arquivos por (ano, turno) ---------------------------------------------------------
 
 
-def _foto(ano: int, sq: int) -> str:
-    return f"fotos/{ano}/{sq}.jpg"
+# Os sequenciais do TSE (sq_candidato) não vão para os snapshots: com 11 dígitos,
+# alguns passam por acaso no DV de CPF e o verificador LGPD barra (visto em 2018).
+# Candidatos são identificados pelo número de urna (com a UF, se a disputa é estadual).
+
+
+def _foto(ano: int, numero: int) -> str:
+    return f"fotos/{ano}/{numero}.jpg"
+
+
+def _chave_candidato(r: dict, nacional: bool) -> str:
+    return str(r["nr_candidato"]) if nacional else f"{r['sg_uf']}-{r['nr_candidato']}"
 
 
 def _brasil(
@@ -130,8 +139,8 @@ def _brasil(
                 "candidatos": [
                     {
                         **_candidato(c),
-                        "foto": _foto(ano, c["sq_candidato"])
-                        if (ano, c["sq_candidato"]) in fotos
+                        "foto": _foto(ano, c["nr_candidato"])
+                        if (ano, c["nr_candidato"]) in fotos
                         else None,
                     }
                     for c in cands
@@ -239,7 +248,7 @@ def _mapa_linhas(
                 SELECT p.*, 100.0 * p.votos / nullif(c.votos_validos, 0) AS pct_validos,
                        rank() OVER (PARTITION BY p.sg_uf, p.cd_cargo ORDER BY p.votos DESC)
                            AS posicao,
-                       c.pct_abstencao, NULL AS sq_candidato, NULL AS nr_candidato,
+                       c.pct_abstencao, NULL AS nr_candidato,
                        NULL AS nm_urna_candidato
                 FROM p JOIN marts.comparecimento_uf c
                      ON (c.ano, c.turno, c.sg_uf, c.cd_cargo) = (?, ?, p.sg_uf, p.cd_cargo)
@@ -249,7 +258,7 @@ def _mapa_linhas(
     else:
         chave, junta = "sg_uf", "USING (ano, turno, sg_uf, cd_cargo)"
         votos, comp = "marts.resultado_uf", "marts.comparecimento_uf"
-    cand = "" if por_partido else ", r.sq_candidato, r.nr_candidato, r.nm_urna_candidato"
+    cand = "" if por_partido else ", r.nr_candidato, r.nm_urna_candidato"
     return _linhas(
         con,
         f"""SELECT {", ".join(f"r.{k.strip()}" for k in chave.split(","))}, r.cd_cargo,
@@ -279,7 +288,7 @@ def _mapa(
         if r.get("empate"):
             idx = -1
         else:
-            k = r["sg_partido"] if por_partido else str(r["sq_candidato"])
+            k = r["sg_partido"] if por_partido else _chave_candidato(r, slug == "presidente")
             if k not in indice:
                 indice[k] = len(votaveis)
                 votaveis.append(
@@ -348,7 +357,8 @@ def _detalhe_uf(
     def votos_de(linhas: list[dict], partido: bool) -> dict[tuple, list]:
         grupos: dict[tuple, list] = {}
         for r in linhas:
-            k = r["sg_partido"] if partido else str(r["sq_candidato"])
+            # no detalhe de uma UF, o número de urna já é único no cargo
+            k = r["sg_partido"] if partido else str(r["nr_candidato"])
             if k not in votaveis:
                 votaveis[k] = (
                     {"numero": r["nr_partido"], "nome": r["sg_partido"], "partido": r["sg_partido"]}
@@ -719,11 +729,15 @@ def gerar_snapshots(
         fotos: set[tuple[int, int]] = set()
         for f in _linhas(
             con,
-            """SELECT ano, sq_candidato, any_value(jpeg ORDER BY turno) AS jpeg
-               FROM staging.fotos_presidente GROUP BY ALL ORDER BY ALL""",
+            """SELECT f.ano, any_value(m.nr_candidato) AS nr_candidato,
+                      any_value(f.jpeg ORDER BY f.turno) AS jpeg
+               FROM staging.fotos_presidente f
+               JOIN (SELECT DISTINCT ano, sq_candidato, nr_candidato FROM staging.votacao_munzona
+                     WHERE cd_cargo = 1) m USING (ano, sq_candidato)
+               GROUP BY f.ano, f.sq_candidato ORDER BY ALL""",
         ):
-            gravar_bytes(_foto(f["ano"], f["sq_candidato"]), f["jpeg"])
-            fotos.add((f["ano"], f["sq_candidato"]))
+            gravar_bytes(_foto(f["ano"], f["nr_candidato"]), f["jpeg"])
+            fotos.add((f["ano"], f["nr_candidato"]))
         ibge = {
             (r["sg_uf"], r["cd_municipio"]): r["cd_ibge"]
             for r in _linhas(

@@ -31,10 +31,14 @@ O sistema SHALL publicar a malha municipal simplificada, identificada pelo códi
 
 #### Scenario: Município presente nos dados e na malha
 - **WHEN** a geometria e as camadas são publicadas
-- **THEN** todo código IBGE das camadas existe na geometria
+- **THEN** todo código IBGE das camadas existe na geometria, exceto os municípios declarados sem polígono, que a camada lista à parte com nome e UF
+
+#### Scenario: Município criado depois da malha
+- **WHEN** um município com votos ainda não tem polígono na malha do IBGE e está declarado sem polígono
+- **THEN** ele fica fora do desenho e aparece na tabela e no painel do mapa
 
 ### Requirement: Fotos publicadas
-O sistema SHALL publicar as fotos dos candidatos a Presidente reduzidas a um tamanho fixo, identificadas pelo ano e pelo número sequencial do candidato.
+O sistema SHALL publicar as fotos dos candidatos a Presidente reduzidas a um tamanho fixo, identificadas pelo ano e pelo número de urna do candidato.
 
 #### Scenario: Foto reduzida
 - **WHEN** uma foto do TSE é publicada

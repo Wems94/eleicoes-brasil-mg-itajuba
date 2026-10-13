@@ -50,6 +50,6 @@ export function iniciais(nome: string): string {
   return letras.join("").toUpperCase() || "?";
 }
 
-/** URL pública de uma foto do snapshot (`fotos/{ano}/{sq}.jpg`). */
+/** URL pública de uma foto do snapshot (`fotos/{ano}/{numero}.jpg`). */
 export const urlFoto = (caminho: string | null | undefined): string | null =>
   caminho ? `/dados/${caminho}` : null;

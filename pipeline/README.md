@@ -63,7 +63,7 @@ verificação de LGPD antes da troca. O contrato completo está na docstring do 
 |---|---|
 | `manifest.json` | eleições, origens (sha256), sha256 de cada arquivo, município do recorte (com `ibge`) |
 | `geo/municipios.topo.json` | malha do IBGE: `id` = código IBGE, `nome`, `uf` |
-| `fotos/{ano}/{sq}.jpg` | fotos dos candidatos a Presidente, referenciadas em `brasil.json` (`foto`) |
+| `fotos/{ano}/{numero}.jpg` | fotos dos candidatos a Presidente, referenciadas em `brasil.json` (`foto`) |
 | `{ano}/{turno}/brasil.json`, `uf/{UF}.json` | Presidente nacional e cargos por UF |
 | `{ano}/{turno}/mapa/{cargo}.json` | camada do mapa: `municipios[código IBGE] = [índice do vencedor ou -1 (empate), pct×100, abstenção×100]`, `ufs`, `exterior` |
 | `{ano}/{turno}/municipios/{UF}/{cargo}.json` | painel: `total` e `zonas` de cada município (comparecimento, votos; nos proporcionais, partidos e top 10 candidatos) |

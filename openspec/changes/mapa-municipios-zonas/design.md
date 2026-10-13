@@ -114,7 +114,7 @@ fotos/{ano}/{sq_candidato}.jpg                fotos dos presidenciáveis (M7)
 **Decisão:**
 - **Fonte:** o pacote `foto_cand{ano}_BR_div.zip` do TSE, opcional em `fontes.yaml`. A URL e o padrão dos nomes internos (por exemplo `FBR{sq}_div.jpg`) precisam ser confirmados com dados reais. Ver a tarefa 1.3.
 - **Extração:** o pipeline extrai só os membros cujo `sq_candidato` é de um candidato a Presidente daquele ano, segundo `staging.votacao_munzona`.
-- **Tratamento:** a foto é reduzida para 160×200 em JPEG com Pillow (nova dependência do pipeline) e publicada em `web/data/fotos/{ano}/{sq}.jpg`.
+- **Tratamento:** a foto é reduzida para 160×200 em JPEG com Pillow (nova dependência do pipeline) e publicada em `web/data/fotos/{ano}/{numero}.jpg`, pelo número de urna. O sequencial do TSE (`sq_candidato`) não vai para os snapshots: com 11 dígitos, alguns passam no DV de CPF e o verificador de LGPD barra a publicação (caso real no ETL de 2018). Pelo mesmo motivo, nos arquivos do mapa o candidato é identificado pelo número de urna, com a UF quando a disputa é estadual (`MG-30`).
 - **LGPD:** a verificação confere cada arquivo publicado contra os presidenciáveis do ano.
 
 ### M8. Migração com o PR de dados apontando para a branch da feature

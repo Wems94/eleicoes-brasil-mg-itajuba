@@ -43,7 +43,7 @@ export type Comparecimento = {
 };
 
 export type Brasil = Eleicao & {
-  // `foto`: caminho relativo a /dados/ (fotos/{ano}/{sq}.jpg), só para Presidente
+  // `foto`: caminho relativo a /dados/ (fotos/{ano}/{numero}.jpg), só para Presidente
   presidente: { votos_validos: number; candidatos: (Candidato & { foto: string | null })[] } | null;
   comparecimento: Comparecimento | null;
   ufs: {

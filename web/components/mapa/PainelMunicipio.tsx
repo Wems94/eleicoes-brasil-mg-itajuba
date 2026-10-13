@@ -14,7 +14,7 @@ type Props = Eleicao & {
   nomeCargo: string;
   detalhe: DetalheUf | null; // null enquanto carrega
   erro: boolean;
-  fotos: Record<string, string>; // sq -> caminho (só Presidente)
+  fotos: Record<string, string>; // número de urna -> caminho (só Presidente)
   itajuba: number | null;
   onFechar: () => void;
 };

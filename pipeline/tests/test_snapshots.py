@@ -370,17 +370,43 @@ def test_detalhe_de_deputado_tem_partidos_e_top_candidatos(publicado):
 
 
 def test_fotos_so_dos_presidentes_e_referenciadas(publicado):
-    from tests.conftest import sq_presidentes
-
     b = _ler(publicado / "2022" / "1" / "brasil.json")
     fotos = {c["numero"]: c["foto"] for c in b["presidente"]["candidatos"]}
-    presidentes = sq_presidentes(2022)
-    assert fotos[13] == f"fotos/2022/{presidentes[0]}.jpg"
+    # arquivo nomeado pelo número de urna (o sequencial do TSE não é publicado)
+    assert fotos[13] == "fotos/2022/13.jpg"
     assert fotos[15] is None  # o fixture não tem a foto do último presidenciável
     assert (publicado / fotos[13]).read_bytes()[:2] == b"\xff\xd8"  # JPEG
     publicadas = {a for a in _arvore(publicado) if a.startswith("fotos/")}
-    assert publicadas == {
-        f"fotos/{ano}/{sq}.jpg" for ano in (2018, 2022) for sq in sq_presidentes(ano)[:-1]
+    assert publicadas == {f"fotos/{ano}/{n}.jpg" for ano in (2018, 2022) for n in (13, 22)}
+
+
+def test_sequencial_do_tse_parecido_com_cpf_nao_vai_para_os_snapshots(banco_completo, tmp_path):
+    # Caso real (ETL 2018): sq_candidato de 11 dígitos que passa no DV de CPF.
+    import shutil
+
+    from eleicoes.marts import construir_marts
+    from tests.test_lgpd import CPF_VALIDO
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    for t in ("votacao_munzona", "candidatos"):
+        c.execute(
+            f"UPDATE staging.{t} SET sq_candidato = {CPF_VALIDO} "
+            "WHERE ano = 2022 AND cd_cargo = 3 AND nr_candidato = 30"
+        )
+    construir_marts(c)
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    assert verificar_snapshots(tmp_path / "out") == []
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "governador.json")
+    assert {v["chave"] for v in m["votaveis"]} <= {
+        "MG-30",
+        "MG-13",
+        "MG-45",
+        "SP-45",
+        "SP-13",
+        "SP-22",
     }
 
 

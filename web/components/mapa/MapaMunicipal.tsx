@@ -38,7 +38,7 @@ type Props = {
   ufInicial?: string | null; // página da UF: abre já enquadrado nela
   fixarUf?: boolean; // na página da UF, o mapa não sai da UF
   itajuba: number | null; // código IBGE do deep dive
-  fotos: Record<string, string>; // sq -> caminho da foto (só Presidente)
+  fotos: Record<string, string>; // número de urna -> caminho da foto (só Presidente)
 };
 
 type PropsMunicipio = { codigo: string; nome: string | null; uf: string | null; cor?: string };
