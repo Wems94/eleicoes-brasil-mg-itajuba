@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 export const metadata: Metadata = {
   title: { default: "Eleições Gerais — Brasil e Itajubá", template: "%s · Eleições Gerais" },
   description:
-    "Resultados oficiais das eleições gerais de 2018, 2022 e 2026 por UF, com aprofundamento em Itajubá-MG. Fonte: TSE.",
+    "Resultados oficiais das eleições gerais de 2018, 2022 e 2026: mapa por município e zona eleitoral, abstenção, UFs e aprofundamento em Itajubá-MG. Fonte: TSE.",
 };
 
 const LINKS = [
@@ -30,37 +30,66 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body className="min-h-screen font-sans">
         <a
           href="#conteudo"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-texto focus:px-3 focus:py-2 focus:text-superficie"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-texto focus:px-3 focus:py-2 focus:text-fundo"
         >
           Pular para o conteúdo
         </a>
-        <header className="sticky top-0 z-40 border-b border-borda bg-superficie/85 backdrop-blur">
-          <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4">
-            <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-              <span className="grid size-7 place-items-center rounded-lg bg-texto text-xs font-bold text-superficie" aria-hidden="true">
+        <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-fundo/70 backdrop-blur-xl">
+          <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 md:grid-cols-[1fr_auto_1fr] sm:px-6">
+            <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+              <span
+                className="grid size-8 place-items-center rounded-lg bg-gradient-to-b from-violet-400 to-violet-700 text-[11px] font-bold text-white shadow-[0_0_20px_-4px_rgb(139_92_246/0.8)]"
+                aria-hidden="true"
+              >
                 BR
               </span>
-              Eleições Gerais
+              <span>
+                Eleições <span className="text-texto-2">Gerais</span>
+              </span>
             </Link>
-            <nav aria-label="Principal" className="flex gap-1 text-sm">
+            <nav aria-label="Principal" className="hidden gap-1 text-sm md:flex">
               {LINKS.map(([href, rotulo]) => (
                 <Link
                   key={href}
                   href={href}
-                  className="rounded-lg px-2.5 py-1.5 text-texto-2 transition-colors hover:bg-realce hover:text-texto sm:px-3"
+                  className="rounded-lg px-3 py-1.5 text-texto-2 transition-colors hover:bg-white/5 hover:text-texto"
                 >
                   {rotulo}
                 </Link>
               ))}
             </nav>
+            <div className="flex items-center justify-end gap-2">
+              <Link
+                href="/metodologia/"
+                className="hidden rounded-lg px-3 py-1.5 text-sm text-texto-2 hover:text-texto sm:block md:hidden"
+              >
+                Metodologia
+              </Link>
+              <Link
+                href="/#mapa"
+                className="rounded-xl border border-white/15 bg-white/[0.04] px-3.5 py-1.5 text-sm font-medium transition-colors hover:bg-white/10"
+              >
+                Abrir o mapa
+              </Link>
+            </div>
           </div>
+          <nav aria-label="Principal (celular)" className="flex gap-1 border-t border-white/[0.06] px-4 py-1.5 text-sm md:hidden">
+            {LINKS.map(([href, rotulo]) => (
+              <Link key={href} href={href} className="rounded-lg px-2.5 py-1 text-texto-2 hover:text-texto">
+                {rotulo}
+              </Link>
+            ))}
+          </nav>
         </header>
-        <main id="conteudo" className="mx-auto max-w-6xl px-4 py-8 sm:py-10">
+        <main id="conteudo" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
           {children}
         </main>
-        <footer className="mt-12 border-t border-borda bg-superficie">
-          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-xs text-texto-3 sm:flex-row sm:justify-between">
-            <p>Fonte: {manifesto.fonte}. Dados oficiais, sem projeções.</p>
+        <footer className="mt-16 border-t border-white/[0.06]">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-8 text-xs text-texto-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <p className="flex items-center gap-2">
+              <span className="size-1.5 rounded-full bg-acento" aria-hidden="true" />
+              Fonte: {manifesto.fonte}. Dados oficiais, sem projeções.
+            </p>
             <p>
               Dados gerados em{" "}
               <time dateTime={manifesto.gerado_em} className="num">

@@ -65,11 +65,11 @@ export const PALETA: Readonly<Record<string, string>> = {
 
 // Cores neutras, fora de qualquer partido (a reserva nunca cai nelas: tem croma).
 export const NEUTRO = {
-  semDados: { claro: "#dfe2e6", escuro: "#34373d" },
-  empate: { claro: "#9aa0a8", escuro: "#6b7079" },
+  semDados: { claro: "#dfe2e6", escuro: "#262236" },
+  empate: { claro: "#9aa0a8", escuro: "#625d78" },
 } as const;
 
-export const SUPERFICIE = { claro: "#ffffff", escuro: "#1a1a19" } as const;
+export const SUPERFICIE = { claro: "#ffffff", escuro: "#12101c" } as const;
 export type Tema = keyof typeof SUPERFICIE;
 
 // --- conversões (sRGB <-> OKLab/OKLCH) --------------------------------------------------

@@ -1,37 +1,28 @@
 @import "tailwindcss";
 
 /*
- * Painel claro e moderno. A cor de dados é a do partido de cada candidato
- * (lib/partidos.ts, capability cores-partidarias); a interface usa só tons
- * neutros. A cor nunca é a única pista: legenda, dica e tabela trazem a sigla.
+ * Painel escuro com acento violeta (redesign 2026-10). Tema único: o mapa e as
+ * cores partidárias foram calibrados sobre a superfície escura (lib/partidos.ts).
+ * A cor de dados é a do partido; a interface usa neutros e o violeta de destaque.
  */
 @theme {
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  --color-fundo: #f4f5f7;
-  --color-superficie: #ffffff;
-  --color-realce: #eef0f3;
-  --color-borda: #e3e6ea;
-  --color-texto: #0f172a;
-  --color-texto-2: #4b5563;
-  --color-texto-3: #8a919c;
-  --color-acento: #0f172a;
-  --color-acento-claro: #eef0f3;
+  --color-fundo: #09080f;
+  --color-superficie: #12101c;
+  --color-realce: #1c1929;
+  --color-borda: #272338;
+  --color-texto: #f5f3ff;
+  --color-texto-2: #b3adc9;
+  --color-texto-3: #7a7493;
+  --color-acento: #a78bfa;
+  --color-acento-forte: #8b5cf6;
+  --color-acento-claro: #2a2248;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-fundo: #111214;
-    --color-superficie: #1a1a19;
-    --color-realce: #26272b;
-    --color-borda: #2c2e33;
-    --color-texto: #f4f4f5;
-    --color-texto-2: #b4b4bb;
-    --color-texto-3: #7c7c85;
-    --color-acento: #f4f4f5;
-    --color-acento-claro: #26272b;
-  }
+:root {
+  color-scheme: dark;
 }
 
 html {
@@ -63,4 +54,36 @@ html {
       transform: scaleX(0);
     }
   }
+}
+
+/* brilho violeta no topo e anéis concêntricos discretos, como pano de fundo */
+body {
+  background:
+    radial-gradient(60rem 28rem at 50% -6rem, rgb(139 92 246 / 0.28), transparent 70%),
+    repeating-radial-gradient(circle at 50% 18rem, transparent 0 7rem, rgb(167 139 250 / 0.045) 7rem 7.08rem),
+    var(--color-fundo);
+  background-repeat: no-repeat;
+  background-size: 100% 70rem, 100% 70rem, auto;
+}
+
+/* título com degradê violeta (segunda linha do hero) */
+.texto-degrade {
+  background: linear-gradient(180deg, #ddd6fe 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* botão principal: violeta com brilho */
+.botao-principal {
+  background: linear-gradient(180deg, #a78bfa, #7c3aed);
+  box-shadow: 0 0 0 1px rgb(167 139 250 / 0.5) inset, 0 8px 30px -6px rgb(139 92 246 / 0.6);
+}
+
+/* moldura do "aplicativo" (painel de resultados) */
+.moldura {
+  box-shadow:
+    0 0 0 1px rgb(167 139 250 / 0.14),
+    0 30px 80px -20px rgb(139 92 246 / 0.35),
+    0 1px 0 rgb(255 255 255 / 0.05) inset;
 }

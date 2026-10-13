@@ -99,7 +99,7 @@ describe("faixas do mapa", () => {
 
   it("intensidade cresce com o percentual, nos dois temas", () => {
     for (const tema of ["claro", "escuro"] as const) {
-      const sup = tema === "claro" ? "#ffffff" : "#1a1a19";
+      const sup = tema === "claro" ? "#ffffff" : "#12101c";
       const d = [45, 55, 65, 75].map((p) => deltaE(corIntensidade(PALETA.PT, p, tema), sup));
       expect(d).toEqual([...d].sort((a, b) => a - b));
       expect(corIntensidade(PALETA.PT, 75, tema)).toBe(PALETA.PT);

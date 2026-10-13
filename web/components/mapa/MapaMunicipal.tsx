@@ -83,24 +83,15 @@ async function carregarMalha(): Promise<Malha> {
   };
 }
 
-function useTema(): Tema {
-  const [tema, setTema] = useState<Tema>("claro");
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const atualizar = () => setTema(mq.matches ? "escuro" : "claro");
-    atualizar();
-    mq.addEventListener("change", atualizar);
-    return () => mq.removeEventListener("change", atualizar);
-  }, []);
-  return tema;
-}
-
-const COR_LIMITE = { claro: "#ffffff", escuro: "#111214" } as const;
-const COR_DESTAQUE = { claro: "#0f172a", escuro: "#f4f4f5" } as const;
+// O site tem tema único escuro (globals.css); as funções de cor aceitam os dois.
+const TEMA: Tema = "escuro";
+const COR_LIMITE = { claro: "#ffffff", escuro: "#12101c" } as const;
+const COR_LIMITE_UF = { claro: "#ffffff", escuro: "#d9d2ff" } as const;
+const COR_DESTAQUE = { claro: "#0f172a", escuro: "#f5f3ff" } as const;
 
 /** Mapa coroplético por município (capability mapa-municipal, decisão M5). */
 export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = false, itajuba, fotos }: Props) {
-  const tema = useTema();
+  const tema = TEMA;
   const padrao = useMemo<EstadoMapa>(
     () => ({ cargo: cargos[0]?.cargo ?? "presidente", camada: "vencedor", uf: ufInicial, mun: null }),
     [cargos, ufInicial],
@@ -233,13 +224,17 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
             id: "uf-linha",
             type: "line",
             source: "ufs",
-            paint: { "line-color": COR_LIMITE.claro, "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.1, 7, 2.4] },
+            paint: {
+              "line-color": COR_LIMITE_UF.claro,
+              "line-opacity": 0.75,
+              "line-width": ["interpolate", ["linear"], ["zoom"], 3, 0.9, 7, 2.2],
+            },
           });
           m.addLayer({
             id: "contorno-linha",
             type: "line",
             source: "contorno",
-            paint: { "line-color": "#8a919c", "line-width": 0.6, "line-opacity": 0.6 },
+            paint: { "line-color": "#a78bfa", "line-width": 1, "line-opacity": 0.45 },
           });
           m.addLayer({
             id: "mun-destaque",
@@ -328,7 +323,7 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
     };
     (m.getSource("municipios") as GeoJSONSource).setData(dados);
     m.setPaintProperty("mun-linha", "line-color", COR_LIMITE[tema]);
-    m.setPaintProperty("uf-linha", "line-color", COR_LIMITE[tema]);
+    m.setPaintProperty("uf-linha", "line-color", COR_LIMITE_UF[tema]);
     m.setPaintProperty("mun-destaque", "line-color", COR_DESTAQUE[tema]);
   }, [pronto, malha, camada, cores, estado.camada, tema]);
 
@@ -381,7 +376,7 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <div role="group" aria-label="Cargo" className="inline-flex flex-wrap gap-1 rounded-xl border border-borda bg-superficie p-1">
+        <div role="group" aria-label="Cargo" className="inline-flex flex-wrap gap-1 rounded-xl border border-borda bg-white/[0.03] p-1">
           {cargos.map((c) => (
             <button
               key={c.cargo}
@@ -389,14 +384,14 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
               aria-pressed={estado.cargo === c.cargo}
               onClick={() => mudar({ cargo: c.cargo })}
               className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
-                estado.cargo === c.cargo ? "bg-texto text-superficie" : "text-texto-2 hover:bg-realce hover:text-texto"
+                estado.cargo === c.cargo ? "bg-acento-claro text-texto ring-1 ring-acento/40" : "text-texto-2 hover:bg-realce hover:text-texto"
               }`}
             >
               {c.nome}
             </button>
           ))}
         </div>
-        <div role="group" aria-label="Camada" className="inline-flex gap-1 rounded-xl border border-borda bg-superficie p-1">
+        <div role="group" aria-label="Camada" className="inline-flex gap-1 rounded-xl border border-borda bg-white/[0.03] p-1">
           {(
             [
               ["vencedor", "Mais votado"],
@@ -409,7 +404,7 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
               aria-pressed={estado.camada === k}
               onClick={() => mudar({ camada: k })}
               className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
-                estado.camada === k ? "bg-texto text-superficie" : "text-texto-2 hover:bg-realce hover:text-texto"
+                estado.camada === k ? "bg-acento-claro text-texto ring-1 ring-acento/40" : "text-texto-2 hover:bg-realce hover:text-texto"
               }`}
             >
               {rotulo}

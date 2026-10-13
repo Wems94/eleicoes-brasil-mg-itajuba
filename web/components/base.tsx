@@ -24,12 +24,12 @@ export function Secao({
     <section
       id={id}
       aria-labelledby={id && `${id}-t`}
-      className={`scroll-mt-20 rounded-2xl border border-borda bg-superficie p-5 shadow-[0_1px_2px_rgb(0_0_0/0.04)] sm:p-6 ${className}`}
+      className={`scroll-mt-24 rounded-2xl border border-borda bg-white/[0.02] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.04)] sm:p-6 ${className}`}
     >
       <header className="mb-4 flex items-start justify-between gap-4">
         <div>
           {sobretitulo ? (
-            <p className="text-xs font-medium uppercase tracking-wider text-texto-3">{sobretitulo}</p>
+            <p className="text-[11px] font-medium uppercase tracking-wider text-acento">{sobretitulo}</p>
           ) : null}
           <h2 id={id && `${id}-t`} className="text-lg font-semibold tracking-tight">
             {titulo}
@@ -55,7 +55,7 @@ export function SeletorEleicao({
   return (
     <nav
       aria-label="Escolher eleição"
-      className="inline-flex flex-wrap gap-1 rounded-xl border border-borda bg-superficie p-1"
+      className="inline-flex flex-wrap gap-1 rounded-xl border border-borda bg-white/[0.03] p-1"
     >
       {eleicoes.map((e) => {
         const ativo = e.ano === atual.ano && e.turno === atual.turno;
@@ -65,7 +65,7 @@ export function SeletorEleicao({
             href={href(e)}
             aria-current={ativo ? "page" : undefined}
             className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
-              ativo ? "bg-texto text-superficie" : "text-texto-2 hover:bg-realce hover:text-texto"
+              ativo ? "bg-acento-claro text-texto ring-1 ring-acento/40" : "text-texto-2 hover:bg-white/5 hover:text-texto"
             }`}
           >
             <span className="num font-semibold">{e.ano}</span>{" "}
@@ -88,8 +88,11 @@ export function Participacao({ dados }: { dados: Comparecimento }) {
   return (
     <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
       {itens.map(([rotulo, n, p, unidade]) => (
-        <div key={rotulo} className="rounded-2xl border border-borda bg-superficie p-4 sm:p-5">
-          <dt className="text-sm text-texto-2">{rotulo}</dt>
+        <div
+          key={rotulo}
+          className="relative overflow-hidden rounded-2xl border border-borda bg-gradient-to-b from-white/[0.05] to-white/[0.01] p-4 sm:p-5"
+        >
+          <dt className="text-xs font-medium uppercase tracking-wider text-texto-3">{rotulo}</dt>
           <dd className="num mt-1 text-2xl font-semibold tracking-tight sm:text-3xl">
             {p == null ? numero(n) : pct(p)}
           </dd>
@@ -113,9 +116,12 @@ export function CabecalhoPagina({
   children?: ReactNode;
 }) {
   return (
-    <header className="space-y-4">
-      <p className="text-sm font-medium text-texto-2">{sobretitulo}</p>
-      <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{titulo}</h1>
+    <header className="space-y-4 pt-2">
+      <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-texto-2">
+        <span className="size-1.5 rounded-full bg-acento" aria-hidden="true" />
+        {sobretitulo}
+      </p>
+      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{titulo}</h1>
       {subtitulo ? <p className="max-w-3xl text-lg text-texto-2">{subtitulo}</p> : null}
       {children}
     </header>
