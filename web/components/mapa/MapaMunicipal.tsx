@@ -107,6 +107,7 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
   const mapa = useRef<MapaLibre | null>(null);
   const hover = useRef<string | null>(null);
   const selecionado = useRef<string | null>(null);
+  const usuarioMoveu = useRef(false);
   const estadoRef = useRef(estado);
   estadoRef.current = estado;
 
@@ -255,6 +256,9 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
           });
           setPronto(true);
         });
+        m.on("moveend", (ev) => {
+          usuarioMoveu.current = Boolean(ev.originalEvent || (ev as { usuario?: boolean }).usuario);
+        });
 
         const definirHover = (codigo: string | null) => {
           if (hover.current === codigo) return;
@@ -341,6 +345,17 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
     );
   }, [pronto, malha, estado.uf]);
 
+  // o painel muda a largura do mapa: reenquadra, a menos que o usuário tenha mexido no zoom
+  const painelAberto = Boolean(estado.mun);
+  useEffect(() => {
+    const m = mapa.current;
+    if (!pronto || !m || !malha) return;
+    m.resize();
+    if (usuarioMoveu.current) return;
+    const caixa = (estadoRef.current.uf && malha.caixas.get(estadoRef.current.uf)) || unirCaixas(malha.caixas.values());
+    if (caixa) m.fitBounds(caixa, { padding: 24, duration: 0 });
+  }, [pronto, malha, painelAberto]);
+
   // município selecionado
   useEffect(() => {
     const m = mapa.current;
@@ -350,7 +365,8 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
     if (estado.mun) m.setFeatureState({ source: "municipios", id: estado.mun }, { selecionado: true });
   }, [pronto, estado.mun, camada]);
 
-  const zoom = (d: number) => mapa.current?.zoomTo((mapa.current?.getZoom() ?? 4) + d, { duration: 250 });
+  const zoom = (d: number) =>
+    mapa.current?.zoomTo((mapa.current?.getZoom() ?? 4) + d, { duration: 250 }, { usuario: true });
   const enquadrar = () => {
     const caixa = (estado.uf && malha?.caixas.get(estado.uf)) || (malha && unirCaixas(malha.caixas.values()));
     if (caixa) mapa.current?.fitBounds(caixa, { padding: 24, duration: 400 });
@@ -374,7 +390,7 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
     malha?.feicoes.features.find((f) => f.properties.codigo === codigo)?.properties.nome ??
     camada?.sem_geometria?.[codigo]?.nome ??
     codigo;
-  const semGeometria = Object.values(camada?.sem_geometria ?? {});
+  const semGeometria = Object.values(camada?.sem_geometria ?? {}).filter((m) => !estado.uf || m.uf === estado.uf);
 
   const recorteLegenda = camada && !disputaNacional(camada.cargo) ? estado.uf : null;
   const titulo = estado.uf
