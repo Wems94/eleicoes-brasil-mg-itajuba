@@ -245,3 +245,17 @@ def test_foto_no_ano_errado_ou_fora_de_fotos_falha(tmp_path):
         ("fotos/2018/123.jpg", "foto indevida"),
         ("uf/x.png", "foto indevida"),
     }
+
+
+def test_hash_sha256_com_digitos_parecidos_com_cpf_nao_e_vazamento(db, tmp_path):
+    """Caso real (ETL 2026): sha256 de um arquivo no manifesto com 11 dígitos seguidos
+    que passam no DV de CPF. Um hash não é dado pessoal."""
+    sha = "ab" + CPF_VALIDO + "c" + "0" * 50
+    assert len(sha) == 64
+    _json(tmp_path / "manifest.json", {"arquivos": {"2026/1/x.json": sha}})
+    assert verificar_snapshots(tmp_path) == []
+    db.execute("INSERT INTO staging.origens VALUES (2022, 1, 'x', 'http://x', ?, 1)", [sha])
+    assert verificar_banco(db) == []
+    # o mesmo CPF fora de um hash continua sendo detectado
+    _json(tmp_path / "manifest.json", {"arquivos": {"x": f"doc {CPF_VALIDO}"}})
+    assert _tipos(verificar_snapshots(tmp_path)) == {("manifest.json:$.arquivos.x", "cpf")}

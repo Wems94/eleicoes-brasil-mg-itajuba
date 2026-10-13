@@ -38,6 +38,9 @@ CPF_NUM_MIN, CPF_NUM_MAX = 1_000_000_000, 99_999_999_999
 # entram na checagem numérica: ~1% dos sq_* de 11 dígitos passa no DV por acaso
 # (visto nos dados reais de 2026). Em texto, todas as colunas continuam checadas.
 IDENTIFICADOR_TSE = re.compile(r"^(sq|nr|cd)_", re.IGNORECASE)
+# Hash sha256 (manifesto, origens): 64 caracteres hexadecimais, às vezes com 11 dígitos
+# seguidos que passam no DV de CPF por acaso (visto no ETL de 2026). Não é dado pessoal.
+HASH_SHA256 = re.compile(r"[0-9a-f]{64}")
 
 
 @dataclass(frozen=True)
@@ -72,6 +75,8 @@ def mascarar(tipo: str, valor: str) -> str:
 
 
 def _achados_em_texto(texto: str) -> Iterator[tuple[str, str]]:
+    if HASH_SHA256.fullmatch(texto):
+        return
     for m in _CPF_EM_TEXTO.finditer(texto):
         if cpf_valido(m.group(1)):
             yield "cpf", mascarar("cpf", m.group(1))
