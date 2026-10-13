@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -8,8 +8,11 @@ import { dataGeracao } from "@/lib/formato";
 
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+// Títulos em Plus Jakarta Sans; texto e números em Inter (algarismos tabulares);
+// detalhes técnicos em JetBrains Mono.
+const titulos = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--nf-titulos", display: "swap" });
+const texto = Inter({ subsets: ["latin"], variable: "--nf-texto", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--nf-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "Eleições Gerais — Brasil e Itajubá", template: "%s · Eleições Gerais" },
@@ -26,7 +29,7 @@ const LINKS = [
 export default function Layout({ children }: { children: ReactNode }) {
   const manifesto = dados.manifesto();
   return (
-    <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable}`}>
+    <html lang="pt-BR" className={`${titulos.variable} ${texto.variable} ${mono.variable}`}>
       <body className="min-h-screen font-sans">
         <a
           href="#conteudo"
@@ -36,7 +39,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         </a>
         <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-fundo/70 backdrop-blur-xl">
           <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto] items-center gap-4 px-4 md:grid-cols-[1fr_auto_1fr] sm:px-6">
-            <Link href="/" className="flex items-center gap-2.5 font-semibold tracking-tight">
+            <Link href="/" className="fonte-titulos flex items-center gap-2.5 font-semibold tracking-tight">
               <span
                 className="grid size-8 place-items-center rounded-lg bg-gradient-to-b from-violet-400 to-violet-700 text-[11px] font-bold text-white shadow-[0_0_20px_-4px_rgb(139_92_246/0.8)]"
                 aria-hidden="true"

@@ -144,6 +144,8 @@ export type CamadaMapa = Eleicao & {
   municipios: Record<string, CelulaMapa>; // código IBGE
   ufs: Record<string, CelulaMapa>;
   exterior: CelulaMapa | null;
+  // municípios com dados mas sem polígono na malha do IBGE (só na tabela e no painel)
+  sem_geometria?: Record<string, { nome: string | null; uf: string }>;
 };
 
 /** [chave do votável, votos, pct dos válidos] */

@@ -155,8 +155,9 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
   const ufDoMunicipio = useMemo(() => {
     const m = new Map<string, string>();
     for (const f of malha?.feicoes.features ?? []) if (f.properties.uf) m.set(f.properties.codigo, f.properties.uf);
+    for (const [codigo, { uf }] of Object.entries(camada?.sem_geometria ?? {})) m.set(codigo, uf);
     return m;
-  }, [malha]);
+  }, [malha, camada]);
   const ufPainel = estado.mun ? (ufDoMunicipio.get(estado.mun) ?? null) : null;
 
   useEffect(() => {
@@ -358,15 +359,22 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
   const municipiosDaUf = useMemo(
     () =>
       estado.uf && malha
-        ? malha.feicoes.features
-            .filter((f) => f.properties.uf === estado.uf)
-            .map((f) => ({ codigo: f.properties.codigo, nome: f.properties.nome ?? f.properties.codigo }))
-            .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
+        ? [
+            ...malha.feicoes.features
+              .filter((f) => f.properties.uf === estado.uf)
+              .map((f) => ({ codigo: f.properties.codigo, nome: f.properties.nome ?? f.properties.codigo })),
+            ...Object.entries(camada?.sem_geometria ?? {})
+              .filter(([, m]) => m.uf === estado.uf)
+              .map(([codigo, m]) => ({ codigo, nome: m.nome ?? codigo })),
+          ].sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
         : [],
-    [estado.uf, malha],
+    [estado.uf, malha, camada],
   );
   const nomeMunicipio = (codigo: string) =>
-    malha?.feicoes.features.find((f) => f.properties.codigo === codigo)?.properties.nome ?? codigo;
+    malha?.feicoes.features.find((f) => f.properties.codigo === codigo)?.properties.nome ??
+    camada?.sem_geometria?.[codigo]?.nome ??
+    codigo;
+  const semGeometria = Object.values(camada?.sem_geometria ?? {});
 
   const recorteLegenda = camada && !disputaNacional(camada.cargo) ? estado.uf : null;
   const titulo = estado.uf
@@ -467,6 +475,12 @@ export function MapaMunicipal({ ano, turno, cargos, ufInicial = null, fixarUf = 
               Exterior (sem geometria): {rotuloVotavel(camada.votaveis[camada.exterior[0]], camada.por)}{" "}
               {camada.votaveis[camada.exterior[0]]?.partido} ({pct(pctCem(camada.exterior[1]))}) · abstenção{" "}
               {pct(pctCem(camada.exterior[2]))}
+            </p>
+          ) : null}
+          {semGeometria.length ? (
+            <p className="mt-2 text-xs text-texto-3">
+              Sem desenho na malha do IBGE (município recente):{" "}
+              {semGeometria.map((m) => `${m.nome} (${m.uf})`).join(", ")}. Os dados estão na tabela abaixo.
             </p>
           ) : null}
           {camada ? (

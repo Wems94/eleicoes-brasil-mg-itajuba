@@ -142,12 +142,16 @@ def _sql_texto(v: str) -> str:
     return "'" + str(v).replace("'", "''") + "'"
 
 
-def _municipio_ibge_sql(excecoes: dict[str, dict[str, int]]) -> str:
+def _municipio_ibge_sql(excecoes: dict) -> str:
+    """`excecoes`: UF -> nome no TSE -> código IBGE, e `sem_poligono`: [códigos IBGE]."""
     linhas = [
         f"({_sql_texto(uf)}, {_sql_texto(nome)}, {int(cd)})"
         for uf, nomes in sorted(excecoes.items())
+        if uf != "sem_poligono"
         for nome, cd in sorted(nomes.items())
     ]
+    sem_poligono = sorted(int(c) for c in excecoes.get("sem_poligono") or [])
+    lista_sem_poligono = ", ".join(map(str, sem_poligono)) or "NULL"
     excecoes_sql = (
         f"SELECT * FROM (VALUES {', '.join(linhas)}) t(sg_uf, nm_tse, cd_ibge)"
         if linhas
@@ -173,7 +177,7 @@ WITH tse AS (
           AND {_chave_nome("i.nm_municipio")} = {_chave_nome("t.nm_municipio")}
 )
 SELECT c.sg_uf, c.cd_municipio, c.nm_municipio, c.cd_ibge, i.nm_municipio AS nm_ibge,
-       c.por_excecao
+       c.por_excecao, coalesce(c.cd_ibge IN ({lista_sem_poligono}), false) AS sem_poligono
 FROM casados c
 LEFT JOIN staging.ibge_municipios i ON i.cd_ibge = c.cd_ibge"""
 
@@ -377,7 +381,7 @@ def carregar_config(path: Path = CONFIG_DIR / "eleicoes.yaml") -> dict:
 
 
 def carregar_excecoes(path: Path = CONFIG_DIR / "municipios_excecoes.yaml") -> dict:
-    """UF -> nome no TSE -> código IBGE (nomes que não casam automaticamente)."""
+    """UF -> nome no TSE -> código IBGE (nomes que não casam) e `sem_poligono`."""
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
 

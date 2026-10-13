@@ -318,9 +318,10 @@ def regras(ano: int, turno: int, ufs: Sequence[str], cargos: Sequence[int]) -> l
         ),
         Regra(
             "ibge_fora_da_malha",
-            "código IBGE sem polígono na malha municipal",
+            "código IBGE sem polígono na malha (se for município novo, liste em sem_poligono)",
             f"""SELECT sg_uf, cd_municipio, nm_municipio, cd_ibge FROM marts.municipio_ibge
-                WHERE cd_ibge IS NOT NULL AND cd_ibge NOT IN ({CODIGOS_MALHA})
+                WHERE cd_ibge IS NOT NULL AND NOT sem_poligono
+                  AND cd_ibge NOT IN ({CODIGOS_MALHA})
                   AND {_municipios_do_turno(ano, turno)}
                 ORDER BY ALL""",
         ),

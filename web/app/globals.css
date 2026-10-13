@@ -6,8 +6,9 @@
  * A cor de dados é a do partido; a interface usa neutros e o violeta de destaque.
  */
 @theme {
-  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--nf-texto), ui-sans-serif, system-ui, sans-serif;
+  --font-titulos: var(--nf-titulos), var(--nf-texto), ui-sans-serif, sans-serif;
+  --font-mono: var(--nf-mono), ui-monospace, monospace;
 
   --color-fundo: #09080f;
   --color-superficie: #12101c;
@@ -30,6 +31,20 @@ html {
   color: var(--color-texto);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* Inter: "a" de um andar (cv11) e algarismos mais abertos (ss01) */
+body {
+  font-feature-settings: "cv11", "ss01";
+}
+
+/* títulos e marcas em Plus Jakarta Sans */
+h1,
+h2,
+h3,
+.fonte-titulos {
+  font-family: var(--font-titulos);
+  letter-spacing: -0.02em;
 }
 
 /* números alinhados em colunas */

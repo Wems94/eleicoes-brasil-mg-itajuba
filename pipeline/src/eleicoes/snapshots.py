@@ -264,7 +264,12 @@ def _mapa_linhas(
 
 
 def _mapa(
-    con: duckdb.DuckDBPyConnection, ano: int, turno: int, slug: str, ibge: dict[tuple, int]
+    con: duckdb.DuckDBPyConnection,
+    ano: int,
+    turno: int,
+    slug: str,
+    ibge: dict[tuple, int],
+    sem_poligono: dict[int, dict] | None = None,
 ) -> dict:
     nome, _, por_partido = CARGOS_MAPA[slug]
     votaveis: list[dict] = []
@@ -316,6 +321,12 @@ def _mapa(
         "municipios": dict(sorted(municipios.items())),
         "ufs": {uf: entrada(r) for (uf,), r in sorted(ufs.items())},
         "exterior": entrada(exterior) if exterior else None,
+        # municípios com dados mas sem polígono na malha (ex.: criados depois dela)
+        "sem_geometria": {
+            str(cd): info
+            for cd, info in sorted((sem_poligono or {}).items())
+            if str(cd) in municipios
+        },
     }
 
 
@@ -721,6 +732,14 @@ def gerar_snapshots(
                 "WHERE cd_ibge IS NOT NULL",
             )
         }
+        sem_poligono = {
+            r["cd_ibge"]: {"nome": r["nome"], "uf": r["sg_uf"]}
+            for r in _linhas(
+                con,
+                """SELECT cd_ibge, sg_uf, coalesce(nm_ibge, nm_municipio) AS nome
+                   FROM marts.municipio_ibge WHERE sem_poligono""",
+            )
+        }
         nomes_ibge = {
             r["cd_ibge"]: r["nm_municipio"]
             for r in _linhas(con, "SELECT cd_ibge, nm_municipio FROM staging.ibge_municipios")
@@ -745,7 +764,9 @@ def gerar_snapshots(
                 if not cargos_turno.intersection(codigos):
                     continue
                 gravar(
-                    f"{base}/mapa/{slug}.json", _mapa(con, ano, turno, slug, ibge), compacto=True
+                    f"{base}/mapa/{slug}.json",
+                    _mapa(con, ano, turno, slug, ibge, sem_poligono),
+                    compacto=True,
                 )
                 ufs_cargo = _linhas(
                     con,

@@ -394,3 +394,28 @@ def test_malha_publicada_tem_os_municipios_das_camadas(publicado):
 def test_arquivos_do_mapa_sao_compactos(publicado):
     corpo = (publicado / "2022" / "1" / "mapa" / "presidente.json").read_text(encoding="utf-8")
     assert "\n " not in corpo and '": ' not in corpo
+
+
+def test_municipio_sem_poligono_vai_a_parte(banco_completo, tmp_path):
+    # Brazópolis declarado sem polígono e retirado da malha: continua nos dados,
+    # passa no gate e aparece em `sem_geometria` com nome e UF.
+    import shutil
+
+    from eleicoes.marts import carregar_excecoes, construir_marts
+    from eleicoes.qualidade import executar
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    c.execute(
+        """UPDATE staging.ibge_malha
+           SET topojson = replace(topojson, '"codarea": "3108909"', '"codarea": "9999999"')"""
+    )
+    construir_marts(c, excecoes={**carregar_excecoes(), "sem_poligono": [3108909]})
+    rel = executar(c, 2022, 1, ufs=("MG", "SP"))
+    assert rel.ok, rel.texto()
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "presidente.json")
+    assert m["sem_geometria"] == {BRAZOPOLIS: {"nome": "Brazópolis", "uf": "MG"}}
+    assert BRAZOPOLIS in m["municipios"]

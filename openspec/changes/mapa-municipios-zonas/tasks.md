@@ -4,7 +4,7 @@
 
 - [x] 1.1 Adicionar a fonte `votacao_partido_munzona` (obrigatória) em `config/fontes.yaml`, com a tabela de staging correspondente em `esquema.py` e `staging.py` e o CSV de fixture em `tests/fixtures/gerar_tse.py`. Verificar: `uv run pytest` passa com o staging da nova tabela preenchido para 2018 e 2022.
 - [x] 1.2 Adicionar as fontes do IBGE (lista de municípios e malha municipal por UF em TopoJSON, `qualidade=minima`) ao download, com manifest e sha256 e com obrigatoriedade. Verificar: teste com `tests/servidor_http.py` servindo as respostas de fixture do IBGE, sem baixar de novo na segunda execução e com falha explícita quando o serviço responde 503.
-- [ ] 1.3 Adicionar a fonte opcional `foto_cand{ano}_BR_div.zip`. Disparar `validacao-real.yml` na branch para confirmar, com dados reais, a URL das fotos, o padrão dos nomes internos e os nomes das colunas de `votacao_partido_munzona` em cada ano. Ajustar aliases e padrões. Verificar: o log da execução mostra as três fontes lidas nos três anos.
+- [x] 1.3 Adicionar a fonte opcional `foto_cand{ano}_BR_div.zip`. Disparar `validacao-real.yml` na branch para confirmar, com dados reais, a URL das fotos, o padrão dos nomes internos e os nomes das colunas de `votacao_partido_munzona` em cada ano. Ajustar aliases e padrões. Verificar: o log da execução mostra as três fontes lidas nos três anos.
 
 ## 2. Correspondência TSE ↔ IBGE
 

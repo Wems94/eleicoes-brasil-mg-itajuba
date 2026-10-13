@@ -2,12 +2,12 @@ import { BarrasTabela } from "@/components/BarrasTabela";
 import { TabelaDeputados } from "@/components/TabelaDeputados";
 import { CabecalhoPagina, Participacao, SeletorEleicao, Secao } from "@/components/base";
 import { BuscaSecao } from "@/components/itajuba/BuscaSecao";
+import { ComparacaoHistorica } from "@/components/itajuba/ComparacaoHistorica";
 import { MapaLocais, type PontoLocal } from "@/components/itajuba/MapaLocais";
 import { dados } from "@/lib/dados";
 import { deputadosDeItajuba } from "@/lib/deputados";
 import { nomeTurno, numero, pct } from "@/lib/formato";
-import { NOME_CARGO, historicoPorCargo } from "@/lib/itajuba";
-import { coresDaDisputa } from "@/lib/partidos";
+import { NOME_CARGO } from "@/lib/itajuba";
 import type { CargoVotaveis, Eleicao, Votavel } from "@/lib/tipos";
 
 const MAJORITARIOS = [1, 3, 5];
@@ -207,73 +207,7 @@ export function ItajubaVisao({ ano, turno }: Eleicao) {
         <BuscaSecao ano={ano} turno={turno} />
       </Secao>
 
-      <Comparacao />
+      <ComparacaoHistorica />
     </div>
-  );
-}
-
-/** Comparação histórica: votação por partido e comparecimento nos majoritários. */
-function Comparacao() {
-  const h = dados.historico();
-  return (
-    <Secao id="comparacao" titulo="Comparação histórica" sobretitulo="2018 · 2022 · 2026">
-      <div className="space-y-10">
-        {MAJORITARIOS.map((cargo) => {
-          const eleicoes = historicoPorCargo(h, cargo);
-          if (!eleicoes.length) return null;
-          // a cor segue o partido em todos os anos (ordem: total de votos no período)
-          const total = new Map<string, number>();
-          for (const e of eleicoes) for (const p of e.partidos) total.set(p.partido ?? "—", (total.get(p.partido ?? "—") ?? 0) + p.votos);
-          const cores = coresDaDisputa([...total].sort((a, b) => b[1] - a[1]).map(([p]) => p));
-          return (
-            <div key={cargo}>
-              <h3 className="mb-4 text-base font-semibold">{NOME_CARGO[cargo]}</h3>
-              <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                {eleicoes.map((e) => (
-                  <BarrasTabela
-                    key={`${e.ano}-${e.turno}`}
-                    legenda={`${e.ano} · ${nomeTurno(e.turno)}`}
-                    rotuloColuna="Partido"
-                    linhas={e.partidos.map((p, i) => ({
-                      chave: p.partido ?? String(i),
-                      rotulo: p.partido ?? "—",
-                      votos: p.votos,
-                      pct: p.pct,
-                      destaque: i === 0,
-                      cor: cores.get(p.partido ?? "—"),
-                    }))}
-                  />
-                ))}
-              </div>
-              <table className="mt-4 w-full max-w-xl text-sm">
-                <caption className="mb-1 text-left text-xs text-texto-2">Comparecimento em Itajubá, {NOME_CARGO[cargo]}</caption>
-                <thead>
-                  <tr className="border-b border-borda text-left text-xs text-texto-2">
-                    <th scope="col" className="py-1 font-medium">Eleição</th>
-                    <th scope="col" className="py-1 text-right font-medium">Aptos</th>
-                    <th scope="col" className="py-1 text-right font-medium">Comparecimento</th>
-                    <th scope="col" className="py-1 text-right font-medium">Abstenção</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {eleicoes.map((e) =>
-                    e.comparecimento ? (
-                      <tr key={`${e.ano}-${e.turno}`} className="border-b border-borda">
-                        <th scope="row" className="py-1 text-left font-normal">
-                          {e.ano} · {nomeTurno(e.turno)}
-                        </th>
-                        <td className="num py-1 text-right">{numero(e.comparecimento.aptos)}</td>
-                        <td className="num py-1 text-right">{pct(e.comparecimento.pct_comparecimento)}</td>
-                        <td className="num py-1 text-right">{pct(e.comparecimento.pct_abstencao)}</td>
-                      </tr>
-                    ) : null,
-                  )}
-                </tbody>
-              </table>
-            </div>
-          );
-        })}
-      </div>
-    </Secao>
   );
 }
