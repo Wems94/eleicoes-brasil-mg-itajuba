@@ -56,8 +56,14 @@
 ## 10. Workflow e integração
 
 - [x] 10.1 Adicionar o input `base` (padrão `main`) ao `etl.yml` e usá-lo no `checkout` e no `base` do PR de snapshots. Documentar no README. Verificar: a revisão do YAML com `actionlint`, se disponível, e a execução da tarefa 10.2.
-- [ ] 10.2 Com o usuário: disparar `etl.yml` a partir de `feat/mapa-municipal` com `base=feat/mapa-municipal` e fazer merge do PR de snapshots na branch. Verificar: o PR contém só `web/data`, com o schema 2 e os arquivos novos, e o tamanho dos detalhes de SP e MG fica registrado na descrição do PR.
+- [x] 10.2 Com o usuário: disparar `etl.yml` a partir de `feat/mapa-municipal` com `base=feat/mapa-municipal` e fazer merge do PR de snapshots na branch. Verificar: o PR contém só `web/data`, com o schema 2 e os arquivos novos, e o tamanho dos detalhes de SP e MG fica registrado na descrição do PR. Registro: PR #2 mesclado em 2026-10-13; `web/data` com 140 MB; maior detalhe MG Deputado Estadual 1,6 MB (cerca de 230 KB com gzip), SP 1,3 MB.
 - [ ] 10.3 Verificação integrada no preview: visão Brasil com os 5.570 municípios nos cinco cargos e nas duas camadas, painel por zona de Belo Horizonte e de Itajubá, fotos dos presidenciáveis, temas claro e escuro, celular, e payload inicial (geometria mais camada) dentro do orçamento. Verificar: checklist anotado no PR da feature.
+
+## 11. Ajustes do deep dive de Itajubá (pedido de 2026-10-13)
+
+- [x] 11.1 Tirar da página de Itajubá os deputados e a comparação histórica, e mostrar as fotos dos presidenciáveis no card de Presidente. Verificar: `pnpm typecheck && pnpm test` e inspeção no build com dados reais.
+- [x] 11.2 Mapa de votos por bairro ou local de votação (círculos sobre o mapa de ruas, cor do partido do mais votado, tamanho pelo eleitorado), ao lado do card de Presidente, com Governador e Senador lado a lado. Verificar: inspeção no build com dados reais (35 locais, 29 bairros).
+- [x] 11.3 Mapa de abstenção, brancos e nulos com alternância bairro/local, filtro e tabela por seção. Verificar: teste de `lib/itajubaMapa.ts` (somas por local e bairro, bases das taxas) e inspeção no build.
 
 ## Workflow follow-up
 
