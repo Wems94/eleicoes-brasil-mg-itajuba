@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BarrasTabela } from "@/components/BarrasTabela";
+import { MapaDaEleicao } from "@/components/BrasilVisao";
 import { TabelaDeputados } from "@/components/TabelaDeputados";
 import { CabecalhoPagina, Participacao, SeletorEleicao, Secao } from "@/components/base";
 import { dados } from "@/lib/dados";
@@ -57,6 +58,12 @@ export default async function PaginaUf({ params }: { params: Params }) {
 
       {principal ? <Participacao dados={principal} /> : null}
 
+      {uf !== "ZZ" && dados.detalhes(ano, turno).some((d) => d.uf === uf) ? (
+        <Secao id="mapa" titulo="Resultado por município" sobretitulo={`Mapa · ${NOME_UF[uf] ?? uf}`}>
+          <MapaDaEleicao ano={ano} turno={turno} uf={uf} />
+        </Secao>
+      ) : null}
+
       <div className="grid items-start gap-6 md:grid-cols-2">
         {d.cargos
           .filter((c) => MAJORITARIOS.has(c.codigo))
@@ -72,6 +79,7 @@ export default async function PaginaUf({ params }: { params: Params }) {
                   votos: k.votos,
                   pct: k.pct,
                   destaque: k.situacao === "ELEITO",
+                  partido: k.partido,
                 }))}
               />
               <p className="num mt-3 text-xs text-texto-2">{numero(c.votos_validos)} votos válidos</p>

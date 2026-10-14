@@ -2,6 +2,8 @@
 
 Percentuais (`pct_*`) estão em 0–100, sem arredondamento; `pct_validos` usa
 como base os votos válidos (nominais + legenda) do cargo no recorte da linha.
+Os marts por município e por zona usam o código do TSE (`cd_municipio`);
+`municipio_ibge` dá o código IBGE de cada um, para o mapa (M1).
 """
 
 from __future__ import annotations
@@ -22,6 +24,13 @@ TABELAS_MARTS = (
     "resultado_uf",
     "resultado_brasil",
     "comparecimento_uf",
+    "municipio_ibge",
+    "resultado_municipio",
+    "resultado_zona",
+    "comparecimento_municipio",
+    "comparecimento_zona",
+    "partido_municipio",
+    "partido_zona",
     "itajuba_resultado",
     "itajuba_zona",
     "itajuba_local",
@@ -121,6 +130,143 @@ FROM (
     JOIN {SCHEMA}.cargos USING (ano, cd_cargo)
     GROUP BY ALL
 )"""
+
+
+# Nome sem acento, em maiúsculas e só com letras e números: "Santa Rita d'Oeste"
+# e "SANTA RITA D OESTE" viram a mesma chave.
+def _chave_nome(expr: str) -> str:
+    return f"regexp_replace(upper(strip_accents({expr})), '[^A-Z0-9]', '', 'g')"
+
+
+def _sql_texto(v: str) -> str:
+    return "'" + str(v).replace("'", "''") + "'"
+
+
+def _municipio_ibge_sql(excecoes: dict) -> str:
+    """`excecoes`: UF -> nome no TSE -> código IBGE, e `sem_poligono`: [códigos IBGE]."""
+    linhas = [
+        f"({_sql_texto(uf)}, {_sql_texto(nome)}, {int(cd)})"
+        for uf, nomes in sorted(excecoes.items())
+        if uf != "sem_poligono"
+        for nome, cd in sorted(nomes.items())
+    ]
+    sem_poligono = sorted(int(c) for c in excecoes.get("sem_poligono") or [])
+    lista_sem_poligono = ", ".join(map(str, sem_poligono)) or "NULL"
+    excecoes_sql = (
+        f"SELECT * FROM (VALUES {', '.join(linhas)}) t(sg_uf, nm_tse, cd_ibge)"
+        if linhas
+        else "SELECT NULL::VARCHAR AS sg_uf, NULL::VARCHAR AS nm_tse, NULL::INTEGER AS cd_ibge "
+        "WHERE false"
+    )
+    return f"""
+CREATE OR REPLACE TABLE {SCHEMA}.municipio_ibge AS
+WITH tse AS (
+    -- o nome mais recente de cada código TSE; o exterior (ZZ) não tem código IBGE
+    SELECT sg_uf, cd_municipio, arg_max(nm_municipio, ano * 10 + turno) AS nm_municipio
+    FROM staging.detalhe_munzona WHERE sg_uf <> 'ZZ' GROUP BY ALL
+), excecoes AS ({excecoes_sql}
+), casados AS (
+    SELECT t.sg_uf, t.cd_municipio, t.nm_municipio,
+           coalesce(e.cd_ibge, i.cd_ibge) AS cd_ibge,
+           e.cd_ibge IS NOT NULL AS por_excecao
+    FROM tse t
+    LEFT JOIN excecoes e
+           ON e.sg_uf = t.sg_uf AND {_chave_nome("e.nm_tse")} = {_chave_nome("t.nm_municipio")}
+    LEFT JOIN staging.ibge_municipios i
+           ON e.cd_ibge IS NULL AND i.sg_uf = t.sg_uf
+          AND {_chave_nome("i.nm_municipio")} = {_chave_nome("t.nm_municipio")}
+)
+SELECT c.sg_uf, c.cd_municipio, c.nm_municipio, c.cd_ibge, i.nm_municipio AS nm_ibge,
+       c.por_excecao, coalesce(c.cd_ibge IN ({lista_sem_poligono}), false) AS sem_poligono
+FROM casados c
+LEFT JOIN staging.ibge_municipios i ON i.cd_ibge = c.cd_ibge"""
+
+
+def _resultado_local(nome: str, chaves: tuple[str, ...]) -> str:
+    """Votos por candidato no município (ou município × zona), como `resultado_uf`."""
+    k = "".join(f", {c}" for c in chaves)
+    return f"""
+CREATE OR REPLACE TABLE {SCHEMA}.{nome} AS
+WITH cand AS (
+    SELECT ano, turno, sg_uf{k}, cd_cargo, sq_candidato,
+           any_value(nr_candidato) AS nr_candidato,
+           any_value(nm_urna_candidato) AS nm_urna_candidato,
+           any_value(nr_partido) AS nr_partido,
+           any_value(sg_partido) AS sg_partido,
+           any_value(sg_federacao) AS sg_federacao,
+           sum(coalesce(qt_votos_nominais_validos, qt_votos_nominais))::BIGINT AS votos
+    FROM staging.votacao_munzona
+    GROUP BY ano, turno, sg_uf{k}, cd_cargo, sq_candidato
+), validos AS (
+    SELECT ano, turno, sg_uf{k}, cd_cargo,
+           sum(coalesce(qt_votos_validos, qt_votos_nominais + coalesce(qt_votos_legenda, 0)))
+               ::BIGINT AS votos_validos
+    FROM staging.detalhe_munzona
+    GROUP BY ALL
+)
+SELECT ano, turno, sg_uf{k}, cd_cargo, nm_cargo, sq_candidato, nr_candidato,
+       nm_urna_candidato, nr_partido, sg_partido, sg_federacao, votos, votos_validos,
+       100.0 * votos / nullif(votos_validos, 0) AS pct_validos,
+       rank() OVER (PARTITION BY ano, turno, sg_uf{k}, cd_cargo ORDER BY votos DESC) AS posicao
+FROM cand
+JOIN validos USING (ano, turno, sg_uf{k}, cd_cargo)
+JOIN {SCHEMA}.cargos USING (ano, cd_cargo)"""
+
+
+def _comparecimento_local(nome: str, chaves: tuple[str, ...]) -> str:
+    k = "".join(f", {c}" for c in chaves)
+    return f"""
+CREATE OR REPLACE TABLE {SCHEMA}.{nome} AS
+SELECT *,
+       100.0 * comparecimento / nullif(aptos, 0) AS pct_comparecimento,
+       100.0 * abstencoes / nullif(aptos, 0) AS pct_abstencao,
+       100.0 * brancos / nullif(comparecimento * votos_por_eleitor, 0) AS pct_brancos,
+       100.0 * nulos / nullif(comparecimento * votos_por_eleitor, 0) AS pct_nulos
+FROM (
+    SELECT ano, turno, sg_uf{k}, cd_cargo, nm_cargo, votos_por_eleitor,
+           sum(qt_aptos)::BIGINT AS aptos,
+           sum(qt_comparecimento)::BIGINT AS comparecimento,
+           sum(qt_abstencoes)::BIGINT AS abstencoes,
+           sum(coalesce(qt_votos_validos, qt_votos_nominais + coalesce(qt_votos_legenda, 0)))
+               ::BIGINT AS votos_validos,
+           sum(qt_votos_brancos)::BIGINT AS brancos,
+           sum(qt_votos_nulos)::BIGINT AS nulos
+    FROM staging.detalhe_munzona
+    JOIN {SCHEMA}.cargos USING (ano, cd_cargo)
+    GROUP BY ALL
+)"""
+
+
+def _partido_local(nome: str, chaves: tuple[str, ...]) -> str:
+    """Votos válidos por partido (nominais + legenda) nos cargos proporcionais."""
+    k = "".join(f", {c}" for c in chaves)
+    return f"""
+CREATE OR REPLACE TABLE {SCHEMA}.{nome} AS
+WITH p AS (
+    SELECT ano, turno, sg_uf{k}, cd_cargo, nr_partido,
+           any_value(sg_partido) AS sg_partido,
+           any_value(sg_federacao) AS sg_federacao,
+           sum(qt_votos_nominais_validos)::BIGINT AS votos_nominais,
+           sum(qt_votos_legenda_validos)::BIGINT AS votos_legenda
+    FROM staging.votacao_partido_munzona
+    GROUP BY ALL
+), validos AS (
+    SELECT ano, turno, sg_uf{k}, cd_cargo,
+           sum(coalesce(qt_votos_validos, qt_votos_nominais + coalesce(qt_votos_legenda, 0)))
+               ::BIGINT AS votos_validos
+    FROM staging.detalhe_munzona
+    GROUP BY ALL
+)
+SELECT ano, turno, sg_uf{k}, cd_cargo, nm_cargo, nr_partido, sg_partido, sg_federacao,
+       votos_nominais, votos_legenda, (votos_nominais + votos_legenda)::BIGINT AS votos,
+       votos_validos,
+       100.0 * (votos_nominais + votos_legenda) / nullif(votos_validos, 0) AS pct_validos,
+       rank() OVER (PARTITION BY ano, turno, sg_uf{k}, cd_cargo
+                    ORDER BY votos_nominais + votos_legenda DESC) AS posicao
+FROM p
+JOIN validos USING (ano, turno, sg_uf{k}, cd_cargo)
+JOIN {SCHEMA}.cargos USING (ano, cd_cargo)"""
+
 
 # Votos por seção de Itajubá, classificados e com partido. 95/96/97 são branco,
 # nulo e anulado; sem sq_candidato, o número do votável é o do partido (legenda).
@@ -234,15 +380,35 @@ def carregar_config(path: Path = CONFIG_DIR / "eleicoes.yaml") -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def construir_marts(con: duckdb.DuckDBPyConnection, config: dict | None = None) -> None:
+def carregar_excecoes(path: Path = CONFIG_DIR / "municipios_excecoes.yaml") -> dict:
+    """UF -> nome no TSE -> código IBGE (nomes que não casam) e `sem_poligono`."""
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+
+
+MUNICIPIO, ZONA = ("cd_municipio",), ("cd_municipio", "nr_zona")
+
+
+def construir_marts(
+    con: duckdb.DuckDBPyConnection,
+    config: dict | None = None,
+    excecoes: dict | None = None,
+) -> None:
     """Recria todos os marts numa única transação."""
     config = config or carregar_config()
+    excecoes = carregar_excecoes() if excecoes is None else excecoes
     comandos = [
         f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}",
         _cargos_sql(config),
         RESULTADO_UF,
         RESULTADO_BRASIL,
         COMPARECIMENTO_UF,
+        _municipio_ibge_sql(excecoes),
+        _resultado_local("resultado_municipio", MUNICIPIO),
+        _resultado_local("resultado_zona", ZONA),
+        _comparecimento_local("comparecimento_municipio", MUNICIPIO),
+        _comparecimento_local("comparecimento_zona", ZONA),
+        _partido_local("partido_municipio", MUNICIPIO),
+        _partido_local("partido_zona", ZONA),
         ITAJUBA_VOTOS,
         _itajuba_nivel(f"TABLE {SCHEMA}.itajuba_resultado", ()),
         _itajuba_nivel(f"TABLE {SCHEMA}.itajuba_zona", ("nr_zona",)),

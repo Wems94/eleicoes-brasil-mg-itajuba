@@ -10,13 +10,16 @@ Os ZIPs ficam em data/raw/ e são reaproveitados numa segunda execução.
 from __future__ import annotations
 
 import argparse
+import difflib
 import logging
 import shutil
 import time
+import zipfile
 from pathlib import Path
 
 import duckdb
 
+from eleicoes import geometria
 from eleicoes.config import DATA_DIR, RAW_DIR
 from eleicoes.download import baixar_todas
 from eleicoes.fontes import Catalogo
@@ -24,6 +27,7 @@ from eleicoes.lgpd import verificar_banco
 from eleicoes.marts import construir_marts
 from eleicoes.qualidade import executar
 from eleicoes.staging import SemDados, carregar_particao
+from eleicoes.tse_csv import ler_cabecalho
 
 ESPACO_MINIMO_GB = 15
 
@@ -34,6 +38,81 @@ def _tabela(con: duckdb.DuckDBPyConnection, titulo: str, sql: str) -> None:
     print(" | ".join(rel.columns))
     for linha in rel.fetchall():
         print(" | ".join(f"{v:.2f}" if isinstance(v, float) else str(v) for v in linha))
+
+
+def _diagnostico_fontes_novas(downloads: dict) -> None:
+    """Tarefa 1.3: colunas da votação por partido e layout do pacote de fotos."""
+    print("\n## Fontes novas (mapa municipal)")
+    d = downloads.get("votacao_partido_munzona")
+    if d and d.caminho:
+        with zipfile.ZipFile(d.caminho) as z:
+            membros = d.fonte.selecionar_membros(z.namelist())
+            print(f"votacao_partido_munzona: {len(membros)} membros, ex.: {membros[:3]}")
+            if membros:
+                destino = DATA_DIR / "trabalho" / "cabecalho_partido"
+                arq = Path(z.extract(membros[0], destino))
+                print("  colunas:", ";".join(ler_cabecalho(arq)))
+                shutil.rmtree(destino, ignore_errors=True)
+    d = downloads.get("fotos_presidente")
+    if d and d.caminho:
+        with zipfile.ZipFile(d.caminho) as z:
+            nomes = z.namelist()
+            sel = d.fonte.selecionar_membros(nomes)
+            print(f"fotos: {len(nomes)} membros, {len(sel)} pelo padrão, ex.: {sel[:3]}")
+    else:
+        print("fotos: pacote indisponível (fonte opcional)")
+
+
+def _sugestoes_ibge(con: duckdb.DuckDBPyConnection) -> None:
+    """Tarefa 2.3: municípios sem código IBGE, com os nomes do IBGE mais parecidos."""
+    faltam = con.sql(
+        """SELECT sg_uf, nm_municipio FROM marts.municipio_ibge
+           WHERE cd_ibge IS NULL ORDER BY ALL"""
+    ).fetchall()
+    print(f"\n## Correspondência TSE → IBGE: {len(faltam)} município(s) sem código")
+    for uf, nome in faltam:
+        candidatos = dict(
+            con.execute(
+                "SELECT nm_municipio, cd_ibge FROM staging.ibge_municipios WHERE sg_uf = ?", [uf]
+            ).fetchall()
+        )
+        parecidos = difflib.get_close_matches(nome.title(), candidatos, n=3, cutoff=0.6)
+        sugestao = ", ".join(f"{n} ({candidatos[n]})" for n in parecidos) or "nenhum parecido"
+        print(f"  {uf}: {nome!r} -> {sugestao}")
+
+
+def _duplicatas_partido(con: duckdb.DuckDBPyConnection) -> None:
+    """Linhas inteiras de partido repetidas por zona (qual coluna as distingue?)."""
+    linhas = con.sql(
+        """WITH d AS (
+               SELECT ano, turno, sg_uf, cd_municipio, nr_zona, cd_cargo, nr_partido,
+                      st_voto_em_transito
+               FROM staging.votacao_partido_munzona GROUP BY ALL HAVING count(*) > 1
+               LIMIT 3)
+           SELECT p.* FROM staging.votacao_partido_munzona p JOIN d USING
+               (ano, turno, sg_uf, cd_municipio, nr_zona, cd_cargo, nr_partido,
+                st_voto_em_transito)
+           ORDER BY ALL"""
+    )
+    colunas, rows = linhas.columns, linhas.fetchall()
+    if not rows:
+        return
+    print("\n## Votação por partido: linhas repetidas por zona (exemplos)")
+    print(" | ".join(colunas))
+    for r in rows:
+        print(" | ".join(str(v) for v in r))
+
+
+def _orcamento_malha(con: duckdb.DuckDBPyConnection) -> bool:
+    """Tarefa 4.1: a malha publicada cabe no orçamento comprimido?"""
+    conteudo = geometria.serializar(geometria.montar(con))
+    gz = geometria.tamanho_gzip(conteudo)
+    ok = gz <= geometria.ORCAMENTO_GZIP
+    print(
+        f"\n## Malha municipal: {len(conteudo) / 1e6:.2f} MB, {gz / 1e3:.0f} KB com gzip "
+        f"(orçamento {geometria.ORCAMENTO_GZIP / 1e3:.0f} KB) — {'OK' if ok else 'ACIMA'}"
+    )
+    return ok
 
 
 def main() -> int:
@@ -58,6 +137,7 @@ def main() -> int:
     catalogo = Catalogo.carregar(base_url=args.base_url)
     downloads = baixar_todas(catalogo.resolver(args.ano), args.raw, forcar=args.forcar)
     t_download = time.monotonic() - t0
+    _diagnostico_fontes_novas(downloads)
 
     args.db.parent.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect(str(args.db))
@@ -114,8 +194,20 @@ def main() -> int:
                   (SELECT count(*) FROM marts.itajuba_local WHERE nr_latitude IS NULL) sem_coord""",
     )
 
+    _sugestoes_ibge(con)
+    _duplicatas_partido(con)
+    ok = _orcamento_malha(con)
+    _tabela(
+        con,
+        "Mapa — volume por nível",
+        """SELECT (SELECT count(DISTINCT (sg_uf, cd_municipio)) FROM marts.resultado_municipio)
+                      AS municipios,
+                  (SELECT count(DISTINCT (sg_uf, cd_municipio, nr_zona)) FROM marts.resultado_zona)
+                      AS municipio_zonas,
+                  (SELECT count(*) FROM staging.fotos_presidente) AS fotos""",
+    )
+
     print("\n## Gate de qualidade (4.1)")
-    ok = True
     for turno in carregados:
         relatorio = executar(con, args.ano, turno)
         print(relatorio.texto())

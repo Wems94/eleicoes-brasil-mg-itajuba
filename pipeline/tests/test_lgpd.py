@@ -187,6 +187,8 @@ def test_identificadores_do_tse_nao_sao_confundidos_com_cpf(db, tmp_path):
         f" sq_coligacao = {CPF_VALIDO}"
     )
     db.execute(f"UPDATE marts.resultado_uf SET sq_candidato = {CPF_VALIDO}, nr_candidato = 1")
+    # com os sq trocados, as fotos ficariam órfãs (outra regra); aqui só interessa o CPF
+    db.execute("DELETE FROM staging.fotos_presidente")
     assert verificar_banco(db) == []
     _json(tmp_path / "uf.json", {"candidatos": [{"sq_candidato": int(CPF_VALIDO), "cd_x": 1}]})
     assert verificar_snapshots(tmp_path) == []
@@ -195,3 +197,65 @@ def test_identificadores_do_tse_nao_sao_confundidos_com_cpf(db, tmp_path):
 def test_cpf_numerico_em_coluna_que_nao_e_identificador_continua_detectado(db):
     db.execute(f"ALTER TABLE staging.candidatos ADD COLUMN documento BIGINT DEFAULT {CPF_VALIDO}")
     assert ("staging.candidatos.documento", "cpf") in _tipos(verificar_banco(db))
+
+
+# --- fotos -------------------------------------------------------------------------
+
+
+def test_fotos_dos_presidentes_no_banco_passam(db):
+    assert db.execute("SELECT count(*) FROM staging.fotos_presidente").fetchone()[0] > 0
+    assert [v for v in verificar_banco(db) if v.tipo == "foto indevida"] == []
+
+
+def test_foto_de_outro_cargo_no_banco_falha(db):
+    from tests.conftest import sq_de
+
+    db.execute(
+        "INSERT INTO staging.fotos_presidente VALUES (2022, 1, ?, ?)", [sq_de(2022, 3), b"\xff"]
+    )
+    assert ("staging.fotos_presidente 2022/1", "foto indevida") in _tipos(verificar_banco(db))
+
+
+def _snapshots_com_foto(raiz, foto_ref: str | None, arquivos: list[str]):
+    _json(
+        raiz / "2022" / "1" / "brasil.json",
+        {"presidente": {"candidatos": [{"numero": 13, "foto": foto_ref}]}},
+    )
+    for a in arquivos:
+        (raiz / a).parent.mkdir(parents=True, exist_ok=True)
+        (raiz / a).write_bytes(b"\xff\xd8")
+
+
+def test_foto_referenciada_por_presidente_passa(tmp_path):
+    _snapshots_com_foto(tmp_path, "fotos/2022/123.jpg", ["fotos/2022/123.jpg"])
+    assert verificar_snapshots(tmp_path) == []
+
+
+def test_foto_sem_presidente_correspondente_falha(tmp_path):
+    # ex.: uma alteração passa a publicar a foto de um candidato a Governador
+    _snapshots_com_foto(
+        tmp_path, "fotos/2022/123.jpg", ["fotos/2022/123.jpg", "fotos/2022/999.jpg"]
+    )
+    assert _tipos(verificar_snapshots(tmp_path)) == {("fotos/2022/999.jpg", "foto indevida")}
+
+
+def test_foto_no_ano_errado_ou_fora_de_fotos_falha(tmp_path):
+    _snapshots_com_foto(tmp_path, "fotos/2018/123.jpg", ["fotos/2018/123.jpg", "uf/x.png"])
+    assert _tipos(verificar_snapshots(tmp_path)) == {
+        ("fotos/2018/123.jpg", "foto indevida"),
+        ("uf/x.png", "foto indevida"),
+    }
+
+
+def test_hash_sha256_com_digitos_parecidos_com_cpf_nao_e_vazamento(db, tmp_path):
+    """Caso real (ETL 2026): sha256 de um arquivo no manifesto com 11 dígitos seguidos
+    que passam no DV de CPF. Um hash não é dado pessoal."""
+    sha = "ab" + CPF_VALIDO + "c" + "0" * 50
+    assert len(sha) == 64
+    _json(tmp_path / "manifest.json", {"arquivos": {"2026/1/x.json": sha}})
+    assert verificar_snapshots(tmp_path) == []
+    db.execute("INSERT INTO staging.origens VALUES (2022, 1, 'x', 'http://x', ?, 1)", [sha])
+    assert verificar_banco(db) == []
+    # o mesmo CPF fora de um hash continua sendo detectado
+    _json(tmp_path / "manifest.json", {"arquivos": {"x": f"doc {CPF_VALIDO}"}})
+    assert _tipos(verificar_snapshots(tmp_path)) == {("manifest.json:$.arquivos.x", "cpf")}

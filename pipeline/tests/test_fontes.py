@@ -37,6 +37,11 @@ def test_ano_nao_suportado_explica_os_anos_validos(catalogo):
         ("detalhe_votacao_secao", 2022, "detalhe_votacao_secao/detalhe_votacao_secao_2022.zip"),
         ("consulta_cand", 2018, "consulta_cand/consulta_cand_2018.zip"),
         ("locais_votacao", 2026, "eleitorado_locais_votacao/eleitorado_local_votacao_2026.zip"),
+        (
+            "votacao_partido_munzona",
+            2022,
+            "votacao_partido_munzona/votacao_partido_munzona_2022.zip",
+        ),
     ],
 )
 def test_resolve_url_por_ano(catalogo, nome, ano, caminho):
@@ -56,13 +61,40 @@ def test_resolver_devolve_todas_as_fontes_do_ano(catalogo):
         "detalhe_votacao_secao",
         "consulta_cand",
         "locais_votacao",
+        "votacao_partido_munzona",
+        "fotos_presidente",
+        "ibge_municipios",
+        "ibge_malha",
     }
     assert all(f.ano == 2022 for f in fontes)
 
 
 def test_obrigatoriedade(catalogo):
     assert catalogo.fonte("votacao_candidato_munzona", 2022).obrigatoria
+    assert catalogo.fonte("votacao_partido_munzona", 2022).obrigatoria
+    assert catalogo.fonte("ibge_municipios", 2022).obrigatoria
+    assert catalogo.fonte("ibge_malha", 2022).obrigatoria
     assert not catalogo.fonte("locais_votacao", 2022).obrigatoria
+    assert not catalogo.fonte("fotos_presidente", 2022).obrigatoria
+
+
+def test_fotos_vem_da_base_de_eleicoes(catalogo):
+    fonte = catalogo.fonte("fotos_presidente", 2022)
+    assert fonte.url == (
+        "https://cdn.tse.jus.br/estatistica/sead/eleicoes/eleicoes2022/fotos/foto_cand2022_BR_div.zip"
+    )
+    assert fonte.selecionar_membros(["FBR280001607136_div.jpg", "leiame.pdf"]) == [
+        "FBR280001607136_div.jpg"
+    ]
+
+
+def test_fontes_do_ibge_sao_json_com_nome_fixo_e_iguais_em_todo_ano(catalogo):
+    a, b = catalogo.fonte("ibge_malha", 2018), catalogo.fonte("ibge_malha", 2026)
+    assert a.url == b.url
+    assert a.url.startswith("https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?")
+    assert a.formato == "json"
+    assert a.arquivo == "ibge_malha_municipios.json"
+    assert catalogo.fonte("ibge_municipios", 2022).arquivo == "ibge_municipios.json"
 
 
 def test_membros_por_uf_excluem_o_consolidado_brasil(catalogo):
@@ -98,6 +130,9 @@ def test_base_url_pode_ser_sobrescrita():
     assert cat.fonte("consulta_cand", 2022).url == (
         "http://127.0.0.1:9999/consulta_cand/consulta_cand_2022.zip"
     )
+    # todas as bases (TSE e IBGE) passam a apontar para o mesmo servidor
+    malha = cat.fonte("ibge_malha", 2022)
+    assert malha.url == "http://127.0.0.1:9999/" + malha.caminho
 
 
 @pytest.mark.parametrize(

@@ -146,11 +146,12 @@ export default function Metodologia() {
       </Secao>
 
       <Secao id="apresentacao" titulo="Apresentação" sobretitulo="Leitura">
-        <Item titulo="Cores neutras">
+        <Item titulo="Cores dos partidos">
           <p>
-            O site não usa cores de partidos: no mapa, os candidatos são diferenciados por textura
-            (sólido, hachurado, tracejado) e pelo número escrito em cada UF, para que nenhuma cor
-            sugira apoio a candidato ou partido.
+            Cada candidato aparece na cor do seu partido, a mesma no mapa e nos gráficos. Quando dois
+            partidos da mesma disputa têm cores parecidas, o menos votado fica mais claro ou mais escuro
+            para os dois continuarem distinguíveis. A cor nunca é a única informação: a legenda, a dica do
+            mapa e as tabelas trazem sempre o nome e a sigla.
           </p>
         </Item>
         <Item titulo="Acessibilidade">
@@ -158,10 +159,30 @@ export default function Metodologia() {
             Todo gráfico é também uma tabela com os mesmos números, legível por leitores de tela.
           </p>
         </Item>
-        <Item titulo="Mapas">
+        <Item titulo="Mapa por município">
           <p>
-            A visão por UF usa um mapa em grade, sem geometria. O mapa dos locais de votação usa tiles
-            do OpenFreeMap, com dados © colaboradores do OpenStreetMap.
+            Os municípios são desenhados com a malha municipal oficial do IBGE (qualidade mínima). O TSE e o
+            IBGE usam códigos diferentes para os municípios; a correspondência é feita pela UF e pelo nome,
+            com uma tabela revisada à mão para os nomes grafados de forma diferente (ex.: Brasópolis no TSE,
+            Brazópolis no IBGE). Nenhum município é publicado sem essa correspondência.
+          </p>
+          <p>
+            Na camada &ldquo;Mais votado&rdquo;, a cor mais forte indica uma vitória mais folgada (percentual
+            dos votos válidos). Para Deputado, a cor é a do partido com mais votos (nominais e de legenda),
+            porque a vaga é dividida entre os partidos. A camada &ldquo;Abstenção&rdquo; mostra a
+            porcentagem de eleitores aptos que não votaram, em faixas fixas para comparar os anos.
+          </p>
+          <p>
+            As zonas eleitorais não aparecem desenhadas: o TSE não publica os limites delas, e uma zona pode
+            atender vários municípios. Por isso o detalhe por zona fica no painel de cada município, com os
+            números daquela zona dentro do município. Os votos do exterior não têm geometria e aparecem à
+            parte. O mapa dos locais de votação de Itajubá usa tiles do OpenFreeMap, com dados ©
+            colaboradores do OpenStreetMap.
+          </p>
+        </Item>
+        <Item titulo="Fotos">
+          <p>
+            Só os candidatos a Presidente aparecem com foto: a foto oficial de divulgação publicada pelo TSE.
           </p>
         </Item>
         <Item titulo="Código aberto">

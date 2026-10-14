@@ -52,6 +52,19 @@ def test_arquivos_gerados(publicado):
         assert f"{base}/uf/MG.json" in arquivos
         assert f"{base}/uf/ZZ.json" in arquivos  # exterior (só Presidente)
     assert "2018/2/brasil.json" not in arquivos
+    assert "geo/municipios.topo.json" in arquivos
+    # camadas do mapa: todos os cargos no 1º turno; no 2º, só os que tiveram disputa
+    cargos = ["presidente", "governador", "senador", "deputado-federal", "deputado-estadual"]
+    assert {f"2022/1/mapa/{c}.json" for c in cargos} <= arquivos
+    assert {a for a in arquivos if a.startswith("2022/2/mapa/")} == {
+        "2022/2/mapa/presidente.json",
+        "2022/2/mapa/governador.json",
+    }
+    # detalhe por UF e cargo; sem 2º turno de Governador em MG, sem arquivo
+    assert "2022/1/municipios/MG/deputado-federal.json" in arquivos
+    assert "2022/2/municipios/SP/governador.json" in arquivos
+    assert "2022/2/municipios/MG/governador.json" not in arquivos
+    assert not any(a.startswith("2022/1/municipios/ZZ/") for a in arquivos)
 
 
 def test_manifesto(publicado):
@@ -59,7 +72,7 @@ def test_manifesto(publicado):
     assert m["schema_versao"] == SCHEMA_VERSAO
     assert m["gerado_em"] == GERADO_EM
     assert m["eleicoes"] == [{"ano": 2018, "turnos": [1]}, {"ano": 2022, "turnos": [1, 2]}]
-    assert m["municipio"] == {"codigo": 46477, "nome": "ITAJUBÁ", "uf": "MG"}
+    assert m["municipio"] == {"codigo": 46477, "nome": "ITAJUBÁ", "uf": "MG", "ibge": 3132404}
     assert "TSE" in m["fonte"]
 
 
@@ -245,3 +258,190 @@ def test_cli_conferir_publicacao(tmp_path, capsys):
     n.write_text(json.dumps(_m((2022, [1, 2]), (2026, [1]))))
     assert snapshots.main(["conferir", str(a), str(n)]) == 0
     assert snapshots.main(["conferir", str(tmp_path / "nao_existe.json"), str(n)]) == 0
+
+
+# --- mapa municipal (schema 2) ------------------------------------------------------------
+
+ITAJUBA, BH, BRAZOPOLIS, SAO_PAULO = "3132404", "3106200", "3108909", "3550308"
+
+
+def test_camada_de_presidente(publicado, con):
+    m = _ler(publicado / "2022" / "1" / "mapa" / "presidente.json")
+    assert (m["cargo"], m["nome"], m["por"]) == ("presidente", "Presidente", "candidato")
+    assert set(m["municipios"]) == {BH, BRAZOPOLIS, ITAJUBA, SAO_PAULO}
+    idx, pct, abst = m["municipios"][ITAJUBA]
+    vencedor = m["votaveis"][idx]
+    ((nome, pct_real, abst_real),) = con.execute(
+        """SELECT r.nm_urna_candidato, r.pct_validos, c.pct_abstencao
+           FROM marts.resultado_municipio r JOIN marts.comparecimento_municipio c
+                USING (ano, turno, sg_uf, cd_municipio, cd_cargo)
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 1
+             AND posicao = 1"""
+    ).fetchall()
+    assert vencedor["nome"] == nome and vencedor["partido"]
+    assert pct == round(pct_real * 100) and abst == round(abst_real * 100)
+    assert set(m["ufs"]) == {"MG", "SP"}
+    assert m["exterior"] is not None and m["exterior"][0] >= 0
+
+
+def test_camada_de_deputado_e_por_partido(publicado):
+    m = _ler(publicado / "2022" / "1" / "mapa" / "deputado-federal.json")
+    assert m["por"] == "partido"
+    assert all(v["chave"] == v["partido"] for v in m["votaveis"])
+    assert m["exterior"] is None
+
+
+def test_deputado_estadual_inclui_distrital(banco_completo, tmp_path):
+    # o fixture não tem DF: numa cópia, o Deputado Estadual de SP vira Distrital (cargo 8)
+    import shutil
+
+    from eleicoes.marts import construir_marts
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    for t in ("votacao_munzona", "votacao_partido_munzona", "detalhe_munzona"):
+        c.execute(f"UPDATE staging.{t} SET cd_cargo = 8 WHERE sg_uf = 'SP' AND cd_cargo = 7")
+    construir_marts(c)
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "deputado-estadual.json")
+    assert {SAO_PAULO, ITAJUBA} <= set(m["municipios"])
+    assert (
+        tmp_path / "out" / "2022" / "1" / "municipios" / "SP" / "deputado-estadual.json"
+    ).exists()
+
+
+def test_empate_vira_indice_menos_um(banco_completo, tmp_path):
+    import shutil
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    c.execute(
+        """UPDATE marts.resultado_municipio SET posicao = 1
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 3
+             AND posicao = 2"""
+    )
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "governador.json")
+    assert m["municipios"][ITAJUBA][0] == -1
+
+
+def test_detalhe_por_municipio_e_zona(publicado):
+    d = _ler(publicado / "2022" / "1" / "municipios" / "MG" / "governador.json")
+    assert (d["uf"], d["cargo"], d["por"]) == ("MG", "governador", "candidato")
+    bh = d["municipios"][BH]
+    assert (bh["nome"], bh["codigo_tse"]) == ("Belo Horizonte", 41238)
+    assert [z["zona"] for z in bh["zonas"]] == [32, 33]
+    # a soma das zonas fecha com o total do município
+    for i in range(len(bh["total"]["votos"])):
+        chave, votos, _ = bh["total"]["votos"][i]
+        assert votos == sum(dict((k, v) for k, v, _ in z["votos"])[chave] for z in bh["zonas"])
+    assert bh["total"]["comparecimento"]["aptos"] == sum(
+        z["comparecimento"]["aptos"] for z in bh["zonas"]
+    )
+    assert set(d["votaveis"][bh["total"]["votos"][0][0]]) == {"numero", "nome", "partido"}
+    assert "candidatos" not in bh["total"]
+
+
+def test_zona_que_atende_dois_municipios_e_marcada(publicado):
+    d = _ler(publicado / "2022" / "1" / "municipios" / "MG" / "presidente.json")
+    (zona_itajuba,) = d["municipios"][ITAJUBA]["zonas"]
+    (zona_brazopolis,) = d["municipios"][BRAZOPOLIS]["zonas"]
+    assert zona_itajuba["zona"] == zona_brazopolis["zona"] == 134
+    assert zona_itajuba["outros_municipios"] == zona_brazopolis["outros_municipios"] == 1
+    assert d["municipios"][BH]["zonas"][0]["outros_municipios"] == 0
+
+
+def test_detalhe_de_deputado_tem_partidos_e_top_candidatos(publicado):
+    from eleicoes.snapshots import TOP_CANDIDATOS_MAPA
+
+    d = _ler(publicado / "2022" / "1" / "municipios" / "SP" / "deputado-estadual.json")
+    sp = d["municipios"][SAO_PAULO]
+    assert d["por"] == "partido"
+    assert {k for k, _, _ in sp["total"]["votos"]} <= {"PT", "PL", "PSDB", "PSOL"}
+    assert 0 < len(sp["total"]["candidatos"]) <= TOP_CANDIDATOS_MAPA
+    assert all(z["candidatos"] for z in sp["zonas"])
+    assert sum(v for _, v, _ in sp["total"]["votos"]) > sum(
+        v for _, v, _ in sp["total"]["candidatos"]
+    )  # partidos incluem a legenda
+
+
+def test_fotos_so_dos_presidentes_e_referenciadas(publicado):
+    b = _ler(publicado / "2022" / "1" / "brasil.json")
+    fotos = {c["numero"]: c["foto"] for c in b["presidente"]["candidatos"]}
+    # arquivo nomeado pelo número de urna (o sequencial do TSE não é publicado)
+    assert fotos[13] == "fotos/2022/13.jpg"
+    assert fotos[15] is None  # o fixture não tem a foto do último presidenciável
+    assert (publicado / fotos[13]).read_bytes()[:2] == b"\xff\xd8"  # JPEG
+    publicadas = {a for a in _arvore(publicado) if a.startswith("fotos/")}
+    assert publicadas == {f"fotos/{ano}/{n}.jpg" for ano in (2018, 2022) for n in (13, 22)}
+
+
+def test_sequencial_do_tse_parecido_com_cpf_nao_vai_para_os_snapshots(banco_completo, tmp_path):
+    # Caso real (ETL 2018): sq_candidato de 11 dígitos que passa no DV de CPF.
+    import shutil
+
+    from eleicoes.marts import construir_marts
+    from tests.test_lgpd import CPF_VALIDO
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    for t in ("votacao_munzona", "candidatos"):
+        c.execute(
+            f"UPDATE staging.{t} SET sq_candidato = {CPF_VALIDO} "
+            "WHERE ano = 2022 AND cd_cargo = 3 AND nr_candidato = 30"
+        )
+    construir_marts(c)
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    assert verificar_snapshots(tmp_path / "out") == []
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "governador.json")
+    assert {v["chave"] for v in m["votaveis"]} <= {
+        "MG-30",
+        "MG-13",
+        "MG-45",
+        "SP-45",
+        "SP-13",
+        "SP-22",
+    }
+
+
+def test_malha_publicada_tem_os_municipios_das_camadas(publicado):
+    topo = _ler(publicado / "geo" / "municipios.topo.json")
+    ids = {str(g["id"]) for g in topo["objects"]["municipios"]["geometries"]}
+    for camada in publicado.glob("*/*/mapa/*.json"):
+        assert set(_ler(camada)["municipios"]) <= ids
+
+
+def test_arquivos_do_mapa_sao_compactos(publicado):
+    corpo = (publicado / "2022" / "1" / "mapa" / "presidente.json").read_text(encoding="utf-8")
+    assert "\n " not in corpo and '": ' not in corpo
+
+
+def test_municipio_sem_poligono_vai_a_parte(banco_completo, tmp_path):
+    # Brazópolis declarado sem polígono e retirado da malha: continua nos dados,
+    # passa no gate e aparece em `sem_geometria` com nome e UF.
+    import shutil
+
+    from eleicoes.marts import carregar_excecoes, construir_marts
+    from eleicoes.qualidade import executar
+
+    copia = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, copia)
+    c = duckdb.connect(str(copia))
+    c.execute(
+        """UPDATE staging.ibge_malha
+           SET topojson = replace(topojson, '"codarea": "3108909"', '"codarea": "9999999"')"""
+    )
+    construir_marts(c, excecoes={**carregar_excecoes(), "sem_poligono": [3108909]})
+    rel = executar(c, 2022, 1, ufs=("MG", "SP"))
+    assert rel.ok, rel.texto()
+    gerar_snapshots(c, tmp_path / "out", gerado_em=GERADO_EM)
+    c.close()
+    m = _ler(tmp_path / "out" / "2022" / "1" / "mapa" / "presidente.json")
+    assert m["sem_geometria"] == {BRAZOPOLIS: {"nome": "Brazópolis", "uf": "MG"}}
+    assert BRAZOPOLIS in m["municipios"]

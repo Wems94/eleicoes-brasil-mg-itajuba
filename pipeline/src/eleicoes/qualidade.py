@@ -88,13 +88,29 @@ CHAVES = {
         "sq_candidato",
         "st_voto_em_transito",
     ),
+    "votacao_partido_munzona": (
+        "sg_uf",
+        "cd_municipio",
+        "nr_zona",
+        "cd_cargo",
+        "nr_partido",
+        "tp_agremiacao",
+        "sq_coligacao",
+        "st_voto_em_transito",
+    ),
     "detalhe_munzona": ("sg_uf", "cd_municipio", "nr_zona", "cd_cargo", "st_voto_em_transito"),
     "votacao_secao": ("nr_zona", "nr_secao", "cd_cargo", "nr_votavel"),
     "detalhe_secao": ("nr_zona", "nr_secao", "cd_cargo"),
     "candidatos": ("sq_candidato",),
     "locais_votacao": ("nr_zona", "nr_secao"),
 }
-TABELAS_DE_VOTOS = ("votacao_munzona", "detalhe_munzona", "votacao_secao", "detalhe_secao")
+TABELAS_DE_VOTOS = (
+    "votacao_munzona",
+    "votacao_partido_munzona",
+    "detalhe_munzona",
+    "votacao_secao",
+    "detalhe_secao",
+)
 
 SOMA_SECAO = """
 WITH v AS (
@@ -154,6 +170,36 @@ SELECT 'resultado_brasil', ano, turno, 'BR', 1, sum(pct_validos)
 FROM marts.resultado_brasil
 GROUP BY ALL HAVING abs(sum(pct_validos) - 100) > 1e-6
 ORDER BY ALL"""
+
+
+# Códigos IBGE presentes na malha (TopoJSON guardado como texto no staging).
+CODIGOS_MALHA = """SELECT unnest(json_extract_string(
+    topojson, '$.objects.*.geometries[*].properties.codarea'))::INTEGER AS cd_ibge
+FROM staging.ibge_malha"""
+
+
+def _municipios_do_turno(ano: int, turno: int) -> str:
+    return f"""(sg_uf, cd_municipio) IN (
+        SELECT sg_uf, cd_municipio FROM staging.detalhe_munzona
+        WHERE ano = {ano} AND turno = {turno})"""
+
+
+def _soma_entre_niveis(
+    ano: int, turno: int, filho: str, pai: str, chaves_pai: Sequence[str], medidas: Sequence[str]
+) -> str:
+    """Linhas em que a soma de `filho` difere de `pai` nas `medidas` (por chaves_pai)."""
+    k = ", ".join(chaves_pai)
+    somas = ", ".join(f"sum({m})::BIGINT AS {m}" for m in medidas)
+    difere = " OR ".join(f"f.{m} IS DISTINCT FROM p.{m}" for m in medidas)
+    dif = ", ".join(f"f.{m} - p.{m} AS diferenca_{m}" for m in medidas)
+    return f"""
+WITH f AS (
+    SELECT {k}, {somas} FROM marts.{filho}
+    WHERE ano = {ano} AND turno = {turno} GROUP BY {k}
+), p AS (
+    SELECT {k}, {", ".join(medidas)} FROM marts.{pai} WHERE ano = {ano} AND turno = {turno}
+)
+SELECT {k}, {dif} FROM f FULL JOIN p USING ({k}) WHERE {difere} ORDER BY ALL"""
 
 
 def _lista(valores: Sequence[object]) -> str:
@@ -251,6 +297,90 @@ def regras(ano: int, turno: int, ufs: Sequence[str], cargos: Sequence[int]) -> l
             "percentuais_validos",
             "percentuais dos majoritários não somam 100%",
             PERCENTUAIS,
+        ),
+        # --- mapa municipal: código IBGE e coerência entre UF, município e zona ---
+        Regra(
+            "municipio_sem_ibge",
+            "município do TSE sem código IBGE (complete config/municipios_excecoes.yaml)",
+            f"""SELECT sg_uf, cd_municipio, nm_municipio FROM marts.municipio_ibge
+                WHERE cd_ibge IS NULL AND {_municipios_do_turno(ano, turno)} ORDER BY ALL""",
+        ),
+        Regra(
+            "ibge_duplicado",
+            "código IBGE atribuído a mais de um município do TSE (ou nome ambíguo)",
+            """SELECT 'código' AS caso, cd_ibge::VARCHAR AS chave, count(*) AS n
+               FROM marts.municipio_ibge WHERE cd_ibge IS NOT NULL
+               GROUP BY cd_ibge HAVING count(*) > 1
+               UNION ALL
+               SELECT 'município TSE', sg_uf || '/' || cd_municipio, count(*)
+               FROM marts.municipio_ibge GROUP BY sg_uf, cd_municipio HAVING count(*) > 1
+               ORDER BY ALL""",
+        ),
+        Regra(
+            "ibge_fora_da_malha",
+            "código IBGE sem polígono na malha (se for município novo, liste em sem_poligono)",
+            f"""SELECT sg_uf, cd_municipio, nm_municipio, cd_ibge FROM marts.municipio_ibge
+                WHERE cd_ibge IS NOT NULL AND NOT sem_poligono
+                  AND cd_ibge NOT IN ({CODIGOS_MALHA})
+                  AND {_municipios_do_turno(ano, turno)}
+                ORDER BY ALL""",
+        ),
+        Regra(
+            "soma_municipios_uf",
+            "votos por candidato nos municípios ≠ total da UF",
+            _soma_entre_niveis(
+                ano,
+                turno,
+                "resultado_municipio",
+                "resultado_uf",
+                ("sg_uf", "cd_cargo", "sq_candidato"),
+                ("votos",),
+            ),
+        ),
+        Regra(
+            "soma_municipios_uf_comparecimento",
+            "comparecimento nos municípios ≠ total da UF",
+            _soma_entre_niveis(
+                ano,
+                turno,
+                "comparecimento_municipio",
+                "comparecimento_uf",
+                ("sg_uf", "cd_cargo"),
+                ("aptos", "comparecimento", "abstencoes"),
+            ),
+        ),
+        Regra(
+            "soma_zonas_municipio",
+            "votos por candidato nas zonas ≠ total do município",
+            _soma_entre_niveis(
+                ano,
+                turno,
+                "resultado_zona",
+                "resultado_municipio",
+                ("sg_uf", "cd_municipio", "cd_cargo", "sq_candidato"),
+                ("votos",),
+            ),
+        ),
+        Regra(
+            "soma_zonas_municipio_comparecimento",
+            "comparecimento nas zonas ≠ total do município",
+            _soma_entre_niveis(
+                ano,
+                turno,
+                "comparecimento_zona",
+                "comparecimento_municipio",
+                ("sg_uf", "cd_municipio", "cd_cargo"),
+                ("aptos", "comparecimento", "abstencoes"),
+            ),
+        ),
+        Regra(
+            "partidos_igual_validos",
+            "soma dos votos por partido ≠ votos válidos (proporcionais, por município)",
+            f"""SELECT sg_uf, cd_municipio, cd_cargo, sum(votos) AS partidos,
+                       any_value(votos_validos) AS validos
+                FROM marts.partido_municipio WHERE ano = {ano} AND turno = {turno}
+                GROUP BY ALL HAVING sum(votos) <> any_value(votos_validos) ORDER BY ALL""",
+            severidade="aviso",
         ),
     ]
     return out

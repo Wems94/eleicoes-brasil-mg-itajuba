@@ -34,6 +34,35 @@ describe("leitura dos snapshots", () => {
     expect(dados.manifesto().municipio?.nome).toBe("ITAJUBÁ");
   });
 
+  it("lê as camadas e o detalhe do mapa municipal", () => {
+    expect(dados.cargosMapa(2022, 1)).toEqual([
+      "presidente",
+      "governador",
+      "senador",
+      "deputado-federal",
+      "deputado-estadual",
+    ]);
+    expect(dados.cargosMapa(2022, 2)).toEqual(["presidente", "governador"]);
+    const camada = dados.mapa(2022, 1, "presidente");
+    expect(camada.municipios["3132404"]).toHaveLength(3);
+    expect(dados.detalhes(2022, 2)).toEqual([
+      { uf: "MG", cargo: "presidente" },
+      { uf: "SP", cargo: "governador" },
+      { uf: "SP", cargo: "presidente" },
+    ]);
+    const mg = dados.detalhe(2022, 1, "MG", "governador");
+    expect(mg.municipios["3106200"].zonas.map((z) => z.zona)).toEqual([32, 33]);
+    expect(dados.manifesto().municipio?.ibge).toBe(3132404);
+  });
+
+  it("serve a malha e só as fotos publicadas", () => {
+    expect(JSON.parse(dados.bruto("geo/municipios.topo.json").toString()).type).toBe("Topology");
+    const fotos = dados.fotos();
+    expect(fotos.length).toBeGreaterThan(0);
+    expect(fotos.every((f) => /^\d+\.jpg$/.test(f.arquivo))).toBe(true);
+    expect(() => dados.bruto("fotos/2022/1.jpg")).toThrow(/não está no manifesto/);
+  });
+
   it("recusa eleição que não está no manifesto", () => {
     expect(() => dados.brasil(2020, 1)).toThrow(/2020\/1 não está no manifesto/);
   });
@@ -53,5 +82,11 @@ describe("erros de configuração", () => {
     mkdirSync(dir, { recursive: true });
     writeFileSync(path.join(dir, "manifest.json"), JSON.stringify({ schema_versao: 99 }));
     expect(() => new SnapshotsDados(dir).manifesto()).toThrow(/schema 99/);
+  });
+
+  it("snapshots do schema 1 mandam regenerar pelo ETL", () => {
+    dir = mkdtempSync(path.join(tmpdir(), "snap-"));
+    writeFileSync(path.join(dir, "manifest.json"), JSON.stringify({ schema_versao: 1 }));
+    expect(() => new SnapshotsDados(dir).manifesto()).toThrow(/workflow ETL/);
   });
 });

@@ -306,3 +306,164 @@ def test_voto_em_candidato_fora_da_totalizacao_e_nulo(con, zips, trabalho):
         f"""SELECT sum(pct_validos) FROM marts.itajuba_resultado
             WHERE turno = 1 AND cd_cargo = 1 AND {CANDIDATO_E_LEGENDA}""",
     )[0][0] == pytest.approx(100)
+
+
+# --- municípios, zonas e partidos ---------------------------------------------------
+
+ITAJUBA, BH, BRASOPOLIS = 46477, 41238, 40592
+
+
+@pytest.fixture
+def copia(banco_completo, tmp_path):
+    """Cópia gravável do banco completo (para testes que alteram o staging)."""
+    import shutil
+
+    destino = tmp_path / "copia.duckdb"
+    shutil.copyfile(banco_completo, destino)
+    con = duckdb.connect(str(destino))
+    yield con
+    con.close()
+
+
+def test_codigo_ibge_por_nome_sem_acento(db):
+    assert _q(
+        db,
+        """SELECT cd_municipio, cd_ibge, nm_ibge, por_excecao FROM marts.municipio_ibge
+           WHERE sg_uf = 'MG' ORDER BY cd_municipio""",
+    ) == [
+        (BRASOPOLIS, 3108909, "Brazópolis", True),  # grafia divergente: tabela de exceções
+        (BH, 3106200, "Belo Horizonte", False),
+        (ITAJUBA, 3132404, "Itajubá", False),
+    ]
+
+
+def test_exterior_fica_fora_da_correspondencia(db):
+    assert _q(db, "SELECT count(*) FROM marts.municipio_ibge WHERE sg_uf = 'ZZ'") == [(0,)]
+
+
+def test_sem_a_excecao_o_municipio_fica_sem_codigo(copia):
+    construir_marts(copia, excecoes={})
+    assert _q(
+        copia, "SELECT cd_ibge FROM marts.municipio_ibge WHERE cd_municipio = ?", BRASOPOLIS
+    ) == [(None,)]
+
+
+def test_chave_de_nome_ignora_acento_espaco_e_pontuacao():
+    from eleicoes.marts import _chave_nome
+
+    con = duckdb.connect()
+    (a, b) = con.execute(
+        f"SELECT {_chave_nome('?')}, {_chave_nome('?')}",
+        ["Santa Rita d'Oeste", "SANTA RITA D OESTE"],
+    ).fetchone()
+    assert a == b == "SANTARITADOESTE"
+
+
+def test_resultado_por_municipio_soma_as_zonas(db):
+    # Belo Horizonte tem duas zonas (32 e 33) no fixture
+    zonas = _q(
+        db,
+        """SELECT nr_zona, sum(votos) FROM marts.resultado_zona
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 3
+           GROUP BY ALL ORDER BY 1""",
+        BH,
+    )
+    assert [z for z, _ in zonas] == [32, 33]
+    ((total,),) = _q(
+        db,
+        """SELECT sum(votos) FROM marts.resultado_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 3""",
+        BH,
+    )
+    assert total == sum(v for _, v in zonas)
+
+
+def test_resultado_por_municipio_confere_com_o_csv(db):
+    mz = _csv(2022, "votacao_candidato_munzona_2022_MG.csv")
+    det = _csv(2022, "detalhe_votacao_munzona_2022_MG.csv")
+    filtro = {"NR_TURNO": 1, "CD_CARGO": 3, "CD_MUNICIPIO": BH}
+    votos = _soma(mz, "QT_VOTOS_NOMINAIS_VALIDOS", NR_CANDIDATO=30, **filtro)
+    validos = _soma(det, "QT_TOTAL_VOTOS_VALIDOS", **filtro)
+
+    ((v, val, pct, pos),) = _q(
+        db,
+        """SELECT votos, votos_validos, pct_validos, posicao FROM marts.resultado_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 3
+             AND nr_candidato = 30""",
+        BH,
+    )
+    assert (v, val) == (votos, validos)
+    assert pct == pytest.approx(100 * votos / validos)
+    assert pos == 1  # peso 60 contra 25 e 15
+
+
+def test_zona_que_atende_dois_municipios(db):
+    assert _q(
+        db,
+        """SELECT DISTINCT cd_municipio FROM marts.resultado_zona
+           WHERE ano = 2022 AND turno = 1 AND nr_zona = 134 ORDER BY 1""",
+    ) == [(BRASOPOLIS,), (ITAJUBA,)]
+
+
+def test_comparecimento_por_municipio_e_zona(db):
+    det = _csv(2022, "detalhe_votacao_munzona_2022_MG.csv")
+    filtro = {"NR_TURNO": 1, "CD_CARGO": 3, "CD_MUNICIPIO": BH}
+    aptos = _soma(det, "QT_APTOS", **filtro)
+    abst = _soma(det, "QT_ABSTENCOES", **filtro)
+
+    ((a, ab, pct),) = _q(
+        db,
+        """SELECT aptos, abstencoes, pct_abstencao FROM marts.comparecimento_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 3""",
+        BH,
+    )
+    assert (a, ab) == (aptos, abst)
+    assert pct == pytest.approx(100 * abst / aptos)
+    ((soma_zonas,),) = _q(
+        db,
+        """SELECT sum(aptos) FROM marts.comparecimento_zona
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 3""",
+        BH,
+    )
+    assert soma_zonas == aptos
+
+
+def test_partido_soma_nominais_e_legenda(db):
+    rows = _q(
+        db,
+        """SELECT sum(votos), any_value(votos_validos) FROM marts.partido_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = ? AND cd_cargo = 6""",
+        ITAJUBA,
+    )
+    ((soma, validos),) = rows
+    assert soma == validos  # todos os válidos vão para algum partido
+    assert _q(db, "SELECT DISTINCT cd_cargo FROM marts.partido_municipio ORDER BY 1") == [
+        (6,),
+        (7,),
+    ]
+
+
+def test_partido_mais_votado_pode_ser_outro_que_o_do_candidato_mais_votado(copia):
+    # PSOL (50) recebe muitos votos de legenda em Itajubá: passa a ser o partido mais
+    # votado para Deputado Federal, embora o deputado mais votado ali seja do PT.
+    copia.execute(
+        """UPDATE staging.votacao_partido_munzona
+           SET qt_votos_legenda_validos = qt_votos_legenda_validos + 5000
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 6
+             AND nr_partido = 50"""
+    )
+    construir_marts(copia)
+    (cand,) = _q(
+        copia,
+        """SELECT sg_partido FROM marts.resultado_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 6
+             AND posicao = 1""",
+    )
+    (part,) = _q(
+        copia,
+        """SELECT sg_partido FROM marts.partido_municipio
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 6
+             AND posicao = 1""",
+    )
+    assert cand == ("PT",)
+    assert part == ("PSOL",)

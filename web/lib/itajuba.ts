@@ -79,3 +79,65 @@ export function historicoPorCargo(h: Historico, cargo: number): EleicaoHistorica
   }
   return [...grupos.values()].sort((a, b) => a.ano - b.ano || a.turno - b.turno);
 }
+
+export type VariacaoPartido = { partido: string; antes: number; depois: number; delta: number };
+
+/**
+ * Variação, em pontos percentuais, entre os dois 1º turnos mais recentes de um cargo,
+ * para os partidos presentes nos dois. Ordenada pelo percentual mais recente.
+ */
+export function variacaoPrimeiroTurno(
+  eleicoes: EleicaoHistorica[],
+): { de: number; para: number; partidos: VariacaoPartido[] } | null {
+  const primeiros = eleicoes.filter((e) => e.turno === 1);
+  if (primeiros.length < 2) return null;
+  const [a, b] = primeiros.slice(-2);
+  const antes = new Map(a.partidos.map((p) => [p.partido, p.pct]));
+  const partidos = b.partidos
+    .filter((p) => p.partido && p.pct != null && antes.get(p.partido) != null)
+    .map((p) => {
+      const ant = antes.get(p.partido)!;
+      return { partido: p.partido!, antes: ant, depois: p.pct!, delta: Math.round((p.pct! - ant) * 100) / 100 };
+    })
+    .sort((x, y) => y.depois - x.depois);
+  return { de: a.ano, para: b.ano, partidos };
+}
+
+/** Comparecimento por eleição (o do Presidente, que é o de todos os cargos no turno). */
+export function comparecimentoPorEleicao(h: Historico): Historico["comparecimento"] {
+  const porEleicao = new Map<string, Historico["comparecimento"][number]>();
+  for (const c of [...h.comparecimento].sort((a, b) => a.cargo - b.cargo)) {
+    const k = `${c.ano}/${c.turno}`;
+    if (!porEleicao.has(k)) porEleicao.set(k, c);
+  }
+  return [...porEleicao.values()].sort((a, b) => a.ano - b.ano || a.turno - b.turno);
+}
+
+const pct2 = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+/** Frase-resumo da comparação histórica, a partir dos próprios dados. */
+export function resumoHistorico(h: Historico): string {
+  const partes: string[] = [];
+  const presidente = historicoPorCargo(h, 1);
+  const ultimo = presidente[presidente.length - 1];
+  const lider = ultimo?.partidos[0];
+  if (ultimo && lider?.partido && lider.pct != null) {
+    partes.push(
+      `${lider.partido} liderou para Presidente em ${ultimo.ano} (${ultimo.turno}º turno) com ${pct2.format(lider.pct)}%.`,
+    );
+  }
+  const gov = historicoPorCargo(h, 3).filter((e) => e.turno === 1);
+  const lideresGov = new Set(gov.map((e) => e.partidos[0]?.partido));
+  if (gov.length > 1 && lideresGov.size === 1) {
+    partes.push(`${[...lideresGov][0]} liderou para Governador em todas as eleições.`);
+  }
+  const comp = comparecimentoPorEleicao(h)
+    .map((c) => c.pct_comparecimento)
+    .filter((v): v is number => v != null);
+  if (comp.length > 1) {
+    partes.push(
+      `O comparecimento variou entre ${pct2.format(Math.min(...comp))}% e ${pct2.format(Math.max(...comp))}%.`,
+    );
+  }
+  return partes.join(" ");
+}

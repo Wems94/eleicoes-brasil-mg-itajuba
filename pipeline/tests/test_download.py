@@ -5,7 +5,7 @@ import logging
 import pytest
 
 from eleicoes.download import FonteIndisponivel, Manifest, baixar, baixar_todas
-from eleicoes.fontes import Fonte
+from eleicoes.fontes import Catalogo, Fonte
 from tests.servidor_http import servidor_http
 
 CORPO = b"PK" + bytes(range(256)) * 400  # ~100 KB
@@ -169,3 +169,27 @@ def test_baixar_todas_devolve_resultado_por_fonte(srv, tmp_path):
 
     assert res["ok"].caminho == tmp_path / "ok_2022.zip"
     assert res["opcional"].caminho is None
+
+
+def test_fonte_do_ibge_em_gzip_e_salva_descomprimida_e_reutilizada(srv, tmp_path):
+    fonte = Catalogo.carregar(base_url=srv.base_url).fonte("ibge_malha", 2022)
+    corpo = json.dumps({"type": "Topology", "objects": {}, "arcs": []}).encode() * 50
+    srv.arquivos[fonte.caminho] = corpo
+    srv.gzip.add(fonte.caminho)
+
+    res = baixar(fonte, tmp_path, sleep=_sem_espera)
+    segunda = baixar(fonte, tmp_path, sleep=_sem_espera)
+
+    assert res.caminho == tmp_path / "ibge_malha_municipios.json"
+    assert res.caminho.read_bytes() == corpo
+    assert not segunda.baixado
+    assert srv.requisicoes[fonte.caminho] == 1
+
+
+def test_ibge_fora_do_ar_falha_com_a_url(srv, tmp_path):
+    fonte = Catalogo.carregar(base_url=srv.base_url).fonte("ibge_municipios", 2022)
+    srv.arquivos[fonte.caminho] = b"[]"
+    srv.indisponivel[fonte.caminho] = 10
+
+    with pytest.raises(FonteIndisponivel, match="localidades/municipios"):
+        baixar(fonte, tmp_path, sleep=_sem_espera)

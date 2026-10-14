@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import gzip
 import threading
 from collections import Counter
 from collections.abc import Iterator
@@ -18,6 +19,8 @@ class EstadoServidor:
     # caminho -> quantas respostas seguidas serão 503
     indisponivel: Counter[str] = field(default_factory=Counter)
     requisicoes: Counter[str] = field(default_factory=Counter)
+    # caminhos servidos com Content-Encoding: gzip (como a API do IBGE)
+    gzip: set[str] = field(default_factory=set)
     base_url: str = ""
 
 
@@ -38,6 +41,9 @@ def _handler(estado: EstadoServidor) -> type[BaseHTTPRequestHandler]:
                 self.send_error(404)
                 return
             self.send_response(200)
+            if caminho in estado.gzip:
+                corpo = gzip.compress(corpo)
+                self.send_header("Content-Encoding", "gzip")
             self.send_header("Content-Length", str(len(corpo)))
             self.end_headers()
             if estado.cortes[caminho] > 0:

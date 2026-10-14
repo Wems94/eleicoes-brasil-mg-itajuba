@@ -1,7 +1,8 @@
-# Catálogo de fontes do Portal de Dados Abertos do TSE.
+# Catálogo de fontes: Portal de Dados Abertos do TSE e serviços de dados do IBGE.
 #
 # `url` e `membros` aceitam o marcador {ano}. `membros`/`excluir` são padrões glob
-# aplicados aos nomes dos CSVs dentro do ZIP.
+# aplicados aos nomes dos CSVs dentro do ZIP. `base` escolhe a URL base (padrão:
+# `tse`); `formato: json` marca um arquivo que não é ZIP, salvo com o nome `arquivo`.
 #
 # Observações verificadas nos arquivos reais (out/2026):
 # - Os membros por UF (_MG, _SP, ...) trazem só a eleição estadual; o Presidente
@@ -11,7 +12,10 @@
 # - votacao_secao_<ano>_MG não traz Presidente em 2018 nem 2022; por isso o arquivo
 #   _BR é obrigatório (fallback de Presidente, D5).
 
-base_url: https://cdn.tse.jus.br/estatistica/sead/odsele/
+bases:
+  tse: https://cdn.tse.jus.br/estatistica/sead/odsele/
+  tse_eleicoes: https://cdn.tse.jus.br/estatistica/sead/eleicoes/
+  ibge: https://servicodados.ibge.gov.br/api/
 anos: [2018, 2022, 2026]
 
 fontes:
@@ -19,6 +23,13 @@ fontes:
     descricao: Votação por candidato, município e zona (visão por UF)
     url: votacao_candidato_munzona/votacao_candidato_munzona_{ano}.zip
     membros: ["votacao_candidato_munzona_{ano}_*.csv"]
+    excluir: ["*_BRASIL.csv"]
+    obrigatoria: true
+
+  votacao_partido_munzona:
+    descricao: Votos nominais e de legenda por partido, município e zona (cargos proporcionais)
+    url: votacao_partido_munzona/votacao_partido_munzona_{ano}.zip
+    membros: ["votacao_partido_munzona_{ano}_*.csv"]
     excluir: ["*_BRASIL.csv"]
     obrigatoria: true
 
@@ -60,3 +71,28 @@ fontes:
     # 2018/2022: arquivo único; 2026: dividido por UF (+ _BRASIL). Só MG interessa.
     membros: ["eleitorado_local_votacao_{ano}.csv", "eleitorado_local_votacao_{ano}_MG.csv"]
     obrigatoria: false
+
+  # Fotos de divulgação: só as dos candidatos a Presidente são extraídas (LGPD).
+  fotos_presidente:
+    descricao: Fotos de divulgação dos candidatos com registro nacional (Presidente)
+    base: tse_eleicoes
+    url: eleicoes{ano}/fotos/foto_cand{ano}_BR_div.zip
+    membros: ["*_div.jpg", "*_div.jpeg", "*_div.JPG", "*_div.JPEG"]
+    obrigatoria: false
+
+  # IBGE: os mesmos arquivos em todos os anos (o manifest os baixa uma vez só).
+  ibge_municipios:
+    descricao: Lista oficial de municípios do IBGE (código, nome e UF)
+    base: ibge
+    url: v1/localidades/municipios?view=nivelado
+    arquivo: ibge_municipios.json
+    formato: json
+    obrigatoria: true
+
+  ibge_malha:
+    descricao: Malha municipal do IBGE em TopoJSON (qualidade mínima)
+    base: ibge
+    url: v3/malhas/paises/BR?formato=application/json&qualidade=minima&intrarregiao=municipio
+    arquivo: ibge_malha_municipios.json
+    formato: json
+    obrigatoria: true

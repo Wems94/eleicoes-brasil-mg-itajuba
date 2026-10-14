@@ -1,3 +1,5 @@
+import io
+import shutil
 import zipfile
 from collections.abc import Callable, Iterable
 from pathlib import Path
@@ -9,6 +11,38 @@ from eleicoes.download import ResultadoDownload
 from eleicoes.fontes import Catalogo
 
 TSE = Path(__file__).parent / "fixtures" / "tse"
+IBGE = Path(__file__).parent / "fixtures" / "ibge"
+ARQUIVOS_IBGE = {"ibge_municipios": "municipios.json", "ibge_malha": "malha.json"}
+
+
+def jpeg_ficticio(cor: tuple[int, int, int], tamanho=(300, 400)) -> bytes:
+    from PIL import Image
+
+    saida = io.BytesIO()
+    Image.new("RGB", tamanho, cor).save(saida, "JPEG")
+    return saida.getvalue()
+
+
+def sq_presidentes(ano: int) -> list[int]:
+    from tests.fixtures.gerar_tse import CANDIDATOS, _sq
+
+    return [_sq(ano, c) for c in CANDIDATOS if c.cargo == 1]
+
+
+def sq_de(ano: int, cargo: int) -> int:
+    from tests.fixtures.gerar_tse import CANDIDATOS, _sq
+
+    return next(_sq(ano, c) for c in CANDIDATOS if c.cargo == cargo)
+
+
+def zip_fotos(ano: int, destino: Path) -> None:
+    """Pacote no layout do TSE: presidentes (menos o último), um deputado e um PDF."""
+    presidentes = sq_presidentes(ano)
+    with zipfile.ZipFile(destino, "w") as z:
+        for i, sq in enumerate(presidentes[:-1]):
+            z.writestr(f"FBR{sq}_div.jpg", jpeg_ficticio((40 * i, 90, 160)))
+        z.writestr(f"FMG{sq_de(ano, 6)}_div.jpg", jpeg_ficticio((200, 30, 30)))
+        z.writestr("leiame.pdf", b"%PDF-1.4")
 
 
 def montar_zips(
@@ -31,6 +65,16 @@ def montar_zips(
     for fonte in Catalogo.carregar().resolver(ano):
         if fonte.nome in sem:
             out[fonte.nome] = ResultadoDownload(fonte, None, None, baixado=False)
+            continue
+        if fonte.nome in ARQUIVOS_IBGE:
+            caminho = destino / fonte.arquivo
+            shutil.copyfile(IBGE / ARQUIVOS_IBGE[fonte.nome], caminho)
+            out[fonte.nome] = ResultadoDownload(fonte, caminho, None, baixado=True)
+            continue
+        if fonte.nome == "fotos_presidente":
+            caminho = destino / fonte.arquivo
+            zip_fotos(ano, caminho)
+            out[fonte.nome] = ResultadoDownload(fonte, caminho, None, baixado=True)
             continue
         stem = fonte.arquivo.removesuffix(".zip")
         membros = {

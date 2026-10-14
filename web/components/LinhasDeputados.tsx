@@ -19,7 +19,7 @@ export function LinhasDeputados({ candidatos }: { candidatos: Candidato[] }) {
         {c.situacao ? (
           <span
             className={`inline-block rounded-md px-1.5 py-0.5 font-medium ${
-              eleito(c.situacao) ? "bg-texto text-superficie" : "bg-realce text-texto-2"
+              eleito(c.situacao) ? "bg-acento-claro text-texto ring-1 ring-acento/40" : "bg-realce text-texto-2"
             }`}
           >
             {c.situacao}

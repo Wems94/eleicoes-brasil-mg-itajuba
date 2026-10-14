@@ -216,3 +216,59 @@ def test_soma_munzona_considera_votos_anulados_apurados_em_separado(db):
            WHERE ano = 2022 AND turno = 1 AND sg_uf = 'SP' AND cd_cargo = 3"""
     )
     assert _rodar(db).ok
+
+
+# --- mapa municipal ------------------------------------------------------------------
+
+
+def _exemplos(relatorio, regra: str) -> list[dict]:
+    return next(r.exemplos for r in relatorio.resultados if r.regra.nome == regra)
+
+
+def test_municipio_sem_correspondencia_lista_uf_e_nome(db):
+    construir_marts(db, excecoes={})  # sem a exceção, Brasópolis não casa com Brazópolis
+    rel = _rodar(db)
+    assert "municipio_sem_ibge" in _falhas(rel)
+    assert _exemplos(rel, "municipio_sem_ibge") == [
+        {"sg_uf": "MG", "cd_municipio": 40592, "nm_municipio": "BRASÓPOLIS"}
+    ]
+    with pytest.raises(QualidadeReprovada, match="BRASÓPOLIS"):
+        gate(db, 2022, 1, ufs=UFS_FIXTURE)
+
+
+def test_dois_municipios_no_mesmo_codigo_ibge(db):
+    construir_marts(db, excecoes={"MG": {"BRASÓPOLIS": 3132404}})  # código de Itajubá
+    assert "ibge_duplicado" in _falhas(_rodar(db))
+
+
+def test_codigo_fora_da_malha(db):
+    db.execute(
+        """UPDATE staging.ibge_malha
+           SET topojson = replace(topojson, '"codarea": "3108909"', '"codarea": "9999999"')"""
+    )
+    rel = _rodar(db)
+    assert "ibge_fora_da_malha" in _falhas(rel)
+    assert _exemplos(rel, "ibge_fora_da_malha")[0]["cd_ibge"] == 3108909
+
+
+def test_soma_das_zonas_diferente_do_municipio(db):
+    db.execute(
+        """UPDATE marts.resultado_zona SET votos = votos + 7
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 41238 AND nr_zona = 33
+             AND cd_cargo = 3 AND nr_candidato = 30"""
+    )
+    rel = _rodar(db)
+    assert _falhas(rel) == {"soma_zonas_municipio"}
+    (ex,) = _exemplos(rel, "soma_zonas_municipio")
+    assert ex["sg_uf"] == "MG" and ex["cd_cargo"] == 3 and ex["diferenca_votos"] == 7
+
+
+def test_soma_dos_municipios_diferente_da_uf(db):
+    db.execute(
+        """UPDATE marts.comparecimento_municipio SET aptos = aptos - 2
+           WHERE ano = 2022 AND turno = 1 AND cd_municipio = 46477 AND cd_cargo = 3"""
+    )
+    rel = _rodar(db)
+    assert "soma_municipios_uf_comparecimento" in _falhas(rel)
+    (ex,) = _exemplos(rel, "soma_municipios_uf_comparecimento")
+    assert (ex["sg_uf"], ex["cd_cargo"], ex["diferenca_aptos"]) == ("MG", 3, -2)
